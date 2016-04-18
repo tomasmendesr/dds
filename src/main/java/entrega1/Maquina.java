@@ -14,22 +14,22 @@ public class Maquina {
 	
 	private Point ubicacion;
 
-	//GETERS Y SETERS
+	//GETTERS Y SETTERS
 	
 	public void setUbicacion(Point ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 	
-	//METODOS
-	
-	//CALCULO DE CERCANIA
-	
-	public boolean estaCercaDe(POI unPOI){
-		return unPOI.estaCercaDeMaquina(this);
-	}
-
 	public Point getUbicacion() {
 		return ubicacion;
+	}
+	
+	
+	//METODOS
+	
+	// Calculo de cercania
+	public boolean estaCercaDe(POI unPOI){
+		return unPOI.estaCercaDeMaquina(this);
 	}
 	
 }

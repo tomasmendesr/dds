@@ -19,7 +19,7 @@ public class LocalComercial extends POI {
 	
 	private Rubro rubro;
 	
-	//GETERS Y SETERS
+	//GETTERS Y SETTERS
 	
 	public Rubro getRubro(){
 		return rubro;

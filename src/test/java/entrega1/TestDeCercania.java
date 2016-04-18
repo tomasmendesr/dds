@@ -31,7 +31,6 @@ public class TestDeCercania {
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
 		
 		// MaquinaCercana -- Sayos 4937
-		// Esta a media cuadra de la parada del 47 y tambien esta a menos de 500 metros del Banco
 		maquinaCercana = new Maquina(new Point(-34.6718,-58.46805));
 		
 		//MaquinaLejana -- Av Carabobo 27 

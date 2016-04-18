@@ -23,7 +23,7 @@ public abstract class POI {
 	private Polygon comuna;
 
 	
-	//GETERS Y SETERS
+	//GETTERS Y SETTERS
 	
 	public Point getUbicacion(){
 		return ubicacion;
@@ -75,5 +75,5 @@ public abstract class POI {
 	public double cercaniaRequerida(){ // Defino la cercania requerida standar
 		return 500.0;
 	}
-		
+	
 }

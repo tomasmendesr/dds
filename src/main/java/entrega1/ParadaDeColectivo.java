@@ -9,10 +9,7 @@ public class ParadaDeColectivo extends POI {
 		super(miUbicacion, miComuna);
 	}
 
-	@Override
 	public double cercaniaRequerida(){
 		return 100.0;
 	}
-	
-
 }

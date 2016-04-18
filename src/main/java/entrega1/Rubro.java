@@ -12,7 +12,7 @@ public class Rubro {
 	
 	private Double radioDeCercania;
 	
-	//GETERS Y SETERS
+	//GETTERS Y SETTERS
 	
 	public Double getRadioDeCercania(){
 		return radioDeCercania;

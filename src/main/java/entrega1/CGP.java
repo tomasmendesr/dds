@@ -7,13 +7,10 @@ public class CGP extends POI {
 
 	public CGP(Point ubicacion, Polygon comuna) {
 		super(ubicacion, comuna);
-		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
 	public boolean estaCercaDeMaquina(Maquina unaMaquina){
 		return this.getComuna().isInside(unaMaquina.getUbicacion());		
 	}
-
-
+	
 }

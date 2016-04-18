@@ -12,7 +12,7 @@ public class TestDeBusquedaLibre {
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
 	private Banco banco;
-	private Maquina maquina;
+	private Dispositivo dispositivo;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	
@@ -31,8 +31,8 @@ public class TestDeBusquedaLibre {
 		
 		paradaDel47.addTag("47");
 		
-		// MaquinaCercana -- Sayos 4937
-		maquina = new Maquina(new Point(-34.6718,-58.46805));
+		// DispositivoCercana -- Sayos 4937
+		dispositivo = new Dispositivo(new Point(-34.6718,-58.46805));
 		
 		// CGP -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);	
@@ -51,11 +51,11 @@ public class TestDeBusquedaLibre {
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconoceElTag47(){
-		Assert.assertTrue(maquina.textoLibre(paradaDel47, "47")); 
+		Assert.assertTrue(dispositivo.textoLibre(paradaDel47, "47")); 
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreNoReconoceElTag5(){
-		Assert.assertFalse(maquina.textoLibre(paradaDel47, "5"));
+		Assert.assertFalse(dispositivo.textoLibre(paradaDel47, "5"));
 	}
 }

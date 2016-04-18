@@ -12,8 +12,8 @@ public class TestDeCercania {
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
 	private Banco banco;
-	private Maquina maquinaCercana;
-	private Maquina maquinaLejana;
+	private Dispositivo dispositivoCercano;
+	private Dispositivo dispositivoLejano;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	
@@ -30,12 +30,12 @@ public class TestDeCercania {
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
 		
-		// MaquinaCercana -- Sayos 4937
-		maquinaCercana = new Maquina(new Point(-34.6718,-58.46805));
+		// dispositivoCercano -- Sayos 4937
+		dispositivoCercano = new Dispositivo(new Point(-34.6718,-58.46805));
 		
-		//MaquinaLejana -- Av Carabobo 27 
-		// Se encuentra lejana a todos los puntos de interes instanciados
-		maquinaLejana = new Maquina(new Point(-34.6273, -58.4564));
+		//dispositivoLejano -- Av Carabobo 27 
+		// Se encuentra Lejano a todos los puntos de interes instanciados
+		dispositivoLejano = new Dispositivo(new Point(-34.6273, -58.4564));
 		
 		// CGP -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);	
@@ -53,52 +53,52 @@ public class TestDeCercania {
 	}
 	
 	@Test
-	public void testParada47CercanaAMenosDe100Metros(){
-		Assert.assertTrue(maquinaCercana.estaCercaDe(paradaDel47)); 
+	public void testParada47CercanoAMenosDe100Metros(){
+		Assert.assertTrue(dispositivoCercano.estaCercaDe(paradaDel47)); 
 	}
 	
 	@Test
-	public void testParada47Lejana(){
-		Assert.assertTrue(!maquinaLejana.estaCercaDe(paradaDel47)); 
+	public void testParada47Lejano(){
+		Assert.assertTrue(!dispositivoLejano.estaCercaDe(paradaDel47)); 
 	}
 
 	@Test
 	public void testCGPDentroDeLaMismaComuna(){
-			Assert.assertTrue(maquinaCercana.estaCercaDe(cgp)); 
+			Assert.assertTrue(dispositivoCercano.estaCercaDe(cgp)); 
 	}
 	@Test
 	public void testCGPLejano(){
-			Assert.assertTrue(!maquinaLejana.estaCercaDe(cgp)); 
+			Assert.assertTrue(!dispositivoLejano.estaCercaDe(cgp)); 
 	}
 
 	@Test 
 	public void testBancoCercanoAMenosDe500Metros(){
-		Assert.assertTrue(maquinaCercana.estaCercaDe(banco)); 
+		Assert.assertTrue(dispositivoCercano.estaCercaDe(banco)); 
 	}
 	
 	@Test 
 	public void testBancoLejano(){
-		Assert.assertTrue(!maquinaLejana.estaCercaDe(banco));  
+		Assert.assertTrue(!dispositivoLejano.estaCercaDe(banco));  
 	}
 	
 	@Test 
 	public void testLibreriaDentroDelRadio(){
-		Assert.assertTrue(maquinaCercana.estaCercaDe(libreriaEscolar));
+		Assert.assertTrue(dispositivoCercano.estaCercaDe(libreriaEscolar));
 	}
 	
 	@Test
 	public void testLibreriaFueraDelRadio(){
-		Assert.assertTrue(!maquinaLejana.estaCercaDe(libreriaEscolar));
+		Assert.assertTrue(!dispositivoLejano.estaCercaDe(libreriaEscolar));
 	}
 	
 	@Test
 	public void testKioskoDeDiariosDentroDelRadio(){
-		Assert.assertTrue(maquinaCercana.estaCercaDe(kioskoDeDiarios));
+		Assert.assertTrue(dispositivoCercano.estaCercaDe(kioskoDeDiarios));
 	}
 	
 	@Test
 	public void testKioskoDeDiariosLejano(){
-		Assert.assertTrue(!maquinaLejana.estaCercaDe(kioskoDeDiarios));
+		Assert.assertTrue(!dispositivoLejano.estaCercaDe(kioskoDeDiarios));
 	}
 	
 }

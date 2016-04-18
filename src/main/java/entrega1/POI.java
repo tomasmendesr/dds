@@ -82,8 +82,9 @@ public abstract class POI {
 		return tags.contains(unTag);
 	}
 	//CALCULO DE CERCANIA
-	public boolean estaCercaDeMaquina(Maquina unaMaquina){
-		return this.getUbicacion().distance(unaMaquina.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros
+
+	public boolean estaCercaDeDispositivo(Dispositivo unDispositivo){
+		return this.getUbicacion().distance(unDispositivo.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros
 	}
 	
 	public double cercaniaRequerida(){ // Defino la cercania requerida standar

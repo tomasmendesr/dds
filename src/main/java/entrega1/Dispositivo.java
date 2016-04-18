@@ -2,11 +2,11 @@ package entrega1;
 
 import org.uqbar.geodds.Point;
 
-public class Maquina {
+public class Dispositivo {
 
 	//CONSTRUCTOR
 	
-	public Maquina(Point unaUbicacion){
+	public Dispositivo(Point unaUbicacion){
 		this.setUbicacion(unaUbicacion);
 	}
 	
@@ -29,11 +29,11 @@ public class Maquina {
 	
 	// Calculo de cercania
 	public boolean estaCercaDe(POI unPOI){
-		return unPOI.estaCercaDeMaquina(this);
+		return unPOI.estaCercaDeDispositivo(this);
 	}
 	
 	/* Busqueda de texto Libre. Acutalmente recibe un POI y un String como parámetro.
-	 * Habria que modificar Maquina en un futuro para que tenga una lista de los POIs cargados en el sistema
+	 * Habria que modificar Dispositivo en un futuro para que tenga una lista de los POIs cargados en el sistema
 	 * y el método TextoLibre haria un mappeo de todos los pois buscando aquellos que los tags coinciden
 	 * (dejaria de recibir POI como parametro). 
 	 * 

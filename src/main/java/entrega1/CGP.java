@@ -9,8 +9,8 @@ public class CGP extends POI {
 		super(ubicacion, comuna);
 	}
 	
-	public boolean estaCercaDeMaquina(Maquina unaMaquina){
-		return this.getComuna().isInside(unaMaquina.getUbicacion());		
+	public boolean estaCercaDeDispositivo(Dispositivo unDispositivo){
+		return this.getComuna().isInside(unDispositivo.getUbicacion());		
 	}
 	
 }

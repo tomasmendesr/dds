@@ -15,8 +15,5 @@ public class CGP extends POI {
 		return this.getComuna().isInside(unaMaquina.getUbicacion());		
 	}
 
-	public double cercaniaRequerida() {
-		return 0;
-	}
 
 }

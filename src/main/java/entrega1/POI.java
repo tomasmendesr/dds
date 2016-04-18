@@ -21,9 +21,6 @@ public abstract class POI {
 	private String calle;
 	private Integer altura;
 	private Polygon comuna;
-//	private Coordenada coordenadaDelP;
-	
-//	private Direccion direccion;
 
 	
 	//GETERS Y SETERS
@@ -56,7 +53,7 @@ public abstract class POI {
 	
 	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){
-		return this.getUbicacion().distance(otroPOI.getUbicacion())/1000 < metros;	//para pasarlo a metros
+		return this.getUbicacion().distance(otroPOI.getUbicacion())*1000 < metros;	//para pasarlo a metros
 	}
 	
 	public boolean esPOIValido(){
@@ -74,7 +71,7 @@ public abstract class POI {
 	//CALCULO DE CERCANIA
 	
 	public boolean estaCercaDeMaquina(Maquina unaMaquina){
-		return this.getUbicacion().distance(unaMaquina.getUbicacion())/1000 < this.cercaniaRequerida();
+		return this.getUbicacion().distance(unaMaquina.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros
 	}
 	
 	public double cercaniaRequerida(){
@@ -90,10 +87,8 @@ public abstract class POI {
 	*/
 
 	
-	
-	
-/*
-esto no se usa
+	/*
+	esto no se usa
 	public boolean estaAMenosMetrosDe(Double metros, Point otroPunto){
 		return (ubicacion.distance(otroPunto) / 1000) < metros;
 	}
@@ -103,5 +98,5 @@ esto no se usa
 	}
 	
 	public abstract boolean estaCerca();
-*/
+	 */
 }

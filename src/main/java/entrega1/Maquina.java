@@ -4,14 +4,18 @@ import org.uqbar.geodds.Point;
 
 public class Maquina {
 
+	//CONSTRUCTOR
+	
+	public Maquina(Point unaUbicacion){
+		this.setUbicacion(unaUbicacion);
+	}
+	
 	//ATRIBUTOS
 	
 	private Point ubicacion;
 
 	//GETERS Y SETERS
 	
-	
-
 	public void setUbicacion(Point ubicacion) {
 		this.ubicacion = ubicacion;
 	}

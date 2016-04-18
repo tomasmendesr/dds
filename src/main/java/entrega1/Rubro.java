@@ -4,6 +4,11 @@ import org.uqbar.geodds.Polygon;
 
 public class Rubro {
 	
+	//CONSTRUCTOR 
+	
+	public Rubro(Polygon unRadioDeCercania){
+		this.setRadioDeCercania(unRadioDeCercania);
+	}	
 	
 	//ATRIBUTOS
 	

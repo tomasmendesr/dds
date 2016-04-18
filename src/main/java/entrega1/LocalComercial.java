@@ -1,7 +1,20 @@
 package entrega1;
 
-public class LocalComercial {
+import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
+public class LocalComercial extends POI {
+
+	//CONSTRUCTOR
+	
+	public LocalComercial(Point unaUbicacion, Polygon unaComuna, Rubro unRubro){
+	
+		super(unaUbicacion,unaComuna);
+		this.setRubro(unRubro);
+		
+	}
+	
+	
 	//ATRIBUTOS
 	
 	private Rubro rubro;

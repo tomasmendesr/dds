@@ -10,7 +10,8 @@ public class TestDeCercania {
 	
 	private Polygon comuna8;
 	private ParadaDeColectivo paradaDel47;
-	private CGP cGP;
+	private CGP cgp;
+	private Banco banco;
 	
 	@Before
 	public void init(){
@@ -27,27 +28,40 @@ public class TestDeCercania {
 		paradaDel47 = new ParadaDeColectivo(pointDel47, comuna8);
 		
 		// Instancio un CGP
-		Point pointDelCGP = new Point(-34.6706, -58.4688); // Corvalan 6536
-		cGP = new CGP(pointDelCGP, comuna8);	
+		Point pointDelCGP = new Point(-34.6672, -58.4669); // Av Escalada 3100
+		cgp = new CGP(pointDelCGP, comuna8);	
+		
+		// Instancio un Banco
+		Point pointDelBanco = new Point(-34.6672, -58.4669); // Aquino 500
+		banco = new Banco(pointDelBanco, comuna8);
 	}
 	
 	@Test
-	public void testDeCercaniaDel47SiEstoyCerca(){
+	public void testParada47CercanaAMenosDe100Metros(){
 		Assert.assertTrue(paradaDel47.estaCerca(new Point(-34.6701,-58.4694))); // Punto a menos de 100 metros
 	}
 	
 	@Test
-	public void testDeCercaniaDel47SiEstoyLejos(){
+	public void testParada47Lejana(){
 		Assert.assertTrue(!paradaDel47.estaCerca(new Point(-35.1254, 14.5671))); // Punto lejano
 	}
 
 	@Test
-	public void testDeSiElCGPEstaDentroDeLaComunaDondeEstoy(){
-			Assert.assertTrue(cGP.estaCerca(new Point(-34.6775,-58.4641))); // Punto dentro de la comuna
+	public void testCGPCercanoDentroDeLaComunaDondeEstoy(){
+			Assert.assertTrue(cgp.estaCerca(new Point(-34.6775,-58.4641))); // Punto dentro de la comuna
 	}
 	@Test
-	public void testDeSiElCGPEstaFueraDeLaComunaDondeEstoy(){
-			Assert.assertTrue(!cGP.estaCerca(new Point(-3.4214,0.0134))); // Punto fuera de la comuna
+	public void testCGPLejano(){
+			Assert.assertTrue(!cgp.estaCerca(new Point(-3.4214,0.0134))); // Punto fuera de la comuna
+	}
+
+	@Test 
+	public void testBancoCercanoAMenosDe500Metros(){
+		Assert.assertTrue(banco.estaCerca(new Point(-34.6695, -58.4702))); // Punto a menos de 500 metros
 	}
 	
+	@Test 
+	public void testBancoLejano(){
+		Assert.assertTrue(!banco.estaCerca(new Point(-32.4654, -32.9586))); // Punto a menos de 500 metros
+	}
 }

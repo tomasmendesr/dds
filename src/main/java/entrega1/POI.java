@@ -51,9 +51,8 @@ public abstract class POI {
 	
 	//METODOS
 	
-	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){
-		return this.getUbicacion().distance(otroPOI.getUbicacion())*1000 < metros;	//para pasarlo a metros
+		return this.getUbicacion().distance(otroPOI.getUbicacion())*1000 < metros;	// Para pasarlo a metros
 	}
 	
 	public boolean esPOIValido(){
@@ -69,34 +68,12 @@ public abstract class POI {
 	}
 	
 	//CALCULO DE CERCANIA
-	
 	public boolean estaCercaDeMaquina(Maquina unaMaquina){
 		return this.getUbicacion().distance(unaMaquina.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros
 	}
 	
-	public double cercaniaRequerida(){
+	public double cercaniaRequerida(){ // Defino la cercania requerida standar
 		return 500.0;
 	}
-	
-	/*
-	public boolean estaCerca(POI otroPOI){
-		return this.estaAMenosDeXMetrosDeOtroPOI(otroPOI, 500.0);
-	}
-	
-	public abstract double cercaniaRequerida();
-	*/
-
-	
-	/*
-	esto no se usa
-	public boolean estaAMenosMetrosDe(Double metros, Point otroPunto){
-		return (ubicacion.distance(otroPunto) / 1000) < metros;
-	}
-	
-	public boolean creoOtraFuncion(Polygon comuna, Point unPunto){
-		return comuna.isInside(unPunto);
-	}
-	
-	public abstract boolean estaCerca();
-	 */
+		
 }

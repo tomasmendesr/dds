@@ -28,9 +28,16 @@ public class LocalComercial extends POI {
 	public void setRubro(Rubro unRubro){
 		rubro = unRubro;
 	}
-	//METODOS
 	
-	public boolean estaCercaDeMaquina(Maquina unaMaquina){
-		return this.getRubro().getRadioDeCercania().isInside(unaMaquina.getUbicacion());
+	//METODOS
+	public double cercaniaRequerida(){
+		return this.getRubro().getRadioDeCercania();
 	}
+	
+	/*public boolean estaCercaDeMaquina(Maquina unaMaquina){
+		return this.getRubro().getRadioDeCercania().isInside(unaMaquina.getUbicacion());
+	}*/
+	
+	
+	
 }

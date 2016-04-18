@@ -4,6 +4,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
+import java.util.ArrayList;
 
 public abstract class POI {
 
@@ -12,6 +13,7 @@ public abstract class POI {
 	public POI(Point unaUbicacion, Polygon unaComuna) {
 		this.setUbicacion(unaUbicacion);
 		this.setComuna(unaComuna);
+		this.setTags(); //Para inicializar el Array 
 	}	
 	
 	//ATRIBUTOS
@@ -21,6 +23,7 @@ public abstract class POI {
 	private String calle;
 	private Integer altura;
 	private Polygon comuna;
+	private ArrayList<String> tags; //Array de String que contienen todos los tags de busqueda libre
 
 	
 	//GETTERS Y SETTERS
@@ -49,6 +52,14 @@ public abstract class POI {
 		nombre = unNombre;
 	}
 	
+	public void setTags(){ //Inicializa el ArrayList
+		tags = new ArrayList<String>();
+	}
+	
+	public void addTag(String tag){//Agrega un tag al ArrayList
+		tags.add(tag);
+	}
+	
 	//METODOS
 	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){
@@ -67,6 +78,9 @@ public abstract class POI {
 		return this.getNombre() != null;
 	}
 	
+	public boolean buscaTag(String unTag){
+		return tags.contains(unTag);
+	}
 	//CALCULO DE CERCANIA
 	public boolean estaCercaDeMaquina(Maquina unaMaquina){
 		return this.getUbicacion().distance(unaMaquina.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros

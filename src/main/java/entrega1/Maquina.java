@@ -32,4 +32,14 @@ public class Maquina {
 		return unPOI.estaCercaDeMaquina(this);
 	}
 	
+	/* Busqueda de texto Libre. Acutalmente recibe un POI y un String como parámetro.
+	 * Habria que modificar Maquina en un futuro para que tenga una lista de los POIs cargados en el sistema
+	 * y el método TextoLibre haria un mappeo de todos los pois buscando aquellos que los tags coinciden
+	 * (dejaria de recibir POI como parametro). 
+	 * 
+	 * */
+	
+	public boolean textoLibre(POI unPOI, String unTag){ 
+		return unPOI.buscaTag(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
+	}
 }

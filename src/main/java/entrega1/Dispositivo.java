@@ -28,12 +28,20 @@ public class Dispositivo {
 	//METODOS
 	
 	// Calculo de cercania
+	
 	public boolean estaCercaDe(POI unPOI){
 		return unPOI.estaCercaDeDispositivo(this);
 	}
 	
+	// Calculo de disponibilidad
+	
+	public boolean estaDisponible(POI unPOI, String unNombreDeServicio,Tiempo unTiempo){
+		return unPOI.estaDisponible(unNombreDeServicio,unTiempo);
+	}	
+	
+	// Busqueda de puntos
 	/* Busqueda de texto Libre. Acutalmente recibe un POI y un String como parámetro.
-	 * Habria que modificar Dispositivo en un futuro para que tenga una lista de los POIs cargados en el sistema
+	 * Habria que modificar cispositivo en un futuro para que tenga una lista de los POIs cargados en el sistema
 	 * y el método TextoLibre haria un mappeo de todos los pois buscando aquellos que los tags coinciden
 	 * (dejaria de recibir POI como parametro). 
 	 * 

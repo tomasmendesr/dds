@@ -5,6 +5,7 @@ import org.uqbar.geodds.Polygon;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public abstract class POI {
 
@@ -18,12 +19,14 @@ public abstract class POI {
 	
 	//ATRIBUTOS
 	
-	private Point ubicacion;
-	private String nombre;
-	private String calle;
-	private Integer altura;
-	private Polygon comuna;
-	private ArrayList<String> tags; //Array de String que contienen todos los tags de busqueda libre
+	private Point 					ubicacion;
+	private String 					nombre;
+	private String 					calle;
+	private Integer 				altura;
+	private Polygon 				comuna;
+	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
+//	private RangoDeTiempo rangoDeTiempo; en parada de colectivo se asigna = null
+	protected ArrayList<Servicio> 	servicios;
 
 	
 	//GETTERS Y SETTERS
@@ -60,6 +63,18 @@ public abstract class POI {
 		tags.add(tag);
 	}
 	
+	public ArrayList<Servicio> getColeccionServicios(){
+		return servicios;
+	}
+	
+	public void setColeccionServicios(ArrayList<Servicio> coleccionDeServicios){
+		servicios = coleccionDeServicios;
+	}
+	
+	public void addServicio(Servicio unServicio){
+		servicios.add(unServicio);
+	}
+	
 	//METODOS
 	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){
@@ -81,7 +96,8 @@ public abstract class POI {
 	public boolean buscaTag(String unTag){
 		return tags.contains(unTag);
 	}
-	//CALCULO DE CERCANIA
+
+	//Calculo de cercania
 
 	public boolean estaCercaDeDispositivo(Dispositivo unDispositivo){
 		return this.getUbicacion().distance(unDispositivo.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros
@@ -91,4 +107,35 @@ public abstract class POI {
 		return 500.0;
 	}
 	
+	//Calculo de disponibilidad
+	
+	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
+		if(unNombreDeServicio == null){
+			return this.algunServicioDisponible();
+		} else {		
+			return this.servicioDisponible(unNombreDeServicio,unTiempo);
+		}
+	}
+	
+	public boolean algunServicioDisponible(){
+		Tiempo horaDelMomento = this.crearHoraDelMomento();	//Instancio la hora del momento
+		return	this.getColeccionServicios().stream().
+				anyMatch(servicio -> servicio.rangoDeAtencionValido(horaDelMomento));
+	}
+	
+	public Tiempo crearHoraDelMomento(){
+		int		diaSemana = new DateTime().getDayOfWeek();
+		double 	hora = new DateTime().getHourOfDay();
+		return new Tiempo(diaSemana,hora);
+	}
+	
+	public boolean servicioDisponible(String unNombreDeServicio, Tiempo unTiempo){
+		return this.getServicio(unNombreDeServicio).rangoDeAtencionValido(unTiempo);
+	}
+	
+	public Servicio getServicio(String unNombreDeServicio){
+		return this.getColeccionServicios().stream().
+				filter(servicio -> servicio.getNombre() == unNombreDeServicio).
+				collect(Collectors.toList()).get(0); //SE SUPONE QUE EL SERVICIO INGRESADO SIEMPRE ES VALIDO
+	}
 }

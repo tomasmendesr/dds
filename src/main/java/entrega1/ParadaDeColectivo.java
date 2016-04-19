@@ -9,7 +9,13 @@ public class ParadaDeColectivo extends POI {
 		super(miUbicacion, miComuna);
 	}
 
+	@Override
 	public double cercaniaRequerida(){
 		return 100.0;
+	}
+	
+	@Override
+	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
+		return true;
 	}
 }

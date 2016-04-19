@@ -17,7 +17,9 @@ public class LocalComercial extends POI {
 	
 	//ATRIBUTOS
 	
-	private Rubro rubro;
+	private Rubro 				rubro;
+	private	RangoDeAtencion		rangoDeAtencion;
+
 	
 	//GETTERS Y SETTERS
 	
@@ -30,8 +32,25 @@ public class LocalComercial extends POI {
 	}
 	
 	//METODOS
+	
 	public double cercaniaRequerida(){
 		return this.getRubro().getRadioDeCercania();
+	}
+	
+	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
+		return this.rangoDeAtencionValido(unTiempo);
+	}
+	
+	public boolean rangoDeAtencionValido(Tiempo unTiempo){
+		return this.diaDeSemanaValido(unTiempo.getDiaDeSemana()) && this.horaValida(unTiempo.getHora());
+	}
+	
+	public boolean diaDeSemanaValido(int unDiaDeSemana){
+		return rangoDeAtencion.getDiasDeAtencion().contains(unDiaDeSemana);
+	}
+	
+	public boolean horaValida(double unaHora){
+		return rangoDeAtencion.getHorasDeAtencion().contains(unaHora);
 	}
 	
 	/*public boolean estaCercaDeMaquina(Maquina unaMaquina){

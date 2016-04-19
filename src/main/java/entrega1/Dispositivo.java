@@ -1,6 +1,7 @@
 package entrega1;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
@@ -56,11 +57,11 @@ public class Dispositivo {
 		
 	// Busqueda por texto libre
 	
-	/*public ArrayList<String> buscarPorTextoLibre(String texto){
+	/*public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
 		return coleccionDePOIS 
 				.stream()
-				.filter(poi -> poi.detectarTagBuscado(texto))
-				.map(poi -> poi.getDireccion());
+				.filter(poi -> poi.detectarTagBuscado(tagBuscado))
+				.collect(Collectors.toList());
 	}*/
 	
 	

@@ -56,7 +56,7 @@ public class Dispositivo {
 	}	
 		
 	// Busqueda por texto libre
-	
+	/*
 <<<<<<< HEAD
 	// Busqueda de puntos
 	
@@ -65,15 +65,15 @@ public class Dispositivo {
 	 * y el método TextoLibre haria un mappeo de todos los pois buscando aquellos que los tags coinciden
 	 * (dejaria de recibir POI como parametro). 
 	 * 
-	 * */
+	 * 
 =======
 	/*public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
 		return coleccionDePOIS 
 				.stream()
 				.filter(poi -> poi.detectarTagBuscado(tagBuscado))
 				.collect(Collectors.toList());
-	}*/
->>>>>>> 41625c5e790cadab35aa12c48ef44aa5d0b21209
+	}
+>>>>>>> 41625c5e790cadab35aa12c48ef44aa5d0b21209*/
 	
 	
 	// Creo que si usamos el metodo buscarPorTextoLibre, este metodo textoLibre esta de mas

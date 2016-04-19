@@ -74,19 +74,19 @@ public class TestDeCalculoDeDisponibilidad {
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaValidoHoraNoValida(){
 		Tiempo diaValidoHoraNoValida = new Tiempo(1,22.0);
-		Assert.assertTrue(!dispositivo.estaDisponible(cgp, "Tramite de DNI", diaValidoHoraNoValida));
+		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaValidoHoraNoValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaNoValidoHoraValida(){
 		Tiempo diaNoValidoHoraValida = new Tiempo(7,14.0);
-		Assert.assertTrue(!dispositivo.estaDisponible(cgp, "Tramite de DNI", diaNoValidoHoraValida));
+		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaNoValidoHoraValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaYHoraNoValidos(){
 		Tiempo diaYHoraNoValidos = new Tiempo(7,22.0);
-		Assert.assertTrue(!dispositivo.estaDisponible(cgp, "Tramite de DNI", diaYHoraNoValidos));
+		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaYHoraNoValidos));
 	}
 	
 	@Test

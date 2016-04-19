@@ -11,7 +11,7 @@ public class Dispositivo {
 	
 	public Dispositivo(Point unaUbicacion){
 		this.setUbicacion(unaUbicacion);
-		this.setColeccionDePOIS(coleccionDePOIS);
+		this.setColeccionDePOIS(); //Inicizializa ArrayList de POIS
 	}
 	
 	//ATRIBUTOS
@@ -29,8 +29,8 @@ public class Dispositivo {
 		return ubicacion;
 	}
 	
-	public void setColeccionDePOIS(ArrayList<POI> unaColeccionDePOIS){
-		coleccionDePOIS = unaColeccionDePOIS;
+	public void setColeccionDePOIS(){
+		coleccionDePOIS = new ArrayList<POI>();
 	}
 	
 	public ArrayList<POI> getCollecionDePOIS(){
@@ -49,28 +49,23 @@ public class Dispositivo {
 		return unPOI.estaCercaDeDispositivo(this);
 	}
 	
+	
 	// Calculo de disponibilidad
 	
 	public boolean estaDisponible(POI unPOI, String unNombreDeServicio,Tiempo unTiempo){
 		return unPOI.estaDisponible(unNombreDeServicio,unTiempo);
 	}	
 		
+	
 	// Busqueda por texto libre
-	
-	/*public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
-		return coleccionDePOIS 
-				.stream()
+
+	public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
+		return coleccionDePOIS .stream()
 				.filter(poi -> poi.detectarTagBuscado(tagBuscado))
-				.collect(Collectors.toList());
+				.collect(Collectors.toCollection(ArrayList<POI>::new));
 	}
-	
+
 	public String obtenerDireccion(POI unPOI){
 		return unPOI.getDireccion();
-	*/
-	
-	
-	// Creo que si usamos el metodo buscarPorTextoLibre, este metodo textoLibre esta de mas
-	public boolean textoLibre(POI unPOI, String unTag){ 
-		return unPOI.detectarTagBuscado(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
-	} 
+	}
 }

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.junit.Assert;
+import java.util.ArrayList;
 
 public class TestDeBusquedaLibre {
 
@@ -15,6 +16,9 @@ public class TestDeBusquedaLibre {
 	private Dispositivo dispositivo;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
+	private ArrayList<POI> lista;
+	private int size;
+	private String texto;
 	
 	@Before
 	public void init(){
@@ -34,11 +38,14 @@ public class TestDeBusquedaLibre {
 		dispositivo = new Dispositivo(new Point(-34.6718,-58.46805));
 		
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
-		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);	
+		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);
+		cgp.setNombre("Asesoria");
 		cgp.addTag("asesoramiento");
+		cgp.addTag("47"); //podria ser que el CGP estuviese cerca de la parada y lo taggean
 		
 		// Banco -- Av Riestra 5002
 		banco = new Banco(new Point(-34.6719, -58.4695), comuna8);
+		banco.addTag("deposito");
 		
 		// Libreria Escolar -- Av Argentina 4802
 		Rubro rubroLibreriaEscolar = new Rubro(500.0);
@@ -48,9 +55,35 @@ public class TestDeBusquedaLibre {
 		// Kiosko de Diarios -- Albariño 3702
 		Rubro rubroKioskoDeDiarios = new Rubro(200.0);
 		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), comuna8, rubroKioskoDeDiarios);
+		kioskoDeDiarios.addTag("caramelos");
+		
+		dispositivo.addPOI(paradaDel47);
+		dispositivo.addPOI(cgp);
+		dispositivo.addPOI(banco);
 	}
 	
 	@Test
+	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
+		lista = dispositivo.buscarPorTextoLibre("47");
+		size = 2;
+		Assert.assertEquals(size, lista.size());
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
+		lista = dispositivo.buscarPorTextoLibre("asesoramiento");
+		size = 1;
+		Assert.assertEquals(size, lista.size());
+		}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
+		lista = dispositivo.buscarPorTextoLibre("asesoramiento");
+		texto = lista.get(0).getNombre();
+		Assert.assertEquals("Asesoria", texto);
+	}
+	
+	/*@Test
 	public void testLaBusquedaDeTextoLibreReconoceElTag47(){
 		Assert.assertTrue(dispositivo.textoLibre(paradaDel47, "47")); 
 	}
@@ -79,4 +112,24 @@ public class TestDeBusquedaLibre {
 	public void testLaBusquedaDeTextoLibreNoReconoceElTagAbogado(){
 		Assert.assertFalse(dispositivo.textoLibre(cgp, "abogado"));
 	}
+	
+	@Test
+	public void testElBancoReconoceElTagDeposito(){
+		Assert.assertTrue(dispositivo.textoLibre(banco, "deposito"));
+	}
+	
+	@Test
+	public void testElBancoNoReconoceElTagExtraccion(){
+		Assert.assertFalse(dispositivo.textoLibre(banco, "extraccion"));
+	}
+	
+	@Test
+	public void testElKioskoReconoceElTagCaramelos(){
+		Assert.assertTrue(dispositivo.textoLibre(kioskoDeDiarios, "caramelos"));
+	}
+	
+	@Test
+	public void testElKioskoNoReconoceElTagGolosina(){
+		Assert.assertFalse(dispositivo.textoLibre(kioskoDeDiarios, "golosinas"));
+	}*/
 }

@@ -59,13 +59,13 @@ public class Dispositivo {
 	/*public ArrayList<String> buscarPorTextoLibre(String texto){
 		return coleccionDePOIS 
 				.stream()
-				.filter(poi -> poi.buscaTag(texto))
+				.filter(poi -> poi.detectarTagBuscado(texto))
 				.map(poi -> poi.getDireccion());
 	}*/
 	
 	
 	// Creo que si usamos el metodo buscarPorTextoLibre, este metodo textoLibre esta de mas
 	public boolean textoLibre(POI unPOI, String unTag){ 
-		return unPOI.buscaTag(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
+		return unPOI.detectarTagBuscado(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
 	} 
 }

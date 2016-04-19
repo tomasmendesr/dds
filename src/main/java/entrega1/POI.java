@@ -100,7 +100,7 @@ public abstract class POI {
 		return this.getNombre() != null;
 	}
 	
-	public boolean buscaTag(String unTag){
+	public boolean detectarTagBuscado(String unTag){
 		return tags.contains(unTag);
 	}
 

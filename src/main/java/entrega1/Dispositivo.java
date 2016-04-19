@@ -62,7 +62,11 @@ public class Dispositivo {
 				.stream()
 				.filter(poi -> poi.detectarTagBuscado(tagBuscado))
 				.collect(Collectors.toList());
-	}*/
+	}
+	
+	public String obtenerDireccion(POI unPOI){
+		return unPOI.getDireccion();
+	*/
 	
 	
 	// Creo que si usamos el metodo buscarPorTextoLibre, este metodo textoLibre esta de mas

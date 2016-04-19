@@ -33,8 +33,9 @@ public class TestDeBusquedaLibre {
 		// DispositivoCercana -- Sayos 4937
 		dispositivo = new Dispositivo(new Point(-34.6718,-58.46805));
 		
-		// CGP -- Av Escalada 3100
+		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);	
+		cgp.addTag("asesoramiento");
 		
 		// Banco -- Av Riestra 5002
 		banco = new Banco(new Point(-34.6719, -58.4695), comuna8);
@@ -67,5 +68,15 @@ public class TestDeBusquedaLibre {
 	@Test
 	public void testLaBusquedaDeTextoLibreNoReconoceElTagPlaza(){
 		Assert.assertFalse(dispositivo.textoLibre(libreriaEscolar, "plaza"));
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreReconoceElTagAsesoramiento(){
+		Assert.assertTrue(dispositivo.textoLibre(cgp, "asesoramiento"));
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreNoReconoceElTagAbogado(){
+		Assert.assertFalse(dispositivo.textoLibre(cgp, "abogado"));
 	}
 }

@@ -82,6 +82,10 @@ public abstract class POI {
 		servicios.add(unServicio);
 	}
 	
+	/*public void setRangoDeAtencionDeUnServicio(String unNombreDeServicio,RangoDeAtencion unRangoDeAtencion){
+		this.getServicio(unNombreDeServicio).setRangoDeAtencion(unRangoDeAtencion);
+	}*/ //despues veo para que sirve
+	
 	//METODOS
 	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){

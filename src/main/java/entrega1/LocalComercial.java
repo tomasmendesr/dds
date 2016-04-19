@@ -1,5 +1,7 @@
 package entrega1;
 
+import java.util.ArrayList;
+
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
@@ -11,14 +13,15 @@ public class LocalComercial extends POI {
 	
 		super(unaUbicacion,unaComuna);
 		this.setRubro(unRubro);
-		
+		ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion = new ArrayList<RangoDeAtencion>();
+		this.setColeccionDeRangosDeAtencion(unaColeccionDeRangosDeAtencion);
 	}
 	
 	
 	//ATRIBUTOS
 	
-	private Rubro 				rubro;
-	private	RangoDeAtencion		rangoDeAtencion;
+	private Rubro 							rubro;
+	private	ArrayList<RangoDeAtencion>		coleccionDeRangosDeAtencion;
 
 	
 	//GETTERS Y SETTERS
@@ -31,6 +34,13 @@ public class LocalComercial extends POI {
 		rubro = unRubro;
 	}
 	
+	public ArrayList<RangoDeAtencion> getColeccionDeRangosDeAtencion(){
+		return coleccionDeRangosDeAtencion;
+	}
+	
+	public void setColeccionDeRangosDeAtencion(ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion){
+		coleccionDeRangosDeAtencion = unaColeccionDeRangosDeAtencion;
+	}
 	//METODOS
 	
 	public double cercaniaRequerida(){
@@ -38,19 +48,16 @@ public class LocalComercial extends POI {
 	}
 	
 	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
-		return this.rangoDeAtencionValido(unTiempo);
+		return this.getColeccionDeRangosDeAtencion().stream().
+			   anyMatch(rangoDeAtencion -> this.rangoDeAtencionDisponible(rangoDeAtencion,unTiempo));
 	}
 	
-	public boolean rangoDeAtencionValido(Tiempo unTiempo){
-		return this.diaDeSemanaValido(unTiempo.getDiaDeSemana()) && this.horaValida(unTiempo.getHora());
+	public boolean rangoDeAtencionDisponible(RangoDeAtencion unRangoDeAtencion, Tiempo unTiempo){
+		return unRangoDeAtencion.disponible(unTiempo);
 	}
 	
-	public boolean diaDeSemanaValido(int unDiaDeSemana){
-		return rangoDeAtencion.getDiasDeAtencion().contains(unDiaDeSemana);
-	}
-	
-	public boolean horaValida(double unaHora){
-		return rangoDeAtencion.getHorasDeAtencion().contains(unaHora);
+	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
+		this.getColeccionDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
 	
 	/*public boolean estaCercaDeMaquina(Maquina unaMaquina){

@@ -31,4 +31,17 @@ public class RangoDeAtencion {
 		this.diasDeAtencion = diasDeAtencion;
 	}
 	
+	
+	//METODOS
+	
+	public boolean disponible(Tiempo unTiempo){
+		return this.horaDisponible(unTiempo.getHora()) && this.diaDisponible(unTiempo.getDiaDeSemana());
+	}
+	
+	public boolean horaDisponible(double unaHora){
+		return this.getHorasDeAtencion().contains(unaHora);
+	}
+	public boolean diaDisponible(int unDia){
+		return this.getDiasDeAtencion().contains(unDia);
+	}
 }

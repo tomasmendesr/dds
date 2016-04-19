@@ -21,8 +21,7 @@ public abstract class POI {
 	
 	private Point 					ubicacion;
 	private String 					nombre;
-	private String 					calle;
-	private Integer 				altura;
+	private String 					direccion;
 	private Polygon 				comuna;
 	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
 //	private RangoDeTiempo rangoDeTiempo; en parada de colectivo se asigna = null
@@ -53,6 +52,14 @@ public abstract class POI {
 	
 	public void setNombre(String unNombre){
 		nombre = unNombre;
+	}
+	
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	
 	public void setTags(){ //Inicializa el ArrayList
@@ -138,4 +145,6 @@ public abstract class POI {
 				filter(servicio -> servicio.getNombre() == unNombreDeServicio).
 				collect(Collectors.toList()).get(0); //SE SUPONE QUE EL SERVICIO INGRESADO SIEMPRE ES VALIDO
 	}
+
+	
 }

@@ -11,7 +11,6 @@ public class Dispositivo {
 	
 	public Dispositivo(Point unaUbicacion){
 		this.setUbicacion(unaUbicacion);
-		ArrayList<POI>  coleccionDePOIS = new ArrayList<POI>();
 		this.setColeccionDePOIS(coleccionDePOIS);
 	}
 	
@@ -66,14 +65,16 @@ public class Dispositivo {
 	
 	
 	// Busqueda por texto libre
-	public ArrayList<String> buscarPorTextoLibre(String texto){
+	/*public ArrayList<String> buscarPorTextoLibre(String texto){
 		return coleccionDePOIS 
 				.stream()
 				.filter(poi -> poi.buscaTag(texto))
-				.map(poi -> p.getDireccion());
-	}
+				.map(poi -> poi.getDireccion());
+	}*/
 	
+	
+	// Creo que si usamos el metodo buscarPorTextoLibre, este metodo textoLibre esta de mas
 	public boolean textoLibre(POI unPOI, String unTag){ 
 		return unPOI.buscaTag(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
-	}
+	} 
 }

@@ -151,7 +151,7 @@ public class TestDeCalculoDeDisponibilidad {
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
 	
 	//TESTS DE LOCAL COMERCIAL
-	
+	 
 	@Test
 	public void LocalComercialDisponibleDiaYHoraValidosManana(){
 		Tiempo diaYHoraValidosManana = new Tiempo(1,8.0);

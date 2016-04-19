@@ -47,7 +47,7 @@ public class Dispositivo {
 	 * 
 	 * */
 	
-	public boolean buscarPortextoLibre(POI unPOI, String unTag){ 
+	public boolean textoLibre(POI unPOI, String unTag){ 
 		return unPOI.buscaTag(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
 	}
 }

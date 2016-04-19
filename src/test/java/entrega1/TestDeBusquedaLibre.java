@@ -51,21 +51,21 @@ public class TestDeBusquedaLibre {
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconoceElTag47(){
-		Assert.assertTrue(dispositivo.buscarPortextoLibre(paradaDel47, "47")); 
+		Assert.assertTrue(dispositivo.textoLibre(paradaDel47, "47")); 
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreNoReconoceElTag5(){
-		Assert.assertFalse(dispositivo.buscarPortextoLibre(paradaDel47, "5"));
+		Assert.assertFalse(dispositivo.textoLibre(paradaDel47, "5"));
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconoceElTagLibreria(){
-		Assert.assertTrue(dispositivo.buscarPortextoLibre(libreriaEscolar, "libreria"));
+		Assert.assertTrue(dispositivo.textoLibre(libreriaEscolar, "libreria"));
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreNoReconoceElTagPlaza(){
-		Assert.assertFalse(dispositivo.buscarPortextoLibre(libreriaEscolar, "plaza"));
+		Assert.assertFalse(dispositivo.textoLibre(libreriaEscolar, "plaza"));
 	}
 }

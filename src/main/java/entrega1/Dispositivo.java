@@ -11,7 +11,7 @@ public class Dispositivo {
 	
 	public Dispositivo(Point unaUbicacion){
 		this.setUbicacion(unaUbicacion);
-		this.setColeccionDePOIS(coleccionDePOIS);
+		this.setColeccionDePOIS(); //Inicizializa ArrayList de POIS
 	}
 	
 	//ATRIBUTOS
@@ -29,8 +29,8 @@ public class Dispositivo {
 		return ubicacion;
 	}
 	
-	public void setColeccionDePOIS(ArrayList<POI> unaColeccionDePOIS){
-		coleccionDePOIS = unaColeccionDePOIS;
+	public void setColeccionDePOIS(){
+		coleccionDePOIS = new ArrayList<POI>();
 	}
 	
 	public ArrayList<POI> getCollecionDePOIS(){
@@ -55,29 +55,12 @@ public class Dispositivo {
 		return unPOI.estaDisponible(unNombreDeServicio,unTiempo);
 	}	
 		
-	// Busqueda por texto libre
-	/*
-<<<<<<< HEAD
-	// Busqueda de puntos
-	
-	/* Busqueda de texto Libre. Acutalmente recibe un POI y un String como parámetro.
-	 * Habria que modificar cispositivo en un futuro para que tenga una lista de los POIs cargados en el sistema
-	 * y el método TextoLibre haria un mappeo de todos los pois buscando aquellos que los tags coinciden
-	 * (dejaria de recibir POI como parametro). 
-	 * 
-	 * 
-=======
-	/*public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
-		return coleccionDePOIS 
-				.stream()
-				.filter(poi -> poi.detectarTagBuscado(tagBuscado))
-				.collect(Collectors.toList());
+	public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
+		return coleccionDePOIS .stream().filter(poi -> poi.detectarTagBuscado(tagBuscado)).collect(Collectors.toCollection(ArrayList<POI>::new));
 	}
->>>>>>> 41625c5e790cadab35aa12c48ef44aa5d0b21209*/
-	
-	
+
 	// Creo que si usamos el metodo buscarPorTextoLibre, este metodo textoLibre esta de mas
-	public boolean textoLibre(POI unPOI, String unTag){ 
-		return unPOI.detectarTagBuscado(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
-	} 
+	/*public boolean textoLibre(POI unPOI, String unTag){ 
+	 *return unPOI.detectarTagBuscado(unTag); //Le manda un mensaje a la clase POI para que busque el Tag en su Array
+	} */
 }

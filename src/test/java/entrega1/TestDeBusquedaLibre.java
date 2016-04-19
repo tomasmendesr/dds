@@ -28,7 +28,6 @@ public class TestDeBusquedaLibre {
 		
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
-		
 		paradaDel47.addTag("47");
 		
 		// DispositivoCercana -- Sayos 4937
@@ -43,6 +42,7 @@ public class TestDeBusquedaLibre {
 		// Libreria Escolar -- Av Argentina 4802
 		Rubro rubroLibreriaEscolar = new Rubro(500.0);
 		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), comuna8, rubroLibreriaEscolar);
+		libreriaEscolar.addTag("libreria");
 		
 		// Kiosko de Diarios -- Albariño 3702
 		Rubro rubroKioskoDeDiarios = new Rubro(200.0);
@@ -57,5 +57,10 @@ public class TestDeBusquedaLibre {
 	@Test
 	public void testLaBusquedaDeTextoLibreNoReconoceElTag5(){
 		Assert.assertFalse(dispositivo.textoLibre(paradaDel47, "5"));
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreReconoceElTagLibreria(){
+		Assert.assertTrue(dispositivo.textoLibre(libreriaEscolar, "libreria"));
 	}
 }

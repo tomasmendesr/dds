@@ -59,7 +59,7 @@ public class TestDeCercania {
 	
 	@Test
 	public void testParada47Lejano(){
-		Assert.assertTrue(!dispositivoLejano.estaCercaDe(paradaDel47)); 
+		Assert.assertFalse(dispositivoLejano.estaCercaDe(paradaDel47)); 
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class TestDeCercania {
 	}
 	@Test
 	public void testCGPLejano(){
-			Assert.assertTrue(!dispositivoLejano.estaCercaDe(cgp)); 
+			Assert.assertFalse(dispositivoLejano.estaCercaDe(cgp)); 
 	}
 
 	@Test 
@@ -78,7 +78,7 @@ public class TestDeCercania {
 	
 	@Test 
 	public void testBancoLejano(){
-		Assert.assertTrue(!dispositivoLejano.estaCercaDe(banco));  
+		Assert.assertFalse(dispositivoLejano.estaCercaDe(banco));  
 	}
 	
 	@Test 
@@ -88,7 +88,7 @@ public class TestDeCercania {
 	
 	@Test
 	public void testLibreriaFueraDelRadio(){
-		Assert.assertTrue(!dispositivoLejano.estaCercaDe(libreriaEscolar));
+		Assert.assertFalse(dispositivoLejano.estaCercaDe(libreriaEscolar));
 	}
 	
 	@Test
@@ -98,7 +98,7 @@ public class TestDeCercania {
 	
 	@Test
 	public void testKioskoDeDiariosLejano(){
-		Assert.assertTrue(!dispositivoLejano.estaCercaDe(kioskoDeDiarios));
+		Assert.assertFalse(dispositivoLejano.estaCercaDe(kioskoDeDiarios));
 	}
 	
 }

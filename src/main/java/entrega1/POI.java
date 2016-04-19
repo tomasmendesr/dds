@@ -24,8 +24,8 @@ public abstract class POI {
 	private String 					direccion;
 	private Polygon 				comuna;
 	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
-//	private RangoDeTiempo rangoDeTiempo; en parada de colectivo se asigna = null
-	protected ArrayList<Servicio> 	servicios;
+	private RangoDeAtencion		 	rangoDeTiempo; 
+	private ArrayList<Servicio> 	servicios;
 
 	
 	//GETTERS Y SETTERS

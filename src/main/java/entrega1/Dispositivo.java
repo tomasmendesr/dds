@@ -1,5 +1,6 @@
 package entrega1;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
@@ -10,6 +11,8 @@ public class Dispositivo {
 	
 	public Dispositivo(Point unaUbicacion){
 		this.setUbicacion(unaUbicacion);
+		ArrayList<POI>  coleccionDePOIS = new ArrayList<POI>();
+		this.setColeccionDePOIS(coleccionDePOIS);
 	}
 	
 	//ATRIBUTOS
@@ -63,8 +66,11 @@ public class Dispositivo {
 	
 	
 	// Busqueda por texto libre
-	public void ArrayList<String> buscarPorTextoLibre(){
-		
+	public ArrayList<String> buscarPorTextoLibre(String texto){
+		return coleccionDePOIS 
+				.stream()
+				.filter(poi -> poi.buscaTag(texto))
+				.map(poi -> p.getDireccion());
 	}
 	
 	public boolean textoLibre(POI unPOI, String unTag){ 

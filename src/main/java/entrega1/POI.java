@@ -24,7 +24,7 @@ public abstract class POI {
 	private String 					direccion;
 	private Polygon 				comuna;
 	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
-	private RangoDeAtencion		 	rangoDeTiempo; 
+//	private RangoDeAtencion		 	rangoDeTiempo; 
 	private ArrayList<Servicio> 	servicios;
 
 	

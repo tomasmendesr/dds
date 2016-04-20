@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="entrega1.RangoDeAtencion" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/RangoDeAtencion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="835" y="276"/>    
+    <position height="-1" width="-1" x="875" y="273"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="entrega1.CGP" project="entrega1" file="/entrega1/src/main/java/entrega1/CGP.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="355" y="272"/>    
+    <position height="-1" width="-1" x="356" y="274"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,16 +30,16 @@
   </class>  
   <class id="4" language="java" name="entrega1.Dispositivo" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/Dispositivo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="748" y="49"/>    
+    <position height="-1" width="-1" x="88" y="92"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
   <class id="5" language="java" name="entrega1.LocalComercial" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/LocalComercial.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="474" y="271"/>    
+    <position height="-1" width="-1" x="475" y="273"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="entrega1.ParadaDeColectivo" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/ParadaDeColectivo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="212" y="271"/>    
+    <position height="-1" width="-1" x="213" y="273"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="entrega1.Servicio" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/Servicio.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="84" width="89" x="829" y="74"/>    
+    <position height="84" width="89" x="830" y="51"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="entrega1.Tiempo" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/Tiempo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="92" width="111" x="105" y="37"/>    
+    <position height="-1" width="-1" x="135" y="432"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="entrega1.Banco" project="entrega1" 
     file="/entrega1/src/main/java/entrega1/Banco.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="76" y="272"/>    
+    <position height="-1" width="-1" x="77" y="274"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

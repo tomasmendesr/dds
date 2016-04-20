@@ -17,7 +17,6 @@ public class TestDeBusquedaLibre {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private ArrayList<POI> poisEncontrados;
-	private String nombrePOI;
 	
 	@Before
 	public void init(){
@@ -84,7 +83,7 @@ public class TestDeBusquedaLibre {
 	@Test
 	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
 		poisEncontrados = dispositivo.buscarPorTextoLibre("asesoramiento");
-		nombrePOI = poisEncontrados.get(0).getNombre();
+		String nombrePOI = poisEncontrados.get(0).getNombre();
 		Assert.assertEquals("Asesoria", nombrePOI);
 	}
 	

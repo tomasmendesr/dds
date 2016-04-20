@@ -104,6 +104,8 @@ public abstract class POI {
 		return this.getNombre() != null;
 	}
 	
+	
+	// Busqueda por texto libre
 	public boolean detectarTagBuscado(String unTag){
 		return tags.contains(unTag);
 	}

@@ -16,9 +16,8 @@ public class TestDeBusquedaLibre {
 	private Dispositivo dispositivo;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
-	private ArrayList<POI> lista;
-	private int size;
-	private String texto;
+	private ArrayList<POI> poisEncontrados;
+	private String nombrePOI;
 	
 	@Before
 	public void init(){
@@ -39,6 +38,7 @@ public class TestDeBusquedaLibre {
 		
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);
+		cgp.setDireccion("Av Escalada 3100");
 		cgp.setNombre("Asesoria");
 		cgp.addTag("asesoramiento");
 		cgp.addTag("47"); //podria ser que el CGP estuviese cerca de la parada y lo taggean
@@ -64,72 +64,28 @@ public class TestDeBusquedaLibre {
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
-		lista = dispositivo.buscarPorTextoLibre("47");
-		size = 2;
-		Assert.assertEquals(size, lista.size());
+		poisEncontrados = dispositivo.buscarPorTextoLibre("47");
+		Assert.assertEquals(2, poisEncontrados.size()); // En la coleccion deben estar paradaDel47 y el cgp
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
-		lista = dispositivo.buscarPorTextoLibre("asesoramiento");
-		size = 1;
-		Assert.assertEquals(size, lista.size());
-		}
+		poisEncontrados = dispositivo.buscarPorTextoLibre("asesoramiento");
+		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el cgp
+	}
+	
+	@Test
+	public void testBusquedaDeTextoLibreDevuelveDireccionDelPOIEncontrado(){
+		poisEncontrados = dispositivo.buscarPorTextoLibre("asesoramiento");
+		String direccionPOI = poisEncontrados.get(0).getDireccion();
+		Assert.assertEquals("Av Escalada 3100", direccionPOI);
+	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
-		lista = dispositivo.buscarPorTextoLibre("asesoramiento");
-		texto = lista.get(0).getNombre();
-		Assert.assertEquals("Asesoria", texto);
+		poisEncontrados = dispositivo.buscarPorTextoLibre("asesoramiento");
+		nombrePOI = poisEncontrados.get(0).getNombre();
+		Assert.assertEquals("Asesoria", nombrePOI);
 	}
 	
-	/*@Test
-	public void testLaBusquedaDeTextoLibreReconoceElTag47(){
-		Assert.assertTrue(dispositivo.textoLibre(paradaDel47, "47")); 
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreNoReconoceElTag5(){
-		Assert.assertFalse(dispositivo.textoLibre(paradaDel47, "5"));
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreReconoceElTagLibreria(){
-		Assert.assertTrue(dispositivo.textoLibre(libreriaEscolar, "libreria"));
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreNoReconoceElTagPlaza(){
-		Assert.assertFalse(dispositivo.textoLibre(libreriaEscolar, "plaza"));
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreReconoceElTagAsesoramiento(){
-		Assert.assertTrue(dispositivo.textoLibre(cgp, "asesoramiento"));
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreNoReconoceElTagAbogado(){
-		Assert.assertFalse(dispositivo.textoLibre(cgp, "abogado"));
-	}
-	
-	@Test
-	public void testElBancoReconoceElTagDeposito(){
-		Assert.assertTrue(dispositivo.textoLibre(banco, "deposito"));
-	}
-	
-	@Test
-	public void testElBancoNoReconoceElTagExtraccion(){
-		Assert.assertFalse(dispositivo.textoLibre(banco, "extraccion"));
-	}
-	
-	@Test
-	public void testElKioskoReconoceElTagCaramelos(){
-		Assert.assertTrue(dispositivo.textoLibre(kioskoDeDiarios, "caramelos"));
-	}
-	
-	@Test
-	public void testElKioskoNoReconoceElTagGolosina(){
-		Assert.assertFalse(dispositivo.textoLibre(kioskoDeDiarios, "golosinas"));
-	}*/
 }

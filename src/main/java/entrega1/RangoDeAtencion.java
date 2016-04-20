@@ -1,47 +1,74 @@
 package entrega1;
 
-import java.util.List;
 
 public class RangoDeAtencion {
 
 	//CONSTRUCTOR
 	
-	public RangoDeAtencion(List<Double> unasHorasDeAtencion, List<Integer> unosDiasDeAtencion){
-		this.setHorasDeAtencion(unasHorasDeAtencion);
-		this.setDiasDeAtencion(unosDiasDeAtencion);
+	public RangoDeAtencion(double unHorarioDeApertura, double unHorarioDeCierre, int unDiaDeInicioDeAtencion, int unDiaDeFinDeAtencion){
+		this.setHorarioDeApertura(unHorarioDeApertura);
+		this.setHorarioDeCierre(unHorarioDeCierre);
+		this.setDiaDeIncioDeAtencion(unDiaDeInicioDeAtencion);
+		this.setDiaDeFinDeAtencion(unDiaDeFinDeAtencion);
 	}
 	
 	//ATRIBUTOS
 	
-	List<Double> 	horasDeAtencion;
-	List<Integer> 	diasDeAtencion;
+	
+	double			horarioDeApertura;	//HH.mm
+	double			horarioDeCierre;	//HH.mm
+	int				diaDeIncioDeAtencion;
+	int				diaDeFinDeAtencion;
 	
 	//GETERS Y SETERS
 	
-	public List<Double> getHorasDeAtencion() {
-		return horasDeAtencion;
+	public double getHorarioDeApertura() {
+		return horarioDeApertura;
 	}
-	public void setHorasDeAtencion(List<Double> horasDeAtencion) {
-		this.horasDeAtencion = horasDeAtencion;
+
+	public void setHorarioDeApertura(double horarioDeApertura) {
+		this.horarioDeApertura = horarioDeApertura;
 	}
-	public List<Integer> getDiasDeAtencion() {
-		return diasDeAtencion;
+
+	public double getHorarioDeCierre() {
+		return horarioDeCierre;
 	}
-	public void setDiasDeAtencion(List<Integer> diasDeAtencion) {
-		this.diasDeAtencion = diasDeAtencion;
+
+	public void setHorarioDeCierre(double horarioDeCierre) {
+		this.horarioDeCierre = horarioDeCierre;
 	}
+
+	public int getDiaDeIncioDeAtencion() {
+		return diaDeIncioDeAtencion;
+	}
+
+	public void setDiaDeIncioDeAtencion(int diaDeIncioDeAtencion) {
+		this.diaDeIncioDeAtencion = diaDeIncioDeAtencion;
+	}
+
+	public int getDiaDeFinDeAtencion() {
+		return diaDeFinDeAtencion;
+	}
+
+	public void setDiaDeFinDeAtencion(int diaDeFinDeAtencion) {
+		this.diaDeFinDeAtencion = diaDeFinDeAtencion;
+	}
+		
 	
 	
 	//METODOS
 	
 	public boolean disponible(Tiempo unTiempo){
-		return this.horaDisponible(unTiempo.getHora()) && this.diaDisponible(unTiempo.getDiaDeSemana());
+		return this.horarioDisponible(unTiempo) && this.diaDisponible(unTiempo);
 	}
 	
-	public boolean horaDisponible(double unaHora){
-		return this.getHorasDeAtencion().contains(unaHora);
+	public boolean horarioDisponible(Tiempo unTiempo){
+		return	(this.getHorarioDeApertura() <= unTiempo.getHorasMinutos())
+				&& (unTiempo.getHorasMinutos() <= this.getHorarioDeCierre());
 	}
-	public boolean diaDisponible(int unDia){
-		return this.getDiasDeAtencion().contains(unDia);
+	public boolean diaDisponible(Tiempo unTiempo){
+		return (this.getDiaDeIncioDeAtencion() <= unTiempo.getDiaDeSemana()) 
+				&& (unTiempo.getDiaDeSemana() <= this.getDiaDeFinDeAtencion());
 	}
+	
 }

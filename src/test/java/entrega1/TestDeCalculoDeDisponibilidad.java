@@ -4,12 +4,6 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Assert;
 
@@ -21,14 +15,17 @@ public class TestDeCalculoDeDisponibilidad {
 	private Banco 					banco;
 	private Dispositivo 			dispositivo;
 	private LocalComercial 			libreriaEscolar;
-	private LocalComercial 			kioskoDeDiarios;	
-	
+	private Fecha					fechaDeHoy;
 	
 	
 	
 	@Before
 	public void init(){
 	
+		// Instancio la fecha de hoy
+		
+		fechaDeHoy = Fecha.actual();
+		
 		// Comuna 8
 		comuna8 = new Polygon();
 		comuna8.add(new Point(-34.6744,-58.5025));
@@ -53,18 +50,24 @@ public class TestDeCalculoDeDisponibilidad {
 		Rubro rubroLibreriaEscolar = new Rubro(500.0);
 		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), comuna8, rubroLibreriaEscolar);
 		//instancio y agrego rangos de horario
-		List<Double> horasManana = Arrays.asList(8.0,9.0,10.0,11.0,12.0);
-		List<Double> horasTarde = Arrays.asList(14.0,15.0,16.0,17.0,18.0,19.0,20.0);
-		List<Integer>diasManana = Arrays.asList(1,2,3,4,5,6);
-		List<Integer>diasTarde = Arrays.asList(1,2,3,4,5);
-		RangoDeAtencion rangoManana = new RangoDeAtencion(horasManana,diasManana);
-		RangoDeAtencion rangoTarde = new RangoDeAtencion(horasTarde,diasTarde);
+		double	horarioDeAperturaManana 	= 8.0;
+		double	horarioDeCierreManana		= 13.30;
+		int		diaDeInicioDeAtencionManana = 1;
+		int		diaDeFinDeAtencionManana	= 6;
+		
+		double	horarioDeAperturaTarde	 	= 14.30;
+		double	horarioDeCierreTarde		= 20.0;
+		int		diaDeInicioDeAtencionTarde  = 1;
+		int		diaDeFinDeAtencionTarde		= 5;
+		
+		RangoDeAtencion rangoManana =
+				new RangoDeAtencion(horarioDeAperturaManana,horarioDeCierreManana,diaDeInicioDeAtencionManana,diaDeFinDeAtencionManana);
+		RangoDeAtencion rangoTarde =
+				new RangoDeAtencion(horarioDeAperturaTarde,horarioDeCierreTarde,diaDeInicioDeAtencionTarde,diaDeFinDeAtencionTarde);
+		
 		libreriaEscolar.addRangoDeAtencion(rangoManana);
 		libreriaEscolar.addRangoDeAtencion(rangoTarde);
 		
-		// Kiosko de Diarios -- Albariño 3702
-		Rubro rubroKioskoDeDiarios = new Rubro(200.0);
-		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), comuna8, rubroKioskoDeDiarios);
 		
 
 	}
@@ -80,25 +83,25 @@ public class TestDeCalculoDeDisponibilidad {
 	
 	@Test 
 	public void CGPDisponibleServicioTramiteDeDNIDiaYHoraValida(){
-		Tiempo diaYHoraValida = new Tiempo(2,14.0);
+		Tiempo diaYHoraValida = new Tiempo(fechaDeHoy,2,14.0,23.0);
 		Assert.assertTrue(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaYHoraValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaValidoHoraNoValida(){
-		Tiempo diaValidoHoraNoValida = new Tiempo(1,22.0);
+		Tiempo diaValidoHoraNoValida = new Tiempo(fechaDeHoy,1,22.0,42.0);
 		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaValidoHoraNoValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaNoValidoHoraValida(){
-		Tiempo diaNoValidoHoraValida = new Tiempo(7,14.0);
+		Tiempo diaNoValidoHoraValida = new Tiempo(fechaDeHoy,7,14.0,14.0);
 		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaNoValidoHoraValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaYHoraNoValidos(){
-		Tiempo diaYHoraNoValidos = new Tiempo(7,22.0);
+		Tiempo diaYHoraNoValidos = new Tiempo(fechaDeHoy,7,22.0,17.0);
 		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaYHoraNoValidos));
 	}
 	
@@ -118,25 +121,25 @@ public class TestDeCalculoDeDisponibilidad {
 	
 	@Test
 	public void BancoDisponibleServicioAtencionAlClienteDiaYHorarioValido(){
-		Tiempo diaYHorarioValidos = new Tiempo(1,11.0);
+		Tiempo diaYHorarioValidos = new Tiempo(fechaDeHoy,1,11.0,19.0);
 		Assert.assertTrue(dispositivo.estaDisponible(banco,"Atencion al cliente", diaYHorarioValidos));
 	}
 	
 	@Test
 	public void BancoNoDisponibleServicioAtencionAlClienteDiaValidoYHorarioNoValido(){
-		Tiempo diaValidoYHorarioNoValido = new Tiempo(4,15.0);
+		Tiempo diaValidoYHorarioNoValido = new Tiempo(fechaDeHoy,4,15.0,22.0);
 		Assert.assertFalse(dispositivo.estaDisponible(banco,"Atencion al cliente", diaValidoYHorarioNoValido));
 	}
 	
 	@Test
 	public void BancoNoDisponibleServicioAtencionAlClienteDiaNoValidoYHorarioValido(){
-		Tiempo diaNoValidoYHorarioValido = new Tiempo(6,10.0);
+		Tiempo diaNoValidoYHorarioValido = new Tiempo(fechaDeHoy,6,10.0,30.0);
 		Assert.assertFalse(dispositivo.estaDisponible(banco,"Atencion al cliente", diaNoValidoYHorarioValido));
 	}
 	
 	@Test
 	public void BancoNoDisponibleServicioAtencionAlCleinteDiaYHorarioNoValidos(){
-		Tiempo diaYHorarioNoValidos = new Tiempo(7,18.0);
+		Tiempo diaYHorarioNoValidos = new Tiempo(fechaDeHoy,7,18.0,59.0);
 		Assert.assertFalse(dispositivo.estaDisponible(banco,"Atencion al cliente", diaYHorarioNoValidos));
 	}
 	
@@ -154,31 +157,31 @@ public class TestDeCalculoDeDisponibilidad {
 	 
 	@Test
 	public void LocalComercialDisponibleDiaYHoraValidosManana(){
-		Tiempo diaYHoraValidosManana = new Tiempo(1,8.0);
+		Tiempo diaYHoraValidosManana = new Tiempo(fechaDeHoy,1,8.0,42.0);
 		Assert.assertTrue(dispositivo.estaDisponible(libreriaEscolar, null, diaYHoraValidosManana));
 	}
 	
 	@Test 
 	public void LocalComercialDisponibleDiaYHoraValidosTarde(){
-		Tiempo diaYHoraValidosTarde = new Tiempo(3,15.0);
+		Tiempo diaYHoraValidosTarde = new Tiempo(fechaDeHoy,3,15.0,37.0);
 		Assert.assertTrue(dispositivo.estaDisponible(libreriaEscolar, null, diaYHoraValidosTarde));
 	}
 	
 	@Test
 	public void LocalComercialNoDisponibleDiaNoValidoHoraValidaManana(){
-		Tiempo diaNoValidoYHoraValidaManana = new Tiempo(7,9.0);
+		Tiempo diaNoValidoYHoraValidaManana = new Tiempo(fechaDeHoy,7,9.0,2.0);
 		Assert.assertFalse(dispositivo.estaDisponible(libreriaEscolar, null,diaNoValidoYHoraValidaManana));
 	}
 	
 	@Test
 	public void LocalComercialNoDisponibleDiaValidoHoraNoValidaTarde(){
-		Tiempo diaValidoYHoraNoValidaTarde = new Tiempo(6,16.0);
+		Tiempo diaValidoYHoraNoValidaTarde = new Tiempo(fechaDeHoy,6,16.0,10.0);
 		Assert.assertFalse(dispositivo.estaDisponible(libreriaEscolar,null,diaValidoYHoraNoValidaTarde));
 	}
 	
 	@Test
 	public void LocalComercialNoDisponibleDiaValidoHoraNoValida(){
-		Tiempo diaValidoYHoraNoValida = new Tiempo(3,13.0);
+		Tiempo diaValidoYHoraNoValida = new Tiempo(fechaDeHoy,3,13.0,45.0);
 		Assert.assertFalse(dispositivo.estaDisponible(libreriaEscolar, null, diaValidoYHoraNoValida));
 	}
 	

@@ -3,7 +3,6 @@ package entrega1;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -131,19 +130,22 @@ public abstract class POI {
 	}
 	
 	public boolean algunServicioDisponible(){
-		Tiempo horaDelMomento = this.crearHoraDelMomento();	//Instancio la hora del momento
+		Tiempo 	horaDelMomento = this.crearHoraDelMomento();	//Instancio la hora del momento
 		return	this.getColeccionServicios().stream().
-				anyMatch(servicio -> servicio.rangoDeAtencionValido(horaDelMomento));
+				anyMatch(servicio -> servicio.estaDentroDelRangoDeAtencion(horaDelMomento));
 	}
 	
 	public Tiempo crearHoraDelMomento(){
-		int		diaSemana = new DateTime().getDayOfWeek();
-		double 	hora = new DateTime().getHourOfDay();
-		return new Tiempo(diaSemana,hora);
+		DateTime dateTime = new DateTime();
+		int		diaSemana = dateTime.getDayOfWeek();
+		double 	hora = dateTime.getHourOfDay();
+		double	minutos = dateTime.getMinuteOfHour();
+		Fecha	fecha = new Fecha(dateTime.getDayOfMonth(),dateTime.getMonthOfYear(),dateTime.getYear());
+		return new Tiempo(fecha,diaSemana,hora,minutos);
 	}
 	
 	public boolean servicioDisponible(String unNombreDeServicio, Tiempo unTiempo){
-		return this.getServicio(unNombreDeServicio).rangoDeAtencionValido(unTiempo);
+		return this.getServicio(unNombreDeServicio).estaDentroDelRangoDeAtencion(unTiempo);
 	}
 	
 	public Servicio getServicio(String unNombreDeServicio){

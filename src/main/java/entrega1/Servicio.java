@@ -34,17 +34,26 @@ public class Servicio {
 
 	//METODOS
 	
-	public boolean rangoDeAtencionValido(Tiempo unTiempo){
-		return this.diaDeSemanaValido(unTiempo.getDiaDeSemana()) && this.horaValida(unTiempo.getHora());
+	public boolean estaDentroDelRangoDeAtencion(Tiempo unTiempo){
+		   return    !this.estaDentroDeFechaDeNoAtencion(unTiempo)
+				   	 && this.diaDeSemanaValido(unTiempo)
+				   	 && this.horaMinutosValidos(unTiempo);
 	}
 	
-	public boolean diaDeSemanaValido(int unDiaDeSemana){
-		return rangoDeAtencion.getDiasDeAtencion().contains(unDiaDeSemana);
+	public boolean horaMinutosValidos(Tiempo unTiempo){
+		return this.getRangoDeAtencion().horarioDisponible(unTiempo);
 	}
 	
-	public boolean horaValida(double unaHora){
-		return rangoDeAtencion.getHorasDeAtencion().contains(unaHora);
+	public boolean estaDentroDeFechaDeNoAtencion(Tiempo unTiempo){
+		return false; //HACERLO BIEN DESPUES
 	}
+	
+	public boolean diaDeSemanaValido(Tiempo unTiempo){
+		return (this.getRangoDeAtencion().getDiaDeIncioDeAtencion() <= unTiempo.getDiaDeSemana())
+				&& (unTiempo.getDiaDeSemana() <= this.getRangoDeAtencion().getDiaDeFinDeAtencion());
+	}
+	
+	
 	
 	
 	

@@ -22,12 +22,12 @@ public class TestRangoTiempo {
 	
 	@Test
 	public void diaSem(){
-		Assert.assertEquals(1,dt.getDayOfWeek());
+		Assert.assertEquals(3,dt.getDayOfWeek());
 	}
 	
 	@Test
 	public void hora(){
-		Assert.assertEquals(23.0,dt.getHourOfDay(),0);
+		Assert.assertEquals(13.0,dt.getHourOfDay(),0);
 	}
 	
 	@Test
@@ -37,7 +37,7 @@ public class TestRangoTiempo {
 	
 	@Test
 	public void minutos(){
-		Assert.assertEquals(1393.0, dt.getMinuteOfDay(),0);
+		Assert.assertEquals(18.0, dt.getMinuteOfHour(),0);
 	}	//ver bien que onda el tema de los minutos
 	
 	@Test
@@ -50,5 +50,10 @@ public class TestRangoTiempo {
 		Assert.assertTrue(horas.contains(dt.getHourOfDay()));
 	}
 	
+	/*@Test
+	public void horasMinutos(){
+		Tiempo unTiempo = new Tiempo(1,13.0,52.0);
+		Assert.assertEquals(13.52, unTiempo.getHorasMinutos(),0);
+	}*/
 	
 }

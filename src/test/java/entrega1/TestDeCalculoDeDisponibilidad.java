@@ -13,7 +13,7 @@ public class TestDeCalculoDeDisponibilidad {
 	private ParadaDeColectivo 		paradaDel47;
 	private CGP 					cgp;
 	private Banco 					banco;
-	private Dispositivo 			dispositivo;
+	private Mapa 			dispositivo;
 	private LocalComercial 			libreriaEscolar;
 	private Fecha					fechaDeHoy;
 	private Polygon					zonaComuna8;
@@ -40,7 +40,7 @@ public class TestDeCalculoDeDisponibilidad {
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
 				
 		//dispositivo -- Av Carabobo 27 
-		dispositivo = new Dispositivo(new Point(-34.6273, -58.4564));
+		dispositivo = new Mapa(new Point(-34.6273, -58.4564));
 		
 		// CGP -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8); //Servicios [tramiteDeDni,licenciaDeConducir]	

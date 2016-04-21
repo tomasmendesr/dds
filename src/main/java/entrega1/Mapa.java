@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
-public class Dispositivo {
+public class Mapa {
 
 	//CONSTRUCTOR
 	
-	public Dispositivo(Point unaUbicacion){
+	public Mapa(Point unaUbicacion){
 		this.setUbicacion(unaUbicacion);
 		this.setColeccionDePOIS(); //Inicizializa ArrayList de POIS
 	}
@@ -46,7 +46,7 @@ public class Dispositivo {
 	// Calculo de cercania
 	
 	public boolean estaCercaDe(POI unPOI){
-		return unPOI.estaCercaDeDispositivo(this);
+		return unPOI.estaCercaDe(this.getUbicacion());
 	}
 	
 	

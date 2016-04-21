@@ -10,11 +10,11 @@ import java.lang.String;
 public abstract class POI {
 
 	//CONSTRUCTOR 
-	
-	public POI(Point unaUbicacion, Polygon unaComuna) {
+
+	public POI(Point unaUbicacion, Comuna unaComuna) {
 		this.setUbicacion(unaUbicacion);
+		this.setTags(); //Para inicializar el Array
 		this.setComuna(unaComuna);
-		this.setTags(); //Para inicializar el Array 
 	}	
 	
 	//ATRIBUTOS
@@ -22,13 +22,21 @@ public abstract class POI {
 	private Point 					ubicacion;
 	private String 					nombre;
 	private String 					direccion;
-	private Polygon 				comuna;
+	private Comuna	 				comuna;
 	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
 //	private RangoDeAtencion		 	rangoDeTiempo; 
-	private ArrayList<Servicio> 	servicios;
+	
 
 	
 	//GETTERS Y SETTERS
+	
+	public Comuna getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(Comuna comuna) {
+		this.comuna = comuna;
+	}
 	
 	public Point getUbicacion(){
 		return ubicacion;
@@ -36,14 +44,6 @@ public abstract class POI {
 	
 	public void setUbicacion(Point unaUbicacion){
 		ubicacion = unaUbicacion;
-	}
-	
-	public Polygon getComuna(){
-		return comuna;
-	}
-	
-	public void setComuna(Polygon unaComuna){
-		comuna = unaComuna;
 	}
 	
 	public String getNombre(){
@@ -99,20 +99,8 @@ public abstract class POI {
 		}
 	}
 	
-	public ArrayList<Servicio> getColeccionServicios(){
-		return servicios;
-	}
-	
-	public void setColeccionServicios(ArrayList<Servicio> coleccionDeServicios){
-		servicios = coleccionDeServicios;
-	}
-	
-	public void addServicio(Servicio unServicio){
-		servicios.add(unServicio);
-	}
-	
 	/*public void setRangoDeAtencionDeUnServicio(String unNombreDeServicio,RangoDeAtencion unRangoDeAtencion){
-		this.getServicio(unNombreDeServicio).setRangoDeAtencion(unRangoDeAtencion);
+	this.getServicio(unNombreDeServicio).setRangoDeAtencion(unRangoDeAtencion);
 	}*/ //despues veo para que sirve
 	
 	//METODOS
@@ -151,38 +139,6 @@ public abstract class POI {
 	
 	//Calculo de disponibilidad
 	
-	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
-		if(unNombreDeServicio == null){
-			return this.algunServicioDisponible();
-		} else {		
-			return this.servicioDisponible(unNombreDeServicio,unTiempo);
-		}
-	}
-	
-	public boolean algunServicioDisponible(){
-		Tiempo 	horaDelMomento = this.crearHoraDelMomento();	//Instancio la hora del momento
-		return	this.getColeccionServicios().stream().
-				anyMatch(servicio -> servicio.estaDentroDelRangoDeAtencion(horaDelMomento));
-	}
-	
-	public Tiempo crearHoraDelMomento(){
-		DateTime dateTime = new DateTime();
-		int		diaSemana = dateTime.getDayOfWeek();
-		double 	hora = dateTime.getHourOfDay();
-		double	minutos = dateTime.getMinuteOfHour();
-		Fecha	fecha = new Fecha(dateTime.getDayOfMonth(),dateTime.getMonthOfYear(),dateTime.getYear());
-		return new Tiempo(fecha,diaSemana,hora,minutos);
-	}
-	
-	public boolean servicioDisponible(String unNombreDeServicio, Tiempo unTiempo){
-		return this.getServicio(unNombreDeServicio).estaDentroDelRangoDeAtencion(unTiempo);
-	}
-	
-	public Servicio getServicio(String unNombreDeServicio){
-		return this.getColeccionServicios().stream().
-				filter(servicio -> servicio.getNombre() == unNombreDeServicio).
-				collect(Collectors.toList()).get(0); //SE SUPONE QUE EL SERVICIO INGRESADO SIEMPRE ES VALIDO
-	}
-
+	public abstract boolean estaDisponible();
 	
 }

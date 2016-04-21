@@ -138,6 +138,10 @@ public abstract class POI {
 		return this.estaAMenosDeXMetrosDeOtroPOI(unPOI, 500); //para pasar a metros
 	}
 	
+	public boolean estaCercaDe(Point unaUbicacion){
+		return this.getUbicacion().distance(unaUbicacion) * 1000 < this.cercaniaRequerida();
+	}
+	
 	public double cercaniaRequerida(){ // Defino la cercania requerida standar
 		return 500.0;
 	}

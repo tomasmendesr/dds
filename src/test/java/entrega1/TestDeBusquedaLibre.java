@@ -56,10 +56,13 @@ public class TestDeBusquedaLibre {
 		Rubro rubroKioskoDeDiarios = new Rubro(200.0);
 		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), comuna8, rubroKioskoDeDiarios);
 		kioskoDeDiarios.addTag("caramelos");
+		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		
 		dispositivo.addPOI(paradaDel47);
 		dispositivo.addPOI(cgp);
 		dispositivo.addPOI(banco);
+		dispositivo.addPOI(libreriaEscolar);
+		dispositivo.addPOI(kioskoDeDiarios);
 	}
 	
 	@Test
@@ -72,6 +75,12 @@ public class TestDeBusquedaLibre {
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
 		poisEncontrados = dispositivo.buscarPorTextoLibre("asesoramiento");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el cgp
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCarlitos(){
+		poisEncontrados = dispositivo.buscarPorTextoLibre("Carlitos");
+		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el kioskoDeDiarios
 	}
 	
 	@Test

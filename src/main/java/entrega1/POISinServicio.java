@@ -1,5 +1,6 @@
 package entrega1;
 
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class POISinServicio extends POI {
@@ -8,6 +9,6 @@ public abstract class POISinServicio extends POI {
 		super(unaUbicacion, unaComuna);
 	}
 
-	public abstract boolean estaDisponible(Tiempo unTiempo);
+	public abstract boolean estaDisponible(DateTime unTiempo);
 
 }

@@ -1,5 +1,6 @@
 package entrega1;
 
+import org.joda.time.DateTime;
 
 public class RangoDeAtencion {
 
@@ -58,17 +59,23 @@ public class RangoDeAtencion {
 	
 	//METODOS
 	
-	public boolean disponible(Tiempo unTiempo){
+	public boolean disponible(DateTime unTiempo){
 		return this.horarioDisponible(unTiempo) && this.diaDisponible(unTiempo);
 	}
 	
-	public boolean horarioDisponible(Tiempo unTiempo){
-		return	(this.getHorarioDeApertura() <= unTiempo.getHorasMinutos())
-				&& (unTiempo.getHorasMinutos() <= this.getHorarioDeCierre());
+	public boolean horarioDisponible(DateTime unTiempo){
+		return	(this.getHorarioDeApertura() <= this.pasarAHorasMinutos(unTiempo))
+				&& (pasarAHorasMinutos(unTiempo) <= this.getHorarioDeCierre());
 	}
-	public boolean diaDisponible(Tiempo unTiempo){
-		return (this.getDiaDeIncioDeAtencion() <= unTiempo.getDiaDeSemana()) 
-				&& (unTiempo.getDiaDeSemana() <= this.getDiaDeFinDeAtencion());
+	public boolean diaDisponible(DateTime unTiempo){
+		return (this.getDiaDeIncioDeAtencion() <= unTiempo.getDayOfWeek()) 
+				&& (unTiempo.getDayOfWeek() <= this.getDiaDeFinDeAtencion());
+	}
+	
+	public double pasarAHorasMinutos(DateTime unTiempo){
+		double horas = unTiempo.getHourOfDay();
+		double minutos = (unTiempo.getMinuteOfHour())/100;
+		return horas + minutos;
 	}
 	
 }

@@ -34,7 +34,7 @@ public abstract class POIConServicio extends POI {
 	
 	//METODOS
 	
-	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
+	public boolean estaDisponible(String unNombreDeServicio,DateTime unTiempo){
 		if(unNombreDeServicio == null){
 			return this.algunServicioDisponible();
 		} else {		
@@ -43,21 +43,12 @@ public abstract class POIConServicio extends POI {
 	}
 	
 	public boolean algunServicioDisponible(){
-		Tiempo 	horaDelMomento = this.crearHoraDelMomento();	//Instancio la hora del momento
+		DateTime 	horaDelMomento = new DateTime();	//Instancio la hora del momento
 		return	this.getColeccionServicios().stream().
 				anyMatch(servicio -> servicio.estaDentroDelRangoDeAtencion(horaDelMomento));
 	}
 	
-	public Tiempo crearHoraDelMomento(){
-		DateTime dateTime = new DateTime();
-		int		diaSemana = dateTime.getDayOfWeek();
-		double 	hora = dateTime.getHourOfDay();
-		double	minutos = dateTime.getMinuteOfHour();
-		Fecha	fecha = new Fecha(dateTime.getDayOfMonth(),dateTime.getMonthOfYear(),dateTime.getYear());
-		return new Tiempo(fecha,diaSemana,hora,minutos);
-	}
-	
-	public boolean servicioDisponible(String unNombreDeServicio, Tiempo unTiempo){
+	public boolean servicioDisponible(String unNombreDeServicio, DateTime unTiempo){
 		return this.buscarServicio(unNombreDeServicio).estaDentroDelRangoDeAtencion(unTiempo);
 	}
 	

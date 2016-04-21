@@ -141,5 +141,7 @@ public abstract class POI {
 	public double cercaniaRequerida(){ // Defino la cercania requerida standar
 		return 500.0;
 	}
+	
+	
 		
 }

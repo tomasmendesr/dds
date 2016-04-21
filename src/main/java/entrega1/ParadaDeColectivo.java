@@ -1,6 +1,7 @@
 package entrega1;
 
 
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POISinServicio {
@@ -19,7 +20,7 @@ public class ParadaDeColectivo extends POISinServicio {
 		return 100.0;
 	}
 	
-	public boolean estaDisponible(Tiempo unTiempo){
+	public boolean estaDisponible(DateTime unTiempo){
 		return true;
 	}
 	

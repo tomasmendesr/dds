@@ -1,5 +1,7 @@
 package entrega1;
 
+import org.joda.time.DateTime;
+
 public class Servicio {
 
 	//CONSTRUCTOR 
@@ -34,27 +36,23 @@ public class Servicio {
 
 	//METODOS
 	
-	public boolean estaDentroDelRangoDeAtencion(Tiempo unTiempo){
+	public boolean estaDentroDelRangoDeAtencion(DateTime unTiempo){
 		   return    !this.estaDentroDeFechaDeNoAtencion(unTiempo)
 				   	 && this.diaDeSemanaValido(unTiempo)
 				   	 && this.horaMinutosValidos(unTiempo);
 	}
 	
-	public boolean horaMinutosValidos(Tiempo unTiempo){
+	public boolean horaMinutosValidos(DateTime unTiempo){
 		return this.getRangoDeAtencion().horarioDisponible(unTiempo);
 	}
 	
-	public boolean estaDentroDeFechaDeNoAtencion(Tiempo unTiempo){
+	public boolean estaDentroDeFechaDeNoAtencion(DateTime unTiempo){
 		return false; //HACERLO BIEN DESPUES
 	}
 	
-	public boolean diaDeSemanaValido(Tiempo unTiempo){
-		return (this.getRangoDeAtencion().getDiaDeIncioDeAtencion() <= unTiempo.getDiaDeSemana())
-				&& (unTiempo.getDiaDeSemana() <= this.getRangoDeAtencion().getDiaDeFinDeAtencion());
+	public boolean diaDeSemanaValido(DateTime unTiempo){
+		return (this.getRangoDeAtencion().getDiaDeIncioDeAtencion() <= unTiempo.getDayOfWeek())
+				&& (unTiempo.getDayOfWeek() <= this.getRangoDeAtencion().getDiaDeFinDeAtencion());
 	}
-	
-	
-	
-	
 	
 }

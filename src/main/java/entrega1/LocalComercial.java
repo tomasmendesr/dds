@@ -2,6 +2,7 @@ package entrega1;
 
 import java.util.ArrayList;
 
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class LocalComercial extends POISinServicio {
@@ -46,12 +47,12 @@ public class LocalComercial extends POISinServicio {
 		return this.getRubro().getRadioDeCercania();
 	}
 	
-	public boolean estaDisponible(Tiempo unTiempo){
+	public boolean estaDisponible(DateTime unTiempo){
 		return this.getColeccionDeRangosDeAtencion().stream().
 			   anyMatch(rangoDeAtencion -> this.rangoDeAtencionDisponible(rangoDeAtencion,unTiempo));
 	}
 	
-	public boolean rangoDeAtencionDisponible(RangoDeAtencion unRangoDeAtencion, Tiempo unTiempo){
+	public boolean rangoDeAtencionDisponible(RangoDeAtencion unRangoDeAtencion, DateTime unTiempo){
 		return unRangoDeAtencion.disponible(unTiempo);
 	}
 	

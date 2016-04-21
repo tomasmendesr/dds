@@ -28,9 +28,10 @@ public class TestDeBusquedaLibre {
 		comuna8.add(new Point(-34.6621,-58.4240));
 		comuna8.add(new Point(-34.7048,-58.4612));
 		
-		// Parada del 47 -- Corvanalan 3691
+		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
-		paradaDel47.addTag("47");
+		paradaDel47.setNombre("47");
+		paradaDel47.setDireccion("Corvalan 3691");
 		
 		// DispositivoCercana -- Sayos 4937
 		dispositivo = new Dispositivo(new Point(-34.6718,-58.46805));

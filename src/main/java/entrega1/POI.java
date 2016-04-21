@@ -5,6 +5,7 @@ import org.uqbar.geodds.Polygon;
 import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.lang.String;
 
 public abstract class POI {
 
@@ -50,15 +51,23 @@ public abstract class POI {
 	}
 	
 	public void setNombre(String unNombre){
+		if(nombre != null){
+			this.autoDetectTag(nombre, true);
+		}
 		nombre = unNombre;
+		this.autoDetectTag(nombre, false);
 	}
 	
 	public String getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setDireccion(String unaDireccion) {
+		if(direccion != null){
+			this.autoDetectTag(direccion, true);
+		}
+		direccion = unaDireccion;
+		this.autoDetectTag(direccion, false);
 	}
 	
 	public void setTags(){ //Inicializa el ArrayList
@@ -67,6 +76,27 @@ public abstract class POI {
 	
 	public void addTag(String tag){//Agrega un tag al ArrayList
 		tags.add(tag);
+	}
+	
+	public void removeTag(String tag){
+		tags.remove(tag);
+	}
+	
+	public void autoDetectTag(String identificador, boolean remover){ //El booleando indica si la funcion va a remover o agregar Tags
+		String identificadorTag = new String(identificador);
+		String[] partesIdentificador = identificadorTag.split(" ");
+		int i;
+		if (remover){
+			this.removeTag(identificador);
+			for(i = 0; i < partesIdentificador.length; i++){
+				this.removeTag(partesIdentificador[i]);
+			}
+		}else{
+			this.addTag(identificador);
+			for(i = 0; i < partesIdentificador.length; i++){
+				this.addTag(partesIdentificador[i]);
+			}
+		}
 	}
 	
 	public ArrayList<Servicio> getColeccionServicios(){

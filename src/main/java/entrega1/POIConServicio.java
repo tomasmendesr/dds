@@ -1,5 +1,5 @@
 package entrega1;
 
-public class POIConServicio {
+public class POIConServicio extends POI {
 
 }

@@ -3,14 +3,13 @@ package entrega1;
 import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
-public class Banco extends POI {
+public class Banco extends POIConServicio {
 
 	//CONSTRUCTOR
 	
-	public Banco(Point ubicacion, Polygon comuna) {
-		super(ubicacion, comuna);
+	public Banco(Point ubicacion, Comuna comuna8) {
+		super(ubicacion, comuna8);
 		this.instancioColeccionDeServiciosDeBanco();
 	}
 	

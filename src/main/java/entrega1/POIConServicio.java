@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
+import org.uqbar.geodds.Point;
 
 public abstract class POIConServicio extends POI {
 
 		
 	//ATRIBUTOS
 	
+	public POIConServicio(Point unaUbicacion, Comuna unaComuna) {
+		super(unaUbicacion, unaComuna);
+	}
+
 	private ArrayList<Servicio> 	servicios;
 	
 	

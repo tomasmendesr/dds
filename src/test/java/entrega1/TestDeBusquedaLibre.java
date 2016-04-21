@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class TestDeBusquedaLibre {
 
-	private Polygon comuna8;
+	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
 	private Banco banco;
@@ -17,16 +17,19 @@ public class TestDeBusquedaLibre {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private ArrayList<POI> poisEncontrados;
+	private Polygon	zonaComuna8;
 	
 	@Before
 	public void init(){
 		// Comuna 8
-		comuna8 = new Polygon();
-		comuna8.add(new Point(-34.6744,-58.5025));
-		comuna8.add(new Point(-34.6578,-58.4787));
-		comuna8.add(new Point(-34.6648,-58.4697));
-		comuna8.add(new Point(-34.6621,-58.4240));
-		comuna8.add(new Point(-34.7048,-58.4612));
+		comuna8 = new Comuna();
+		zonaComuna8 = new Polygon();
+		zonaComuna8.add(new Point(-34.6744,-58.5025));
+		zonaComuna8.add(new Point(-34.6578,-58.4787));
+		zonaComuna8.add(new Point(-34.6648,-58.4697));
+		zonaComuna8.add(new Point(-34.6621,-58.4240));
+		zonaComuna8.add(new Point(-34.7048,-58.4612));
+		comuna8.setZona(zonaComuna8);
 		
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);

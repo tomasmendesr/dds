@@ -3,19 +3,18 @@ package entrega1;
 import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
-public class CGP extends POI {
+public class CGP extends POIConServicio {
 
 	//CONSTRUCTOR
 	
-	public CGP(Point ubicacion, Polygon comuna) {
-		super(ubicacion, comuna);
-		this.instanciarColeccionDeServiciosDeCGP();
-		
+	public CGP(Point ubicacion, Comuna unaComuna) {
+		super(ubicacion, unaComuna);
+		this.instanciarColeccionDeServiciosDeCGP();	
 	}
 	
 	public void instanciarColeccionDeServiciosDeCGP(){
+	
 		//Instancio servicio de tramite de DNI
 		double horarioDeApertura 			= 10.0;
 		double horarioDeCierre 				= 19.0;
@@ -49,9 +48,10 @@ public class CGP extends POI {
 	//METODOS
 	
 	@Override
-	public boolean estaCercaDeDispositivo(Dispositivo unDispositivo){
-		return this.getComuna().isInside(unDispositivo.getUbicacion());		
+	public boolean estaCercaDeUnPOI(POI unPOI){
+		return this.getComuna().getZona().isInside(unPOI.getUbicacion());
 	}
+
 	
 	
 	

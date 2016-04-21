@@ -3,15 +3,14 @@ package entrega1;
 import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
-public class LocalComercial extends POI {
+public class LocalComercial extends POISinServicio {
 
 	//CONSTRUCTOR
 	
-	public LocalComercial(Point unaUbicacion, Polygon unaComuna, Rubro unRubro){
+	public LocalComercial(Point unaUbicacion, Comuna comuna8, Rubro unRubro){
 	
-		super(unaUbicacion,unaComuna);
+		super(unaUbicacion,comuna8);
 		this.setRubro(unRubro);
 		ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion = new ArrayList<RangoDeAtencion>();
 		this.setColeccionDeRangosDeAtencion(unaColeccionDeRangosDeAtencion);
@@ -47,7 +46,7 @@ public class LocalComercial extends POI {
 		return this.getRubro().getRadioDeCercania();
 	}
 	
-	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
+	public boolean estaDisponible(Tiempo unTiempo){
 		return this.getColeccionDeRangosDeAtencion().stream().
 			   anyMatch(rangoDeAtencion -> this.rangoDeAtencionDisponible(rangoDeAtencion,unTiempo));
 	}
@@ -59,6 +58,7 @@ public class LocalComercial extends POI {
 	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
 		this.getColeccionDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
+
 	
 	/*public boolean estaCercaDeMaquina(Maquina unaMaquina){
 		return this.getRubro().getRadioDeCercania().isInside(unaMaquina.getUbicacion());

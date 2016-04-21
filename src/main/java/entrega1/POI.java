@@ -1,10 +1,7 @@
 package entrega1;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
-import org.joda.time.DateTime;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 import java.lang.String;
 
 public abstract class POI {
@@ -24,11 +21,19 @@ public abstract class POI {
 	private String 					direccion;
 	private Comuna	 				comuna;
 	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
-//	private RangoDeAtencion		 	rangoDeTiempo; 
+	private RangoDeAtencion		 	rangoDeAtencion; 
 	
 
 	
 	//GETTERS Y SETTERS
+	
+	public RangoDeAtencion getRangoDeAtencion() {
+		return rangoDeAtencion;
+	}
+
+	public void setRangoDeAtencion(RangoDeAtencion rangoDeAtencion) {
+		this.rangoDeAtencion = rangoDeAtencion;
+	}
 	
 	public Comuna getComuna() {
 		return comuna;
@@ -129,16 +134,12 @@ public abstract class POI {
 
 	//Calculo de cercania
 
-	public boolean estaCercaDeDispositivo(Dispositivo unDispositivo){
-		return this.getUbicacion().distance(unDispositivo.getUbicacion())*1000 < this.cercaniaRequerida(); //para pasar a metros
+	public boolean estaCercaDeUnPOI(POI unPOI){
+		return this.estaAMenosDeXMetrosDeOtroPOI(unPOI, 500); //para pasar a metros
 	}
 	
 	public double cercaniaRequerida(){ // Defino la cercania requerida standar
 		return 500.0;
 	}
-	
-	//Calculo de disponibilidad
-	
-	public abstract boolean estaDisponible();
-	
+		
 }

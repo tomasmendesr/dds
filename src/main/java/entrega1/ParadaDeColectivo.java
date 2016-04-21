@@ -1,28 +1,36 @@
 package entrega1;
 
-import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
-public class ParadaDeColectivo extends POI {
+public class ParadaDeColectivo extends POISinServicio {
 
-	public ParadaDeColectivo(Point miUbicacion, Polygon miComuna) {
-		super(miUbicacion, miComuna);
-		ArrayList<Servicio> coleccionDeServiciosDeTransporte = new ArrayList<Servicio>();
-		this.setColeccionServicios(coleccionDeServiciosDeTransporte);
-		//una parada de colecitvo va a tener una coleccion de servicios con un solo servicio (servicio de transporte)
+	//CONSTRUCTOR
+	
+	public ParadaDeColectivo(Point miUbicacion, Comuna comuna8) {
+		super(miUbicacion, comuna8);
+		this.instanciarRangoDeAtencionDeColectivo();
 	}
-
+	
+	//METODOS
+	
 	@Override
 	public double cercaniaRequerida(){
 		return 100.0;
 	}
 	
-	@Override
-	public boolean estaDisponible(String unNombreDeServicio,Tiempo unTiempo){
+	public boolean estaDisponible(Tiempo unTiempo){
 		return true;
 	}
 	
-	
+	private void instanciarRangoDeAtencionDeColectivo(){
+		double horaDeApertura 		= 0.0;
+		double horaDeCierre			= 23.0;
+		int diaDeInicioDeAtencion 	= 1;
+		int diaDeFinDeAtencion		= 7;
+		RangoDeAtencion rangoDeAtencionDeColectivos = new RangoDeAtencion(horaDeApertura,horaDeCierre,diaDeInicioDeAtencion,diaDeFinDeAtencion);
+		this.setRangoDeAtencion(rangoDeAtencionDeColectivos);
+	}
+
+		
 }

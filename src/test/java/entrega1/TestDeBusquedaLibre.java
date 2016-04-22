@@ -13,7 +13,7 @@ public class TestDeBusquedaLibre {
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
 	private Banco banco;
-	private Dispositivo dispositivo;
+	private Mapa dispositivo;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private ArrayList<POI> poisEncontrados;
@@ -37,7 +37,7 @@ public class TestDeBusquedaLibre {
 		paradaDel47.setDireccion("Corvalan 3691");
 		
 		// DispositivoCercana -- Sayos 4937
-		dispositivo = new Dispositivo(new Point(-34.6718,-58.46805));
+		dispositivo = new Mapa(new Point(-34.6718,-58.46805));
 		
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);

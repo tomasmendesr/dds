@@ -12,8 +12,8 @@ public class TestDeCercania {
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
 	private Banco banco;
-	private Dispositivo dispositivoCercano;
-	private Dispositivo dispositivoLejano;
+	private Mapa dispositivoCercano;
+	private Mapa dispositivoLejano;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
@@ -34,11 +34,11 @@ public class TestDeCercania {
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
 		
 		// dispositivoCercano -- Sayos 4937
-		dispositivoCercano = new Dispositivo(new Point(-34.6718,-58.46805));
+		dispositivoCercano = new Mapa(new Point(-34.6718,-58.46805));
 		
 		//dispositivoLejano -- Av Carabobo 27 
 		// Se encuentra Lejano a todos los puntos de interes instanciados
-		dispositivoLejano = new Dispositivo(new Point(-34.6273, -58.4564));
+		dispositivoLejano = new Mapa(new Point(-34.6273, -58.4564));
 		
 		// CGP -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);	

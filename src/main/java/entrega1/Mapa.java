@@ -9,25 +9,16 @@ public class Mapa {
 
 	//CONSTRUCTOR
 	
-	public Mapa(Point unaUbicacion){
-		this.setUbicacion(unaUbicacion);
+	public Mapa(){
 		this.setColeccionDePOIS(); //Inicizializa ArrayList de POIS
 	}
 	
 	//ATRIBUTOS
 	
-	private Point ubicacion;
 	private ArrayList<POI> coleccionDePOIS;
 
 	//GETTERS Y SETTERS
 	
-	public void setUbicacion(Point ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-	
-	public Point getUbicacion() {
-		return ubicacion;
-	}
 	
 	public void setColeccionDePOIS(){
 		coleccionDePOIS = new ArrayList<POI>();
@@ -41,31 +32,5 @@ public class Mapa {
 		coleccionDePOIS.add(unPOI);
 	}
 	
-	//METODOS
-	
-	// Calculo de cercania
-	
-	public boolean estaCercaDe(POI unPOI){
-		return unPOI.estaCercaDe(this.getUbicacion());
-	}
-	
-	
-	// Calculo de disponibilidad
-	
-	public boolean estaDisponible(POI unPOI, String unNombreDeServicio,Tiempo unTiempo){
-		return unPOI.estaDisponible(unNombreDeServicio,unTiempo);
-	}	
-		
-	
-	// Busqueda por texto libre
 
-	public ArrayList<POI> buscarPorTextoLibre(String tagBuscado){
-		return coleccionDePOIS .stream()
-				.filter(poi -> poi.detectarTagBuscado(tagBuscado))
-				.collect(Collectors.toCollection(ArrayList<POI>::new));
-	}
-
-	public String obtenerDireccion(POI unPOI){
-		return unPOI.getDireccion();
-	}
 }

@@ -3,7 +3,6 @@ package entrega1;
 
 import java.time.LocalDateTime;
 
-import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POISinServicio {

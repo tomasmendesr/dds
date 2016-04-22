@@ -1,9 +1,6 @@
 package entrega1;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-
-import org.uqbar.geodds.Point;
 
 public class Mapa {
 

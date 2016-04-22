@@ -1,6 +1,6 @@
 package entrega1;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 
 public class RangoDeAtencion {
 
@@ -59,23 +59,29 @@ public class RangoDeAtencion {
 	
 	//METODOS
 	
-	public boolean disponible(DateTime unTiempo){
+	public boolean disponible(LocalDateTime unTiempo){
 		return this.horarioDisponible(unTiempo) && this.diaDisponible(unTiempo);
 	}
 	
-	public boolean horarioDisponible(DateTime unTiempo){
-		return	(this.getHorarioDeApertura() <= this.pasarAHorasMinutos(unTiempo))
-				&& (pasarAHorasMinutos(unTiempo) <= this.getHorarioDeCierre());
+	public boolean horarioDisponible(LocalDateTime unTiempo){
+		double	tiempoEnHorasMinutos = this.pasarAHorasMinutos(unTiempo);
+		double  horarioDeApertura = this.getHorarioDeApertura();
+		double  horarioDeCierre = this.getHorarioDeCierre();
+		return	(horarioDeApertura <= tiempoEnHorasMinutos)
+				&& (tiempoEnHorasMinutos <= horarioDeCierre);
 	}
-	public boolean diaDisponible(DateTime unTiempo){
-		return (this.getDiaDeIncioDeAtencion() <= unTiempo.getDayOfWeek()) 
-				&& (unTiempo.getDayOfWeek() <= this.getDiaDeFinDeAtencion());
+	public boolean diaDisponible(LocalDateTime unTiempo){
+		int unDiaDeLaSemana = unTiempo.getDayOfWeek().getValue();
+		int diaDeInicioDeAtencion = this.getDiaDeIncioDeAtencion() ;
+		int diaDeFinDeAtencion = this.getDiaDeFinDeAtencion();
+		return (diaDeInicioDeAtencion <= unDiaDeLaSemana) 
+				&& (unDiaDeLaSemana <= diaDeFinDeAtencion);
 	}
 	
-	public double pasarAHorasMinutos(DateTime unTiempo){
-		double horas = unTiempo.getHourOfDay();
-		double minutos = (unTiempo.getMinuteOfHour())/100;
-		return horas + minutos;
+	public double pasarAHorasMinutos(LocalDateTime unTiempo){
+		double horas = unTiempo.getHour();
+		double minutos = unTiempo.getMinute();
+		return horas + (minutos/100);
 	}
 	
 }

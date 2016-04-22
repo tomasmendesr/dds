@@ -1,5 +1,6 @@
 package entrega1;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.joda.time.DateTime;
@@ -47,18 +48,21 @@ public class LocalComercial extends POISinServicio {
 		return this.getRubro().getRadioDeCercania();
 	}
 	
-	public boolean estaDisponible(DateTime unTiempo){
+	public boolean estaDisponible(LocalDateTime unTiempo){
 		return this.getColeccionDeRangosDeAtencion().stream().
 			   anyMatch(rangoDeAtencion -> this.rangoDeAtencionDisponible(rangoDeAtencion,unTiempo));
 	}
 	
-	public boolean rangoDeAtencionDisponible(RangoDeAtencion unRangoDeAtencion, DateTime unTiempo){
+	public boolean rangoDeAtencionDisponible(RangoDeAtencion unRangoDeAtencion, LocalDateTime unTiempo){
 		return unRangoDeAtencion.disponible(unTiempo);
 	}
 	
 	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
 		this.getColeccionDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
+
+
+	
 
 	
 	/*public boolean estaCercaDeMaquina(Maquina unaMaquina){

@@ -5,6 +5,8 @@ import org.uqbar.geodds.Polygon;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import org.junit.Assert;
 
 public class TestDeCalculoDeDisponibilidad {
@@ -13,19 +15,13 @@ public class TestDeCalculoDeDisponibilidad {
 	private ParadaDeColectivo 		paradaDel47;
 	private CGP 					cgp;
 	private Banco 					banco;
-	private Dispositivo 			dispositivo;
 	private LocalComercial 			libreriaEscolar;
-	private Fecha					fechaDeHoy;
 	private Polygon					zonaComuna8;
 	
 	
 	@Before
 	public void init(){
-	
-		// Instancio la fecha de hoy
-		
-		fechaDeHoy = Fecha.actual();
-		
+			
 		// Comuna 8
 		comuna8 = new Comuna();
 		zonaComuna8 = new Polygon();
@@ -39,9 +35,7 @@ public class TestDeCalculoDeDisponibilidad {
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
 				
-		//dispositivo -- Av Carabobo 27 
-		dispositivo = new Dispositivo(new Point(-34.6273, -58.4564));
-		
+						
 		// CGP -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8); //Servicios [tramiteDeDni,licenciaDeConducir]	
 		
@@ -51,7 +45,7 @@ public class TestDeCalculoDeDisponibilidad {
 		// Libreria Escolar -- Av Argentina 4802
 		Rubro rubroLibreriaEscolar = new Rubro(500.0);
 		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), comuna8, rubroLibreriaEscolar);
-		//instancio y agrego rangos de horario
+		//instancio y agrego rangos de horario de libreria
 		double	horarioDeAperturaManana 	= 8.0;
 		double	horarioDeCierreManana		= 13.30;
 		int		diaDeInicioDeAtencionManana = 1;
@@ -74,117 +68,119 @@ public class TestDeCalculoDeDisponibilidad {
 
 	}
 	
+	
 	//TESTS DE PARADA DE COLECTIVO
 	
 	@Test
 	public void paraDaDeColectivoSiempreDisponible(){
-		Assert.assertTrue(dispositivo.estaDisponible(paradaDel47, null, null));
+		LocalDateTime cualquierHoraCualquierFecha = LocalDateTime.now();
+		Assert.assertTrue(paradaDel47.estaDisponible(null));
+		Assert.assertTrue(paradaDel47.estaDisponible(cualquierHoraCualquierFecha));
 	}
 	
 	//TESTS DE CGP
 	
 	@Test 
 	public void CGPDisponibleServicioTramiteDeDNIDiaYHoraValida(){
-		Tiempo diaYHoraValida = new Tiempo(fechaDeHoy,2,14.0,23.0);
-		Assert.assertTrue(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaYHoraValida));
+		LocalDateTime diaYHoraValida = LocalDateTime.of(2016, 04, 18, 14, 30);
+		Assert.assertTrue(cgp.estaDisponible("Tramite de DNI", diaYHoraValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaValidoHoraNoValida(){
-		Tiempo diaValidoHoraNoValida = new Tiempo(fechaDeHoy,1,22.0,42.0);
-		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaValidoHoraNoValida));
+		LocalDateTime diaValidoHoraNoValida = LocalDateTime.of(2016,04,18,22,42);
+		Assert.assertFalse(cgp.estaDisponible("Tramite de DNI", diaValidoHoraNoValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaNoValidoHoraValida(){
-		Tiempo diaNoValidoHoraValida = new Tiempo(fechaDeHoy,7,14.0,14.0);
-		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaNoValidoHoraValida));
+		LocalDateTime diaNoValidoHoraValida = LocalDateTime.of(2016,04,24,14,14);
+		Assert.assertFalse(cgp.estaDisponible("Tramite de DNI", diaNoValidoHoraValida));
 	}
 	
 	@Test
 	public void CGPNoDisponibleServicioTramiteDeDNIDiaYHoraNoValidos(){
-		Tiempo diaYHoraNoValidos = new Tiempo(fechaDeHoy,7,22.0,17.0);
-		Assert.assertFalse(dispositivo.estaDisponible(cgp, "Tramite de DNI", diaYHoraNoValidos));
-	}
+		LocalDateTime diaYHoraNoValidos = LocalDateTime.of(2016,04,24,22,17);
+		Assert.assertFalse(cgp.estaDisponible("Tramite de DNI", diaYHoraNoValidos));
+	} 
 	
 	@Test
 	public void CGPAlgunServicioDisponible(){
-		Assert.assertTrue(dispositivo.estaDisponible(cgp, null, null));
+		Assert.assertTrue(cgp.estaDisponible(null,null));
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
 	
 	@Test
 	public void CGPNingunServicioDisponible(){
-		Assert.assertFalse(dispositivo.estaDisponible(cgp, null, null));
+		Assert.assertFalse(cgp.estaDisponible(null,null));
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
-	
 	
 	//TESTS DE BANCO
 	//(NO HACE FALTA PROBAR CON OTROS SERVICIOS PORQUE TODOS TIENEN EL MISMO RANGO HORARIO)
 	
 	@Test
 	public void BancoDisponibleServicioAtencionAlClienteDiaYHorarioValido(){
-		Tiempo diaYHorarioValidos = new Tiempo(fechaDeHoy,1,11.0,19.0);
-		Assert.assertTrue(dispositivo.estaDisponible(banco,"Atencion al cliente", diaYHorarioValidos));
+		LocalDateTime diaYHorarioValidos = LocalDateTime.of(2016,04,18,11,19); //Lunes
+		Assert.assertTrue(banco.estaDisponible("Atencion al cliente", diaYHorarioValidos));
 	}
 	
 	@Test
 	public void BancoNoDisponibleServicioAtencionAlClienteDiaValidoYHorarioNoValido(){
-		Tiempo diaValidoYHorarioNoValido = new Tiempo(fechaDeHoy,4,15.0,22.0);
-		Assert.assertFalse(dispositivo.estaDisponible(banco,"Atencion al cliente", diaValidoYHorarioNoValido));
+		LocalDateTime diaValidoYHorarioNoValido = LocalDateTime.of(2016,04,21,15,22); //Jueves
+		Assert.assertFalse(banco.estaDisponible("Atencion al cliente", diaValidoYHorarioNoValido));
 	}
 	
 	@Test
 	public void BancoNoDisponibleServicioAtencionAlClienteDiaNoValidoYHorarioValido(){
-		Tiempo diaNoValidoYHorarioValido = new Tiempo(fechaDeHoy,6,10.0,30.0);
-		Assert.assertFalse(dispositivo.estaDisponible(banco,"Atencion al cliente", diaNoValidoYHorarioValido));
+		LocalDateTime diaNoValidoYHorarioValido = LocalDateTime.of(2016,04,23,10,30); //Sabado
+		Assert.assertFalse(banco.estaDisponible("Atencion al cliente", diaNoValidoYHorarioValido));
 	}
 	
 	@Test
 	public void BancoNoDisponibleServicioAtencionAlCleinteDiaYHorarioNoValidos(){
-		Tiempo diaYHorarioNoValidos = new Tiempo(fechaDeHoy,7,18.0,59.0);
-		Assert.assertFalse(dispositivo.estaDisponible(banco,"Atencion al cliente", diaYHorarioNoValidos));
+		LocalDateTime diaYHorarioNoValidos = LocalDateTime.of(2016,04,24,18,59); //Domingo
+		Assert.assertFalse(banco.estaDisponible("Atencion al cliente", diaYHorarioNoValidos));
 	}
 	
 	@Test
 	public void BancoAlgunServicioDisponible(){
-		Assert.assertTrue(dispositivo.estaDisponible(banco,null, null));
+		Assert.assertTrue(banco.estaDisponible(null, null));
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
 	
 	@Test 
 	public void BancoNingunServicioDisponible(){
-		Assert.assertFalse(dispositivo.estaDisponible(banco, null, null));
+		Assert.assertFalse(banco.estaDisponible(null, null));
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
 	
 	//TESTS DE LOCAL COMERCIAL
 	 
 	@Test
 	public void LocalComercialDisponibleDiaYHoraValidosManana(){
-		Tiempo diaYHoraValidosManana = new Tiempo(fechaDeHoy,1,8.0,42.0);
-		Assert.assertTrue(dispositivo.estaDisponible(libreriaEscolar, null, diaYHoraValidosManana));
+		LocalDateTime diaYHoraValidosManana = LocalDateTime.of(2016,04,18,8,42); //Lunes
+		Assert.assertTrue(libreriaEscolar.estaDisponible(diaYHoraValidosManana));
 	}
 	
 	@Test 
 	public void LocalComercialDisponibleDiaYHoraValidosTarde(){
-		Tiempo diaYHoraValidosTarde = new Tiempo(fechaDeHoy,3,15.0,37.0);
-		Assert.assertTrue(dispositivo.estaDisponible(libreriaEscolar, null, diaYHoraValidosTarde));
+		LocalDateTime diaYHoraValidosTarde = LocalDateTime.of(2016,04,20,15,37); //Miercoles
+		Assert.assertTrue(libreriaEscolar.estaDisponible(diaYHoraValidosTarde));
 	}
 	
 	@Test
 	public void LocalComercialNoDisponibleDiaNoValidoHoraValidaManana(){
-		Tiempo diaNoValidoYHoraValidaManana = new Tiempo(fechaDeHoy,7,9.0,2.0);
-		Assert.assertFalse(dispositivo.estaDisponible(libreriaEscolar, null,diaNoValidoYHoraValidaManana));
+		LocalDateTime diaNoValidoYHoraValidaManana = LocalDateTime.of(2016,04,24,9,2); //Domingo
+		Assert.assertFalse(libreriaEscolar.estaDisponible(diaNoValidoYHoraValidaManana));
 	}
 	
 	@Test
 	public void LocalComercialNoDisponibleDiaValidoHoraNoValidaTarde(){
-		Tiempo diaValidoYHoraNoValidaTarde = new Tiempo(fechaDeHoy,6,16.0,10.0);
-		Assert.assertFalse(dispositivo.estaDisponible(libreriaEscolar,null,diaValidoYHoraNoValidaTarde));
+		LocalDateTime diaValidoYHoraNoValidaTarde = LocalDateTime.of(2016,04,23,16,10); //Sabado
+		Assert.assertFalse(libreriaEscolar.estaDisponible(diaValidoYHoraNoValidaTarde));
 	}
 	
 	@Test
 	public void LocalComercialNoDisponibleDiaValidoHoraNoValida(){
-		Tiempo diaValidoYHoraNoValida = new Tiempo(fechaDeHoy,3,13.0,45.0);
-		Assert.assertFalse(dispositivo.estaDisponible(libreriaEscolar, null, diaValidoYHoraNoValida));
+		LocalDateTime diaValidoYHoraNoValida = LocalDateTime.of(2016,04,20,13,45); //Miercoles
+		Assert.assertFalse(libreriaEscolar.estaDisponible(diaValidoYHoraNoValida));
 	}
 	
 }

@@ -1,6 +1,6 @@
 package entrega1;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 
 public class Servicio {
 
@@ -36,23 +36,26 @@ public class Servicio {
 
 	//METODOS
 	
-	public boolean estaDentroDelRangoDeAtencion(DateTime unTiempo){
-		   return    !this.estaDentroDeFechaDeNoAtencion(unTiempo)
-				   	 && this.diaDeSemanaValido(unTiempo)
-				   	 && this.horaMinutosValidos(unTiempo);
+	public boolean estaDentroDelRangoDeAtencion(LocalDateTime horaDelMomento){
+		   return    !this.estaDentroDeFechaDeNoAtencion(horaDelMomento)
+				   	 && this.diaDeSemanaValido(horaDelMomento)
+				   	 && this.horaMinutosValidos(horaDelMomento);
 	}
 	
-	public boolean horaMinutosValidos(DateTime unTiempo){
+	public boolean horaMinutosValidos(LocalDateTime unTiempo){
 		return this.getRangoDeAtencion().horarioDisponible(unTiempo);
 	}
 	
-	public boolean estaDentroDeFechaDeNoAtencion(DateTime unTiempo){
+	public boolean estaDentroDeFechaDeNoAtencion(LocalDateTime unTiempo){
 		return false; //HACERLO BIEN DESPUES
 	}
 	
-	public boolean diaDeSemanaValido(DateTime unTiempo){
-		return (this.getRangoDeAtencion().getDiaDeIncioDeAtencion() <= unTiempo.getDayOfWeek())
-				&& (unTiempo.getDayOfWeek() <= this.getRangoDeAtencion().getDiaDeFinDeAtencion());
+	public boolean diaDeSemanaValido(LocalDateTime unTiempo){
+		int diaDeLaSemana = unTiempo.getDayOfWeek().getValue();
+		int diaDeInicioDeAtencion = this.getRangoDeAtencion().getDiaDeIncioDeAtencion(); 
+		int diaDeFinDeAtencion = this.getRangoDeAtencion().getDiaDeFinDeAtencion();
+		return (diaDeInicioDeAtencion <= diaDeLaSemana)
+				&& (diaDeLaSemana <= diaDeFinDeAtencion);
 	}
 	
 }

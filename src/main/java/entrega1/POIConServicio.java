@@ -1,9 +1,9 @@
 package entrega1;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class POIConServicio extends POI {
@@ -34,7 +34,7 @@ public abstract class POIConServicio extends POI {
 	
 	//METODOS
 	
-	public boolean estaDisponible(String unNombreDeServicio,DateTime unTiempo){
+	public boolean estaDisponible(String unNombreDeServicio,LocalDateTime unTiempo){
 		if(unNombreDeServicio == null){
 			return this.algunServicioDisponible();
 		} else {		
@@ -43,12 +43,12 @@ public abstract class POIConServicio extends POI {
 	}
 	
 	public boolean algunServicioDisponible(){
-		DateTime 	horaDelMomento = new DateTime();	//Instancio la hora del momento
+		LocalDateTime 	horaDelMomento = LocalDateTime.now();	//Instancio la hora del momento
 		return	this.getColeccionServicios().stream().
 				anyMatch(servicio -> servicio.estaDentroDelRangoDeAtencion(horaDelMomento));
 	}
 	
-	public boolean servicioDisponible(String unNombreDeServicio, DateTime unTiempo){
+	public boolean servicioDisponible(String unNombreDeServicio, LocalDateTime unTiempo){
 		return this.buscarServicio(unNombreDeServicio).estaDentroDelRangoDeAtencion(unTiempo);
 	}
 	

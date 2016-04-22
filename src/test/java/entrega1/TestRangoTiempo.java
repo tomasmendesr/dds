@@ -1,5 +1,8 @@
 package entrega1;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,8 +19,20 @@ public class TestRangoTiempo {
 		1,2,3,4,5,6,7;
 	}*/
 	
+	RangoDeAtencion unRango = new RangoDeAtencion(7.0,10.0,1,5);
+	
 	List<Integer> semana = Arrays.asList(1,2,3,4,5);
 	List<Double> horas = Arrays.asList(18.0,19.0,20.0,21.0,22.0,23.0,24.0,0.0);
+	
+	@Test
+	public void pruebaSet(){
+		LocalDateTime unLDT = LocalDateTime.of(1965, 04, 24, 17, 48);
+		double horas = unLDT.getHour();
+		double minutos = unLDT.getMinute();
+		double horasMinutos = horas + (minutos/100);
+		Assert.assertEquals(17.47,unRango.pasarAHorasMinutos(unLDT),0);
+	}
+	
 	
 	
 	@Test

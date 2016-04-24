@@ -74,7 +74,6 @@ public class TestDeCalculoDeDisponibilidad {
 	@Test
 	public void paraDaDeColectivoSiempreDisponible(){
 		LocalDateTime cualquierHoraCualquierFecha = LocalDateTime.now();
-		Assert.assertTrue(paradaDel47.estaDisponible(null));
 		Assert.assertTrue(paradaDel47.estaDisponible(cualquierHoraCualquierFecha));
 	}
 	

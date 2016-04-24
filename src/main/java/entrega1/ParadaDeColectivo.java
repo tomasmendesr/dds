@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 import org.uqbar.geodds.Point;
 
-public class ParadaDeColectivo extends POISinServicio {
+public class ParadaDeColectivo extends POI {
 
 	//CONSTRUCTOR
 	

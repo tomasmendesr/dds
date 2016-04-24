@@ -3,6 +3,7 @@ package entrega1;
 import org.uqbar.geodds.Point;
 import java.util.ArrayList;
 import java.lang.String;
+import java.time.LocalDateTime;
 
 public abstract class POI {
 
@@ -145,6 +146,7 @@ public abstract class POI {
 	public double cercaniaRequerida(){ // Defino la cercania requerida standar
 		return 500.0;
 	}
+	
 	
 	
 		

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
-public class LocalComercial extends POISinServicio {
+public class LocalComercial extends POI {
 
 	//CONSTRUCTOR
 	

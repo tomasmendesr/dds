@@ -135,9 +135,6 @@ public abstract class POI {
 
 	//Calculo de cercania
 
-	public boolean estaCercaDeUnPOI(POI unPOI){
-		return this.estaAMenosDeXMetrosDeOtroPOI(unPOI, 500); //para pasar a metros
-	}
 	
 	public boolean estaCercaDe(Point unaUbicacion){
 		return this.getUbicacion().distance(unaUbicacion) * 1000 < this.cercaniaRequerida();
@@ -147,7 +144,9 @@ public abstract class POI {
 		return 500.0;
 	}
 	
-	
+	public boolean estaCercaDeUnPOI(POI unPOI){
+		return this.estaAMenosDeXMetrosDeOtroPOI(unPOI, 500); //para pasar a metros
+	}
 	
 		
 }

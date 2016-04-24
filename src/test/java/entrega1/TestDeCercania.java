@@ -8,8 +8,6 @@ import org.junit.Assert;
 
 public class TestDeCercania {
 	
-	private Mapa ubicacionCercana;
-	private Mapa ubicacionLejana;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
@@ -17,6 +15,8 @@ public class TestDeCercania {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
+	private Point ubicacionCercana;
+	private Point ubicacionLejana;
 	
 	@Before
 	public void init(){
@@ -31,10 +31,10 @@ public class TestDeCercania {
 		comuna8.setZona(zonaComuna8);
 		
 		// UbicacionCercana en el Mapa - Sayos 4937 
-		ubicacionCercana = new Mapa(new Point(-34.6717, -58.4679));
+		ubicacionCercana = new Point(-34.6717, -58.4679);
 		
 		// UbicacionLejana en el mapa - Av. Juan B. Justo 4045
-		ubicacionLejana = new Mapa(new Point(-34.6048, -58.4591));
+		ubicacionLejana = new Point(-34.6048, -58.4591);
 		
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
@@ -56,52 +56,52 @@ public class TestDeCercania {
 	
 	@Test
 	public void testParada47CercanoAMenosDe100Metros(){
-		Assert.assertTrue(ubicacionCercana.estaCercaDe(paradaDel47)); 
+		Assert.assertTrue(paradaDel47.estaCercaDe(ubicacionCercana)); 
 	}
 	
 	@Test
 	public void testParada47Lejano(){
-		Assert.assertFalse(ubicacionLejana.estaCercaDe(paradaDel47)); 
+		Assert.assertFalse(paradaDel47.estaCercaDe(ubicacionLejana)); 
 	}
 
 	@Test
 	public void testCGPDentroDeLaMismaComuna(){
-			Assert.assertTrue(ubicacionCercana.estaCercaDe(cgp)); 
+			Assert.assertTrue(cgp.estaCercaDe(ubicacionCercana)); 
 	}
 	
 	@Test
 	public void testCGPLejano(){
-			Assert.assertFalse(ubicacionLejana.estaCercaDe(cgp)); 
+			Assert.assertFalse(cgp.estaCercaDe(ubicacionLejana)); 
 	}
 
 	@Test 
 	public void testBancoCercanoAMenosDe500Metros(){
-		Assert.assertTrue(ubicacionCercana.estaCercaDe(banco)); 
+		Assert.assertTrue(banco.estaCercaDe(ubicacionCercana)); 
 	}
 	
 	@Test 
 	public void testBancoLejano(){
-		Assert.assertFalse(ubicacionLejana.estaCercaDe(banco));  
+		Assert.assertFalse(banco.estaCercaDe(ubicacionLejana));  
 	}
 	
 	@Test 
 	public void testLibreriaDentroDelRadio(){
-		Assert.assertTrue(ubicacionCercana.estaCercaDe(libreriaEscolar));
+		Assert.assertTrue(libreriaEscolar.estaCercaDe(ubicacionCercana));
 	}
 	
 	@Test
 	public void testLibreriaFueraDelRadio(){
-		Assert.assertFalse(ubicacionLejana.estaCercaDe(libreriaEscolar));
+		Assert.assertFalse(libreriaEscolar.estaCercaDe(ubicacionLejana));
 	}
 	
 	@Test
 	public void testKioskoDeDiariosDentroDelRadio(){
-		Assert.assertTrue(ubicacionCercana.estaCercaDe(kioskoDeDiarios));
+		Assert.assertTrue(kioskoDeDiarios.estaCercaDe(ubicacionCercana));
 	}
 	
 	@Test
 	public void testKioskoDeDiariosLejano(){
-		Assert.assertFalse(ubicacionLejana.estaCercaDe(kioskoDeDiarios));
+		Assert.assertFalse(kioskoDeDiarios.estaCercaDe(ubicacionLejana));
 	}
 	
 }

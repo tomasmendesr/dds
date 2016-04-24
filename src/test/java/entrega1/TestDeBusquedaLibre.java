@@ -31,8 +31,13 @@ public class TestDeBusquedaLibre {
 		zonaComuna8.add(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
 		
-		// Mapa - Sayos 4937
-		mapa = new Mapa(new Point(-34.6717, -58.4679));
+		// Mapa
+		mapa = new Mapa();
+		mapa.addPOI(paradaDel47);
+		mapa.addPOI(cgp);
+		mapa.addPOI(banco);
+		mapa.addPOI(libreriaEscolar);
+		mapa.addPOI(kioskoDeDiarios);
 		
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
@@ -59,12 +64,6 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), comuna8, rubroKioskoDeDiarios);
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
-		
-		mapa.addPOI(paradaDel47);
-		mapa.addPOI(cgp);
-		mapa.addPOI(banco);
-		mapa.addPOI(libreriaEscolar);
-		mapa.addPOI(kioskoDeDiarios);
 	}
 	
 	@Test

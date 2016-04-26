@@ -3,7 +3,6 @@ package entrega1;
 import org.uqbar.geodds.Point;
 import java.util.ArrayList;
 import java.lang.String;
-import java.time.LocalDateTime;
 
 public abstract class POI {
 

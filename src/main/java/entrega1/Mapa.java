@@ -30,6 +30,10 @@ public class Mapa {
 		coleccionDePOIS.add(unPOI);
 	}
 	
+	public void removePOI(POI unPOI){
+		coleccionDePOIS.remove(unPOI);
+	}
+	
 	
 	// Busqueda por texto libre
 	public ArrayList<POI> buscarPorTextoLibre(String unTag){

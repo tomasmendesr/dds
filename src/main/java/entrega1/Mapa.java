@@ -34,8 +34,8 @@ public class Mapa {
 	// Busqueda por texto libre
 	public ArrayList<POI> buscarPorTextoLibre(String unTag){
 		return (ArrayList<POI>) this.getColeccionDePOIS().stream()
-				.filter(poi -> poi.detectarTagBuscado(unTag))
-				.collect(Collectors.toList());
+								.filter(poi -> poi.detectarTagBuscado(unTag))
+								.collect(Collectors.toList());
 	}
 	
 	

@@ -20,7 +20,10 @@ public class Banco extends POIConServicio {
 		int		diaDeInicioDeAtencion		= 1;
 		int		diaDeFinDeAtencion			= 5;
 		RangoDeAtencion rangoDeAtencionDeBanco = 
-				new RangoDeAtencion(horaDeApertura,horaDeCierre,diaDeInicioDeAtencion,diaDeFinDeAtencion);
+				new RangoDeAtencion(horaDeApertura,
+									horaDeCierre,
+									diaDeInicioDeAtencion,
+									diaDeFinDeAtencion);
 		
 		//Instancio servicios de banco
 		Servicio atencionAlCliente = new Servicio("Atencion al cliente", rangoDeAtencionDeBanco);

@@ -17,7 +17,6 @@ public class UsuarioAdministrador extends Usuario {
 		this.getMapa().addPOI(unPOI);
 	}
 
-	
 	public void quitarPOI(POI unPOI) {
 		this.getMapa().removePOI(unPOI);
 	}

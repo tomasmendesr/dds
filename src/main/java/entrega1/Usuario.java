@@ -22,13 +22,7 @@ public abstract class Usuario {
 	}
 	
 	//METODOS
-	
-	public abstract void agregarPOI(POI unPOI);
-	
-	public abstract void quitarPOI(POI unPOI);
-	
-	public abstract void modificarPOI(POI unPOI);
-	
+		
 	public void consultarPOI(POI unPOI /*, Consulta unaConsulta*/){};
 	
 }

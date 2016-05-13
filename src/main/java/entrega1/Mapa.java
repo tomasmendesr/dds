@@ -26,14 +26,6 @@ public class Mapa {
 		return coleccionDePOIS;
 	}
 	
-	public void addPOI(POI unPOI){
-		coleccionDePOIS.add(unPOI);
-	}
-	
-	public void removePOI(POI unPOI){
-		coleccionDePOIS.remove(unPOI);
-	}
-	
 	
 	// Busqueda por texto libre
 	public ArrayList<POI> buscarPorTextoLibre(String unTag){
@@ -42,6 +34,14 @@ public class Mapa {
 								.collect(Collectors.toList());
 	}
 	
+	// Agregar, quitar y modificar
+	public void agregarPOI(POI unPOI){
+		coleccionDePOIS.add(unPOI);
+	}
 	
-
+	public void quitarPOI(POI unPOI){
+		coleccionDePOIS.remove(unPOI);
+	}
+	
+	public void modificarPOI(POI unPOI){}
 }

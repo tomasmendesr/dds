@@ -33,11 +33,11 @@ public class TestDeBusquedaLibre {
 		
 		// Mapa
 		mapa = new Mapa();
-		mapa.addPOI(paradaDel47);
-		mapa.addPOI(cgp);
-		mapa.addPOI(banco);
-		mapa.addPOI(libreriaEscolar);
-		mapa.addPOI(kioskoDeDiarios);
+		mapa.agregarPOI(paradaDel47);
+		mapa.agregarPOI(cgp);
+		mapa.agregarPOI(banco);
+		mapa.agregarPOI(libreriaEscolar);
+		mapa.agregarPOI(kioskoDeDiarios);
 		
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);

@@ -15,7 +15,7 @@ public class UsuarioAdministrador extends Usuario {
 	public void quitarPOI(POI unPOI){
 		this.getMapa().removePOI(unPOI);
 	}
-	
+
 	public void modificarUbicacion(POI unPOI, Point nuevaUbicacion){
 		unPOI.setUbicacion(nuevaUbicacion);
 	}

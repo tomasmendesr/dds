@@ -9,8 +9,8 @@ public class ParadaDeColectivo extends POI {
 
 	//CONSTRUCTOR
 	
-	public ParadaDeColectivo(Point miUbicacion, Comuna comuna8) {
-		super(miUbicacion, comuna8);
+	public ParadaDeColectivo(Point miUbicacion, Comuna unaComuna) {
+		super(miUbicacion, unaComuna);
 		this.instanciarRangoDeAtencionDeColectivo();
 	}
 	

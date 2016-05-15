@@ -88,7 +88,7 @@ public abstract class POI {
 	}
 
 /* Generado de tags automaticamente al instanciar un nombre y direccion
- * 
+
 	public void autoDetectTag(String identificador, boolean remover){ //El booleando indica si la funcion va a remover o agregar Tags
 		String identificadorTag = new String(identificador);
 		String[] partesIdentificador = identificadorTag.split(" ");

@@ -3,9 +3,6 @@ package entrega1;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import org.uqbar.geodds.Point;
-
-
 public class Mapa {
 
 	//CONSTRUCTOR
@@ -28,6 +25,13 @@ public class Mapa {
 		return coleccionDePOIS;
 	}
 	
+	public void addPOI(POI unPOI){
+		coleccionDePOIS.add(unPOI);
+	}
+	
+	public void removePOI(POI unPOI){
+		coleccionDePOIS.remove(unPOI);
+	}
 	
 	// Busqueda por texto libre
 	public ArrayList<POI> buscarPorTextoLibre(String unTag){
@@ -36,40 +40,5 @@ public class Mapa {
 								.collect(Collectors.toList());
 	}
 	
-	// Agregar, quitar y modificar
-	public void agregarPOI(POI unPOI){
-		coleccionDePOIS.add(unPOI);
-	}
-	
-	public void quitarPOI(POI unPOI){
-		coleccionDePOIS.remove(unPOI);
-	}
-	
-	public void modificarUbicacion(POI unPOI, Point nuevaUbicacion){
-		unPOI.setUbicacion(nuevaUbicacion);
-	}
-	
-	public void modificarDireccion(POI unPOI, String nuevaDireccion){
-		unPOI.setDireccion(nuevaDireccion);
-	}
-	
-	public void modificarNombre(POI unPOI, String nuevoNombre){
-		unPOI.setNombre(nuevoNombre);
-	}
-	
-	public void modificarComuna(POI unPOI, Comuna nuevaComuna){
-		unPOI.setComuna(nuevaComuna);
-	}
-	
-	public void modificarRangoDeAtencion(POI unPOI, RangoDeAtencion nuevoRango){
-		unPOI.setRangoDeAtencion(nuevoRango);
-	}
-	
-	public void agregarTag(POI unPOI, String nuevoTag){
-		unPOI.addTag(nuevoTag);
-	}
-	
-	public void quitarTag(POI unPOI, String tag){
-		unPOI.removeTag(tag);
-	}
+
 }

@@ -56,11 +56,7 @@ public abstract class POI {
 	}
 	
 	public void setNombre(String unNombre){
-//		if(nombre != null){
-//			this.autoDetectTag(nombre, true);
-//		}
 		nombre = unNombre;
-//		this.autoDetectTag(nombre, false);
 	}
 	
 	public String getDireccion() {
@@ -68,11 +64,7 @@ public abstract class POI {
 	}
 
 	public void setDireccion(String unaDireccion) {
-//		if(direccion != null){
-//			this.autoDetectTag(direccion, true);
-//		}
 		direccion = unaDireccion;
-//		this.autoDetectTag(direccion, false);
 	}
 	
 	public void setTags(){ //Inicializa el ArrayList
@@ -86,27 +78,6 @@ public abstract class POI {
 	public void removeTag(String tag){
 		tags.remove(tag);
 	}
-
-/* Generado de tags automaticamente al instanciar un nombre y direccion
-
-	public void autoDetectTag(String identificador, boolean remover){ //El booleando indica si la funcion va a remover o agregar Tags
-		String identificadorTag = new String(identificador);
-		String[] partesIdentificador = identificadorTag.split(" ");
-		int i;
-		if (remover){
-			this.removeTag(identificador);
-			for(i = 0; i < partesIdentificador.length; i++){
-				this.removeTag(partesIdentificador[i]);
-			}
-		}else{
-			this.addTag(identificador);
-			for(i = 0; i < partesIdentificador.length; i++){
-				this.addTag(partesIdentificador[i]);
-			}
-		}
-	}
-*/ 
-	
 	
 	//METODOS
 	

@@ -4,10 +4,10 @@ import org.uqbar.geodds.Point;
 
 public class UsuarioAdministrador extends Usuario {
 	
-	public UsuarioAdministrador(Mapa unMapa){
-		this.setMapa(unMapa);
+	public UsuarioAdministrador(Mapa unMapa) {
+		super(unMapa);
 	}
-	
+
 	public void agregarPOI(POI unPOI){
 		this.getMapa().addPOI(unPOI);
 	}

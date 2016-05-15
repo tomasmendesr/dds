@@ -2,6 +2,11 @@ package entrega1;
 
 public class Usuario {
 	
+	// Constructor
+	public Usuario (Mapa unMapa){
+		this.setMapa(unMapa);
+	}
+	
 	// Atributos
 	private Mapa mapa;
 

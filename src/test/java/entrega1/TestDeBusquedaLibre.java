@@ -6,6 +6,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.junit.Assert;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestDeBusquedaLibre {
 
@@ -15,7 +16,7 @@ public class TestDeBusquedaLibre {
 	private Banco banco;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
-	private ArrayList<POI> poisEncontrados;
+	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
 	

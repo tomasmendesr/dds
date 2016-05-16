@@ -35,6 +35,7 @@ public class Mapa {
 	}
 	
 	// Busqueda por texto libre
+	
 	public List<POI> buscarPorTextoLibre(String unTag){
 		return this.getColeccionDePOIS().stream()
 				.filter(poi -> poi.detectarTagBuscado(unTag))

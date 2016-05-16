@@ -1,6 +1,6 @@
 package entrega1;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Usuario {
@@ -12,8 +12,8 @@ public class Usuario {
 	
 
 	// Atributos
-	private Mapa mapa;
-	public ArrayList<TipoBusqueda> buscadores;
+	private 	Mapa mapa;
+	public 		List<TipoBusqueda> buscadores;
 	
 
 	//Definir Alguna solucion

@@ -10,10 +10,10 @@ public class Banco extends POIConServicio {
 	
 	public Banco(Point ubicacion, Comuna comuna8) {
 		super(ubicacion, comuna8);
-		this.instancioColeccionDeServiciosDeBanco();
+		this.instanciarColeccionDeServiciosDeBanco();
 	}
 	
-	public void instancioColeccionDeServiciosDeBanco(){
+	public void instanciarColeccionDeServiciosDeBanco(){
 		//Instacio rango de atencion de banco
 		double	horaDeApertura 				= 10.0;
 		double	horaDeCierre				= 15.0;

@@ -9,20 +9,20 @@ public class Mapa {
 	//CONSTRUCTOR
 	
 	public Mapa(){
-		this.setColeccionDePOIS(); //Inicizializa ArrayList de POIS
+		this.instanciarNuevaColeccionDePOIs(); //Inicizializa ArrayList de POIS
 	}
 	
 	//ATRIBUTOS
 	
-	private ArrayList<POI> coleccionDePOIS;
+	private List<POI> coleccionDePOIS;
 
 	//GETTERS Y SETTERS
 	
-	public void setColeccionDePOIS(){
+	public void instanciarNuevaColeccionDePOIs(){
 		coleccionDePOIS = new ArrayList<POI>();
 	}
 	
-	public ArrayList<POI> getColeccionDePOIS(){
+	public List<POI> getColeccionDePOIS(){
 		return coleccionDePOIS;
 	}
 	

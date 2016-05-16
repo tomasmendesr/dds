@@ -11,7 +11,7 @@ public abstract class POI {
 
 	public POI(Point unaUbicacion, Comuna unaComuna) {
 		this.setUbicacion(unaUbicacion);
-		this.setTags(new ArrayList<String>()); //Para inicializar el Array
+		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
 		this.setComuna(unaComuna);
 	}	
 	
@@ -68,8 +68,8 @@ public abstract class POI {
 		direccion = unaDireccion;
 	}
 	
-	public void setTags(ArrayList<String> unaColeccionDeTags){
-		tags = unaColeccionDeTags;
+	public void instanciarNuevaColeccionDeTags(){
+		tags = new ArrayList<String>();
 	}
 	
 	public List<String> getTags(){

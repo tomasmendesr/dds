@@ -85,7 +85,7 @@ public class TestAgregarQuitarModificar {
 	@Test
 	public void TestModificarDireccionKioskoDeDiarios(){
 		admin.modificarDireccion(kioskoDeDiarios, "Av Escalada 1561");
-		Assert.assertEquals("Escalada 1561", kioskoDeDiarios.getDireccion());
+		Assert.assertEquals("Av Escalada 1561", kioskoDeDiarios.getDireccion());
 	}
 	
 }

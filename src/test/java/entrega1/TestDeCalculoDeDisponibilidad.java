@@ -103,7 +103,7 @@ public class TestDeCalculoDeDisponibilidad {
 		Assert.assertFalse(cgp.estaDisponible("Tramite de DNI", diaYHoraNoValidos));
 	} 
 	
-	@Test
+	/*@Test
 	public void CGPAlgunServicioDisponible(){
 		Assert.assertTrue(cgp.estaDisponible(null,null));
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
@@ -111,7 +111,7 @@ public class TestDeCalculoDeDisponibilidad {
 	@Test
 	public void CGPNingunServicioDisponible(){
 		Assert.assertFalse(cgp.estaDisponible(null,null));
-	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
+	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA*/
 	
 	//TESTS DE BANCO
 	//(NO HACE FALTA PROBAR CON OTROS SERVICIOS PORQUE TODOS TIENEN EL MISMO RANGO HORARIO)
@@ -140,7 +140,7 @@ public class TestDeCalculoDeDisponibilidad {
 		Assert.assertFalse(banco.estaDisponible("Atencion al cliente", diaYHorarioNoValidos));
 	}
 	
-	@Test
+	/*@Test
 	public void BancoAlgunServicioDisponible(){
 		Assert.assertTrue(banco.estaDisponible(null, null));
 	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
@@ -148,7 +148,7 @@ public class TestDeCalculoDeDisponibilidad {
 	@Test 
 	public void BancoNingunServicioDisponible(){
 		Assert.assertFalse(banco.estaDisponible(null, null));
-	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA
+	}	//ESTE TEST DEPENDE DE LA HORA EN LA QUE SE LO CORRA*/
 	
 	//TESTS DE LOCAL COMERCIAL
 	 

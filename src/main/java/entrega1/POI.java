@@ -2,6 +2,7 @@ package entrega1;
 
 import org.uqbar.geodds.Point;
 import java.util.ArrayList;
+import java.util.List;
 import java.lang.String;
 
 public abstract class POI {
@@ -10,7 +11,7 @@ public abstract class POI {
 
 	public POI(Point unaUbicacion, Comuna unaComuna) {
 		this.setUbicacion(unaUbicacion);
-		this.setTags(); //Para inicializar el Array
+		this.setTags(new ArrayList<String>()); //Para inicializar el Array
 		this.setComuna(unaComuna);
 	}	
 	
@@ -20,7 +21,7 @@ public abstract class POI {
 	private String 					nombre;
 	private String 					direccion;
 	private Comuna	 				comuna;
-	private ArrayList<String> 		tags; //Array de String que contienen todos los tags de busqueda libre
+	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
 	private RangoDeAtencion		 	rangoDeAtencion; 
 	
 
@@ -67,8 +68,12 @@ public abstract class POI {
 		direccion = unaDireccion;
 	}
 	
-	public void setTags(){ //Inicializa el ArrayList
-		tags = new ArrayList<String>();
+	public void setTags(ArrayList<String> unaColeccionDeTags){
+		tags = unaColeccionDeTags;
+	}
+	
+	public List<String> getTags(){
+		return tags;
 	}
 	
 	public void addTag(String tag){//Agrega un tag al ArrayList

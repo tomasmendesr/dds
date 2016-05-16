@@ -1,6 +1,7 @@
 package entrega1;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Mapa {
@@ -34,10 +35,10 @@ public class Mapa {
 	}
 	
 	// Busqueda por texto libre
-	public ArrayList<POI> buscarPorTextoLibre(String unTag){
-		return (ArrayList<POI>) this.getColeccionDePOIS().stream()
-								.filter(poi -> poi.detectarTagBuscado(unTag))
-								.collect(Collectors.toList());
+	public List<POI> buscarPorTextoLibre(String unTag){
+		return this.getColeccionDePOIS().stream()
+				.filter(poi -> poi.detectarTagBuscado(unTag))
+				.collect(Collectors.toList());
 	}
 	
 

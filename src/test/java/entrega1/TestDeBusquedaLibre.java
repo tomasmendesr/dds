@@ -19,6 +19,8 @@ public class TestDeBusquedaLibre {
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
 	private Usuario usuario;
+	private ObserverBanco observerCGP;
+	private ObserverCGP observerBanco;
 	
 	@Before
 	public void init(){
@@ -70,6 +72,10 @@ public class TestDeBusquedaLibre {
 		
 		// Usuario
 		usuario = new Usuario(mapa);
+		usuario.setMapa(mapa);
+		usuario.agregarBuscador(observerCGP);
+		usuario.agregarBuscador(observerBanco);
+
 		
 		//Agrega POIs al mapa
 		mapa.addPOI(paradaDel47);

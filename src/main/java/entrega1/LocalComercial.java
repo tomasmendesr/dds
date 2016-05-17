@@ -9,9 +9,9 @@ public class LocalComercial extends POI {
 
 	//CONSTRUCTOR
 	
-	public LocalComercial(Point unaUbicacion, Comuna comuna8, Rubro unRubro){
-	
-		super(unaUbicacion,comuna8);
+
+	public LocalComercial(Point unaUbicacion, Rubro unRubro){
+		super(unaUbicacion);
 		this.setRubro(unRubro);
 		ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion = new ArrayList<RangoDeAtencion>();
 		this.setColeccionDeRangosDeAtencion(unaColeccionDeRangosDeAtencion);
@@ -60,14 +60,6 @@ public class LocalComercial extends POI {
 		this.getColeccionDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
 
-
-	
-
-	
-	/*public boolean estaCercaDeMaquina(Maquina unaMaquina){
-		return this.getRubro().getRadioDeCercania().isInside(unaMaquina.getUbicacion());
-	}*/
-	
 	
 	
 }

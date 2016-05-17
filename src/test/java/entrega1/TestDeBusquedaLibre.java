@@ -39,28 +39,32 @@ public class TestDeBusquedaLibre {
 		mapa = new Mapa();
 		
 		// Parada del 47 -- Corvalan 3691
-		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
+		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 		paradaDel47.setDireccion("Corvalan 3691");
 			
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
-		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8);
+		cgp = new CGP(new Point(-34.6672, -58.4669));
 		cgp.setDireccion("Av Escalada 3100");
 		cgp.setNombre("Asesoria");
+		cgp.setComuna(comuna8);
 		cgp.addTag("asesoramiento");
 		cgp.addTag("47"); //podria ser que el CGP estuviese cerca de la parada y lo taggean
 		
 		// Banco -- Av Riestra 5002
-		banco = new Banco(new Point(-34.6719, -58.4695), comuna8);
+		banco = new Banco(new Point(-34.6719, -58.4695));
 		banco.addTag("deposito");
+		banco.setComuna(comuna8);
 		
 		// Libreria Escolar -- Av Argentina 4802
 		Rubro rubroLibreriaEscolar = new Rubro(500.0);
-		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), comuna8, rubroLibreriaEscolar);
+		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), rubroLibreriaEscolar);
+		libreriaEscolar.setComuna(comuna8);
 		libreriaEscolar.addTag("libreria");
 		
 		// Kiosko de Diarios -- Albariño 3702
 		Rubro rubroKioskoDeDiarios = new Rubro(200.0);
-		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), comuna8, rubroKioskoDeDiarios);
+		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), rubroKioskoDeDiarios);
+		kioskoDeDiarios.setComuna(comuna8);
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		

@@ -33,18 +33,21 @@ public class TestDeCalculoDeDisponibilidad {
 		comuna8.setZona(zonaComuna8);
 		
 		// Parada del 47 -- Corvanalan 3691
-		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676), comuna8);
+		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 
 		
 		// CGP -- Av Escalada 3100
-		cgp = new CGP(new Point(-34.6672, -58.4669), comuna8); //Servicios [tramiteDeDni,licenciaDeConducir]	
+		cgp = new CGP(new Point(-34.6672, -58.4669)); //Servicios [tramiteDeDni,licenciaDeConducir]	
+		cgp.setComuna(comuna8);
 		
 		// Banco -- Av Riestra 5002
-		banco = new Banco(new Point(-34.6719, -58.4695), comuna8);
+		banco = new Banco(new Point(-34.6719, -58.4695));
+		banco.setComuna(comuna8);
 		
 		// Libreria Escolar -- Av Argentina 4802
 		Rubro rubroLibreriaEscolar = new Rubro(500.0);
-		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), comuna8, rubroLibreriaEscolar);
+		libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), rubroLibreriaEscolar);
+		libreriaEscolar.setComuna(comuna8);
 		//instancio y agrego rangos de horario de libreria
 		double	horarioDeAperturaManana 	= 8.0;
 		double	horarioDeCierreManana		= 13.30;

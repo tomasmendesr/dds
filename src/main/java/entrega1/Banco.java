@@ -8,10 +8,11 @@ public class Banco extends POIConServicio {
 
 	//CONSTRUCTOR
 	
-	public Banco(Point ubicacion, Comuna comuna8) {
-		super(ubicacion, comuna8);
+	public Banco(Point ubicacion) {
+		super(ubicacion);
 		this.instanciarColeccionDeServiciosDeBanco();
 	}
+	
 	
 	public void instanciarColeccionDeServiciosDeBanco(){
 		//Instacio rango de atencion de banco

@@ -8,8 +8,8 @@ public class CGP extends POIConServicio {
 
 	//CONSTRUCTOR
 	
-	public CGP(Point ubicacion, Comuna unaComuna) {
-		super(ubicacion, unaComuna);
+	public CGP(Point ubicacion) {
+		super(ubicacion);
 		this.instanciarColeccionDeServiciosDeCGP();	
 	}
 	
@@ -39,11 +39,7 @@ public class CGP extends POIConServicio {
 		coleccionDeServiciosDeCGP.add(tramiteDeDNI);
 		this.setColeccionServicios(coleccionDeServiciosDeCGP);
 	}
-	
-	//ATRIBUTOS
-	
-	
-	
+		
 	
 	//METODOS
 	
@@ -52,8 +48,7 @@ public class CGP extends POIConServicio {
 		return this.getComuna().getZona().isInside(unaUbicacion);
 	}
 
-	
-	
+
 	
 	
 }

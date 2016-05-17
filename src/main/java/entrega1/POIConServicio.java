@@ -11,8 +11,8 @@ public abstract class POIConServicio extends POI {
 		
 	//ATRIBUTOS
 	
-	public POIConServicio(Point unaUbicacion, Comuna unaComuna) {
-		super(unaUbicacion, unaComuna);
+	public POIConServicio(Point unaUbicacion) {
+		super(unaUbicacion);
 	}
 
 	private ArrayList<Servicio> 	servicios;

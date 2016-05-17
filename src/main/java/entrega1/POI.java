@@ -9,10 +9,9 @@ public abstract class POI {
 
 	//CONSTRUCTOR 
 
-	public POI(Point unaUbicacion, Comuna unaComuna) {
+	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
-		this.setComuna(unaComuna);
 	}	
 	
 	//ATRIBUTOS
@@ -20,13 +19,19 @@ public abstract class POI {
 	private Point 					ubicacion;
 	private String 					nombre;
 	private String 					direccion;
-	private Comuna	 				comuna;
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
 	private RangoDeAtencion		 	rangoDeAtencion; 
+	private Comuna					comuna;
 	
 
 	
 	//GETTERS Y SETTERS
+	
+
+	void setUbicacion(Point unaUbicacion) {
+		ubicacion = unaUbicacion;
+		
+	}
 	
 	public RangoDeAtencion getRangoDeAtencion() {
 		return rangoDeAtencion;
@@ -36,20 +41,9 @@ public abstract class POI {
 		this.rangoDeAtencion = rangoDeAtencion;
 	}
 	
-	public Comuna getComuna() {
-		return comuna;
-	}
 
-	public void setComuna(Comuna comuna) {
-		this.comuna = comuna;
-	}
-	
 	public Point getUbicacion(){
 		return ubicacion;
-	}
-	
-	public void setUbicacion(Point unaUbicacion){
-		ubicacion = unaUbicacion;
 	}
 	
 	public String getNombre(){
@@ -84,6 +78,13 @@ public abstract class POI {
 		tags.remove(tag);
 	}
 	
+	public void setComuna(Comuna unaComuna){
+		comuna = unaComuna;
+	}
+	
+	public Comuna getComuna(){
+		return this.comuna;
+	}
 	//METODOS
 	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){

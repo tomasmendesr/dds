@@ -8,7 +8,7 @@ public class Usuario {
 	
 	// Constructor
 	public Usuario (Mapa unMapa){
-		this.setMapa(unMapa);
+		mapa = unMapa;
 	}
 	
 
@@ -57,11 +57,6 @@ public class Usuario {
 	public Mapa getMapa() {
 		return mapa;
 	}
-	
-	public void setMapa(Mapa unMapa) {
-		mapa = unMapa;
-	}
-	
 	
 	
 }

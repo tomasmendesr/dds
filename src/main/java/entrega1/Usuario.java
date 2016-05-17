@@ -23,7 +23,6 @@ public class Usuario {
 		List<POI> resultados = new ArrayList<POI>();
 		buscadores.stream().forEachOrdered(buscador -> buscador.buscar(unPOI, resultados));
 		resultados.addAll(this.buscarPorTextoLibre(unPOI.getNombre()));
-	
 		return resultados;
 	}
 	

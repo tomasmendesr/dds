@@ -36,7 +36,11 @@ public class Servicio {
 
 	//METODOS
 	
-	public boolean estaDentroDelRangoDeAtencion(LocalDateTime horaDelMomento){
+	protected boolean estaDisponible(LocalDateTime unaHora){
+		return this.estaDentroDelRangoDeAtencion(unaHora);
+	}
+	
+	protected boolean estaDentroDelRangoDeAtencion(LocalDateTime horaDelMomento){
 		   return    !this.estaDentroDeFechaDeNoAtencion(horaDelMomento)
 				   	 && this.diaDeSemanaValido(horaDelMomento)
 				   	 && this.horaMinutosValidos(horaDelMomento);

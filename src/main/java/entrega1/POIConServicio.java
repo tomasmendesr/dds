@@ -45,11 +45,11 @@ public abstract class POIConServicio extends POI {
 	public boolean algunServicioDisponible(){
 		LocalDateTime 	horaDelMomento = LocalDateTime.now();	//Instancio la hora del momento
 		return	this.getColeccionServicios().stream().
-				anyMatch(servicio -> servicio.estaDentroDelRangoDeAtencion(horaDelMomento));
+				anyMatch(servicio -> servicio.estaDisponible(horaDelMomento));
 	}
 	
 	public boolean servicioDisponible(String unNombreDeServicio, LocalDateTime unTiempo){
-		return this.buscarServicio(unNombreDeServicio).estaDentroDelRangoDeAtencion(unTiempo);
+		return this.buscarServicio(unNombreDeServicio).estaDisponible(unTiempo);
 	}
 	
 	public Servicio buscarServicio(String unNombreDeServicio){

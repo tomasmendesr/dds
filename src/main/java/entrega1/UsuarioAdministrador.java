@@ -8,6 +8,8 @@ public class UsuarioAdministrador extends Usuario {
 		super(unMapa);
 	}
 
+	//ABM
+	
 	public void agregarPOI(POI unPOI){
 		this.getMapa().addPOI(unPOI);
 	}

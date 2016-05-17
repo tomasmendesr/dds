@@ -19,29 +19,13 @@ public class Usuario {
 
 	// Busqueda 
 	
-/*	//Solucion 1
-		resultados.addAll(buscadores.contains(BusquedaCGP).buscar(unPOI));
-		resultados.addAll(buscadores.contains(BusquedaBanco).buscar(unPOI));
-		resultados.addAll(mapa.buscarPorTextoLibre(unPOI.getNombre()));
-		return resultados;
-		}
-*/		
-	
-	//Solucion 2
 	public ArrayList <POI> consultarPois(POI unPOI){
-	ArrayList<POI> resultados = new ArrayList<POI>();
+		ArrayList<POI> resultados = new ArrayList<POI>();
 	
-	List<List<POI>> busqueda = buscadores.stream().map(buscador -> buscador.buscar(unPOI)).collect(Collectors.toList());
-	int i;
-	for (i = 0; i < busqueda.size(); i++)
-	{
-		resultados.addAll(busqueda.get(i));
-	}
+		buscadores.stream().forEachOrdered(buscador -> buscador.buscar(unPOI, resultados));
+		resultados.addAll(this.buscarPorTextoLibre(unPOI.getNombre()));
 	
-	resultados.addAll(this.buscarPorTextoLibre(unPOI.getNombre()));
-	
-	return resultados;
-					
+		return resultados;
 	}
 	
 	// Busqueda por texto libre

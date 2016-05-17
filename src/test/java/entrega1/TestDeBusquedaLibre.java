@@ -19,8 +19,8 @@ public class TestDeBusquedaLibre {
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
 	private Usuario usuario;
-	private ObserverBanco observerCGP;
-	private ObserverCGP observerBanco;
+	private ObserverCGP observerCGP;
+	private ObserverBanco observerBanco;
 	
 	@Before
 	public void init(){
@@ -70,12 +70,17 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		
+		// Buscador CGP
+	//	observerCGP = new ObserverCGP();
+		
+		// Buscador Banco
+	//	observerBanco = new ObserverBanco();
+		
+	
 		// Usuario
 		usuario = new Usuario(mapa);
-		usuario.setMapa(mapa);
-		usuario.agregarBuscador(observerCGP);
-		usuario.agregarBuscador(observerBanco);
-
+	//	usuario.agregarBuscador(observerCGP);
+	//	usuario.agregarBuscador(observerBanco);
 		
 		//Agrega POIs al mapa
 		mapa.addPOI(paradaDel47);

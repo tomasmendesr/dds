@@ -28,7 +28,6 @@ public class Usuario {
 */		
 	
 	//Solucion 2
-	
 	public ArrayList <POI> consultarPois(POI unPOI){
 	ArrayList<POI> resultados = new ArrayList<POI>();
 	
@@ -47,7 +46,7 @@ public class Usuario {
 	
 	// Busqueda por texto libre
 	
-	public List<POI> buscarPorTextoLibre(String unTag){
+	protected List<POI> buscarPorTextoLibre(String unTag){
 		return mapa.getColeccionDePOIS().stream()
 					.filter(poi -> poi.detectarTagBuscado(unTag))
 					.collect(Collectors.toList());

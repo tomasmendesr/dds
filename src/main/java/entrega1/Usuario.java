@@ -19,6 +19,10 @@ public class Usuario {
 
 	// Busqueda 
 	
+	public List<POI> consultarPOIs(Consulta unaConsulta){
+		return unaConsulta.realizarConsulta();
+	}
+	
 	public List<POI> consultarPois(POI unPOI){
 		List<POI> resultados = new ArrayList<POI>();
 		buscadores.stream().forEachOrdered(buscador -> buscador.buscar(unPOI, resultados));

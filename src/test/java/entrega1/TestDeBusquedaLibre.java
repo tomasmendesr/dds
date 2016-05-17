@@ -65,8 +65,7 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		
 		// Usuario
-		
-		usuario.setMapa(mapa);
+		usuario = new Usuario(mapa);
 		
 		//Agrega POIs al mapa
 		mapa.addPOI(paradaDel47);
@@ -76,9 +75,7 @@ public class TestDeBusquedaLibre {
 		mapa.addPOI(kioskoDeDiarios);
 	}
 	
-	
-	
-	
+		
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
 		poisEncontrados = usuario.buscarPorTextoLibre("47");

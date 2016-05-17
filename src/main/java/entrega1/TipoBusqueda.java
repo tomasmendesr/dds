@@ -1,9 +1,9 @@
 package entrega1;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TipoBusqueda {
 
-	public abstract ArrayList<POI> buscar(POI unPOI);
+	public abstract List<POI> buscar(POI unPOI);
 	
 }

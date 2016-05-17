@@ -17,21 +17,20 @@ public class Usuario {
 	public 		List<TipoBusqueda> buscadores;
 	
 
-	//Definir Alguna solucion
+	// Busqueda 
+	
+/*	//Solucion 1
+		resultados.addAll(buscadores.contains(BusquedaCGP).buscar(unPOI));
+		resultados.addAll(buscadores.contains(BusquedaBanco).buscar(unPOI));
+		resultados.addAll(mapa.buscarPorTextoLibre(unPOI.getNombre()));
+		return resultados;
+		}
+*/		
+	
+	//Solucion 2
 	
 	public ArrayList <POI> consultarPois(POI unPOI){
 	ArrayList<POI> resultados = new ArrayList<POI>();
-		
-/*
- 	//Solucion 1
-	resultados.addAll(buscadores.contains(BusquedaCGP).buscar(unPOI));
-	resultados.addAll(buscadores.contains(BusquedaBanco).buscar(unPOI));
-	resultados.addAll(mapa.buscarPorTextoLibre(unPOI.getNombre()));
-	return resultados;
-	}
-		
-		
-*/	//Solucion 2
 	
 	List<List<POI>> busqueda = buscadores.stream().map(buscador -> buscador.buscar(unPOI)).collect(Collectors.toList());
 	int i;
@@ -39,6 +38,8 @@ public class Usuario {
 	{
 		resultados.addAll(busqueda.get(i));
 	}
+	
+	resultados.addAll(this.buscarPorTextoLibre(unPOI.getNombre()));
 	
 	return resultados;
 					
@@ -60,6 +61,10 @@ public class Usuario {
 	
 	public void setMapa(Mapa unMapa) {
 		mapa = unMapa;
+	}
+	
+	public void agregarBuscador(TipoBusqueda unBuscador) {
+		buscadores.add(unBuscador);
 	}
 	
 	

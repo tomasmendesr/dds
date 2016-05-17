@@ -19,9 +19,8 @@ public class Usuario {
 
 	// Busqueda 
 	
-	public ArrayList <POI> consultarPois(POI unPOI){
-		ArrayList<POI> resultados = new ArrayList<POI>();
-	
+	public List<POI> consultarPois(POI unPOI){
+		List<POI> resultados = new ArrayList<POI>();
 		buscadores.stream().forEachOrdered(buscador -> buscador.buscar(unPOI, resultados));
 		resultados.addAll(this.buscarPorTextoLibre(unPOI.getNombre()));
 	

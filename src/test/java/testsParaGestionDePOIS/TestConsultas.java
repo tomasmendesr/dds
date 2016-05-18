@@ -1,6 +1,5 @@
 package testsParaGestionDePOIS;
 
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +13,6 @@ import gestionDePOIS.Comuna;
 import gestionDePOIS.LocalComercial;
 import gestionDePOIS.Mapa;
 import gestionDePOIS.ObserverConsulta;
-import gestionDePOIS.POI;
 import gestionDePOIS.ParadaDeColectivo;
 import gestionDePOIS.Rubro;
 
@@ -29,7 +27,6 @@ public class TestConsultas {
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
 	private ObserverConsulta observer;
-	private List<POI> poisEncontrados;
 	
 	@Before
 	public void init(){
@@ -82,6 +79,8 @@ public class TestConsultas {
 		mapa.agregarPOI(banco);
 		mapa.agregarPOI(libreriaEscolar);
 		mapa.agregarPOI(kioskoDeDiarios);
+		
+		mapa.agregarObserverConsulta(observer);
 	}
 	
 	@Test

@@ -5,12 +5,12 @@ import java.util.List;
 public class ConsultaCGP implements Consulta {
 	
 	//Constructor
-	public ConsultaCGP(ObserverCGP unObserver){
+	public ConsultaCGP(ObserverConsultaCGP unObserver){
 		observerCGP = unObserver;
 	}
 	
 	//Atributos
-	private ObserverCGP observerCGP;
+	private ObserverConsultaCGP observerCGP;
 	private String zonaOCalle;
 
 	//Métodos//Métodos
@@ -29,11 +29,5 @@ public class ConsultaCGP implements Consulta {
 		return zonaOCalle;
 	}
 
-	public ObserverCGP getObserverCGP() {
-		return observerCGP;
-	}
 
-	public void setObserverCGP(ObserverCGP observerCGP) {
-		this.observerCGP = observerCGP;
-	}
 }

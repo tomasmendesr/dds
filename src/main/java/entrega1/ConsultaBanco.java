@@ -18,7 +18,6 @@ public class ConsultaBanco implements Consulta {
 	 * llama a esta funcion por cada tipo (ademas de hacer buscarPorTextoLibre)*/
 
 	//Métodos
-	@Override
 	public List<POI> realizarConsulta() {
 		return observerBanco.buscarBanco(this.getNombreBanco(), this.getServicioBanco());
 	}

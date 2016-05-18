@@ -20,7 +20,7 @@ public class TestDeBusquedaLibre {
 	private Mapa mapa;
 	//private Usuario usuario;
 	private ObserverCGP observerCGP;
-	private ObserverBanco observerBanco;
+	private ObserverConsultaBanco observerBanco;
 	
 	@Before
 	public void init(){

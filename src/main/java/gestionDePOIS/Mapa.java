@@ -108,4 +108,5 @@ public class Mapa {
 		//hacer busqueda libre
 		coleccionDeObserversConsulta.forEach(observer -> observer.realizarConsulta(unaConsulta));
 	}
+
 }

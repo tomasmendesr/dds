@@ -100,8 +100,8 @@ public class Mapa {
 	
 	public List<POI> consultarPOIs(String unaConsulta){
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados,unaConsulta); // agrega todos los pois enconrados
-		return poisEncontrados;											   // a la coleccion poisEcontrados
+		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados,unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
+		return poisEncontrados;											  
 	}
 	
 	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){

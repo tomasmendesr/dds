@@ -10,8 +10,6 @@ import gestionDePOIS.CGP;
 import gestionDePOIS.Comuna;
 import gestionDePOIS.LocalComercial;
 import gestionDePOIS.Mapa;
-import gestionDePOIS.ObserverConsultaBanco;
-import gestionDePOIS.ObserverConsultaCGP;
 import gestionDePOIS.POI;
 import gestionDePOIS.ParadaDeColectivo;
 import gestionDePOIS.Rubro;
@@ -30,14 +28,11 @@ public class TestDeBusquedaLibre {
 	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-//	private ObserverConsultaCGP observerCGP;
-//	private ObserverConsultaBanco observerBanco;
 	
 	@Before
 	public void init(){
 		
 		// Comuna 8
-		
 		comuna8 = new Comuna();
 		zonaComuna8 = new Polygon();
 		zonaComuna8.add(new Point(-34.6744,-58.5025));
@@ -46,11 +41,7 @@ public class TestDeBusquedaLibre {
 		zonaComuna8.add(new Point(-34.6621,-58.4240));
 		zonaComuna8.add(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
-		
-		// Mapa
-		
-		mapa = new Mapa();
-		
+				
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 		paradaDel47.setDireccion("Corvalan 3691");
@@ -80,17 +71,9 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.setComuna(comuna8);
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
-		
-		// Buscador CGP
-	//	observerCGP = new ObserverCGP();
-		
-		// Buscador Banco
-	//	observerBanco = new ObserverBanco();
-		
-	
-
-		
+				
 		//Agrega POIs al mapa
+		mapa = new Mapa();
 		mapa.agregarPOI(paradaDel47);
 		mapa.agregarPOI(cgp);
 		mapa.agregarPOI(banco);

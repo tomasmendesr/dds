@@ -123,5 +123,8 @@ public abstract class POI {
 		return this.estaAMenosDeXMetrosDeOtroPOI(unPOI, 500); //para pasar a metros
 	}
 	
+	public void quitarTagAModificar(String tagAModificar){
+		tags.removeIf(tag -> tag == tagAModificar);
+	}
 		
 }

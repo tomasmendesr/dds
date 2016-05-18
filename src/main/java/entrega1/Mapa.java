@@ -2,6 +2,9 @@ package entrega1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.uqbar.geodds.Point;
 
 public class Mapa {
 
@@ -14,6 +17,7 @@ public class Mapa {
 	//ATRIBUTOS
 	
 	private List<POI> coleccionDePOIS;
+	private List<Observer> coleccionDeObservers;
 
 	//GETTERS Y SETTERS
 	
@@ -21,16 +25,64 @@ public class Mapa {
 		coleccionDePOIS = new ArrayList<POI>();
 	}
 	
-	public void addPOI(POI unPOI){
-		coleccionDePOIS.add(unPOI);
-	}
-	
-	public void removePOI(POI unPOI){
-		coleccionDePOIS.remove(unPOI);
-	}
-	
 	public List<POI> getColeccionDePOIS(){
 		return coleccionDePOIS;
 	}
-		
+	
+	//Busqueda por texto libre
+	
+	public List<POI> buscarPorTextoLibre(String unTag){
+		return this.getColeccionDePOIS().stream()
+				.filter(poi -> poi.detectarTagBuscado(unTag))
+				.collect(Collectors.toList());
+	}
+	
+	//ABM POIs
+	
+	//ver como hacer para dejar de suponer que el POI ingresado es siempre valido
+	
+	public void agregarPOI(POI unPOI){
+		coleccionDePOIS.add(unPOI);
+	}
+	
+	public void quitarPOI(POI unPOI){
+		coleccionDePOIS.remove(unPOI);
+	}
+	
+	public void modificarUbicacion(POI unPOI, Point nuevaUbicacion){
+		unPOI.setUbicacion(nuevaUbicacion);
+	}
+	
+	public void modificarDireccion(POI unPOI, String nuevaDireccion){
+		unPOI.setDireccion(nuevaDireccion);
+	}
+	
+	public void modificarNombre(POI unPOI, String nuevoNombre){
+		unPOI.setNombre(nuevoNombre);
+	}
+	
+	public void modificarComuna(POI unPOI, Comuna nuevaComuna){
+		unPOI.setComuna(nuevaComuna);
+	}
+	
+	public void modificarRangoDeAtencion(POI unPOI, RangoDeAtencion nuevoRango){
+		unPOI.setRangoDeAtencion(nuevoRango);
+	}
+	
+	public void agregarTag(POI unPOI, String nuevoTag){
+		unPOI.addTag(nuevoTag);
+	}
+	
+	public void modificarTag(POI unPOI, String tagAModificar, String nuevoTag){
+		unPOI.quitarTagAModificar(tagAModificar);
+		unPOI.addTag(nuevoTag);
+	}
+	
+	public void quitarTag(POI unPOI, String tag){
+		unPOI.removeTag(tag);
+	}
+	
+	//Consultar Busqueda POIs
+	
+	//public List<POI> consultarPOIs(){return List<POI>}
 }

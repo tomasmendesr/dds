@@ -17,7 +17,7 @@ public class Mapa {
 	//ATRIBUTOS
 	
 	private List<POI> coleccionDePOIS;
-	private List<Observer> coleccionDeObservers;
+	private List<ObserverConsulta> coleccionDeObserversConsulta;
 
 	//GETTERS Y SETTERS
 	
@@ -84,5 +84,14 @@ public class Mapa {
 	
 	//Consultar Busqueda POIs
 	
-	//public List<POI> consultarPOIs(){return List<POI>}
+	public List<POI> consultarPOIs(Consulta unaConsulta){
+		List<POI> poisEncontrados = new ArrayList<POI>();
+		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados,unaConsulta); // agrega todos los pois enconrados
+		return poisEncontrados;											   // a la coleccion poisEcontrados
+	}
+	
+	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, Consulta unaConsulta){
+		//hacer busqueda libre
+		coleccionDeObserversConsulta.forEach(observer -> observer.realizarConsulta(unaConsulta));
+	}
 }

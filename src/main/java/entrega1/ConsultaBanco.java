@@ -5,12 +5,12 @@ import java.util.List;
 public class ConsultaBanco implements Consulta {
 	
 	//Constructor
-	public ConsultaBanco(ObserverBanco unObserver){
+	public ConsultaBanco(ObserverConsultaBanco unObserver){
 		observerBanco = unObserver;
 	}
 	
 	//Atributos
-	private ObserverBanco observerBanco;
+	private ObserverConsultaBanco observerBanco;
 	private String nombreBanco;
 	private String servicioBanco;
 	/*Este metodo podria llamarse consultarPoisPorTipoConsulta que recibe un solo tipo de consulta
@@ -40,11 +40,11 @@ public class ConsultaBanco implements Consulta {
 		return servicioBanco;
 	}
 	
-	public ObserverBanco getObserverBanco() {
+	public ObserverConsultaBanco getObserverBanco() {
 		return observerBanco;
 	}
 
-	public void setObserverBanco(ObserverBanco observerBanco) {
+	public void setObserverBanco(ObserverConsultaBanco observerBanco) {
 		this.observerBanco = observerBanco;
 	}
 

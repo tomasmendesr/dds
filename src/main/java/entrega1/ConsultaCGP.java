@@ -13,7 +13,8 @@ public class ConsultaCGP implements Consulta {
 	private ObserverCGP observerCGP;
 	private String zonaOCalle;
 
-	//Métodos
+	//Métodos//Métodos
+
 	
 	public List<POI> realizarConsulta() {
 		return observerCGP.buscarCGP(this.getZonaOCalle());

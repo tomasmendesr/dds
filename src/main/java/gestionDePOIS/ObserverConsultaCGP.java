@@ -2,7 +2,7 @@ package gestionDePOIS;
 
 import java.util.List;
 
-public class ObserverConsultaCGP implements ObserverConsulta{
+public class ObserverConsultaCGP{// implements ObserverConsulta{
 
 	//constructor
 	

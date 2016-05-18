@@ -41,6 +41,10 @@ public class Mapa {
 	
 	//ver como hacer para dejar de suponer que el POI ingresado es siempre valido
 	
+	public void esPOIvalido(POI unPOI){
+		this.coleccionDePOIS.contains(unPOI);
+	}
+	
 	public void agregarPOI(POI unPOI){
 		coleccionDePOIS.add(unPOI);
 	}

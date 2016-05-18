@@ -105,8 +105,8 @@ public class Mapa {
 	}
 	
 	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){
-		//hacer busqueda libre
-		coleccionDeObserversConsulta.forEach(observer -> observer.realizarConsulta(unaConsulta));
+		coleccionDeObserversConsulta.forEach(observer -> listaDePOIsACompletar.addAll(observer.realizarConsulta(unaConsulta)));
+		listaDePOIsACompletar.addAll(this.buscarPorTextoLibre(unaConsulta));
 	}
 
 }

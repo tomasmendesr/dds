@@ -14,7 +14,7 @@ public class ObserverConsultaCGP implements ObserverConsulta{
 	
 	private ComponenteCGP componente;
 
-	//geters y seters
+	//getters y setters
 
 	public ComponenteCGP getComponente() {
 		return componente;

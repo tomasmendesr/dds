@@ -12,7 +12,7 @@ public class ObserverConsultaBanco implements ObserverConsulta{
 	
 	private ComponenteBanco componente;
 	
-	//geters y setters
+	//getters y setters
 	
 	public ComponenteBanco getComponente() {
 		return componente;

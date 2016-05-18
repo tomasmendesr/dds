@@ -1,6 +1,9 @@
 package testsParaGestionDePOIS;
 
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -12,6 +15,7 @@ import gestionDePOIS.CGP;
 import gestionDePOIS.Comuna;
 import gestionDePOIS.LocalComercial;
 import gestionDePOIS.Mapa;
+import gestionDePOIS.POI;
 import gestionDePOIS.ObserverConsulta;
 import gestionDePOIS.ParadaDeColectivo;
 import gestionDePOIS.Rubro;
@@ -26,11 +30,14 @@ public class TestConsultas {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-	private ObserverConsulta observer;
+	private ObserverConsulta observercgp;
+	private ObserverConsulta observerbanco;
+	private List<POI> poisEncontrados;
 	
 	@Before
 	public void init(){
-		observer = Mockito.mock(ObserverConsulta.class);
+		observercgp = Mockito.mock(ObserverConsulta.class);
+		observerbanco = Mockito.mock(ObserverConsulta.class);
 		
 		// Comuna 8
 		comuna8 = new Comuna();
@@ -80,13 +87,16 @@ public class TestConsultas {
 		mapa.agregarPOI(libreriaEscolar);
 		mapa.agregarPOI(kioskoDeDiarios);
 		
-		mapa.agregarObserverConsulta(observer);
+		mapa.agregarObserverConsulta(observercgp);
+		mapa.agregarObserverConsulta(observerbanco);
 	}
 	
 	@Test
 	public void testConsultaPorPalabraArgentina(){
 		mapa.consultarPOIs("argentina");
-		Mockito.verify(observer).realizarConsulta("argentina");
+		poisEncontrados.add(cgp);
+		Mockito.when(observercgp.realizarConsulta("argentina")).thenReturn(poisEncontrados);
+		Assert.assertEquals(1, poisEncontrados.size());
 	}
 	
 	

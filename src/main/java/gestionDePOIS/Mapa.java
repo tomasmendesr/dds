@@ -12,6 +12,7 @@ public class Mapa {
 	
 	public Mapa(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
+		this.instanciarNuevaColeccionDeObservers();
 	}
 	
 	//ATRIBUTOS
@@ -23,6 +24,10 @@ public class Mapa {
 	
 	public void instanciarNuevaColeccionDePOIs(){
 		coleccionDePOIS = new ArrayList<POI>();
+	}
+	
+	public void instanciarNuevaColeccionDeObservers(){
+		coleccionDeObserversConsulta = new ArrayList<ObserverConsulta>();
 	}
 	
 	public List<POI> getColeccionDePOIS(){

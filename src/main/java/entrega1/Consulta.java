@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Consulta {
 
-	List<POI> realizarConsultaDe(Usuario usuario);
+	public List<POI> realizarConsulta();
 
 }

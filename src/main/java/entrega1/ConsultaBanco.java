@@ -13,10 +13,13 @@ public class ConsultaBanco implements Consulta {
 	private ObserverBanco observerBanco;
 	private String nombreBanco;
 	private String servicioBanco;
-	
+	/*Este metodo podria llamarse consultarPoisPorTipoConsulta que recibe un solo tipo de consulta
+	 * y despues otro que se llame consultarPois que recibe una lista de consultas y 
+	 * llama a esta funcion por cada tipo (ademas de hacer buscarPorTextoLibre)*/
+
 	//Métodos
 	@Override
-	public List<POI> realizarConsultaDe(Usuario usuario) {
+	public List<POI> realizarConsulta() {
 		return observerBanco.buscarBanco(this.getNombreBanco(), this.getServicioBanco());
 	}
 	

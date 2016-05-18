@@ -21,7 +21,7 @@ public class Usuario {
 	 * y despues otro que se llame consultarPois que recibe una lista de consultas y 
 	 * llama a esta funcion por cada tipo (ademas de hacer buscarPorTextoLibre)*/
 	public List<POI> consultarPois(Consulta unaConsulta){
-		return unaConsulta.realizarConsultaDe(this);
+		return unaConsulta.realizarConsulta();
 	}
 	
 	// Busqueda por texto libre

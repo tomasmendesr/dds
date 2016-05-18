@@ -14,8 +14,8 @@ public class ConsultaCGP implements Consulta {
 	private String zonaOCalle;
 
 	//Métodos
-	@Override
-	public List<POI> realizarConsultaDe(Usuario usuario) {
+	
+	public List<POI> realizarConsulta() {
 		return observerCGP.buscarCGP(this.getZonaOCalle());
 	}
 	

@@ -18,7 +18,7 @@ public class TestDeBusquedaLibre {
 	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-	private Usuario usuario;
+	//private Usuario usuario;
 	private ObserverCGP observerCGP;
 	private ObserverBanco observerBanco;
 	
@@ -77,48 +77,45 @@ public class TestDeBusquedaLibre {
 	//	observerBanco = new ObserverBanco();
 		
 	
-		// Usuario
-		usuario = new Usuario(mapa);
-	//	usuario.agregarBuscador(observerCGP);
-	//	usuario.agregarBuscador(observerBanco);
+
 		
 		//Agrega POIs al mapa
-		mapa.addPOI(paradaDel47);
-		mapa.addPOI(cgp);
-		mapa.addPOI(banco);
-		mapa.addPOI(libreriaEscolar);
-		mapa.addPOI(kioskoDeDiarios);
+		mapa.agregarPOI(paradaDel47);
+		mapa.agregarPOI(cgp);
+		mapa.agregarPOI(banco);
+		mapa.agregarPOI(libreriaEscolar);
+		mapa.agregarPOI(kioskoDeDiarios);
 	}
 	
 		
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
-		poisEncontrados = usuario.buscarPorTextoLibre("47");
+		poisEncontrados = mapa.buscarPorTextoLibre("47");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
-		poisEncontrados = usuario.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = mapa.buscarPorTextoLibre("asesoramiento");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el cgp
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCaramelos(){
-		poisEncontrados = usuario.buscarPorTextoLibre("caramelos");
+		poisEncontrados = mapa.buscarPorTextoLibre("caramelos");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el kioskoDeDiarios
 	}
 	
 	@Test
 	public void testBusquedaDeTextoLibreDevuelveDireccionDelPOIEncontrado(){
-		poisEncontrados = usuario.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = mapa.buscarPorTextoLibre("asesoramiento");
 		String direccionPOI = poisEncontrados.get(0).getDireccion();
 		Assert.assertEquals("Av Escalada 3100", direccionPOI);
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
-		poisEncontrados = usuario.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = mapa.buscarPorTextoLibre("asesoramiento");
 		String nombrePOI = poisEncontrados.get(0).getNombre();
 		Assert.assertEquals("Asesoria", nombrePOI);
 	}

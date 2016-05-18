@@ -16,7 +16,6 @@ public class TestAgregarQuitarModificar {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-	private UsuarioAdministrador admin;
 	
 	@Before
 	public void init(){
@@ -32,14 +31,12 @@ public class TestAgregarQuitarModificar {
 		
 		// Mapa
 		mapa = new Mapa();
-		mapa.addPOI(paradaDel47);
-		mapa.addPOI(cgp);
-		mapa.addPOI(banco);
-		mapa.addPOI(libreriaEscolar);
-		mapa.addPOI(kioskoDeDiarios);
+		mapa.agregarPOI(paradaDel47);
+		mapa.agregarPOI(cgp);
+		mapa.agregarPOI(banco);
+		mapa.agregarPOI(libreriaEscolar);
+		mapa.agregarPOI(kioskoDeDiarios);
 		
-		// Administrador
-		admin = new UsuarioAdministrador(mapa);
 				
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
@@ -69,26 +66,26 @@ public class TestAgregarQuitarModificar {
 	}
 	
 	@Test
-	public void TestAdminAgregaParadaDel114(){
-			admin.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
+	public void TestMapaAgregaParadaDel114(){
+			mapa.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
 			Assert.assertEquals(6, mapa.getColeccionDePOIS().size()); 
 		}
 	
 	@Test 
-	public void TestAdminQuitaParadaDel47(){
-		admin.quitarPOI(paradaDel47);
+	public void TestMapaQuitaParadaDel47(){
+		mapa.quitarPOI(paradaDel47);
 		Assert.assertEquals(5, mapa.getColeccionDePOIS().size());
 	}
 	
 	@Test 
 	public void TestModificarNombreDelKioskoDeDiarios(){
-		admin.modificarNombre(kioskoDeDiarios, "Kiosko de Juan");
+		mapa.modificarNombre(kioskoDeDiarios, "Kiosko de Juan");
 		Assert.assertEquals("Kiosko de Juan", kioskoDeDiarios.getNombre());
 	}
 	
 	@Test
 	public void TestModificarDireccionKioskoDeDiarios(){
-		admin.modificarDireccion(kioskoDeDiarios, "Av Escalada 1561");
+		mapa.modificarDireccion(kioskoDeDiarios, "Av Escalada 1561");
 		Assert.assertEquals("Av Escalada 1561", kioskoDeDiarios.getDireccion());
 	}
 	

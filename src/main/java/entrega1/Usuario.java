@@ -1,7 +1,6 @@
 package entrega1;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Usuario {
@@ -13,21 +12,16 @@ public class Usuario {
 	
 
 	// Atributos
-	private 	Mapa mapa;
-	public 		List<TipoBusqueda> buscadores;
-	
+	private Mapa mapa;
+	private List<Observer> observers; //Alguna clase del sistema la tiene que conocer
 
 	// Busqueda 
 	
-	public List<POI> consultarPOIs(Consulta unaConsulta){
-		return unaConsulta.realizarConsulta();
-	}
-	
-	public List<POI> consultarPois(POI unPOI){
-		List<POI> resultados = new ArrayList<POI>();
-		buscadores.stream().forEachOrdered(buscador -> buscador.buscar(unPOI, resultados));
-		resultados.addAll(this.buscarPorTextoLibre(unPOI.getNombre()));
-		return resultados;
+	/*Este metodo podria llamarse consultarPoisPorTipoConsulta que recibe un solo tipo de consulta
+	 * y despues otro que se llame consultarPois que recibe una lista de consultas y 
+	 * llama a esta funcion por cada tipo (ademas de hacer buscarPorTextoLibre)*/
+	public List<POI> consultarPois(Consulta unaConsulta){
+		return unaConsulta.realizarConsultaDe(this);
 	}
 	
 	// Busqueda por texto libre
@@ -48,8 +42,8 @@ public class Usuario {
 		mapa = unMapa;
 	}
 	
-	public void agregarBuscador(TipoBusqueda unBuscador) {
-		buscadores.add(unBuscador);
+	public void agregarObserver(Observer unObserver) {
+		observers.add(unObserver);
 	}
 
 }

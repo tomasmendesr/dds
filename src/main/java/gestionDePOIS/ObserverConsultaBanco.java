@@ -1,29 +1,29 @@
-package entrega1;
+package gestionDePOIS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ObserverConsultaBanco implements ObserverConsulta{
 	
-	public ObserverConsultaBanco(ComponenteExternoConsultaBanco componente){
+	public ObserverConsultaBanco(ComponenteBanco componente){
 		this.setComponente(componente);
 	}
 	
 	//atributos
 	
-	private ComponenteExternoConsultaBanco componente;
+	private ComponenteBanco componente;
 	
 	//geters y setters
 	
-	public ComponenteExternoConsultaBanco getComponente() {
+	public ComponenteBanco getComponente() {
 		return componente;
 	}
 
-	public void setComponente(ComponenteExternoConsultaBanco componente) {
+	public void setComponente(ComponenteBanco componente) {
 		this.componente = componente;
 	}
 	
-	public List<POI> realizarConsulta(Consulta unaConsulta) {
+	public List<POI> realizarConsulta(String unaConsulta) {
+		
 		// mockito de componente externo mandandole la consulta adaptada
 		// adaptar lo que devuelve componente externo
 		// retornar lo adaptado como una List<POI>

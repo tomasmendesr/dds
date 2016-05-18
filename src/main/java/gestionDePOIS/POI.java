@@ -1,4 +1,4 @@
-package entrega1;
+package gestionDePOIS;
 
 import org.uqbar.geodds.Point;
 import java.util.ArrayList;

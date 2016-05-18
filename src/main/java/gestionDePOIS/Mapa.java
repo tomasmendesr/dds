@@ -1,4 +1,4 @@
-package entrega1;
+package gestionDePOIS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,15 +86,25 @@ public class Mapa {
 		unPOI.removeTag(tag);
 	}
 	
+	// Agregar y quitar observers consulta
+	
+	public void agregarObserverConsulta(ObserverConsulta unObserver){
+		coleccionDeObserversConsulta.add(unObserver);
+	}
+	
+	public void quitarObserverConsulta(ObserverConsulta unObserver){
+		coleccionDeObserversConsulta.remove(unObserver);
+	}
+	
 	//Consultar Busqueda POIs
 	
-	public List<POI> consultarPOIs(Consulta unaConsulta){
+	public List<POI> consultarPOIs(String unaConsulta){
 		List<POI> poisEncontrados = new ArrayList<POI>();
 		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados,unaConsulta); // agrega todos los pois enconrados
 		return poisEncontrados;											   // a la coleccion poisEcontrados
 	}
 	
-	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, Consulta unaConsulta){
+	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){
 		//hacer busqueda libre
 		coleccionDeObserversConsulta.forEach(observer -> observer.realizarConsulta(unaConsulta));
 	}

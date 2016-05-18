@@ -1,4 +1,4 @@
-package entrega1;
+package gestionDePOIS;
 
 import org.uqbar.geodds.Polygon;
 
@@ -20,3 +20,5 @@ public class Comuna {
 	
 	
 }
+
+

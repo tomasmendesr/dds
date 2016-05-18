@@ -1,4 +1,4 @@
-package entrega1;
+package gestionDePOIS;
 
 public class Rubro {
 	

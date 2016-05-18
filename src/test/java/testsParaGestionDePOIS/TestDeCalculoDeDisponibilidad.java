@@ -1,7 +1,16 @@
-package entrega1;
+package testsParaGestionDePOIS;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
+
+import gestionDePOIS.Banco;
+import gestionDePOIS.CGP;
+import gestionDePOIS.Comuna;
+import gestionDePOIS.LocalComercial;
+import gestionDePOIS.ParadaDeColectivo;
+import gestionDePOIS.RangoDeAtencion;
+import gestionDePOIS.Rubro;
+
 import org.junit.Before;
 import org.junit.Test;
 

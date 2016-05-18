@@ -1,9 +1,21 @@
-package entrega1;
+package testsParaGestionDePOIS;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
+
+import gestionDePOIS.Banco;
+import gestionDePOIS.CGP;
+import gestionDePOIS.Comuna;
+import gestionDePOIS.LocalComercial;
+import gestionDePOIS.Mapa;
+import gestionDePOIS.ObserverConsultaBanco;
+import gestionDePOIS.ObserverConsultaCGP;
+import gestionDePOIS.POI;
+import gestionDePOIS.ParadaDeColectivo;
+import gestionDePOIS.Rubro;
+
 import org.junit.Assert;
 import java.util.List;
 
@@ -18,9 +30,8 @@ public class TestDeBusquedaLibre {
 	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-	//private Usuario usuario;
-	private ObserverCGP observerCGP;
-	private ObserverConsultaBanco observerBanco;
+//	private ObserverConsultaCGP observerCGP;
+//	private ObserverConsultaBanco observerBanco;
 	
 	@Before
 	public void init(){

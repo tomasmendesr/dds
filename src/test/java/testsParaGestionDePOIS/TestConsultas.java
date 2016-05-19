@@ -30,14 +30,14 @@ public class TestConsultas {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-	private ObserverConsulta observercgp;
-	private ObserverConsulta observerbanco;
+	private ObserverConsulta observerCGP;
+	private ObserverConsulta observerBanco;
 	private List<POI> poisEncontrados;
 	
 	@Before
 	public void init(){
-		observercgp = Mockito.mock(ObserverConsulta.class);
-		observerbanco = Mockito.mock(ObserverConsulta.class);
+		observerCGP = Mockito.mock(ObserverConsulta.class);
+		observerBanco = Mockito.mock(ObserverConsulta.class);
 		
 		// Comuna 8
 		comuna8 = new Comuna();
@@ -87,15 +87,15 @@ public class TestConsultas {
 		mapa.agregarPOI(libreriaEscolar);
 		mapa.agregarPOI(kioskoDeDiarios);
 		
-		mapa.agregarObserverConsulta(observercgp);
-		mapa.agregarObserverConsulta(observerbanco);
+		mapa.agregarObserverConsulta(observerCGP);
+		mapa.agregarObserverConsulta(observerBanco);
 	}
 	
 	@Test
 	public void testConsultaPorPalabraArgentina(){
 		mapa.consultarPOIs("argentina");
 		poisEncontrados.add(cgp);
-		Mockito.when(observercgp.realizarConsulta("argentina")).thenReturn(poisEncontrados);
+		Mockito.when(observerCGP.realizarConsulta("argentina")).thenReturn(poisEncontrados);
 		Assert.assertEquals(1, poisEncontrados.size());
 	}
 	

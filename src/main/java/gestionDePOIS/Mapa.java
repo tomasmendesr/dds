@@ -12,7 +12,7 @@ public class Mapa {
 	
 	public Mapa(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
-		this.instanciarNuevaColeccionDeObservers();
+		this.inyectarDependencias();
 	}
 	
 	//ATRIBUTOS
@@ -26,8 +26,14 @@ public class Mapa {
 		coleccionDePOIS = new ArrayList<POI>();
 	}
 	
-	public void instanciarNuevaColeccionDeObservers(){
+	protected void inyectarDependencias(){
+		this.inyectarObserversConsulta();
+	}
+	
+	protected void inyectarObserversConsulta(){
 		coleccionDeObserversConsulta = new ArrayList<ObserverConsulta>();
+		coleccionDeObserversConsulta.add(new ObserverConsultaCGP());
+		coleccionDeObserversConsulta.add(new ObserverConsultaBanco());
 	}
 	
 	public List<POI> getColeccionDePOIS(){

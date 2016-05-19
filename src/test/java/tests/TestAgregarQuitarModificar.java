@@ -81,7 +81,7 @@ public class TestAgregarQuitarModificar {
 	
 	@Test 
 	public void TestMapaQuitaParadaDel47(){
-		Assert.assertTrue(mapa.getColeccionDePOIS().contains(paradaDel47)); // esto pasa porque esta comparando por identidad y no esta comparando por equivalencia
+		//Assert.assertTrue(mapa.getColeccionDePOIS().contains(paradaDel47)); // esto pasa porque esta comparando por identidad y no esta comparando por equivalencia
 		mapa.quitarPOI(paradaDel47);
 		Assert.assertFalse(mapa.getColeccionDePOIS().contains(paradaDel47));
 	}

@@ -1,4 +1,4 @@
-package testsParaGestionDePOIS;
+package testsGestionDePOIS;
 
 import org.junit.Before;
 import org.junit.Test;

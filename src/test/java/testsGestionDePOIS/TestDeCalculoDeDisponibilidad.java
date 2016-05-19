@@ -1,4 +1,4 @@
-package testsParaGestionDePOIS;
+package testsGestionDePOIS;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;

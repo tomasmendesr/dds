@@ -39,8 +39,10 @@ public abstract class POIConServicio extends POI {
 			return this.algunServicioDisponible();
 		} else {		
 			return this.servicioDisponible(unNombreDeServicio,unTiempo);
-		}
+		}//CAMBIAR NOMBRES de meTODOS EN ESTA CLASE
 	}
+	
+	
 	
 	public boolean algunServicioDisponible(){
 		LocalDateTime 	horaDelMomento = LocalDateTime.now();	//Instancio la hora del momento

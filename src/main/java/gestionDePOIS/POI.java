@@ -7,8 +7,14 @@ import java.lang.String;
 
 public abstract class POI {
 
+	//redefinir el equals para como lo querramos!!!
+	
 	//CONSTRUCTOR 
-
+	//@Override
+	//public boolean equals(Object unobjeto){
+		
+	//}
+	
 	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
@@ -125,6 +131,11 @@ public abstract class POI {
 	
 	public void quitarTagAModificar(String tagAModificar){
 		tags.removeIf(tag -> tag == tagAModificar);
+	}
+	
+	// Es valido
+	public boolean esValido(){
+		return (this.estaGeolocalizado() && this.tieneNombre()); 
 	}
 		
 }

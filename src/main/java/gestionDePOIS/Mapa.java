@@ -12,7 +12,8 @@ public class Mapa {
 	
 	public Mapa(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
-		this.inyectarDependencias();
+		coleccionDeObserversConsulta = new ArrayList<ObserverConsulta>();
+		//this.inyectarDependencias();
 	}
 	
 	//ATRIBUTOS
@@ -111,7 +112,7 @@ public class Mapa {
 	
 	public List<POI> consultarPOIs(String unaConsulta){
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados,unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
+		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados, unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
 		return poisEncontrados;											  
 	}
 	

@@ -1,6 +1,7 @@
 package testsParaGestionDePOIS;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -19,6 +20,8 @@ import gestionDePOIS.POI;
 import gestionDePOIS.ObserverConsulta;
 import gestionDePOIS.ParadaDeColectivo;
 import gestionDePOIS.Rubro;
+import gestionDePOIS.ObserverConsultaBanco;
+import gestionDePOIS.ObserverConsultaCGP;
 
 public class TestConsultas {
 	
@@ -30,14 +33,14 @@ public class TestConsultas {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private Mapa mapa;
-	private ObserverConsulta observerCGP;
-	private ObserverConsulta observerBanco;
+	private ObserverConsultaCGP observerCGP;
+	private ObserverConsultaBanco observerBanco;
 	private List<POI> poisEncontrados;
 	
 	@Before
 	public void init(){
-		observerCGP = Mockito.mock(ObserverConsulta.class);
-		observerBanco = Mockito.mock(ObserverConsulta.class);
+		observerCGP = Mockito.mock(ObserverConsultaCGP.class);
+		observerBanco = Mockito.mock(ObserverConsultaBanco.class);
 		
 		// Comuna 8
 		comuna8 = new Comuna();
@@ -93,10 +96,9 @@ public class TestConsultas {
 	
 	@Test
 	public void testConsultaPorPalabraArgentina(){
-		mapa.consultarPOIs("argentina");
-		poisEncontrados.add(cgp);
-		Mockito.when(observerCGP.realizarConsulta("argentina")).thenReturn(poisEncontrados);
-		Assert.assertEquals(1, poisEncontrados.size());
+		Mockito.when(observerCGP.realizarConsulta("argentina")).thenReturn(new ArrayList<POI>());
+		Mockito.when(observerBanco.realizarConsulta("argentina")).thenReturn(new ArrayList<POI>());
+		Assert.assertEquals(0, mapa.consultarPOIs("argentina").size());
 	}
 	
 	

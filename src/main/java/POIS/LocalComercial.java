@@ -1,9 +1,11 @@
-package gestionDePOIS;
+package POIS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
+
+import Master.POI;
 
 public class LocalComercial extends POI {
 

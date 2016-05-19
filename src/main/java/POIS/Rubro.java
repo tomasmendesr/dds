@@ -1,4 +1,4 @@
-package gestionDePOIS;
+package POIS;
 
 public class Rubro {
 	

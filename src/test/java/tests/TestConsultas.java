@@ -1,8 +1,7 @@
-package testsGestionDePOIS;
+package tests;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,17 +10,16 @@ import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import gestionDePOIS.Banco;
-import gestionDePOIS.CGP;
-import gestionDePOIS.Comuna;
-import gestionDePOIS.LocalComercial;
-import gestionDePOIS.Mapa;
-import gestionDePOIS.POI;
-import gestionDePOIS.AdapterConsulta;
-import gestionDePOIS.ParadaDeColectivo;
-import gestionDePOIS.Rubro;
-import gestionDePOIS.AdapterConsultaCGP;
-import gestionDePOIS.AdapterConsultaBanco;
+import Adapters.AdapterConsultaBanco;
+import Adapters.AdapterConsultaCGP;
+import Master.Mapa;
+import Master.POI;
+import POIS.Banco;
+import POIS.CGP;
+import POIS.Comuna;
+import POIS.LocalComercial;
+import POIS.ParadaDeColectivo;
+import POIS.Rubro;
 
 public class TestConsultas {
 	
@@ -35,7 +33,6 @@ public class TestConsultas {
 	private Mapa mapa;
 	private AdapterConsultaBanco observerCGP;
 	private AdapterConsultaCGP observerBanco;
-	private List<POI> poisEncontrados;
 	
 	@Before
 	public void init(){

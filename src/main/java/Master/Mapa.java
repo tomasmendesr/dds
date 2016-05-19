@@ -1,10 +1,12 @@
-package gestionDePOIS;
+package Master;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
+
+import Adapters.AdapterConsulta;
 
 public class Mapa {
 

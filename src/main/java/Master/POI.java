@@ -1,6 +1,10 @@
-package gestionDePOIS;
+package Master;
 
 import org.uqbar.geodds.Point;
+
+import POIS.Comuna;
+import POIS.RangoDeAtencion;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;

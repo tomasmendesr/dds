@@ -1,6 +1,8 @@
-package gestionDePOIS;
+package Adapters;
 
 import java.util.List;
+
+import Master.POI;
 
 public class AdapterConsultaBanco implements AdapterConsulta {
 

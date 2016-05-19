@@ -1,4 +1,4 @@
-package gestionDePOIS;
+package POIS;
 
 import org.uqbar.geodds.Polygon;
 

@@ -1,4 +1,4 @@
-package testsGestionDePOIS;
+package tests;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -6,13 +6,13 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import gestionDePOIS.Banco;
-import gestionDePOIS.CGP;
-import gestionDePOIS.Comuna;
-import gestionDePOIS.LocalComercial;
-import gestionDePOIS.Mapa;
-import gestionDePOIS.ParadaDeColectivo;
-import gestionDePOIS.Rubro;
+import Master.Mapa;
+import POIS.Banco;
+import POIS.CGP;
+import POIS.Comuna;
+import POIS.LocalComercial;
+import POIS.ParadaDeColectivo;
+import POIS.Rubro;
 
 public class TestAgregarQuitarModificar {
 	private Comuna comuna8;

@@ -1,10 +1,12 @@
-package gestionDePOIS;
+package POIS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
+
+import Master.POI;
 
 public abstract class POIConServicio extends POI {
 

@@ -1,16 +1,16 @@
-package testsGestionDePOIS;
+package tests;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import gestionDePOIS.Banco;
-import gestionDePOIS.CGP;
-import gestionDePOIS.Comuna;
-import gestionDePOIS.LocalComercial;
-import gestionDePOIS.ParadaDeColectivo;
-import gestionDePOIS.Rubro;
+import POIS.Banco;
+import POIS.CGP;
+import POIS.Comuna;
+import POIS.LocalComercial;
+import POIS.ParadaDeColectivo;
+import POIS.Rubro;
 
 import org.junit.Assert;
 

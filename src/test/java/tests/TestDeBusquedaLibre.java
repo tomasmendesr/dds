@@ -33,7 +33,7 @@ public class TestDeBusquedaLibre {
 	public void init(){
 		
 		// Comuna 8
-		comuna8 = new Comuna();
+		comuna8 = new Comuna(8);
 		zonaComuna8 = new Polygon();
 		zonaComuna8.add(new Point(-34.6744,-58.5025));
 		zonaComuna8.add(new Point(-34.6578,-58.4787));

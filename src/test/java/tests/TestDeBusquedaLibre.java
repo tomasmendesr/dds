@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.Mapa;
+import Master.RepositorioPOIs;
 import Master.POI;
 import POIS.Banco;
 import POIS.CGP;
@@ -27,7 +27,7 @@ public class TestDeBusquedaLibre {
 	private LocalComercial kioskoDeDiarios;
 	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
-	private Mapa mapa;
+	private RepositorioPOIs mapa;
 	
 	@Before
 	public void init(){
@@ -73,7 +73,7 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
 		//Agrega POIs al mapa
-		mapa = new Mapa();
+		mapa = new RepositorioPOIs();
 		mapa.agregarPOI(paradaDel47);
 		mapa.agregarPOI(cgp);
 		mapa.agregarPOI(banco);

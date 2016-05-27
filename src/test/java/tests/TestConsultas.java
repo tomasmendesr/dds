@@ -12,7 +12,7 @@ import org.uqbar.geodds.Polygon;
 
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
-import Master.Mapa;
+import Master.RepositorioPOIs;
 import Master.POI;
 import POIS.Banco;
 import POIS.CGP;
@@ -30,7 +30,7 @@ public class TestConsultas {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private Mapa mapa;
+	private RepositorioPOIs mapa;
 	private AdapterConsultaBanco observerCGP;
 	private AdapterConsultaCGP observerBanco;
 	
@@ -80,7 +80,7 @@ public class TestConsultas {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
 		//Agrega POIs al mapa
-		mapa = new Mapa();
+		mapa = new RepositorioPOIs();
 		mapa.agregarPOI(paradaDel47);
 		mapa.agregarPOI(cgp);
 		mapa.agregarPOI(banco);

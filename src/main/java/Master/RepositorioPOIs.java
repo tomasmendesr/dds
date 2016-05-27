@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 import Adapters.AdapterConsulta;
 
-public class Mapa {
+public class RepositorioPOIs {
 
 	
 	//CONSTRUCTOR
 	
-	public Mapa(){
+	public RepositorioPOIs(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
 		adapters = new ArrayList<AdapterConsulta>();
 	}//se deeberia llamar repo/homes

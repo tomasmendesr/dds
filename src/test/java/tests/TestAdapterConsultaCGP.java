@@ -64,35 +64,4 @@ public class TestAdapterConsultaCGP {
 	
 	
 	
-	
-	@Test
-	public void testComponenteExternoConsultarDesdeAdapter(){
-		CentroDTO centroDTOCGP = new CentroDTO();
-		List<CentroDTO> listaDeCentroDTOConCGP = new ArrayList<CentroDTO>();
-		listaDeCentroDTOConCGP.add(centroDTOCGP);
-
-		Mockito.when(componenteExternoConsultaCGP.realizarConsulta("Escalada")).thenReturn(listaDeCentroDTOConCGP);
-		Assert.assertEquals(1, componenteExternoConsultaCGP.realizarConsulta("Escalada").size());
-		Assert.assertTrue(componenteExternoConsultaCGP.realizarConsulta("Escalada").contains(centroDTOCGP));
-	
-	}
-	
-	@Test
-	public void testAdapterAdaptaCentroDTOAPOI(){
-		CentroDTO centroDTOCGP = new CentroDTO();
-		Mockito.when(adapterConsultaCGP.toPOI(centroDTOCGP)).thenReturn(cgp);
-		Assert.assertEquals(cgp, adapterConsultaCGP.toPOI(centroDTOCGP));
-	}
-	
-	@Test
-	public void testAdapterAdaptaListaCentroDTOAListaCGP(){
-		CentroDTO centroDTOCGP = new CentroDTO();
-		List<CentroDTO> listaDeCentroDTOConCGP = new ArrayList<CentroDTO>();
-		List<POI> listaResPOI = new ArrayList<POI>();
-		listaDeCentroDTOConCGP.add(centroDTOCGP);
-		Mockito.when(adapterConsultaCGP.toPOI(centroDTOCGP)).thenReturn(cgp);
-		//Mockito.when(adapterConsultaCGP.adaptarConsulta(listaDeCentroDTOConCGP)).thenReturn(value)
-		listaResPOI.addAll(adapterConsultaCGP.adaptarConsulta(listaDeCentroDTOConCGP));
-		Assert.assertTrue(listaResPOI.isEmpty());
-	}
 }

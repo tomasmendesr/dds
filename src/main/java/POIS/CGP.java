@@ -12,9 +12,6 @@ public class CGP extends POIConServicio {
 		super(ubicacion);
 	}
 	
-	
-		
-	
 	//METODOS
 	
 	@Override

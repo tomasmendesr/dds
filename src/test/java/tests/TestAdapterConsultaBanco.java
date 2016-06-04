@@ -79,19 +79,5 @@ public class TestAdapterConsultaBanco {
 	
 	}
 	
-	@Test
-	public void testAdapterBanco(){
-		String unaConsulta = "Banco Rio, Atencion al cliente";
-		JSON consultaSinAdaptar = new JSON();
-		List<POI> consultaAdaptada = new ArrayList<POI>();
-		consultaAdaptada.add(banco);
-		
-		Mockito.when(componenteExternoConsultaBanco.realizarConsulta(unaConsulta)).thenReturn(consultaSinAdaptar);
-		Assert.assertEquals(consultaSinAdaptar, componenteExternoConsultaBanco.realizarConsulta(unaConsulta));
-		Mockito.when(adapterConsultaBanco.adaptarConsulta(consultaSinAdaptar)).thenReturn(consultaAdaptada);
-		Assert.assertEquals(1, adapterConsultaBanco.adaptarConsulta(consultaSinAdaptar).size());
-		Mockito.when(adapterConsultaBanco.realizarConsulta(unaConsulta)).thenCallRealMethod();
-		Assert.assertEquals(1, adapterConsultaBanco.realizarConsulta(unaConsulta).size());
-	}
 	
 }

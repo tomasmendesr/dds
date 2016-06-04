@@ -1,4 +1,4 @@
-package Adapters;
+package AdaptersExt;
 
 import java.util.List;
 

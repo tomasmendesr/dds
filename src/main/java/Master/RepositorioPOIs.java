@@ -15,7 +15,7 @@ public class RepositorioPOIs {
 	public RepositorioPOIs(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
 		adapters = new ArrayList<AdapterConsulta>();
-	}//se deeberia llamar repo/homes
+	}
 	
 	//ATRIBUTOS
 	

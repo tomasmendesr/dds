@@ -6,21 +6,38 @@ import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
+import AdaptersExt.CentroDTO;
+import AdaptersExt.ServicioDTO;
+import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import Master.RepositorioComunas;
 import POIS.CGP;
+import POIS.Comuna;
+import POIS.Servicio;
 
 public class AdapterConsultaCGP implements AdapterConsulta {
 
-	//Constructor 
+	//CONSTRUCTOR
 	
-	public AdapterConsultaCGP(RepositorioComunas repositorioComunas){
-		this.setRepositorioComunas(repositorioComunas);
+	public AdapterConsultaCGP(ComponenteExternoConsultaCGPStub componente, RepositorioComunas repoComunas){
+		this.setComponenteExterno(componente);
+		this.setRepositorioComunas(repoComunas);
 	}
 	
-	//Atributos
+	//ATRIBUTOS
 	
-	private RepositorioComunas repositorioComunas;	//Lo necesitamos para setearle la comuna al nuevo CGP
+	private ComponenteExternoConsultaCGPStub	componenteExternoCGP;
+	private RepositorioComunas					repositorioComunas;
+	
+	//GETERS Y SETERS
+	
+	public ComponenteExternoConsultaCGPStub getComponenteExterno(){
+		return componenteExternoCGP;
+	}
+	
+	public void setComponenteExterno(ComponenteExternoConsultaCGPStub componente){
+		componenteExternoCGP = componente;
+	}
 
 	public RepositorioComunas getRepositorioComunas() {
 		return repositorioComunas;
@@ -29,52 +46,38 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 	public void setRepositorioComunas(RepositorioComunas repositorioComunas) {
 		this.repositorioComunas = repositorioComunas;
 	}
-
-	//Metodos
 	
-	@Override
+	//METODOS
+
 	public List<POI> realizarConsulta(String unaConsulta) {
-		List<CentroDTO> centroDTOEncontrados = new ArrayList<CentroDTO>();
-		List<POI> cgpsEncontrados = new ArrayList<POI>();
-		centroDTOEncontrados.addAll(this.componenteExternoRealizarConsulta(unaConsulta));
-		cgpsEncontrados = this.adaptarListaComponenteExternoAListaCGP(centroDTOEncontrados);
-		return cgpsEncontrados;
-		}
-	
-	public List<CentroDTO> componenteExternoRealizarConsulta(String unaConsulta){return null;};
-
-	public List<POI> adaptarListaComponenteExternoAListaCGP(List<CentroDTO> listaDeCentroDTO){
-		List<POI> cgpsEncontradosAux = new ArrayList<POI>();
-		listaDeCentroDTO.forEach(centroDTO -> cgpsEncontradosAux.add(this.adaptarACGP(centroDTO)));
-		return cgpsEncontradosAux;
+		List<CentroDTO> consultaSinAdaptar = new ArrayList<CentroDTO>();
+		List<POI> consultaAdaptada;
+		consultaSinAdaptar = this.getComponenteExterno().realizarConsultaCGP(unaConsulta);
+		consultaAdaptada = this.adaptarConsulta(consultaSinAdaptar);
+		return consultaAdaptada;
 	}
 	
-	public POI adaptarACGP(CentroDTO unCentroDTO){
-		CGP nuevoCGP = new CGP(this.extraerPointDeUnCentro(unCentroDTO));	//Geolocalizo el CGP
-		this.agregarNombreACGP(nuevoCGP,unCentroDTO);
-		this.agregarDireccionACGP(nuevoCGP,unCentroDTO);
-		this.agregarServiciosACGP(nuevoCGP,unCentroDTO);
-		this.agregarComunaACGP(nuevoCGP,unCentroDTO);
+	public List<POI> adaptarConsulta(List<CentroDTO> consultaSinAdaptar){
+		List<POI> consultaAdaptada = new ArrayList<POI>();
+		consultaSinAdaptar.forEach(centroDTO -> consultaAdaptada.add(this.toCGP(centroDTO)));
+		return consultaAdaptada;
+	}
+	
+	public CGP toCGP(CentroDTO unCentroDTO){
+		CGP nuevoCGP = new CGP(new Point(1,1));	//cuando tenga la api de google maps solucionar
+ 		nuevoCGP.setNombre("CGP de ".concat(unCentroDTO.getDireccionCGP()));
+ 		nuevoCGP.setComuna(this.setComunaDeCGP(unCentroDTO.getNumeroDeComuna()));
+ 		this.setListaDeServiciosA(nuevoCGP,unCentroDTO);
 		return nuevoCGP;
 	}
 	
-	public Point extraerPointDeUnCentro(CentroDTO unCentroDTO){
-		return null;
+	private Comuna setComunaDeCGP(Integer unNumeroDeComuna){return null;}
+	
+	private void setListaDeServiciosA(CGP unCGP, CentroDTO unCentroDTO){
+		List<Servicio> nuevaListaDeServicios = new ArrayList<Servicio>();
+		unCentroDTO.getListaDeServiciosDTO().forEach(servicioDTO -> nuevaListaDeServicios.add(this.toServicioCGP(servicioDTO)));
+		unCGP.setColeccionServicios(nuevaListaDeServicios);
 	}
 	
-	public void agregarNombreACGP(CGP unCGP, CentroDTO unCentroDTO){
-		unCGP.setNombre(unCentroDTO.getNumeroDeComuna().toString());
-	}
-	public void agregarDireccionACGP(CGP unCGP, CentroDTO unCentroDTO){
-		unCGP.setDireccion(unCentroDTO.getDireccionCGP());
-	}
-	public void agregarServiciosACGP(CGP unCGP, CentroDTO unCentroDTO){
-		
-	}
-	
-	public void agregarComunaACGP(CGP unCGP, CentroDTO unCentroDTO){
-		unCGP.setComuna(this.getRepositorioComunas().getListaDeComunas().stream().
-		filter(comuna -> comuna.getNumeroDeComuna() == unCentroDTO.getNumeroDeComuna())
-		.collect(Collectors.toList()).get(0));
-	}
+	private Servicio toServicioCGP(ServicioDTO unServicioDTO){return null;}
 }

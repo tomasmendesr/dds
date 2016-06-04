@@ -1,4 +1,4 @@
-package Adapters;
+package AdaptersExt;
 
 public class RangoServicioDTO {
 	

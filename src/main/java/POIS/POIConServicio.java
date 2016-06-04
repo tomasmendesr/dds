@@ -2,6 +2,7 @@ package POIS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
@@ -17,17 +18,17 @@ public abstract class POIConServicio extends POI {
 		super(unaUbicacion);
 	}
 
-	private ArrayList<Servicio> 	servicios;
+	private List<Servicio> 	servicios;
 	
 	
 	//GETERS Y SETERS
 	
-	public ArrayList<Servicio> getColeccionServicios(){
+	public List<Servicio> getColeccionServicios(){
 		return servicios;
 	}
 	
-	public void setColeccionServicios(ArrayList<Servicio> coleccionDeServicios){
-		servicios = coleccionDeServicios;
+	public void setColeccionServicios(List<Servicio> nuevaListaDeServicios){
+		servicios = nuevaListaDeServicios;
 	}
 	
 	public void addServicio(Servicio unServicio){
@@ -43,8 +44,6 @@ public abstract class POIConServicio extends POI {
 			return this.servicioDisponible(unNombreDeServicio,unTiempo);
 		}//CAMBIAR NOMBRES de meTODOS EN ESTA CLASE
 	}
-	
-	
 	
 	public boolean algunServicioDisponible(){
 		LocalDateTime 	horaDelMomento = LocalDateTime.now();	//Instancio la hora del momento

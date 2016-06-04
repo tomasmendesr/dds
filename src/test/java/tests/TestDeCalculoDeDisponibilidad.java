@@ -103,7 +103,24 @@ public class TestDeCalculoDeDisponibilidad {
 		coleccionDeServiciosDeCGP.add(tramiteDeDNI);
 		cgp.setColeccionServicios(coleccionDeServiciosDeCGP);
 
-		
+
+		//Instacio rango de atencion de banco
+		double	horaDeAperturaBanco				= 10.0;
+		double	horaDeCierreBanco				= 15.0;
+		int		diaDeInicioDeAtencionBanco		= 1;
+		int		diaDeFinDeAtencionBanco			= 5;
+		RangoDeAtencion rangoDeAtencionDeBanco = 
+		new RangoDeAtencion(horaDeAperturaBanco,horaDeCierreBanco,diaDeInicioDeAtencionBanco,diaDeFinDeAtencionBanco);
+				
+		//Instancio servicios de banco
+		Servicio atencionAlCliente = new Servicio("Atencion al cliente", rangoDeAtencionDeBanco);
+		Servicio atencionTarjetasDeCredito = new Servicio("Atencion a tarjetas de credito", rangoDeAtencionDeBanco);
+			
+		//Instancio y seteo coleccion de servicios de banco
+		ArrayList<Servicio> coleccionDeServiciosDeBanco = new ArrayList<Servicio>();
+		coleccionDeServiciosDeBanco.add(atencionTarjetasDeCredito);
+		coleccionDeServiciosDeBanco.add(atencionAlCliente);
+		banco.setColeccionServicios(coleccionDeServiciosDeBanco);
 
 	}
 	

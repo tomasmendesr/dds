@@ -1,15 +1,48 @@
 package Adapters;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import AdaptersExt.JSON;
+import ComponentesExternos.ComponenteExternoConsulta;
+import ComponentesExternos.ComponenteExternoConsultaBanco;
 import Master.POI;
 
 public class AdapterConsultaBanco implements AdapterConsulta {
 
-	@Override
-	public List<POI> realizarConsulta(String unaConsulta) {
-		// TODO Auto-generated method stub
-		return null;
+	//CONSTRUCTOR
+	
+	public AdapterConsultaBanco(ComponenteExternoConsulta componente){
+		this.setComponenteExternoConsulta(componente);
 	}
-//LOS OBSERVVERS EN REALDIDAD SON ADAPTERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	//ATRIBUTOS
+	
+	private ComponenteExternoConsulta componenteExterno;
+	
+	private void setComponenteExternoConsulta(ComponenteExternoConsulta componente){
+		componenteExterno = componente;
+	}
+	
+	private ComponenteExternoConsulta getComponenteExterno(){
+		return componenteExterno;
+	}
+	
+	//METODOS
+	
+	
+	public List<POI> realizarConsulta(String unaConsulta) {
+		JSON consultaSinAdaptar;
+		List<POI> consultaAdaptada;
+		consultaSinAdaptar = this.getComponenteExterno().realizarConsultaBanco(unaConsulta);
+		consultaAdaptada = this.adaptarConsulta(consultaSinAdaptar);
+		return consultaAdaptada;
+	}
+	
+	public List<POI> adaptarConsulta(JSON consultaSinAdaptar){
+		List<POI> consultaAdaptada = new ArrayList<POI>();
+		//magia que adapta la consulta del formato JSON a un List<POI>
+		return consultaAdaptada;
+	}
+
 }

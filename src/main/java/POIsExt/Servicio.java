@@ -1,20 +1,21 @@
-package POIS;
+package POIsExt;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Servicio {
 
 	//CONSTRUCTOR 
 	
-	public Servicio(String unNombre,RangoDeAtencion unRangoDeAtencion){
+	public Servicio(String unNombre,List<RangoDeAtencion> listaDeRangosDeAtencion){
 		this.setNombre(unNombre);
-		this.setRangoDeAtencion(unRangoDeAtencion);
+		
 	}
 	
 	//ATRIBUTOS
 	
-	String 				nombre;
-	RangoDeAtencion		rangoDeAtencion;
+	String 						nombre;
+	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
 	//GETERS Y SETERunNombreS
 	
@@ -26,40 +27,23 @@ public class Servicio {
 		nombre = unNombre;
 	}
 	
-	public RangoDeAtencion getRangoDeAtencion() {
-		return rangoDeAtencion;
+	public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
+		return listaDeRangosDeAtencion;
 	}
 
-	public void setRangoDeAtencion(RangoDeAtencion rangoDeAtencion) {
-		this.rangoDeAtencion = rangoDeAtencion;
+	public void setListaDeRangosDeAtencion(List<RangoDeAtencion> listaDeRangosDeAtencion) {
+		this.listaDeRangosDeAtencion = listaDeRangosDeAtencion;
 	}
 
 	//METODOS
 	
-	protected boolean estaDisponible(LocalDateTime unaHora){
-		return this.estaDentroDelRangoDeAtencion(unaHora);
+
+	public boolean estaDisponible(LocalDateTime unaMomento){
+		return this.algunRangoDeAtencionDisponible(unaMomento);
 	}
-	
-	protected boolean estaDentroDelRangoDeAtencion(LocalDateTime horaDelMomento){
-		   return    !this.estaDentroDeFechaDeNoAtencion(horaDelMomento)
-				   	 && this.diaDeSemanaValido(horaDelMomento)
-				   	 && this.horaMinutosValidos(horaDelMomento);
+
+	public boolean algunRangoDeAtencionDisponible(LocalDateTime unMomento){
+		return listaDeRangosDeAtencion.stream().anyMatch(rangoDeAtencion -> rangoDeAtencion.disponible(unMomento));
 	}
-	
-	public boolean horaMinutosValidos(LocalDateTime unTiempo){
-		return this.getRangoDeAtencion().horarioDisponible(unTiempo);
-	}
-	
-	public boolean estaDentroDeFechaDeNoAtencion(LocalDateTime unTiempo){
-		return false; //HACERLO BIEN DESPUES
-	}
-	
-	public boolean diaDeSemanaValido(LocalDateTime unTiempo){
-		int diaDeLaSemana = unTiempo.getDayOfWeek().getValue();
-		int diaDeInicioDeAtencion = this.getRangoDeAtencion().getDiaDeIncioDeAtencion(); 
-		int diaDeFinDeAtencion = this.getRangoDeAtencion().getDiaDeFinDeAtencion();
-		return (diaDeInicioDeAtencion <= diaDeLaSemana)
-				&& (diaDeLaSemana <= diaDeFinDeAtencion);
-	}
-	
+		
 }

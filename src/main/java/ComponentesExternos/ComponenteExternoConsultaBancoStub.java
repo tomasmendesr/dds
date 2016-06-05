@@ -6,11 +6,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import AdaptersExt.CentroDTO;
-import AdaptersExt.JSON;
 
 public class ComponenteExternoConsultaBancoStub implements ComponenteExternoConsulta{
 
-	//@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public JSONArray realizarConsultaBanco(String unaConsulta) {
 		JSONArray jsonArrayDeBancos = new JSONArray();
 		JSONObject banco1 = new JSONObject();

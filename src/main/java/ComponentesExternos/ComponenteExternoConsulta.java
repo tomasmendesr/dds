@@ -5,7 +5,6 @@ import java.util.List;
 import org.json.simple.JSONArray;
 
 import AdaptersExt.CentroDTO;
-import AdaptersExt.JSON;
 
 public interface ComponenteExternoConsulta {
 

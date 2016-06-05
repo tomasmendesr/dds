@@ -7,7 +7,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.uqbar.geodds.Point;
 
-import AdaptersExt.JSON;
 import ComponentesExternos.ComponenteExternoConsulta;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import Master.POI;

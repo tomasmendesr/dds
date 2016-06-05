@@ -14,7 +14,6 @@ import org.uqbar.geodds.Polygon;
 
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
-import AdaptersExt.JSON;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;

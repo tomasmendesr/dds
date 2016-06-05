@@ -6,7 +6,6 @@ import java.util.List;
 import org.json.simple.JSONArray;
 
 import AdaptersExt.CentroDTO;
-import AdaptersExt.JSON;
 import AdaptersExt.RangoServicioDTO;
 import AdaptersExt.ServicioDTO;
 import POIS.CGP;

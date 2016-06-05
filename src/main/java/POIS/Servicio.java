@@ -16,7 +16,7 @@ public class Servicio {
 	String 				nombre;
 	RangoDeAtencion		rangoDeAtencion;
 	
-	//GETERS Y SETERS
+	//GETERS Y SETERunNombreS
 	
 	public String getNombre(){
 		return nombre;

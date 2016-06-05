@@ -13,6 +13,7 @@ import Master.POI;
 import Master.RepositorioComunas;
 import POIS.CGP;
 import POIS.Comuna;
+import POIS.RangoDeAtencion;
 import POIS.Servicio;
 
 public class AdapterConsultaCGP implements AdapterConsulta {
@@ -67,17 +68,13 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 		CGP nuevoCGP = new CGP(new Point(1,1));	//cuando tenga la api de google maps solucionar
  		nuevoCGP.setNombre("CGP de ".concat(unCentroDTO.getDireccionCGP()));
  		nuevoCGP.setComuna(this.setComunaDeCGP(unCentroDTO.getNumeroDeComuna()));
- 		this.setListaDeServiciosA(nuevoCGP,unCentroDTO);
+ 		//nuevoCGP.setListaDeServicios(unCentroDTO.getListaDeServiciosDTO());
 		return nuevoCGP;
 	}
 	
+	// HACER REFACTOR DE LA FORMA EN LA QUE SE MANEJAN LOS SERVICIOS Y LOS RANGOS DE ATENCION
+	// PAJA MAL PERO BUEN, ES MEJOR LA NUEVA FORMA
+	
 	private Comuna setComunaDeCGP(Integer unNumeroDeComuna){return null;}
-	
-	private void setListaDeServiciosA(CGP unCGP, CentroDTO unCentroDTO){
-		List<Servicio> nuevaListaDeServicios = new ArrayList<Servicio>();
-		unCentroDTO.getListaDeServiciosDTO().forEach(servicioDTO -> nuevaListaDeServicios.add(this.toServicioCGP(servicioDTO)));
-		unCGP.setColeccionServicios(nuevaListaDeServicios);
-	}
-	
-	private Servicio toServicioCGP(ServicioDTO unServicioDTO){return null;}
+
 }

@@ -3,6 +3,8 @@ package ComponentesExternos;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+
 import AdaptersExt.CentroDTO;
 import AdaptersExt.JSON;
 import AdaptersExt.RangoServicioDTO;
@@ -36,5 +38,5 @@ public class ComponenteExternoConsultaCGPStub implements ComponenteExternoConsul
 		return listaStubResultante;
 	}
 	
-	public JSON realizarConsultaBanco(String unaConsulta){return null;}
+	public JSONArray realizarConsultaBanco(String unaConsulta){return null;}
 }

@@ -27,7 +27,7 @@ public abstract class POIConServicio extends POI {
 		return servicios;
 	}
 	
-	public void setColeccionServicios(List<Servicio> nuevaListaDeServicios){
+	public void setListaDeServicios(List<Servicio> nuevaListaDeServicios){
 		servicios = nuevaListaDeServicios;
 	}
 	

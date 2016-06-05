@@ -101,7 +101,7 @@ public class TestDeCalculoDeDisponibilidad {
 		ArrayList<Servicio> coleccionDeServiciosDeCGP = new ArrayList<Servicio>();
 		coleccionDeServiciosDeCGP.add(licenciaConducir);
 		coleccionDeServiciosDeCGP.add(tramiteDeDNI);
-		cgp.setColeccionServicios(coleccionDeServiciosDeCGP);
+		cgp.setListaDeServicios(coleccionDeServiciosDeCGP);
 
 
 		//Instacio rango de atencion de banco
@@ -120,7 +120,7 @@ public class TestDeCalculoDeDisponibilidad {
 		ArrayList<Servicio> coleccionDeServiciosDeBanco = new ArrayList<Servicio>();
 		coleccionDeServiciosDeBanco.add(atencionTarjetasDeCredito);
 		coleccionDeServiciosDeBanco.add(atencionAlCliente);
-		banco.setColeccionServicios(coleccionDeServiciosDeBanco);
+		banco.setListaDeServicios(coleccionDeServiciosDeBanco);
 
 	}
 	

@@ -3,6 +3,8 @@ package tests;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +15,7 @@ import org.uqbar.geodds.Polygon;
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
 import AdaptersExt.JSON;
-import ComponentesExternos.ComponenteExternoConsultaBanco;
+import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import Master.RepositorioPOIs;
@@ -31,14 +33,11 @@ public class TestAdapterConsultaBanco {
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repoPOIs;
 	private AdapterConsultaBanco adapterConsultaBanco;
-	private ComponenteExternoConsultaBanco componenteExternoConsultaBanco;
+	private ComponenteExternoConsultaBancoStub componenteExternoConsultaBancoStub;
 	
 	
 	@Before
 	public void init(){
-		
-		adapterConsultaBanco = Mockito.mock(AdapterConsultaBanco.class);
-		componenteExternoConsultaBanco = Mockito.mock(ComponenteExternoConsultaBanco.class);
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
@@ -49,7 +48,15 @@ public class TestAdapterConsultaBanco {
 		zonaComuna8.add(new Point(-34.6621,-58.4240));
 		zonaComuna8.add(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
-					
+		
+		// Componente externo stub
+		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
+		
+		// Adapter consulta banco
+		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
+		
+		
+		/*
 		// Instancio banco
 		
 		banco = new Banco(new Point(-34.6719, -58.4695));
@@ -61,7 +68,7 @@ public class TestAdapterConsultaBanco {
 		int		diaDeInicioDeAtencionBanco		= 1;
 		int		diaDeFinDeAtencionBanco			= 5;
 		RangoDeAtencion rangoDeAtencionDeBanco = 
-		new RangoDeAtencion(horaDeAperturaBanco,horaDeCierreBanco,diaDeInicioDeAtencionBanco,diaDeFinDeAtencionBanco);
+		new RangoDeAtencion(horaDeAperturaBanco,horaDeCierreBanco,diaDeInicioDeAt11encionBanco,diaDeFinDeAtencionBanco);
 				
 		//Instancio servicios de banco
 		Servicio atencionAlCliente = new Servicio("Atencion al cliente", rangoDeAtencionDeBanco);
@@ -71,13 +78,51 @@ public class TestAdapterConsultaBanco {
 		ArrayList<Servicio> coleccionDeServiciosDeBanco = new ArrayList<Servicio>();
 		coleccionDeServiciosDeBanco.add(atencionTarjetasDeCredito);
 		coleccionDeServiciosDeBanco.add(atencionAlCliente);
-		banco.setColeccionServicios(coleccionDeServiciosDeBanco);
+		banco.setListaDeServicios(coleccionDeServiciosDeBanco);
 	
 		//Agrega POIs al mapa
 		repoPOIs = new RepositorioPOIs();
 		repoPOIs.agregarPOI(banco);
-	
+		*/
 	}
 	
+	//TESTS DE COMPONENTE EXTERNO STUB
 	
+	@Test
+	public void componenteExternoHaceLaConsultaDeberiaTenerUnaListaCon1POI(){
+		List<JSONObject> consultaBancoJson = componenteExternoConsultaBancoStub.realizarConsultaBanco("banco");
+		Assert.assertEquals(1,consultaBancoJson.size());
+	}
+	
+	@Test 
+	public void componenteExternoTiene1BancoLlamadoBancoDeLaPlaza(){
+		List<JSONObject> consultaBancoJson = componenteExternoConsultaBancoStub.realizarConsultaBanco("banco");
+		Assert.assertEquals("Banco de la Plaza", consultaBancoJson.get(0).get("banco"));
+	}
+	
+	//TESTS DE ADAPTER
+	
+	@Test
+	public void adapterRealizaLaConsultaYDevuevleUnaListaCon1POI(){
+		List<POI> consultaBancoPOI = adapterConsultaBanco.realizarConsulta("banco");
+		Assert.assertEquals(1,consultaBancoPOI.size());
+	}
+	
+	@Test 
+	public void adapterRealizaLaConsultaYSuUnicoElementoEsUnPOILlamadoBancoDeLaPlaza(){
+		List<POI> consultaBancoPOI = adapterConsultaBanco.realizarConsulta("banco");
+		Assert.assertEquals("Banco de la Plaza",consultaBancoPOI.get(0).getNombre());
+	}
+	
+	@Test
+	public void adapterRealizaLaConsultaYSuUnicoElementoEsUnPOIGeolocalizado(){
+		List<POI> consultaBancoPOI = adapterConsultaBanco.realizarConsulta("banco");
+		Assert.assertTrue(consultaBancoPOI.get(0).estaGeolocalizado());
+	}
+	
+	@Test
+	public void adapterRealizaLaConsultaYSuUnicoElementoEsUnPOIValido(){
+		List<POI> consultaBancoPOI = adapterConsultaBanco.realizarConsulta("banco");
+		Assert.assertTrue(consultaBancoPOI.get(0).esPOIValido());
+	}
 }

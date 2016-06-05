@@ -65,11 +65,19 @@ public class RepositorioPOIs {
 	
 	//Consultar Busqueda POIs
 	
-	public List<POI> consultarPOIs(String unaConsulta){
+	public List<POI> consultarPOIs(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
+		double tInicio, tFin, tiempo;
+		tInicio = System.currentTimeMillis();
 		List<POI> poisEncontrados = new ArrayList<POI>();
 		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados, unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
-		return poisEncontrados;											  
+		tFin = System.currentTimeMillis();
+		tiempo = (tFin - tInicio) / 1000;
+		if (tiempo > tiempoMax){
+			System.out.println("Mail enviado"); // como enviar mail? Y a quien?
+		}
+		return poisEncontrados;			
 	}
+	
 	
 	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){
 		adapters.forEach(adapter -> listaDePOIsACompletar.addAll(adapter.realizarConsulta(unaConsulta)));

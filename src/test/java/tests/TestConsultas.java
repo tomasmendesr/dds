@@ -31,13 +31,11 @@ public class TestConsultas {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs mapa;
-	private AdapterConsultaBanco observerCGP;
-	private AdapterConsultaCGP observerBanco;
+	private AdapterConsultaBanco adapterConsultaBanco;
+	private AdapterConsultaCGP adapterConsultaCGP;
 	
 	@Before
 	public void init(){
-		observerCGP = Mockito.mock(AdapterConsultaBanco.class);
-		observerBanco = Mockito.mock(AdapterConsultaCGP.class);
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
@@ -89,12 +87,7 @@ public class TestConsultas {
 		
 	}
 	
-	@Test
-	public void testConsultaPorPalabraArgentina(){
-		Mockito.when(observerCGP.realizarConsulta("argentina")).thenReturn(new ArrayList<POI>());
-		Mockito.when(observerBanco.realizarConsulta("argentina")).thenReturn(new ArrayList<POI>());
-		Assert.assertEquals(0, mapa.consultarPOIs("argentina").size());
-	}
+	
 	
 	
 }

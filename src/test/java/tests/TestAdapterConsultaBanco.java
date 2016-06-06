@@ -20,9 +20,15 @@ import Master.POI;
 import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
+<<<<<<< HEAD
 import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;
+=======
+import POIs.Comuna;
+import POIs.RangoDeAtencion;
+import POIs.Servicio;
+>>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
 
 
 public class TestAdapterConsultaBanco {

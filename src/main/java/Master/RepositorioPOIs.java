@@ -75,10 +75,13 @@ public class RepositorioPOIs {
 		if (tiempo > tiempoMax){
 			System.out.println("Mail enviado"); // como enviar mail? Y a quien?
 		}
+		//int cantidadPoisEncontrados = poisEncontrados.size();
+		//this.almacenarResultados(unaConsulta, cantidadPoisEncontrados, tiempo); Como almacenamos los resultados?
 		return poisEncontrados;			
 	}
 	
-	
+
+
 	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){
 		adapters.forEach(adapter -> listaDePOIsACompletar.addAll(adapter.realizarConsulta(unaConsulta)));
 		listaDePOIsACompletar.addAll(this.buscarPorTextoLibre(unaConsulta));

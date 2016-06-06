@@ -9,7 +9,11 @@ import AdaptersExt.CentroDTO;
 import AdaptersExt.RangoServicioDTO;
 import AdaptersExt.ServicioDTO;
 import POIs.CGP;
+<<<<<<< HEAD
 import POIsExt.Servicio;
+=======
+import POIs.Servicio;
+>>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
 
 public class ComponenteExternoConsultaCGPStub implements ComponenteExternoConsulta{
 

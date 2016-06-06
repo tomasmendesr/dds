@@ -28,16 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="Master.Mapa" project="entrega1" file="/entrega1/src/main/java/Master/Mapa.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="735" y="256"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="Master.POI" project="entrega1" file="/entrega1/src/main/java/Master/POI.java" 
+  <class id="4" language="java" name="Master.POI" project="entrega1" file="/entrega1/src/main/java/Master/POI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="363" y="63"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,22 +37,14 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <realization id="6">    
+  <realization id="5">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <realization id="7">    
+  <realization id="6">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <association id="8">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="9" name="coleccionDePOIS"/>      
-      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

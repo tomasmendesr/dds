@@ -6,13 +6,13 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Master.RepositorioPOIs;
+import POIs.Banco;
+import POIs.CGP;
+import POIs.LocalComercial;
+import POIs.ParadaDeColectivo;
+import POIsExt.Comuna;
+import POIsExt.Rubro;
 import Master.POI;
-import POIS.Banco;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.LocalComercial;
-import POIS.ParadaDeColectivo;
-import POIS.Rubro;
 
 import org.junit.Assert;
 import java.util.List;

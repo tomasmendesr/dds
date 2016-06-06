@@ -9,7 +9,7 @@ public class Servicio {
 	
 	public Servicio(String unNombre,List<RangoDeAtencion> listaDeRangosDeAtencion){
 		this.setNombre(unNombre);
-		
+		this.setListaDeRangosDeAtencion(listaDeRangosDeAtencion);
 	}
 	
 	//ATRIBUTOS

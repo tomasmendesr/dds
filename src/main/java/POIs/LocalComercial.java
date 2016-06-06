@@ -1,11 +1,14 @@
-package POIS;
+package POIs;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.uqbar.geodds.Point;
 
 import Master.POI;
+import POIsExt.RangoDeAtencion;
+import POIsExt.Rubro;
 
 public class LocalComercial extends POI {
 
@@ -23,7 +26,7 @@ public class LocalComercial extends POI {
 	//ATRIBUTOS
 	
 	private Rubro 							rubro;
-	private	ArrayList<RangoDeAtencion>		coleccionDeRangosDeAtencion;
+	private	List<RangoDeAtencion>			coleccionDeRangosDeAtencion;
 
 	
 	//GETTERS Y SETTERS
@@ -36,11 +39,11 @@ public class LocalComercial extends POI {
 		rubro = unRubro;
 	}
 	
-	public ArrayList<RangoDeAtencion> getColeccionDeRangosDeAtencion(){
+	public List<RangoDeAtencion> getColeccionDeRangosDeAtencion(){
 		return coleccionDeRangosDeAtencion;
 	}
 	
-	public void setColeccionDeRangosDeAtencion(ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion){
+	public void setColeccionDeRangosDeAtencion(List<RangoDeAtencion> unaColeccionDeRangosDeAtencion){
 		coleccionDeRangosDeAtencion = unaColeccionDeRangosDeAtencion;
 	}
 	//METODOS

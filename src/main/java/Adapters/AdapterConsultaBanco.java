@@ -10,9 +10,9 @@ import org.uqbar.geodds.Point;
 import ComponentesExternos.ComponenteExternoConsulta;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import Master.POI;
-import POIS.Banco;
-import POIS.RangoDeAtencion;
-import POIS.Servicio;
+import POIs.Banco;
+import POIsExt.RangoDeAtencion;
+import POIsExt.Servicio;
 
 public class AdapterConsultaBanco implements AdapterConsulta {
 
@@ -67,10 +67,39 @@ public class AdapterConsultaBanco implements AdapterConsulta {
 	private List<Servicio> getListaDeServiciosDeJSON(JSONObject jsonBanco){
 		List<Servicio> listaDeServicios = new ArrayList<Servicio>();
 		List<String> arrayDeServicios = (List<String>) jsonBanco.get("servicios");
-		RangoDeAtencion rangoDeAtencionBancario = new RangoDeAtencion(9.0,15.0,1,5);
+		List<RangoDeAtencion> listaDeRangoDeAtencionBancario = this.instanciarRangoDeAtencionBancarioStub(); 
 		arrayDeServicios.forEach(stringServicio ->
-		listaDeServicios.add(new Servicio(stringServicio,rangoDeAtencionBancario)));
+		listaDeServicios.add(new Servicio(stringServicio,listaDeRangoDeAtencionBancario)));
 		return listaDeServicios;
+	}
+	
+	private List<RangoDeAtencion> instanciarRangoDeAtencionBancarioStub(){
+		List<RangoDeAtencion> rangoDeAtencionBancario = new ArrayList<RangoDeAtencion>();
+		int horaDeAperturaBancaria = 10;
+		int minutosDeAperturaBancaria = 0;
+		int horaDeCierreBancario = 15;
+		int minutosDeCierreBancario = 0;
+		int lunes = 1;
+		int martes = 2;
+		int miercoles = 3;
+		int jueves = 4;
+		int viernes = 5;
+		RangoDeAtencion rangoLunes = new RangoDeAtencion(lunes,horaDeAperturaBancaria,
+				minutosDeAperturaBancaria,horaDeCierreBancario,minutosDeCierreBancario);
+		RangoDeAtencion rangoMartes = new RangoDeAtencion(martes,horaDeAperturaBancaria,
+				minutosDeAperturaBancaria,horaDeCierreBancario,minutosDeCierreBancario);
+		RangoDeAtencion rangoMiercoles = new RangoDeAtencion(miercoles,horaDeAperturaBancaria,
+				minutosDeAperturaBancaria,horaDeCierreBancario,minutosDeCierreBancario);
+		RangoDeAtencion rangoJueves = new RangoDeAtencion(jueves,horaDeAperturaBancaria,
+				minutosDeAperturaBancaria,horaDeCierreBancario,minutosDeCierreBancario);
+		RangoDeAtencion rangoViernes = new RangoDeAtencion(viernes,horaDeAperturaBancaria,
+				minutosDeAperturaBancaria,horaDeCierreBancario,minutosDeCierreBancario);
+		rangoDeAtencionBancario.add(0, rangoLunes);
+		rangoDeAtencionBancario.add(1, rangoMartes);
+		rangoDeAtencionBancario.add(2, rangoMiercoles);
+		rangoDeAtencionBancario.add(3, rangoJueves);
+		rangoDeAtencionBancario.add(4, rangoViernes);
+		return rangoDeAtencionBancario;
 	}
 	
 }

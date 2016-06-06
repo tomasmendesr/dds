@@ -2,8 +2,8 @@ package Master;
 
 import org.uqbar.geodds.Point;
 
-import POIS.Comuna;
-import POIS.RangoDeAtencion;
+import POIsExt.Comuna;
+import POIsExt.RangoDeAtencion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public abstract class POI {
 	private String 					nombre;
 	private String 					direccion;
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
-	private RangoDeAtencion		 	rangoDeAtencion; 
+	private List<RangoDeAtencion>	listaDeRangosDeAtencion; 
 	private Comuna					comuna;
 	
 
@@ -43,12 +43,12 @@ public abstract class POI {
 		
 	}
 	
-	public RangoDeAtencion getRangoDeAtencion() {
-		return rangoDeAtencion;
+	public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
+		return listaDeRangosDeAtencion;
 	}
 
-	public void setRangoDeAtencion(RangoDeAtencion rangoDeAtencion) {
-		this.rangoDeAtencion = rangoDeAtencion;
+	public void setListaDeRangosDeAtencion(List<RangoDeAtencion> unaListaDeRangosDeAtencion) {
+		listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
 	}
 	
 

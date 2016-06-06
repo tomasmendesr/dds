@@ -60,7 +60,7 @@ public class RangoDeAtencion {
 	//METODOS
 	
 	public boolean disponible(LocalDateTime unTiempo){
-		return this.horarioDisponible(unTiempo) && this.diaDisponible(unTiempo);
+		return this.diaDisponible(unTiempo) && this.horarioDisponible(unTiempo);
 	}
 	
 	public boolean horarioDisponible(LocalDateTime unTiempo){

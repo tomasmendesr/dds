@@ -2,7 +2,7 @@ package Master;
 
 import java.util.List;
 
-import POIS.Comuna;
+import POIsExt.Comuna;
 
 public class RepositorioComunas {
 	

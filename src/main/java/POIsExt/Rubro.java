@@ -1,4 +1,4 @@
-package POIS;
+package POIsExt;
 
 public class Rubro {
 	

@@ -1,4 +1,4 @@
-package POIS;
+package POIsExt;
 
 import org.uqbar.geodds.Polygon;
 

@@ -11,10 +11,10 @@ import AdaptersExt.ServicioDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import Master.RepositorioComunas;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.RangoDeAtencion;
-import POIS.Servicio;
+import POIs.CGP;
+import POIsExt.Comuna;
+import POIsExt.RangoDeAtencion;
+import POIsExt.Servicio;
 
 public class AdapterConsultaCGP implements AdapterConsulta {
 

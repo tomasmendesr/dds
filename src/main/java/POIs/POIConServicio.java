@@ -1,4 +1,4 @@
-package POIS;
+package POIs;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
 import Master.POI;
+import POIsExt.Servicio;
 
 public abstract class POIConServicio extends POI {
 

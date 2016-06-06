@@ -16,12 +16,12 @@ import AdaptersExt.CentroDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import Master.RepositorioPOIs;
-import POIS.Banco;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.LocalComercial;
-import POIS.ParadaDeColectivo;
-import POIS.Rubro;
+import POIs.Banco;
+import POIs.CGP;
+import POIs.LocalComercial;
+import POIs.ParadaDeColectivo;
+import POIsExt.Comuna;
+import POIsExt.Rubro;
 
 public class TestAdapterConsultaCGP {
 

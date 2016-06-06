@@ -2,8 +2,8 @@ package Master;
 
 import org.uqbar.geodds.Point;
 
-import POIS.Comuna;
-import POIS.RangoDeAtencion;
+import POIsExt.Comuna;
+import POIsExt.RangoDeAtencion;
 
 import java.util.ArrayList;
 import java.util.List;

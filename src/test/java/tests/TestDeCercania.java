@@ -5,12 +5,12 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import POIS.Banco;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.LocalComercial;
-import POIS.ParadaDeColectivo;
-import POIS.Rubro;
+import POIs.Banco;
+import POIs.CGP;
+import POIs.Comuna;
+import POIs.LocalComercial;
+import POIs.ParadaDeColectivo;
+import POIs.Rubro;
 
 import org.junit.Assert;
 

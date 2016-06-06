@@ -13,13 +13,13 @@ import org.uqbar.geodds.Polygon;
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
 import Master.RepositorioPOIs;
+import POIs.Banco;
+import POIs.CGP;
+import POIs.Comuna;
+import POIs.LocalComercial;
+import POIs.ParadaDeColectivo;
+import POIs.Rubro;
 import Master.POI;
-import POIS.Banco;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.LocalComercial;
-import POIS.ParadaDeColectivo;
-import POIS.Rubro;
 
 public class TestConsultas {
 	

@@ -10,9 +10,9 @@ import org.uqbar.geodds.Point;
 import ComponentesExternos.ComponenteExternoConsulta;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import Master.POI;
-import POIS.Banco;
-import POIS.RangoDeAtencion;
-import POIS.Servicio;
+import POIs.Banco;
+import POIsExt.RangoDeAtencion;
+import POIsExt.Servicio;
 
 public class AdapterConsultaBanco implements AdapterConsulta {
 

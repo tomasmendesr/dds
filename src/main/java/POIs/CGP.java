@@ -1,4 +1,4 @@
-package POIS;
+package POIs;
 
 import java.util.ArrayList;
 

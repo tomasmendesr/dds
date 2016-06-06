@@ -18,11 +18,11 @@ import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import Master.RepositorioPOIs;
-import POIS.Banco;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.RangoDeAtencion;
-import POIS.Servicio;
+import POIs.Banco;
+import POIs.CGP;
+import POIs.Comuna;
+import POIs.RangoDeAtencion;
+import POIs.Servicio;
 
 
 public class TestAdapterConsultaBanco {

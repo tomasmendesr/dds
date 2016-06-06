@@ -3,14 +3,14 @@ package tests;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import POIS.Banco;
-import POIS.CGP;
-import POIS.Comuna;
-import POIS.LocalComercial;
-import POIS.ParadaDeColectivo;
-import POIS.RangoDeAtencion;
-import POIS.Rubro;
-import POIS.Servicio;
+import POIs.Banco;
+import POIs.CGP;
+import POIs.Comuna;
+import POIs.LocalComercial;
+import POIs.ParadaDeColectivo;
+import POIs.RangoDeAtencion;
+import POIs.Rubro;
+import POIs.Servicio;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -8,8 +8,8 @@ import org.json.simple.JSONArray;
 import AdaptersExt.CentroDTO;
 import AdaptersExt.RangoServicioDTO;
 import AdaptersExt.ServicioDTO;
-import POIS.CGP;
-import POIS.Servicio;
+import POIs.CGP;
+import POIs.Servicio;
 
 public class ComponenteExternoConsultaCGPStub implements ComponenteExternoConsulta{
 

@@ -52,7 +52,7 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 	}
 	
 	public CGP toCGP(CentroDTO unCentroDTO){
-		CGP nuevoCGP = new CGP(new Point(1,1));	//cuando tenga la api de google maps solucionar
+		CGP nuevoCGP = new CGP(new Point(unCentroDTO.getPosX(),unCentroDTO.getPosY()));	//cuando tenga la api de google maps solucionar
  		nuevoCGP.setNombre("CGP de ".concat(unCentroDTO.getDireccionCGP()));
  		List<Servicio> serviciosAdaptados = this.adaptarServiciosDTO(unCentroDTO.getListaDeServiciosDTO());
  		nuevoCGP.setListaDeServicios(serviciosAdaptados);

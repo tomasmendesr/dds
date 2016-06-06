@@ -77,7 +77,7 @@ public class RepositorioPOIs {
 	
 	// Lista de Resultados
 	
-	public void agregarResultado(Resultado unResultado){
+	public void agregarResultado(Long unResultado){
 		coleccionDeResultados.add(unResultado);
 	}
 	
@@ -87,7 +87,7 @@ public class RepositorioPOIs {
 	
 	//Consultar Busqueda POIs
 	
-	public List<POI> consultarPOIs(String unaConsulta){ // no se me ocurre otra forma
+	public List<POI> consultarPOIs(String unaConsulta){ 
 		List<POI> poisEncontrados =	this.buscarEnTodosLosOrigenesDeDatos(unaConsulta); 
 		return poisEncontrados;			
 	}
@@ -101,12 +101,12 @@ public class RepositorioPOIs {
 		
 	//Consultar Busqueda POIs con TiempoMax
 	
-	public List<POI> consultarPOIs(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
+	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
 		double tInicio, tFin, tiempo;
 		Date date = new Date();
 		tInicio = System.currentTimeMillis();
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		poisEncontrados = this.buscarEnTodosLosOrigenesDeDatos(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
+		poisEncontrados = this.consultarPOIs(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
 		tFin = System.currentTimeMillis();
 		tiempo = (tFin - tInicio) / 1000;
 		if (tiempo > tiempoMax){

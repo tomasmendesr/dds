@@ -10,11 +10,14 @@ public class CentroDTO {
 	
 	//Atributos
 	
-	private Integer 					numeroDeComuna;			//EJ "3"
+	private Integer 				numeroDeComuna;			//EJ "3"
 	private String					zonasQueIncluye;		//EJ "Balvanera, San Cristobal"
 	private String					nombreDelDirector;		
 	private String					direccionCGP;			//EJ "Junin 521" 
 	private List<ServicioDTO>		listaDeServiciosDTO;	//Array de servicios que contiene
+	private Double					posX;
+	private Double					posY;
+	
 	
 	//Geters y seters
 	
@@ -47,5 +50,17 @@ public class CentroDTO {
 	}
 	public void setListaDeServiciosDTO(List<ServicioDTO> listaDeServiciosDTO) {
 		this.listaDeServiciosDTO = listaDeServiciosDTO;
+	}
+	public Double getPosX() {
+		return posX;
+	}
+	public void setPosX(Double posX) {
+		this.posX = posX;
+	}
+	public Double getPosY() {
+		return posY;
+	}
+	public void setPosY(Double posY) {
+		this.posY = posY;
 	}
 }

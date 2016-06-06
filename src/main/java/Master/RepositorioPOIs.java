@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import Adapters.AdapterConsulta;
 
 public class RepositorioPOIs {
-	
+
 	
 	//CONSTRUCTOR
 	
@@ -76,11 +76,25 @@ public class RepositorioPOIs {
 	
 	//Consultar Busqueda POIs
 	
+	public List<POI> consultarPOIs(String unaConsulta){ // no se me ocurre otra forma
+		List<POI> poisEncontrados =	this.buscarEnTodosLosOrigenesDeDatos(unaConsulta); 
+		return poisEncontrados;			
+	}
+		
+	public List<POI> buscarEnTodosLosOrigenesDeDatos(String unaConsulta){
+		List<POI> listaDePOIsACompletar = new ArrayList<POI>();
+		adapters.forEach(adapter -> listaDePOIsACompletar.addAll(adapter.realizarConsulta(unaConsulta)));
+		listaDePOIsACompletar.addAll(this.buscarPorTextoLibre(unaConsulta));
+		return listaDePOIsACompletar;
+	}
+		
+	//Consultar Busqueda POIs con TiempoMax
+	
 	public List<POI> consultarPOIs(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
 		double tInicio, tFin, tiempo;
 		tInicio = System.currentTimeMillis();
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		this.buscarEnTodosLosOrigenesDeDatos(poisEncontrados, unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
+		poisEncontrados = this.buscarEnTodosLosOrigenesDeDatos(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
 		tFin = System.currentTimeMillis();
 		tiempo = (tFin - tInicio) / 1000;
 		if (tiempo > tiempoMax){
@@ -94,11 +108,6 @@ public class RepositorioPOIs {
 	public void almacenarResultados(String consulta, int cantidadPoisEncontrados, double duracion){
 		Registro resultado = new Registro(consulta,cantidadPoisEncontrados, duracion);
 		this.agregarResultado(resultado);
-	}
-
-	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){
-		adapters.forEach(adapter -> listaDePOIsACompletar.addAll(adapter.realizarConsulta(unaConsulta)));
-		listaDePOIsACompletar.addAll(this.buscarPorTextoLibre(unaConsulta));
 	}
 
 }

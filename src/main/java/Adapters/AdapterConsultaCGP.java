@@ -2,7 +2,6 @@ package Adapters;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
@@ -10,9 +9,7 @@ import AdaptersExt.CentroDTO;
 import AdaptersExt.ServicioDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
-import Master.RepositorioComunas;
 import POIs.CGP;
-import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;
 
@@ -20,15 +17,13 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 
 	//CONSTRUCTOR
 	
-	public AdapterConsultaCGP(ComponenteExternoConsultaCGPStub componente, RepositorioComunas repoComunas){
+	public AdapterConsultaCGP(ComponenteExternoConsultaCGPStub componente){
 		this.setComponenteExterno(componente);
-		this.setRepositorioComunas(repoComunas);
 	}
 	
 	//ATRIBUTOS
 	
 	private ComponenteExternoConsultaCGPStub	componenteExternoCGP;
-	private RepositorioComunas					repositorioComunas;
 	
 	//GETERS Y SETERS
 	
@@ -38,14 +33,6 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 	
 	public void setComponenteExterno(ComponenteExternoConsultaCGPStub componente){
 		componenteExternoCGP = componente;
-	}
-
-	public RepositorioComunas getRepositorioComunas() {
-		return repositorioComunas;
-	}
-
-	public void setRepositorioComunas(RepositorioComunas repositorioComunas) {
-		this.repositorioComunas = repositorioComunas;
 	}
 	
 	//METODOS
@@ -67,14 +54,25 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 	public CGP toCGP(CentroDTO unCentroDTO){
 		CGP nuevoCGP = new CGP(new Point(1,1));	//cuando tenga la api de google maps solucionar
  		nuevoCGP.setNombre("CGP de ".concat(unCentroDTO.getDireccionCGP()));
- 		nuevoCGP.setComuna(this.setComunaDeCGP(unCentroDTO.getNumeroDeComuna()));
- 		//nuevoCGP.setListaDeServicios(unCentroDTO.getListaDeServiciosDTO());
+ 		List<Servicio> serviciosAdaptados = this.adaptarServiciosDTO(unCentroDTO.getListaDeServiciosDTO());
+ 		nuevoCGP.setListaDeServicios(serviciosAdaptados);
 		return nuevoCGP;
 	}
 	
 	// HACER REFACTOR DE LA FORMA EN LA QUE SE MANEJAN LOS SERVICIOS Y LOS RANGOS DE ATENCION
 	// PAJA MAL PERO BUEN, ES MEJOR LA NUEVA FORMA
 	
-	private Comuna setComunaDeCGP(Integer unNumeroDeComuna){return null;}
+	private List<Servicio> adaptarServiciosDTO(List<ServicioDTO> listaDeServiciosDTO){
+		List<Servicio> listaServiciosAdaptados = new ArrayList<Servicio>();
+		listaDeServiciosDTO.forEach(servicioDTO -> listaServiciosAdaptados.add(this.toServicio(servicioDTO)));
+		return listaServiciosAdaptados;
+	}
+	
+	private Servicio toServicio(ServicioDTO unServicioDTO){
+		List<RangoDeAtencion> listaDeRangosDeAtencion = unServicioDTO.getListaDeRangosDeServicioDTO();
+		String nombreServicio = unServicioDTO.getNombreDelServicio();
+		return new Servicio(nombreServicio,listaDeRangosDeAtencion); //La forma en la que manejamos los rangos de atencion es la misma 
+	}
+	
 
 }

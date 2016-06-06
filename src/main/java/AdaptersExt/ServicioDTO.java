@@ -2,11 +2,13 @@ package AdaptersExt;
 
 import java.util.List;
 
+import POIsExt.RangoDeAtencion;
+
 public class ServicioDTO {
 	
 	//Consutructor
 	
-	public ServicioDTO(String nombreDelServicio, List<RangoServicioDTO> listaDeRangosDeServicio){
+	public ServicioDTO(String nombreDelServicio, List<RangoDeAtencion> listaDeRangosDeServicio){
 		this.setNombreDelServicio(nombreDelServicio);
 		this.setListaDeRangosDeServicioDTO(listaDeRangosDeServicio);
 	}
@@ -14,7 +16,7 @@ public class ServicioDTO {
 	//Atributos
 	
 	private String 						nombreDelServicio; 				//EJ "Atencion ciudadana"
-	private List<RangoServicioDTO>		listaDeRangosDeServicioDTO;
+	private List<RangoDeAtencion>		listaDeRangosDeServicioDTO;
 	
 	//Geters y seters
 	
@@ -24,10 +26,10 @@ public class ServicioDTO {
 	public void setNombreDelServicio(String nombreDelServicio) {
 		this.nombreDelServicio = nombreDelServicio;
 	}
-	public List<RangoServicioDTO> getListaDeRangosDeServicioDTO() {
+	public List<RangoDeAtencion> getListaDeRangosDeServicioDTO() {
 		return listaDeRangosDeServicioDTO;
 	}
-	public void setListaDeRangosDeServicioDTO(List<RangoServicioDTO> listaDeRangosDeServicioDTO) {
+	public void setListaDeRangosDeServicioDTO(List<RangoDeAtencion> listaDeRangosDeServicioDTO) {
 		this.listaDeRangosDeServicioDTO = listaDeRangosDeServicioDTO;
 	}		
 	

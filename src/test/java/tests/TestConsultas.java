@@ -1,17 +1,19 @@
 package tests;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
+import ComponentesExternos.ComponenteExternoConsulta;
+import ComponentesExternos.ComponenteExternoConsultaBancoStub;
+import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -19,8 +21,7 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 
-import POIs.LocalComercial;
-import POIs.ParadaDeColectivo;
+
 
 import Master.POI;
 import Master.RepositorioPOIs;
@@ -34,9 +35,12 @@ public class TestConsultas {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs mapa;
+	private RepositorioPOIs repositorioPOIs;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private AdapterConsultaCGP adapterConsultaCGP;
+	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
+	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
+	
 	
 	@Before
 	public void init(){
@@ -81,14 +85,34 @@ public class TestConsultas {
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
-		//Agrega POIs al mapa
-		mapa = new RepositorioPOIs();
-		mapa.agregarPOI(paradaDel47);
-		mapa.agregarPOI(cgp);
-		mapa.agregarPOI(banco);
-		mapa.agregarPOI(libreriaEscolar);
-		mapa.agregarPOI(kioskoDeDiarios);
+		//Agrega POIs al repositorioPOIs
+		repositorioPOIs = new RepositorioPOIs();
+		repositorioPOIs.agregarPOI(paradaDel47);
+		repositorioPOIs.agregarPOI(cgp);
+		repositorioPOIs.agregarPOI(banco);
+		repositorioPOIs.agregarPOI(libreriaEscolar);
+		repositorioPOIs.agregarPOI(kioskoDeDiarios);
 		
+		//Inicializo los componentes externos
+		
+		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
+		componenteExternoConsultaCGPStub = new ComponenteExternoConsultaCGPStub();		
+		
+		//Inicializo los adapters
+		
+		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
+		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
+		
+		//Agrega adapters al repositorioPOIs
+		repositorioPOIs.agregarAdapter(adapterConsultaBanco);
+		repositorioPOIs.agregarAdapter(adapterConsultaCGP);
+		
+	}
+	
+	@Test
+	public void consultaEnTodosLosOrigenesDeDatos(){
+		List<POI> listaResultante = this.repositorioPOIs.consultarPOIs("banco");
+		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
 	}
 	
 	

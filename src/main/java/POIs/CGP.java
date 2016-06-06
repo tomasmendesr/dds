@@ -1,7 +1,5 @@
 package POIs;
 
-import java.util.ArrayList;
-
 import org.uqbar.geodds.Point;
 
 public class CGP extends POIConServicio {

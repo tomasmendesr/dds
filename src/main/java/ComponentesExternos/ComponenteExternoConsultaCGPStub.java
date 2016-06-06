@@ -6,10 +6,9 @@ import java.util.List;
 import org.json.simple.JSONArray;
 
 import AdaptersExt.CentroDTO;
-import AdaptersExt.RangoServicioDTO;
 import AdaptersExt.ServicioDTO;
-import POIs.CGP;
-import POIsExt.Servicio;
+import POIsExt.RangoDeAtencion;
+
 
 
 
@@ -24,10 +23,10 @@ public class ComponenteExternoConsultaCGPStub implements ComponenteExternoConsul
 		List<ServicioDTO> listaDeServiciosDTO = new ArrayList<ServicioDTO>();	
 
 			//Instancio servicios dentro del centroDTO
-			RangoServicioDTO rangoLunesServicioAsesoria = new RangoServicioDTO(1,9,0,18,0);
-			RangoServicioDTO rangoMartesServicioAsesoria = new RangoServicioDTO(2,9,0,18,0);
-			RangoServicioDTO rangoMiercolesServicioAsesoria = new RangoServicioDTO(3,9,0,18,0);
-			List<RangoServicioDTO> rangoDeAtencionAsesoria = new ArrayList<RangoServicioDTO>();
+			RangoDeAtencion rangoLunesServicioAsesoria = new RangoDeAtencion(1,9,0,18,0);
+			RangoDeAtencion rangoMartesServicioAsesoria = new RangoDeAtencion(2,9,0,18,0);
+			RangoDeAtencion rangoMiercolesServicioAsesoria = new RangoDeAtencion(3,9,0,18,0);
+			List<RangoDeAtencion> rangoDeAtencionAsesoria = new ArrayList<RangoDeAtencion>();
 			rangoDeAtencionAsesoria.add(rangoLunesServicioAsesoria);
 			rangoDeAtencionAsesoria.add(rangoMartesServicioAsesoria);
 			rangoDeAtencionAsesoria.add(rangoMiercolesServicioAsesoria);

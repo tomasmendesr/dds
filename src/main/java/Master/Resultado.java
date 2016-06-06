@@ -1,14 +1,16 @@
 package Master;
 
-public class Registro {
+public class Resultado {
+	
+	// ATRIBUTOS
 	
 	String fraseBuscada;
 	int cantidadResultados;
 	double duracionBusqueda;  
 	
-	//CONSTRUCTOR
+	// CONSTRUCTOR
 	
-	public Registro(String unaFraseBuscada,
+	public Resultado(String unaFraseBuscada,
 		int unaCantidadResultados,
 		double unaDuracionBusqueda) {
 		this.setCantidadResultados(unaCantidadResultados);

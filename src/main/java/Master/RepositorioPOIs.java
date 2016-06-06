@@ -3,6 +3,9 @@ package Master;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 import Adapters.AdapterConsulta;
@@ -15,30 +18,34 @@ public class RepositorioPOIs {
 	public RepositorioPOIs(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
 		adapters = new ArrayList<AdapterConsulta>();
-		coleccionDeResultados = new ArrayList<Registro>();
+		coleccionDeResultados = new ArrayList<Resultado>();
+		coleccionDeCantidadPorFecha = new ArrayList<CantidadPorFecha>();
 	}
 	
 	//ATRIBUTOS
 	
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
-	private List<Registro> coleccionDeResultados;
+	private List<Resultado> coleccionDeResultados;
+	private List<CantidadPorFecha> coleccionDeCantidadPorFecha;
 
 	//GETTERS Y SETTERS
 	
 	public void instanciarNuevaColeccionDePOIs(){
 		coleccionDePOIS = new ArrayList<POI>();
 	}
-	
-	
+		
 	public List<POI> getColeccionDePOIS(){
 		return coleccionDePOIS;
 	}
 	
-	public List<Registro> getColeccionDeResultados(){
+	public List<Resultado> getColeccionDeResultados(){
 		return coleccionDeResultados;
 	}
-	
+
+	public List<CantidadPorFecha> getColeccionDeResultadosPorFecha(){
+		return coleccionDeCantidadPorFecha;
+	}
 	//Busqueda por texto libre
 	
 	public List<POI> buscarPorTextoLibre(String unTag){
@@ -70,8 +77,12 @@ public class RepositorioPOIs {
 	
 	// Lista de Resultados
 	
-	public void agregarResultado(Registro unResultado){
+	public void agregarResultado(Resultado unResultado){
 		coleccionDeResultados.add(unResultado);
+	}
+	
+	public void agregarCantidadPorFecha(CantidadPorFecha unRegistro){
+		coleccionDeCantidadPorFecha.add(unRegistro);
 	}
 	
 	//Consultar Busqueda POIs
@@ -92,6 +103,7 @@ public class RepositorioPOIs {
 	
 	public List<POI> consultarPOIs(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
 		double tInicio, tFin, tiempo;
+		Date date = new Date();
 		tInicio = System.currentTimeMillis();
 		List<POI> poisEncontrados = new ArrayList<POI>();
 		poisEncontrados = this.buscarEnTodosLosOrigenesDeDatos(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
@@ -101,13 +113,27 @@ public class RepositorioPOIs {
 			System.out.println("Mail enviado"); // como enviar mail? Y a quien?
 		}
 		int cantidadPoisEncontrados = poisEncontrados.size();
-		this.almacenarResultados(unaConsulta, cantidadPoisEncontrados, tiempo); 
+		this.almacenarResultado(unaConsulta, cantidadPoisEncontrados, tiempo); 
+		this.almacenarCantidadPorFecha(date,cantidadPoisEncontrados);
 		return poisEncontrados;			
 	}
 	
-	public void almacenarResultados(String consulta, int cantidadPoisEncontrados, double duracion){
-		Registro resultado = new Registro(consulta,cantidadPoisEncontrados, duracion);
+	// Almacenar Resultado
+	
+	public void almacenarResultado(String consulta, int cantidadPoisEncontrados, double duracion){
+		Resultado resultado = new Resultado(consulta,cantidadPoisEncontrados, duracion);
 		this.agregarResultado(resultado);
 	}
-
+	
+	// Almacenar CantidadPorFecha
+	
+	public void almacenarCantidadPorFecha(Date date, int cantidadResultados){
+	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	String fecha = dateFormat.format(date);
+//  Falta recorrer la coleccion para ir agregando las cantidades
+//	si la fecha todavia no esta en la lista
+//	CantidadPorFecha registro = new CantidadPorFecha(fecha, cantidadResultados);
+//	this.agregarCantidadPorFecha(registro);
+	}
+	
 }

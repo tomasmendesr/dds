@@ -7,7 +7,6 @@ import org.uqbar.geodds.Point;
 
 import Master.POI;
 import POIsExt.Comuna;
-import POIsExt.RangoDeAtencion;
 
 public class ParadaDeColectivo extends POI {
 

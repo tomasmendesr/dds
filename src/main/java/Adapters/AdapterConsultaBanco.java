@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 import org.uqbar.geodds.Point;
 
 import ComponentesExternos.ComponenteExternoConsulta;
-import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import Master.POI;
 import POIs.Banco;
 import POIsExt.RangoDeAtencion;
@@ -45,6 +44,7 @@ public class AdapterConsultaBanco implements AdapterConsulta {
 		return consultaAdaptada;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<POI> adaptarConsulta(JSONArray consultaSinAdaptar){
 		List<POI> consultaAdaptada = new ArrayList<POI>();
 		List<JSONObject> conusltaSinAdaptarJson = (List<JSONObject>) consultaSinAdaptar; //un JSONArray = List
@@ -64,6 +64,7 @@ public class AdapterConsultaBanco implements AdapterConsulta {
 		return banco;
 	}
 
+	@SuppressWarnings("unchecked")
 	private List<Servicio> getListaDeServiciosDeJSON(JSONObject jsonBanco){
 		List<Servicio> listaDeServicios = new ArrayList<Servicio>();
 		List<String> arrayDeServicios = (List<String>) jsonBanco.get("servicios");

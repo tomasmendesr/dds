@@ -81,13 +81,13 @@ public class TestAdapterConsultaBanco {
 	
 	//TESTS DE COMPONENTE EXTERNO STUB
 	
-	@Test
+	@Test @SuppressWarnings("unchecked")
 	public void componenteExternoHaceLaConsultaDeberiaTenerUnaListaCon1POI(){
 		List<JSONObject> consultaBancoJson = componenteExternoConsultaBancoStub.realizarConsultaBanco("banco");
 		Assert.assertEquals(1,consultaBancoJson.size());
 	}
 	
-	@Test 
+	@Test @SuppressWarnings("unchecked")
 	public void componenteExternoTiene1BancoLlamadoBancoDeLaPlaza(){
 		List<JSONObject> consultaBancoJson = componenteExternoConsultaBancoStub.realizarConsultaBanco("banco");
 		Assert.assertEquals("Banco de la Plaza", consultaBancoJson.get(0).get("banco"));

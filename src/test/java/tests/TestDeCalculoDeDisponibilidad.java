@@ -18,7 +18,6 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 
@@ -30,7 +29,6 @@ public class TestDeCalculoDeDisponibilidad {
 	private Banco 					banco;
 	private LocalComercial 			libreriaEscolar;
 	private Polygon					zonaComuna8;
-	private Servicio 				atencionAlCliente;
 	
 	@Before
 	public void init(){

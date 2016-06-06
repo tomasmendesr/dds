@@ -8,19 +8,21 @@ import java.util.stream.Collectors;
 import Adapters.AdapterConsulta;
 
 public class RepositorioPOIs {
-
+	
 	
 	//CONSTRUCTOR
 	
 	public RepositorioPOIs(){
 		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
 		adapters = new ArrayList<AdapterConsulta>();
+		coleccionDeResultados = new ArrayList<Registro>();
 	}
 	
 	//ATRIBUTOS
 	
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
+	private List<Registro> coleccionDeResultados;
 
 	//GETTERS Y SETTERS
 	
@@ -31,6 +33,10 @@ public class RepositorioPOIs {
 	
 	public List<POI> getColeccionDePOIS(){
 		return coleccionDePOIS;
+	}
+	
+	public List<Registro> getColeccionDeResultados(){
+		return coleccionDeResultados;
 	}
 	
 	//Busqueda por texto libre
@@ -62,6 +68,11 @@ public class RepositorioPOIs {
 		adapters.remove(unAdapter);
 	}
 	
+	// Lista de Resultados
+	
+	public void agregarResultado(Registro unResultado){
+		coleccionDeResultados.add(unResultado);
+	}
 	
 	//Consultar Busqueda POIs
 	
@@ -75,12 +86,15 @@ public class RepositorioPOIs {
 		if (tiempo > tiempoMax){
 			System.out.println("Mail enviado"); // como enviar mail? Y a quien?
 		}
-		//int cantidadPoisEncontrados = poisEncontrados.size();
-		//this.almacenarResultados(unaConsulta, cantidadPoisEncontrados, tiempo); Como almacenamos los resultados?
+		int cantidadPoisEncontrados = poisEncontrados.size();
+		this.almacenarResultados(unaConsulta, cantidadPoisEncontrados, tiempo); 
 		return poisEncontrados;			
 	}
 	
-
+	public void almacenarResultados(String consulta, int cantidadPoisEncontrados, double duracion){
+		Registro resultado = new Registro(consulta,cantidadPoisEncontrados, duracion);
+		this.agregarResultado(resultado);
+	}
 
 	public void buscarEnTodosLosOrigenesDeDatos(List<POI> listaDePOIsACompletar, String unaConsulta){
 		adapters.forEach(adapter -> listaDePOIsACompletar.addAll(adapter.realizarConsulta(unaConsulta)));

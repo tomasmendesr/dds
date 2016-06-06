@@ -1,42 +1,30 @@
 package tests;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-import org.json.simple.JSONArray;
+
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Adapters.AdapterConsultaBanco;
-import Adapters.AdapterConsultaCGP;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
-import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
-import Master.RepositorioPOIs;
-import POIs.Banco;
-import POIs.CGP;
-<<<<<<< HEAD
+
+
 import POIsExt.Comuna;
-import POIsExt.RangoDeAtencion;
-import POIsExt.Servicio;
-=======
-import POIs.Comuna;
-import POIs.RangoDeAtencion;
-import POIs.Servicio;
->>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
+
+
 
 
 public class TestAdapterConsultaBanco {
 	
 	private Comuna 	comuna8;
-	private Banco	banco;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repoPOIs;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private ComponenteExternoConsultaBancoStub componenteExternoConsultaBancoStub;
 	

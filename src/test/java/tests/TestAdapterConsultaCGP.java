@@ -1,7 +1,6 @@
 package tests;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,32 +9,21 @@ import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Adapters.AdapterConsultaBanco;
+
 import Adapters.AdapterConsultaCGP;
-import AdaptersExt.CentroDTO;
+
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
-import Master.POI;
-import Master.RepositorioPOIs;
-import POIs.Banco;
+
 import POIs.CGP;
-<<<<<<< HEAD
-import POIs.LocalComercial;
-import POIs.ParadaDeColectivo;
+
 import POIsExt.Comuna;
-import POIsExt.Rubro;
-=======
-import POIs.Comuna;
-import POIs.LocalComercial;
-import POIs.ParadaDeColectivo;
-import POIs.Rubro;
->>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
+
 
 public class TestAdapterConsultaCGP {
 
 	private Comuna comuna8;
 	private CGP cgp;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repoPOIs;
 	private AdapterConsultaCGP adapterConsultaCGP;
 	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGP;
 	
@@ -64,9 +52,7 @@ public class TestAdapterConsultaCGP {
 		cgp.addTag("asesoramiento");
 		cgp.addTag("47"); //podria ser que el CGP estuviese cerca de la parada y lo taggean
 		
-		//Agrega POIs al mapa
-		repoPOIs = new RepositorioPOIs();
-		repoPOIs.agregarPOI(cgp);
+		
 	}
 	
 	

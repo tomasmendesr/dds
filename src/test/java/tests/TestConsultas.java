@@ -12,21 +12,18 @@ import org.uqbar.geodds.Polygon;
 
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
-import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
-<<<<<<< HEAD
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-=======
-import POIs.Comuna;
+
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
-import POIs.Rubro;
->>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
+
 import Master.POI;
+import Master.RepositorioPOIs;
 
 public class TestConsultas {
 	

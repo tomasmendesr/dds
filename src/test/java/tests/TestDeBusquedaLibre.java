@@ -5,21 +5,18 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
-<<<<<<< HEAD
+
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-=======
-import POIs.Comuna;
-import POIs.LocalComercial;
-import POIs.ParadaDeColectivo;
-import POIs.Rubro;
->>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
+
+
+
 import Master.POI;
+import Master.RepositorioPOIs;
 
 import org.junit.Assert;
 import java.util.List;
@@ -34,7 +31,7 @@ public class TestDeBusquedaLibre {
 	private LocalComercial kioskoDeDiarios;
 	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs mapa;
+	private RepositorioPOIs repoPOIs;
 	
 	@Before
 	public void init(){
@@ -79,44 +76,44 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
-		//Agrega POIs al mapa
-		mapa = new RepositorioPOIs();
-		mapa.agregarPOI(paradaDel47);
-		mapa.agregarPOI(cgp);
-		mapa.agregarPOI(banco);
-		mapa.agregarPOI(libreriaEscolar);
-		mapa.agregarPOI(kioskoDeDiarios);
+		//Agrega POIs al repoPOIs
+		repoPOIs = new RepositorioPOIs();
+		repoPOIs.agregarPOI(paradaDel47);
+		repoPOIs.agregarPOI(cgp);
+		repoPOIs.agregarPOI(banco);
+		repoPOIs.agregarPOI(libreriaEscolar);
+		repoPOIs.agregarPOI(kioskoDeDiarios);
 	}
 	
 		
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
-		poisEncontrados = mapa.buscarPorTextoLibre("47");
+		poisEncontrados = repoPOIs.buscarPorTextoLibre("47");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
-		poisEncontrados = mapa.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = repoPOIs.buscarPorTextoLibre("asesoramiento");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el cgp
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCaramelos(){
-		poisEncontrados = mapa.buscarPorTextoLibre("caramelos");
+		poisEncontrados = repoPOIs.buscarPorTextoLibre("caramelos");
 		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar unicamente el kioskoDeDiarios
 	}
 	
 	@Test
 	public void testBusquedaDeTextoLibreDevuelveDireccionDelPOIEncontrado(){
-		poisEncontrados = mapa.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = repoPOIs.buscarPorTextoLibre("asesoramiento");
 		String direccionPOI = poisEncontrados.get(0).getDireccion();
 		Assert.assertEquals("Av Escalada 3100", direccionPOI);
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
-		poisEncontrados = mapa.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = repoPOIs.buscarPorTextoLibre("asesoramiento");
 		String nombrePOI = poisEncontrados.get(0).getNombre();
 		Assert.assertEquals("Asesoria", nombrePOI);
 	}

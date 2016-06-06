@@ -9,17 +9,11 @@ import org.uqbar.geodds.Polygon;
 import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
-<<<<<<< HEAD
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-=======
-import POIs.Comuna;
-import POIs.LocalComercial;
-import POIs.ParadaDeColectivo;
-import POIs.Rubro;
->>>>>>> c7682eb707c84e3aacfad3e1908058e96b114003
+
 
 public class TestAgregarQuitarModificar {
 	private Comuna comuna8;
@@ -30,7 +24,7 @@ public class TestAgregarQuitarModificar {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs mapa;
+	private RepositorioPOIs repositorioPOIs;
 	
 	@Before
 	public void init(){
@@ -44,13 +38,13 @@ public class TestAgregarQuitarModificar {
 		zonaComuna8.add(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
 		
-		// Mapa
-		mapa = new RepositorioPOIs();
-		mapa.agregarPOI(paradaDel47);
-		mapa.agregarPOI(cgp);
-		mapa.agregarPOI(banco);
-		mapa.agregarPOI(libreriaEscolar);
-		mapa.agregarPOI(kioskoDeDiarios);
+		// repositorioPOIs
+		repositorioPOIs = new RepositorioPOIs();
+		repositorioPOIs.agregarPOI(paradaDel47);
+		repositorioPOIs.agregarPOI(cgp);
+		repositorioPOIs.agregarPOI(banco);
+		repositorioPOIs.agregarPOI(libreriaEscolar);
+		repositorioPOIs.agregarPOI(kioskoDeDiarios);
 		
 				
 		// Parada del 47 -- Corvanalan 3691
@@ -81,27 +75,27 @@ public class TestAgregarQuitarModificar {
 	}
 	
 	@Test
-	public void TestMapaAgregaParadaDel114(){
-			mapa.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
-			Assert.assertEquals(6, mapa.getColeccionDePOIS().size()); 
+	public void TestRepositorioPOIsAgregaParadaDel114(){
+			repositorioPOIs.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
+			Assert.assertEquals(6, repositorioPOIs.getColeccionDePOIS().size()); 
 		}
 	
 	@Test 
-	public void TestMapaQuitaParadaDel47(){
-		//Assert.assertTrue(mapa.getColeccionDePOIS().contains(paradaDel47)); // esto pasa porque esta comparando por identidad y no esta comparando por equivalencia
-		mapa.quitarPOI(paradaDel47);
-		Assert.assertFalse(mapa.getColeccionDePOIS().contains(paradaDel47));
+	public void TestRepositorioPOIsQuitaParadaDel47(){
+		//Assert.assertTrue(repositorioPOIs.getColeccionDePOIS().contains(paradaDel47)); // esto pasa porque esta comparando por identidad y no esta comparando por equivalencia
+		repositorioPOIs.quitarPOI(paradaDel47);
+		Assert.assertFalse(repositorioPOIs.getColeccionDePOIS().contains(paradaDel47));
 	}
 	
 /*	@Test 
 	public void TestModificarNombreDelKioskoDeDiarios(){
-		mapa.modificarNombre(kioskoDeDiarios, "Kiosko de Juan");
+		repositorioPOIs.modificarNombre(kioskoDeDiarios, "Kiosko de Juan");
 		Assert.assertEquals("Kiosko de Juan", kioskoDeDiarios.getNombre());
 	}
 	
 	@Test
 	public void TestModificarDireccionKioskoDeDiarios(){
-		mapa.modificarDireccion(kioskoDeDiarios, "Av Escalada 1561");
+		repositorioPOIs.modificarDireccion(kioskoDeDiarios, "Av Escalada 1561");
 		Assert.assertEquals("Av Escalada 1561", kioskoDeDiarios.getDireccion());
 	}
 	*/

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import Adapters.AdapterConsulta;
 
@@ -92,7 +93,7 @@ public class RepositorioPOIs {
 		poisEncontrados = this.consultarPOIs(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
 		tFin = System.currentTimeMillis();
 		tiempo = (tFin - tInicio) / 1000;
-		if (tiempo > tiempoMax) this.notificarXMailAAdministrador(); // como enviar mail? Y a quien?
+		if (tiempo > tiempoMax) this.notificarXMailAAdministrador(); 
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,tiempo);
 		this.almacenarResultadoBusqueda(resultadoBusqueda);
 		this.agregarCantidadDeBusquedasPorFecha(resultadoBusqueda);
@@ -106,7 +107,7 @@ public class RepositorioPOIs {
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + cantidadResultadosBusqueda);
 	}
 	
-	public void notificarXMailAAdministrador(){}
+	public void notificarXMailAAdministrador(){}// como enviar mail? Y a quien?
 	
 	public void almacenarResultadoBusqueda(ResultadoBusqueda unResultadoBusqueda){
 		//PARA MI (FEDE) AHORA SI DEBERIAMOS HACER UNA CLASE TERMINAL, PERO BUEN AHORA HAGO COMO SI NO TUVIERAMOS QUE
@@ -115,7 +116,12 @@ public class RepositorioPOIs {
 	}
 	
 	public void obtenerInformeCantidadBusquedasXFecha(){
-		//hacer el system print con el hashmap de cantidadBusquedasXFecha
+		Iterator<LocalDate> it = cantidadBusquedasXFecha.keySet().iterator();
+		while(it.hasNext()){
+			LocalDate key = it.next();
+			System.out.println("Fecha: " + key + " -> Cantidad de busquedas: " + cantidadBusquedasXFecha.get(key));
+		}
+		
 	}
 																	
 	public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}

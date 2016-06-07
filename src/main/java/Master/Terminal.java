@@ -3,7 +3,10 @@ package Master;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
+import ObserversTerminal.ObserverTerminal;
 
 public class Terminal {
 
@@ -19,6 +22,7 @@ public class Terminal {
 	private RepositorioPOIs repositorioPOIs;
 	private HashMap<LocalDate,Integer> cantidadBusquedasXFecha;
 	private List<ResultadoBusqueda> listaDeResultadosBusqueda;
+	private ObserverTerminal		observers;
 
 	//GETERS Y SETERS
 	
@@ -49,9 +53,8 @@ public class Terminal {
 		
 	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){
 		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
-		int cantidadResultadosBusqueda = unResultadoBusqueda.cantidadDeResultados();
 		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
-		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + cantidadResultadosBusqueda);
+		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
 	
 	public void notificarXMailAAdministrador(){}
@@ -61,9 +64,14 @@ public class Terminal {
 		listaDeResultadosBusqueda.add(unResultadoBusqueda);
 	}
 		
+																
+	public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}
+	
 	public void obtenerInformeCantidadBusquedasXFecha(){
-	//hacer el system print con el hashmap de cantidadBusquedasXFecha
+		Iterator<LocalDate> it = cantidadBusquedasXFecha.keySet().iterator();
+		while(it.hasNext()){
+			LocalDate key = it.next();
+			System.out.println("Fecha: " + key + " -> Cantidad de busquedas: " + cantidadBusquedasXFecha.get(key));
+		}
 	}
-																		
-		public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}
 }

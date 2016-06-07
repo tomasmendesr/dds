@@ -2,6 +2,7 @@ package tests;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -12,11 +13,13 @@ import org.uqbar.geodds.Point;
 
 import Adapters.AdapterConsultaCGP;
 import AdaptersExt.CentroDTO;
+import AdaptersExt.ServicioDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import POIs.CGP;
 
 import POIsExt.Comuna;
+import POIsExt.RangoDeAtencion;
 
 
 public class TestAdapterConsultaCGP {
@@ -75,5 +78,7 @@ public class TestAdapterConsultaCGP {
 		List<POI> listaAdaptada = adapterConsultaCGP.realizarConsulta("cgp");
 		Assert.assertEquals("CGP de Av Escalada 3100", listaAdaptada.get(0).getNombre());
 	}
+	
+	
 	
 }

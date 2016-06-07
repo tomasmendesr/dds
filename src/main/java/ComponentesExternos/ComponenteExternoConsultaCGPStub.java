@@ -19,6 +19,8 @@ public class ComponenteExternoConsultaCGPStub implements ComponenteExternoConsul
 		//Instancio centroDTO
 		CentroDTO centroDTOStub = new CentroDTO();
 		centroDTOStub.setDireccionCGP("Av Escalada 3100");
+		centroDTOStub.setPosX(-34.6672);
+		centroDTOStub.setPosY(-58.4669);
 		centroDTOStub.setNumeroDeComuna(8);
 		List<ServicioDTO> listaDeServiciosDTO = new ArrayList<ServicioDTO>();	
 

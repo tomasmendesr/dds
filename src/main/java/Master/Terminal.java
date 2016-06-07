@@ -51,13 +51,15 @@ public class Terminal {
 	
 	//Consultar Busqueda POIs con TiempoMax
 	
-	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){
+	
+	
+	public List<POI> consultarPOIsXTiempoEstimado(String unaConsulta, double tiempoMax){
 		double tInicio = System.currentTimeMillis(), tFin, duracion;
 		List<POI> poisEncontrados = new ArrayList<POI>();
 		poisEncontrados = repositorioPOIs.consultarPOIs(unaConsulta);
 		tFin = System.currentTimeMillis();
 		duracion = (tFin - tInicio) / 1000;
-		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion,tiempoMax);
+		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
 		return poisEncontrados;
 	}

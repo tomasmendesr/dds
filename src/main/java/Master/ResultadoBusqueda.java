@@ -7,7 +7,7 @@ public class ResultadoBusqueda{
 	
 	//CONSTRUCTOR
 	
-	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, double tiempoEstimadoBusqueda){
+	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta){
 		this.setMomentoDeBusqueda(LocalDateTime.now());
 		this.setFraseBuscada(fraseBuscada);
 		this.setResultadoBusqueda(resultadoBusqueda);

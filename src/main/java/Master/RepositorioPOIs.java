@@ -102,9 +102,8 @@ public class RepositorioPOIs {
 	
 	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){
 		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
-		int cantidadResultadosBusqueda = unResultadoBusqueda.cantidadDeResultados();
 		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
-		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + cantidadResultadosBusqueda);
+		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1); // hay que inicializar el hashMap en 0
 	}
 	
 	public void notificarXMailAAdministrador(){}// como enviar mail? Y a quien?

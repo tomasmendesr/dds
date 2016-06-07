@@ -19,10 +19,10 @@ public class Terminal {
 	
 	//ATRIBUTOS
 	
-	private RepositorioPOIs repositorioPOIs;
-	private HashMap<LocalDate,Integer> cantidadBusquedasXFecha;
-	private List<ResultadoBusqueda> listaDeResultadosBusqueda;
-	private ObserverTerminal		observers;
+	private RepositorioPOIs 				repositorioPOIs;
+	private HashMap<LocalDate,Integer> 		cantidadBusquedasXFecha;
+	private List<ResultadoBusqueda> 		listaDeResultadosBusqueda;
+	private List<ObserverTerminal>			observers;
 
 	//GETERS Y SETERS
 	
@@ -34,21 +34,31 @@ public class Terminal {
 		this.repositorioPOIs = repositorioPOIs;
 	}
 	
+	public List<ObserverTerminal> getObservers() {
+		return observers;
+	}
+
+	public void addObserver(ObserverTerminal observer){
+		observers.add(observer);
+	}
+	
+	public void setObservers(List<ObserverTerminal> observers) {
+		this.observers = observers;
+	}
+
 	//METODOS
 	
 	//Consultar Busqueda POIs con TiempoMax
 	
-	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
-		double tInicio = System.currentTimeMillis(), tFin, tiempo;
+	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){
+		double tInicio = System.currentTimeMillis(), tFin, duracion;
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		poisEncontrados = repositorioPOIs.consultarPOIs(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
+		poisEncontrados = repositorioPOIs.consultarPOIs(unaConsulta);
 		tFin = System.currentTimeMillis();
-		tiempo = (tFin - tInicio) / 1000;
-		if (tiempo > tiempoMax) this.notificarXMailAAdministrador(); // como enviar mail? Y a quien?
-		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,tiempo);
-		this.almacenarResultadoBusqueda(resultadoBusqueda);
-		this.agregarCantidadDeBusquedasPorFecha(resultadoBusqueda);
-		return poisEncontrados;			
+		duracion = (tFin - tInicio) / 1000;
+		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion,tiempoMax);
+		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
+		return poisEncontrados;
 	}
 		
 	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){

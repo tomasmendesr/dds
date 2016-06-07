@@ -7,11 +7,12 @@ public class ResultadoBusqueda{
 	
 	//CONSTRUCTOR
 	
-	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta){
+	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, double tiempoEstimadoBusqueda){
 		this.setMomentoDeBusqueda(LocalDateTime.now());
 		this.setFraseBuscada(fraseBuscada);
 		this.setResultadoBusqueda(resultadoBusqueda);
 		this.setDuracionBusqueda(duracionConsulta);
+		this.setTiempoEstimadoBusqueda(tiempoEstimadoBusqueda);
 	}
 	
 	// ATRIBUTOS
@@ -20,6 +21,7 @@ public class ResultadoBusqueda{
 	double 			duracionBusqueda;
 	List<POI>		resultadoBusqueda;
 	LocalDateTime	momentoDeBusqueda;
+	double			tiempoEstimadoBusqueda;
 	
 
 	// GETTERS Y SETTERS
@@ -55,9 +57,17 @@ public class ResultadoBusqueda{
 	public void setMomentoDeBusqueda(LocalDateTime momentoDeBusqueda) {
 		this.momentoDeBusqueda = momentoDeBusqueda;
 	}
+	
+	public double getTiempoEstimadoBusqueda() {
+		return tiempoEstimadoBusqueda;
+	}
+
+	public void setTiempoEstimadoBusqueda(double tiempoEstimadoBusqueda) {
+		this.tiempoEstimadoBusqueda = tiempoEstimadoBusqueda;
+	}
 
 	//METODOS
-	
+
 	public int cantidadDeResultados(){
 		return this.getResultadoBusqueda().size();
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import Adapters.AdapterConsulta;
 
@@ -77,5 +78,47 @@ public class RepositorioPOIs {
 		return listaDePOIsACompletar;
 	}
 		
+<<<<<<< HEAD
 	
+=======
+	//Consultar Busqueda POIs con TiempoMax
+	
+	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
+		double tInicio = System.currentTimeMillis(), tFin, tiempo;
+		List<POI> poisEncontrados = new ArrayList<POI>();
+		poisEncontrados = this.consultarPOIs(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
+		tFin = System.currentTimeMillis();
+		tiempo = (tFin - tInicio) / 1000;
+		if (tiempo > tiempoMax) this.notificarXMailAAdministrador(); 
+		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,tiempo);
+		this.almacenarResultadoBusqueda(resultadoBusqueda);
+		this.agregarCantidadDeBusquedasPorFecha(resultadoBusqueda);
+		return poisEncontrados;			
+	}
+	
+	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){
+		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
+		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
+		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1); // hay que inicializar el hashMap en 0
+	}
+	
+	public void notificarXMailAAdministrador(){}// como enviar mail? Y a quien?
+	
+	public void almacenarResultadoBusqueda(ResultadoBusqueda unResultadoBusqueda){
+		//PARA MI (FEDE) AHORA SI DEBERIAMOS HACER UNA CLASE TERMINAL, PERO BUEN AHORA HAGO COMO SI NO TUVIERAMOS QUE
+		listaDeResultadosBusqueda.add(unResultadoBusqueda);
+		
+	}
+	
+	public void obtenerInformeCantidadBusquedasXFecha(){
+		Iterator<LocalDate> it = cantidadBusquedasXFecha.keySet().iterator();
+		while(it.hasNext()){
+			LocalDate key = it.next();
+			System.out.println("Fecha: " + key + " -> Cantidad de busquedas: " + cantidadBusquedasXFecha.get(key));
+		}
+		
+	}
+																	
+	public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}
+>>>>>>> 80b3d3caf653310201b11b2cf261185685cda799
 }

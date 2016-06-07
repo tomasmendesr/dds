@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ObserversTerminal.ObserverTerminal;
 
@@ -61,22 +62,26 @@ public class Terminal {
 		return poisEncontrados;
 	}
 		
-	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){
+	public void contabilizarBusquedaXFecha(ResultadoBusqueda unResultadoBusqueda){
 		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
 		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
-	
-	public void notificarXMailAAdministrador(){}
-	
+		
 	public void almacenarResultadoBusqueda(ResultadoBusqueda unResultadoBusqueda){
-		//PARA MI (FEDE) AHORA SI DEBERIAMOS HACER UNA CLASE TERMINAL, PERO BUEN AHORA HAGO COMO SI NO TUVIERAMOS QUE
 		listaDeResultadosBusqueda.add(unResultadoBusqueda);
 	}
 		
-																
-	public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}
+	public List<Integer> getResultadosParciales(){ //cuantos resultados hubo en cada busqueda
+		return listaDeResultadosBusqueda.stream().
+				map(resultadoBusqueda -> resultadoBusqueda.cantidadDeResultados()).
+				collect(Collectors.toList());
+	}
 	
+	public Integer getResultadoTotal(){	//suma de todos los resultados parciales
+		return this.getResultadosParciales().stream().reduce(0,(a,b)-> a + b);
+	}
+
 	public void obtenerInformeCantidadBusquedasXFecha(){
 		Iterator<LocalDate> it = cantidadBusquedasXFecha.keySet().iterator();
 		while(it.hasNext()){

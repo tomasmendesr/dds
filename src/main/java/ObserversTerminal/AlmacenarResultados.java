@@ -10,4 +10,5 @@ public class AlmacenarResultados implements ObserverTerminal {
 		unaTerminal.almacenarResultadoBusqueda(unResultadoBusqueda);
 	}
 
+	
 }

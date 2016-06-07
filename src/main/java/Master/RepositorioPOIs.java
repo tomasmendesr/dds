@@ -3,10 +3,8 @@ package Master;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.time.LocalDate;
+import java.util.HashMap;
 
 import Adapters.AdapterConsulta;
 
@@ -16,36 +14,32 @@ public class RepositorioPOIs {
 	//CONSTRUCTOR
 	
 	public RepositorioPOIs(){
-		this.instanciarNuevaColeccionDePOIs(); //Inicializa ArrayList de POIS
+		coleccionDePOIS = new ArrayList<POI>();
 		adapters = new ArrayList<AdapterConsulta>();
-		coleccionDeResultados = new ArrayList<Resultado>();
-		coleccionDeCantidadPorFecha = new ArrayList<CantidadPorFecha>();
+		listaDeResultadosBusqueda = new ArrayList<ResultadoBusqueda>();
 	}
 	
 	//ATRIBUTOS
-	
+
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
-	private List<Resultado> coleccionDeResultados;
-	private List<CantidadPorFecha> coleccionDeCantidadPorFecha;
+	private List<ResultadoBusqueda> listaDeResultadosBusqueda;
+	private HashMap<LocalDate,Integer> cantidadBusquedasXFecha;
 
 	//GETTERS Y SETTERS
 	
-	public void instanciarNuevaColeccionDePOIs(){
-		coleccionDePOIS = new ArrayList<POI>();
+	public List<ResultadoBusqueda> getListaDeResultadosBusqueda() {
+		return listaDeResultadosBusqueda;
 	}
-		
+
+	public void setListaDeResultadosBusqueda(List<ResultadoBusqueda> listaDeResultadosBusqueda) {
+		this.listaDeResultadosBusqueda = listaDeResultadosBusqueda;
+	}	
+	
 	public List<POI> getColeccionDePOIS(){
 		return coleccionDePOIS;
 	}
 	
-	public List<Resultado> getColeccionDeResultados(){
-		return coleccionDeResultados;
-	}
-
-	public List<CantidadPorFecha> getColeccionDeResultadosPorFecha(){
-		return coleccionDeCantidadPorFecha;
-	}
 	//Busqueda por texto libre
 	
 	public List<POI> buscarPorTextoLibre(String unTag){
@@ -75,15 +69,6 @@ public class RepositorioPOIs {
 		adapters.remove(unAdapter);
 	}
 	
-	// Lista de Resultados
-	
-	public void agregarResultado(Long unResultado){
-		coleccionDeResultados.add(unResultado);
-	}
-	
-	public void agregarCantidadPorFecha(CantidadPorFecha unRegistro){
-		coleccionDeCantidadPorFecha.add(unRegistro);
-	}
 	
 	//Consultar Busqueda POIs
 	
@@ -102,38 +87,36 @@ public class RepositorioPOIs {
 	//Consultar Busqueda POIs con TiempoMax
 	
 	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
-		double tInicio, tFin, tiempo;
-		Date date = new Date();
-		tInicio = System.currentTimeMillis();
+		double tInicio = System.currentTimeMillis(), tFin, tiempo;
 		List<POI> poisEncontrados = new ArrayList<POI>();
 		poisEncontrados = this.consultarPOIs(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
 		tFin = System.currentTimeMillis();
 		tiempo = (tFin - tInicio) / 1000;
-		if (tiempo > tiempoMax){
-			System.out.println("Mail enviado"); // como enviar mail? Y a quien?
-		}
-		int cantidadPoisEncontrados = poisEncontrados.size();
-		this.almacenarResultado(unaConsulta, cantidadPoisEncontrados, tiempo); 
-		this.almacenarCantidadPorFecha(date,cantidadPoisEncontrados);
+		if (tiempo > tiempoMax) this.notificarXMailAAdministrador(); // como enviar mail? Y a quien?
+		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,tiempo);
+		this.almacenarResultadoBusqueda(resultadoBusqueda);
+		this.agregarCantidadDeBusquedasPorFecha(resultadoBusqueda);
 		return poisEncontrados;			
 	}
 	
-	// Almacenar Resultado
-	
-	public void almacenarResultado(String consulta, int cantidadPoisEncontrados, double duracion){
-		Resultado resultado = new Resultado(consulta,cantidadPoisEncontrados, duracion);
-		this.agregarResultado(resultado);
+	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){
+		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
+		int cantidadResultadosBusqueda = unResultadoBusqueda.cantidadDeResultados();
+		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
+		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + cantidadResultadosBusqueda);
 	}
 	
-	// Almacenar CantidadPorFecha
+	public void notificarXMailAAdministrador(){}
 	
-	public void almacenarCantidadPorFecha(Date date, int cantidadResultados){
-	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	String fecha = dateFormat.format(date);
-//  Falta recorrer la coleccion para ir agregando las cantidades
-//	si la fecha todavia no esta en la lista
-//	CantidadPorFecha registro = new CantidadPorFecha(fecha, cantidadResultados);
-//	this.agregarCantidadPorFecha(registro);
+	public void almacenarResultadoBusqueda(ResultadoBusqueda unResultadoBusqueda){
+		//PARA MI (FEDE) AHORA SI DEBERIAMOS HACER UNA CLASE TERMINAL, PERO BUEN AHORA HAGO COMO SI NO TUVIERAMOS QUE
+		listaDeResultadosBusqueda.add(unResultadoBusqueda);
+		
 	}
 	
+	public void obtenerInformeCantidadBusquedasXFecha(){
+		//hacer el system print con el hashmap de cantidadBusquedasXFecha
+	}
+																	
+	public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}
 }

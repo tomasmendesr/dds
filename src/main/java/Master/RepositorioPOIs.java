@@ -16,25 +16,18 @@ public class RepositorioPOIs {
 	public RepositorioPOIs(){
 		coleccionDePOIS = new ArrayList<POI>();
 		adapters = new ArrayList<AdapterConsulta>();
-		listaDeResultadosBusqueda = new ArrayList<ResultadoBusqueda>();
 	}
 	
 	//ATRIBUTOS
 
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
-	private List<ResultadoBusqueda> listaDeResultadosBusqueda;
-	private HashMap<LocalDate,Integer> cantidadBusquedasXFecha;
 
 	//GETTERS Y SETTERS
 	
-	public List<ResultadoBusqueda> getListaDeResultadosBusqueda() {
-		return listaDeResultadosBusqueda;
+	public void setColeccionDePOIS(List<POI> unaColeccion){
+		coleccionDePOIS = unaColeccion;
 	}
-
-	public void setListaDeResultadosBusqueda(List<ResultadoBusqueda> listaDeResultadosBusqueda) {
-		this.listaDeResultadosBusqueda = listaDeResultadosBusqueda;
-	}	
 	
 	public List<POI> getColeccionDePOIS(){
 		return coleccionDePOIS;
@@ -84,39 +77,5 @@ public class RepositorioPOIs {
 		return listaDePOIsACompletar;
 	}
 		
-	//Consultar Busqueda POIs con TiempoMax
 	
-	public List<POI> consultarPOIsXTiempo(String unaConsulta, double tiempoMax){ // no se me ocurre otra forma
-		double tInicio = System.currentTimeMillis(), tFin, tiempo;
-		List<POI> poisEncontrados = new ArrayList<POI>();
-		poisEncontrados = this.consultarPOIs(unaConsulta); // agrega todos los pois encontrados a la coleccion poisEncontrados
-		tFin = System.currentTimeMillis();
-		tiempo = (tFin - tInicio) / 1000;
-		if (tiempo > tiempoMax) this.notificarXMailAAdministrador(); // como enviar mail? Y a quien?
-		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,tiempo);
-		this.almacenarResultadoBusqueda(resultadoBusqueda);
-		this.agregarCantidadDeBusquedasPorFecha(resultadoBusqueda);
-		return poisEncontrados;			
-	}
-	
-	public void agregarCantidadDeBusquedasPorFecha(ResultadoBusqueda unResultadoBusqueda){
-		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
-		int cantidadResultadosBusqueda = unResultadoBusqueda.cantidadDeResultados();
-		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
-		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + cantidadResultadosBusqueda);
-	}
-	
-	public void notificarXMailAAdministrador(){}
-	
-	public void almacenarResultadoBusqueda(ResultadoBusqueda unResultadoBusqueda){
-		//PARA MI (FEDE) AHORA SI DEBERIAMOS HACER UNA CLASE TERMINAL, PERO BUEN AHORA HAGO COMO SI NO TUVIERAMOS QUE
-		listaDeResultadosBusqueda.add(unResultadoBusqueda);
-		
-	}
-	
-	public void obtenerInformeCantidadBusquedasXFecha(){
-		//hacer el system print con el hashmap de cantidadBusquedasXFecha
-	}
-																	
-	public void cantidadDeBusquedasXTerminal(){/* HAY QUE HACER UNA TERMINAL :o */}
 }

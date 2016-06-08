@@ -12,7 +12,6 @@ public class ResultadoBusqueda{
 		this.setFraseBuscada(fraseBuscada);
 		this.setResultadoBusqueda(resultadoBusqueda);
 		this.setDuracionBusqueda(duracionConsulta);
-		this.setTiempoEstimadoBusqueda(tiempoEstimadoBusqueda);
 	}
 	
 	// ATRIBUTOS
@@ -21,7 +20,7 @@ public class ResultadoBusqueda{
 	double 			duracionBusqueda;
 	List<POI>		resultadoBusqueda;
 	LocalDateTime	momentoDeBusqueda;
-	double			tiempoEstimadoBusqueda;
+	Double			tiempoEstimadoBusqueda;
 	
 
 	// GETTERS Y SETTERS
@@ -70,5 +69,9 @@ public class ResultadoBusqueda{
 
 	public int cantidadDeResultados(){
 		return this.getResultadoBusqueda().size();
+	}
+	
+	public boolean sinTiempoEstimado(){
+		return tiempoEstimadoBusqueda == null;
 	}
 }

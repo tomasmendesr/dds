@@ -7,25 +7,36 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ObserversTerminal.ObserverTerminal;
+import ObserversTerminal.FuncionalidadExtraTerminal;
 
 public class Terminal {
 
 	//CONSTRUCTOR
 	
-	public Terminal(RepositorioPOIs unRepositorioDePOIs){
+	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		listaDeResultadosBusqueda = new ArrayList<ResultadoBusqueda>();
+		this.setNombreTerminal(nombre);
 	}
 	
 	//ATRIBUTOS
 	
-	private RepositorioPOIs 				repositorioPOIs;
-	private HashMap<LocalDate,Integer> 		cantidadBusquedasXFecha;
-	private List<ResultadoBusqueda> 		listaDeResultadosBusqueda;
-	private List<ObserverTerminal>			observers;
-
+	private RepositorioPOIs			 				repositorioPOIs;
+	private HashMap<LocalDate,Integer>		 		cantidadBusquedasXFecha;
+	private List<ResultadoBusqueda> 				listaDeResultadosBusqueda;
+	private List<FuncionalidadExtraTerminal>		observers;
+	private String									nombreTerminal;
+	
+	
 	//GETERS Y SETERS
+	
+	public String getNombreTerminal(){
+		return nombreTerminal;
+	}
+	
+	public void setNombreTerminal(String nombre){
+		nombreTerminal = nombre;
+	}
 	
 	public RepositorioPOIs getRepositorioPOIs() {
 		return repositorioPOIs;
@@ -35,24 +46,22 @@ public class Terminal {
 		this.repositorioPOIs = repositorioPOIs;
 	}
 	
-	public List<ObserverTerminal> getObservers() {
+	public List<FuncionalidadExtraTerminal> getObservers() {
 		return observers;
 	}
 
-	public void addObserver(ObserverTerminal observer){
+	public void addObserver(FuncionalidadExtraTerminal observer){
 		observers.add(observer);
 	}
 	
-	public void setObservers(List<ObserverTerminal> observers) {
+	public void setObservers(List<FuncionalidadExtraTerminal> observers) {
 		this.observers = observers;
 	}
 
 	//METODOS
 	
 	//Consultar Busqueda POIs con TiempoMax
-	
-	
-	
+
 	public List<POI> consultarPOIsXTiempoEstimado(String unaConsulta, double tiempoMax){
 		double tInicio = System.currentTimeMillis(), tFin, duracion;
 		List<POI> poisEncontrados = new ArrayList<POI>();
@@ -60,6 +69,9 @@ public class Terminal {
 		tFin = System.currentTimeMillis();
 		duracion = (tFin - tInicio) / 1000;
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
+		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
+		this.almacenarResultadoBusqueda(resultadoBusqueda);	
+		this.contabilizarBusquedaXFecha(resultadoBusqueda);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
 		return poisEncontrados;
 	}
@@ -91,4 +103,12 @@ public class Terminal {
 			System.out.println("Fecha: " + key + " -> Cantidad de busquedas: " + cantidadBusquedasXFecha.get(key));
 		}
 	}
+	
+	public void generarReporteResultadosParciales(){
+		List<Integer> listaDeResultadosParciales = this.getResultadosParciales();
+		System.out.println("Parciales por Terminal");
+		System.out.println("Usuario: ".concat(this.getNombreTerminal()));
+		System.out.println("Cantidad de resultados parciales");
+		listaDeResultadosParciales.forEach(num -> System.out.println(num.toString()));
+	}	
 }

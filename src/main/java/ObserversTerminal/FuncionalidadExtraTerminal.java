@@ -3,7 +3,7 @@ package ObserversTerminal;
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 
-public interface ObserverTerminal {
+public interface FuncionalidadExtraTerminal {
 
 	void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda);
 	

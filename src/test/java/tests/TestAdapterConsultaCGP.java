@@ -2,7 +2,6 @@ package tests;
 
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -13,13 +12,11 @@ import org.uqbar.geodds.Point;
 
 import Adapters.AdapterConsultaCGP;
 import AdaptersExt.CentroDTO;
-import AdaptersExt.ServicioDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import Master.POI;
 import POIs.CGP;
 
 import POIsExt.Comuna;
-import POIsExt.RangoDeAtencion;
 
 
 public class TestAdapterConsultaCGP {

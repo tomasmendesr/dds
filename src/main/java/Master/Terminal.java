@@ -17,6 +17,8 @@ public class Terminal {
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		listaDeResultadosBusqueda = new ArrayList<ResultadoBusqueda>();
 		this.setNombreTerminal(nombre);
+		observers = new ArrayList<FuncionalidadExtraTerminal>();
+		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
 	}
 	
 	//ATRIBUTOS
@@ -57,6 +59,10 @@ public class Terminal {
 	public void setObservers(List<FuncionalidadExtraTerminal> observers) {
 		this.observers = observers;
 	}
+	
+	public  List<ResultadoBusqueda> getListaDeResultadosBusquedas(){
+		return listaDeResultadosBusqueda;
+	}
 
 	//METODOS
 	
@@ -67,7 +73,7 @@ public class Terminal {
 		List<POI> poisEncontrados = new ArrayList<POI>();
 		poisEncontrados = repositorioPOIs.consultarPOIs(unaConsulta);
 		tFin = System.currentTimeMillis();
-		duracion = (tFin - tInicio) / 1000;
+		duracion = (tFin - tInicio);
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
 		this.almacenarResultadoBusqueda(resultadoBusqueda);	
@@ -78,6 +84,9 @@ public class Terminal {
 		
 	public void contabilizarBusquedaXFecha(ResultadoBusqueda unResultadoBusqueda){
 		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
+		if(cantidadBusquedasXFecha.get(fechaBusqueda) == null){
+			cantidadBusquedasXFecha.put(fechaBusqueda, 0);
+		}
 		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}

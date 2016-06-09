@@ -25,6 +25,10 @@ public class ResultadoBusqueda{
 
 	// GETTERS Y SETTERS
 	 
+	public int getCantidadDeResultados(){
+		return resultadoBusqueda.size();
+	}
+	
 	public String getFraseBuscada() {
 		return fraseBuscada;
 	}

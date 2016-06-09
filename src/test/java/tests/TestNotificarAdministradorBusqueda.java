@@ -1,17 +1,13 @@
 package tests;
 
 import org.junit.Before;
-import org.mockito.Mockito;
+import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
-import Adapters.AdapterConsultaBanco;
-import Adapters.AdapterConsultaCGP;
-import ComponentesExternos.ComponenteExternoConsulta;
-import ComponentesExternos.ComponenteExternoConsultaBancoStub;
-import ComponentesExternos.ComponenteExternoConsultaCGPStub;
-import Master.RepositorioPOIs;
-import Master.Terminal;
-import ObserversTerminal.NotificarAdministrador;
+
+import Master.*;
+import ObserversTerminal.AdapterAdministrador;
+import ObserversTerminal.ObserverNotificarAdministrador;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -19,8 +15,13 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 
-public class TestConsultarPorTiempo {
+import static org.mockito.Mockito.*;
+
+public class TestNotificarAdministradorBusqueda {
 	
+	private Terminal terminal;
+	private ObserverNotificarAdministrador mockedNotificarAdministrador = mock(ObserverNotificarAdministrador.class);
+	private AdapterAdministrador adapterAdministrador;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
@@ -29,13 +30,7 @@ public class TestConsultarPorTiempo {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
-	private AdapterConsultaBanco adapterConsultaBanco;
-	private AdapterConsultaCGP adapterConsultaCGP;
-	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
-	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
-	private Terminal terminalLugano;
-	
-	
+
 	@Before
 	public void init(){
 		
@@ -87,26 +82,16 @@ public class TestConsultarPorTiempo {
 		repositorioPOIs.agregarPOI(libreriaEscolar);
 		repositorioPOIs.agregarPOI(kioskoDeDiarios);
 		
-		//Inicializo la terminal
-		Terminal terminalLugano = new Terminal("terminalLugano", repositorioPOIs);
-				
-		//Inicializo los componentes externos
-		
-		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
-		componenteExternoConsultaCGPStub = new ComponenteExternoConsultaCGPStub();		
-		
-		//Inicializo los adapters
-		
-		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
-		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
-		
-		//Agrega adapters al repositorioPOIs
-		repositorioPOIs.agregarAdapter(adapterConsultaBanco);
-		repositorioPOIs.agregarAdapter(adapterConsultaCGP);
-		
+		terminal = new Terminal("Terminal Principal", repositorioPOIs);
+		adapterAdministrador = new AdapterAdministrador(mockedNotificarAdministrador);
+		terminal.addObserver(adapterAdministrador);
 	}
 	
-}
-	
-
+	@Test
+	public void realizarUnaConsultaConTiempoEstimado0LlamaAlAdministrador(){
+		terminal.consultarPOIsXTiempoEstimado("deposito", -1);
+		verify(mockedNotificarAdministrador).notificaAdministrador();
 		
+	}
+
+}

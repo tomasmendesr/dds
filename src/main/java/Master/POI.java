@@ -16,7 +16,8 @@ public abstract class POI {
 	//CONSTRUCTOR 
 	//@Override
 	//public boolean equals(Object unobjeto){
-		
+		//return (this.getNombre().super.equals(((POI) unobjeto).getNombre()) &&
+		//		this.getDireccion().super.equals(((POI) unobjeto).getDireccion()))
 	//}
 	
 	public POI(Point unaUbicacion) {

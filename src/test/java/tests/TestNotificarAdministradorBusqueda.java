@@ -6,8 +6,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Master.*;
-import ObserversTerminal.AdapterAdministrador;
-import ObserversTerminal.ObserverNotificarAdministrador;
+import ObserversTerminal.NotificarAdministrador;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -18,9 +17,9 @@ import POIsExt.Rubro;
 import static org.mockito.Mockito.*;
 
 public class TestNotificarAdministradorBusqueda {
-	
+/*	
 	private Terminal terminal;
-	private ObserverNotificarAdministrador mockedNotificarAdministrador = mock(ObserverNotificarAdministrador.class);
+	private NotificarAdministrador mockedNotificarAdministrador = mock(NotificarAdministrador.class);
 	private AdapterAdministrador adapterAdministrador;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
@@ -93,5 +92,5 @@ public class TestNotificarAdministradorBusqueda {
 		verify(mockedNotificarAdministrador).notificaAdministrador();
 		
 	}
-
+*/
 }

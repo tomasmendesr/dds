@@ -20,7 +20,7 @@ import POIsExt.Rubro;
 import org.junit.Assert;
 
 public class TestReporteResultadosPorTerminales {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	/*private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 	
 	private TerminalCentral terminalCentral;
@@ -115,5 +115,5 @@ public class TestReporteResultadosPorTerminales {
 	public void cleanUpStreams() {
 	    System.setOut(null);
 	    System.setErr(null);
-	}
+	}*/
 }

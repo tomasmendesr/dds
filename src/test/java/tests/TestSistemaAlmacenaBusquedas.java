@@ -17,7 +17,7 @@ import org.junit.Before;
 
 public class TestSistemaAlmacenaBusquedas {
 
-	private ResultadoBusqueda unResultado;
+	/*private ResultadoBusqueda unResultado;
 	private Terminal terminal;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
@@ -102,5 +102,5 @@ public class TestSistemaAlmacenaBusquedas {
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
 		unResultado = terminal.getListaDeResultadosBusquedas().get(0);
 		Assert.assertEquals(0, unResultado.getDuracionBusqueda(), 0.0);
-	}
+	}*/
 }

@@ -76,7 +76,7 @@ public class Terminal {
 		duracion = (tFin - tInicio);
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
-		this.almacenarResultadoBusqueda(resultadoBusqueda);	
+		//this.almacenarResultadoBusqueda(resultadoBusqueda);	
 		this.contabilizarBusquedaXFecha(resultadoBusqueda);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
 		return poisEncontrados;

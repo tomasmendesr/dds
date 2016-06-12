@@ -8,6 +8,6 @@ import AdaptersExt.CentroDTO;
 
 public interface ComponenteExternoConsulta {
 
-	List<CentroDTO> realizarConsultaCGP(String unaConsulta);
+	List<CentroDTO> 	realizarConsultaCGP(String unaConsulta);
 	JSONArray			realizarConsultaBanco(String unaConsulta);
 }

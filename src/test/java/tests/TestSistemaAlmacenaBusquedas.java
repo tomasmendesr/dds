@@ -5,6 +5,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Master.*;
+import ObserversTerminal.NotificarAdministrador;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -16,8 +17,8 @@ import org.junit.Assert;
 import org.junit.Before;
 
 public class TestSistemaAlmacenaBusquedas {
-
-	/*private ResultadoBusqueda unResultado;
+/*
+	private ResultadoBusqueda unResultado;
 	private Terminal terminal;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
@@ -27,6 +28,8 @@ public class TestSistemaAlmacenaBusquedas {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
+	private GenerarReporte observerGenerarReporte;
+	private GestorDeReportes gestorDeReportes;
 	
 	@Before
 	public void init(){
@@ -77,30 +80,34 @@ public class TestSistemaAlmacenaBusquedas {
 	repositorioPOIs.agregarPOI(banco);
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
+		
+	// ObserverGenerarReporte
+	observerGenerarReporte = new GenerarReporte();
 	
-	terminal = new Terminal("Terminal Principal", repositorioPOIs);
+	// Terminal
+	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
+	terminal.addObserver(observerGenerarReporte);
 	
 	}
 	
 	@Test
-	public void laTerminalTieneAlmacenadaUnaBusqueda(){
+	public void seAlmacenaLaFraseBuscada(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = terminal.getListaDeResultadosBusquedas().get(0);
+		unResultado = gestorDeReportes.getListaDeResultados().get(0);
 		Assert.assertEquals("deposito", unResultado.getFraseBuscada());
 	}
 	
 	@Test
-	public void laBusquedaAlmacenadaTieneLaCantidadDeResultadosDevueltos(){
+	public void seAlmacenaLaCantidadDePOIsEncontrados(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = terminal.getListaDeResultadosBusquedas().get(0);
+		unResultado = gestorDeReportes.getListaDeResultados().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
 	}
 	
-	//Revisar test (problema con milisegundos)
 	@Test
 	public void laBusquedaAlmacenadaTieneElTiempoDeBusqueda(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = terminal.getListaDeResultadosBusquedas().get(0);
+		unResultado = gestorDeReportes.getListaDeResultados().get(0);
 		Assert.assertEquals(0, unResultado.getDuracionBusqueda(), 0.0);
 	}*/
 }

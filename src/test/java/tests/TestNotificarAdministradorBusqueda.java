@@ -13,9 +13,8 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-import junit.framework.Assert;
+import org.junit.Assert;
 
-import static org.mockito.Mockito.*;
 
 public class TestNotificarAdministradorBusqueda {
 

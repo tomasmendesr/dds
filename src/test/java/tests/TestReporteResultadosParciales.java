@@ -1,16 +1,15 @@
 package tests;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.GestorDeReportes;
 import Master.RepositorioPOIs;
 import Master.Terminal;
+import ObserversTerminal.ReporteParcial;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -20,8 +19,6 @@ import POIsExt.Rubro;
 import org.junit.Assert;
 
 public class TestReporteResultadosParciales {
-	/*private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 	
 	private Terminal terminal;
 	private Comuna comuna8;
@@ -32,6 +29,8 @@ public class TestReporteResultadosParciales {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
+	private GestorDeReportes gestorDeReportes;
+	private ReporteParcial observerReportesParciales;
 	
 	@Before
 	public void init(){
@@ -48,6 +47,7 @@ public class TestReporteResultadosParciales {
 	// Parada del 47 -- Corvalan 3691
 	paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 	paradaDel47.setDireccion("Corvalan 3691");
+	paradaDel47.addTag("47");
 		
 	// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 	cgp = new CGP(new Point(-34.6672, -58.4669));
@@ -83,31 +83,32 @@ public class TestReporteResultadosParciales {
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
 	
-	terminal = new Terminal("Terminal Principal", repositorioPOIs);
+	// Gestor
+	gestorDeReportes = new GestorDeReportes();
 	
-	}
+	// Observer
+	observerReportesParciales = new ReporteParcial(gestorDeReportes);
 	
-	@Before
-	public void setUpStreams() {
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
-	}
+	// Terminal
+	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
+	terminal.addObserver(observerReportesParciales);
 	
+}
 	
 	@Test
-	public void seMuestranLosResultadosParcialesDeUnaBusqueda(){
+	public void seRealizaBusquedaEnTerminalYSeObtiene1Resultado(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		terminal.generarReporteResultadosParciales();
-		Assert.assertEquals("Parciales por Terminal\n"
-										+ "Usuario: Terminal Principal\n"
-										+ "Cantidad de resultados parciales\n"
-										+ "1\n", outContent.toString());
+		int busquedas = gestorDeReportes.busquedasEnTerminal(terminal); // Las busquedas pertenecen a esta terminal
+		Assert.assertEquals(1, busquedas);
 	}
 	
-	@After
-	public void cleanUpStreams() {
-	    System.setOut(null);
-	    System.setErr(null);
+	@Test 
+	public void seRealizaBusquedaEnTerminalYSeObtienen2Resultados(){
+		terminal.consultarPOIsXTiempoEstimado("47", 0);
+		int busquedas = gestorDeReportes.busquedasEnTerminal(terminal); // las busquedas pertenecen a esta terminal
+		Assert.assertEquals(2, busquedas);
 	}
-*/
+	
+	
+
 }

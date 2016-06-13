@@ -29,7 +29,7 @@ public class GestorDeReportes {
 	public void setListaDeResultados(List<ResultadoBusqueda> listaDeResultados) {
 		this.listaDeResultados = listaDeResultados;
 	}
-
+	
 	
 	//METODOS
 	// Almacenar un resultado de busqueda
@@ -48,7 +48,7 @@ public class GestorDeReportes {
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
 	
-	public Integer busquedasEnFecha(LocalDate fecha){ // Sirve para el test
+	public Integer busquedasEnFecha(LocalDate fecha){ // Sirve para el test por ahora
 		return cantidadBusquedasXFecha.get(fecha);
 	}
 	
@@ -57,6 +57,11 @@ public class GestorDeReportes {
 	public void generarResultadosParciales(Terminal unaTerminal, Integer cantidadDeResultados){ 
 		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
 	}
+	
+	public Integer busquedasEnTerminal(Terminal terminal){ // Sirve para el test por ahora
+		return resultadosParcialesPorTerminal.get(terminal);
+	}
+	
 	
 	// Reporte totales por usuario
 	public void generarTotalesPorUsuario(Terminal unaTerminal){

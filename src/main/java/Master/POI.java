@@ -11,24 +11,15 @@ import java.lang.String;
 
 public abstract class POI {
 
-	//redefinir el equals para como lo querramos!!!
-	
-	//CONSTRUCTOR 
-	/*@Override
-	public boolean equals(Object unobjeto){
-		//if ()
-		POI unPoi = (POI)unobjeto;
-		return (this.getNombre().equals(unPoi.getNombre()));
-				//&& this.getDireccion().super.equals(((POI) unobjeto).getDireccion()))
-	}*/
-	
-	public POI(Point unaUbicacion) {
-		this.setUbicacion(unaUbicacion);
-		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
-	}	
+	@Override
+	public boolean equals(Object obj){
+	  if (!(obj instanceof POI))
+	    return false;
+	  POI unPOI = (POI) obj;
+	  return (this.getNombre().equals(unPOI.getNombre()) &&  this.getDireccion().equals(unPOI.getDireccion()));
+	}
 	
 	//ATRIBUTOS
-	
 	private Point 					ubicacion;
 	private String 					nombre;
 	private String 					direccion;
@@ -36,11 +27,15 @@ public abstract class POI {
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion; 
 	private Comuna					comuna;
 	
-
+	
+	//CONSTRUCTOR 
+	public POI(Point unaUbicacion) {
+		this.setUbicacion(unaUbicacion);
+		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
+	}	
+		
 	
 	//GETTERS Y SETTERS
-	
-
 	void setUbicacion(Point unaUbicacion) {
 		ubicacion = unaUbicacion;
 		

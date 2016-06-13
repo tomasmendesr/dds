@@ -19,7 +19,7 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 import org.junit.Assert;
-
+/*
 public class TestReporteCantidadDeBusqueda {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -111,3 +111,4 @@ public class TestReporteCantidadDeBusqueda {
 
 
 }
+*/

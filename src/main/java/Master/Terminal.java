@@ -10,28 +10,22 @@ import java.util.stream.Collectors;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
 public class Terminal {
-
-	//CONSTRUCTOR
 	
+	//ATRIBUTOS
+	private RepositorioPOIs			 				repositorioPOIs;
+	private HashMap<LocalDate,Integer>		 		cantidadBusquedasXFecha;
+	private List<FuncionalidadExtraTerminal>		observers;
+	private String									nombreTerminal;
+		
+	//CONSTRUCTOR
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
 		this.setRepositorioPOIs(unRepositorioDePOIs);
-		listaDeResultadosBusqueda = new ArrayList<ResultadoBusqueda>();
 		this.setNombreTerminal(nombre);
 		observers = new ArrayList<FuncionalidadExtraTerminal>();
 		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
 	}
 	
-	//ATRIBUTOS
-	
-	private RepositorioPOIs			 				repositorioPOIs;
-	private HashMap<LocalDate,Integer>		 		cantidadBusquedasXFecha;
-	private List<ResultadoBusqueda> 				listaDeResultadosBusqueda;
-	private List<FuncionalidadExtraTerminal>		observers;
-	private String									nombreTerminal;
-	
-	
 	//GETERS Y SETERS
-	
 	public String getNombreTerminal(){
 		return nombreTerminal;
 	}
@@ -60,10 +54,6 @@ public class Terminal {
 		this.observers = observers;
 	}
 	
-	public  List<ResultadoBusqueda> getListaDeResultadosBusquedas(){
-		return listaDeResultadosBusqueda;
-	}
-
 	//METODOS
 	
 	//Consultar Busqueda POIs con TiempoMax
@@ -76,8 +66,7 @@ public class Terminal {
 		duracion = (tFin - tInicio);
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
-		//this.almacenarResultadoBusqueda(resultadoBusqueda);	
-		this.contabilizarBusquedaXFecha(resultadoBusqueda);
+		//this.contabilizarBusquedaXFecha(resultadoBusqueda);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
 		return poisEncontrados;
 	}
@@ -90,11 +79,7 @@ public class Terminal {
 		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
-		
-	public void almacenarResultadoBusqueda(ResultadoBusqueda unResultadoBusqueda){
-		listaDeResultadosBusqueda.add(unResultadoBusqueda);
-	}
-		
+		/*		
 	public List<Integer> getResultadosParciales(){ //cuantos resultados hubo en cada busqueda
 		return listaDeResultadosBusqueda.stream().
 				map(resultadoBusqueda -> resultadoBusqueda.cantidadDeResultados()).
@@ -103,7 +88,7 @@ public class Terminal {
 	
 	public Integer getResultadoTotal(){	//suma de todos los resultados parciales
 		return this.getResultadosParciales().stream().reduce(0,(a,b)-> a + b);
-	}
+	}*/
 
 	public void obtenerInformeCantidadBusquedasXFecha(){
 		Iterator<LocalDate> it = cantidadBusquedasXFecha.keySet().iterator();
@@ -113,11 +98,11 @@ public class Terminal {
 		}
 	}
 	
-	public void generarReporteResultadosParciales(){
+	/*public void generarReporteResultadosParciales(){
 		List<Integer> listaDeResultadosParciales = this.getResultadosParciales();
 		System.out.println("Parciales por Terminal");
 		System.out.println("Usuario: ".concat(this.getNombreTerminal()));
 		System.out.println("Cantidad de resultados parciales");
 		listaDeResultadosParciales.forEach(num -> System.out.println(num.toString()));
-	}	
+	}	*/
 }

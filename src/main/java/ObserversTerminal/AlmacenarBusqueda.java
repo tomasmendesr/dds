@@ -14,7 +14,7 @@ public class AlmacenarBusqueda implements FuncionalidadExtraTerminal  {
 	}
 	
 	private void almacenarResultado(ResultadoBusqueda unResultadoBusqueda){
-		gestorDeReportes.getListaDeReusltados().add(unResultadoBusqueda);
+		gestorDeReportes.getListaDeResultados().add(unResultadoBusqueda);
 	}
 
 }

@@ -5,14 +5,14 @@ import java.util.List;
 public class GestorDeReportes {
 	
 	
-	private List<ResultadoBusqueda> listaDeReusltados;
+	private List<ResultadoBusqueda> listaDeResultados;
 
-	public List<ResultadoBusqueda> getListaDeReusltados() {
-		return listaDeReusltados;
+	public List<ResultadoBusqueda> getListaDeResultados() {
+		return listaDeResultados;
 	}
 
-	public void setListaDeReusltados(List<ResultadoBusqueda> listaDeReusltados) {
-		this.listaDeReusltados = listaDeReusltados;
+	public void setListaDeResultados(List<ResultadoBusqueda> listaDeResultados) {
+		this.listaDeResultados = listaDeResultados;
 	}
 	
 }

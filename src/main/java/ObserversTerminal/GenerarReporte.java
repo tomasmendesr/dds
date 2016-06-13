@@ -11,7 +11,7 @@ public class GenerarReporte implements FuncionalidadExtraTerminal{
 	
 	@Override
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
-		
+		gestorDeReportes.contabilizarBusquedaXFecha(unResultadoBusqueda);
 	}
 	 
 	

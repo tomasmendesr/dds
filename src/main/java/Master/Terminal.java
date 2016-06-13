@@ -13,7 +13,6 @@ public class Terminal {
 	
 	//ATRIBUTOS
 	private RepositorioPOIs			 				repositorioPOIs;
-	private HashMap<LocalDate,Integer>		 		cantidadBusquedasXFecha;
 	private List<FuncionalidadExtraTerminal>		observers;
 	private String									nombreTerminal;
 		
@@ -22,7 +21,6 @@ public class Terminal {
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		this.setNombreTerminal(nombre);
 		observers = new ArrayList<FuncionalidadExtraTerminal>();
-		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
 	}
 	
 	//GETERS Y SETERS
@@ -54,10 +52,10 @@ public class Terminal {
 		this.observers = observers;
 	}
 	
+	
 	//METODOS
 	
 	//Consultar Busqueda POIs con TiempoMax
-
 	public List<POI> consultarPOIsXTiempoEstimado(String unaConsulta, double tiempoMax){
 		double tInicio = System.currentTimeMillis(), tFin, duracion;
 		List<POI> poisEncontrados = new ArrayList<POI>();
@@ -71,14 +69,6 @@ public class Terminal {
 		return poisEncontrados;
 	}
 		
-	public void contabilizarBusquedaXFecha(ResultadoBusqueda unResultadoBusqueda){
-		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
-		if(cantidadBusquedasXFecha.get(fechaBusqueda) == null){
-			cantidadBusquedasXFecha.put(fechaBusqueda, 0);
-		}
-		int cantidadAnterior = cantidadBusquedasXFecha.get(fechaBusqueda);
-		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
-	}
 		/*		
 	public List<Integer> getResultadosParciales(){ //cuantos resultados hubo en cada busqueda
 		return listaDeResultadosBusqueda.stream().
@@ -90,13 +80,6 @@ public class Terminal {
 		return this.getResultadosParciales().stream().reduce(0,(a,b)-> a + b);
 	}*/
 
-	public void obtenerInformeCantidadBusquedasXFecha(){
-		Iterator<LocalDate> it = cantidadBusquedasXFecha.keySet().iterator();
-		while(it.hasNext()){
-			LocalDate key = it.next();
-			System.out.println("Fecha: " + key + " -> Cantidad de busquedas: " + cantidadBusquedasXFecha.get(key));
-		}
-	}
 	
 	/*public void generarReporteResultadosParciales(){
 		List<Integer> listaDeResultadosParciales = this.getResultadosParciales();

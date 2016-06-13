@@ -2,7 +2,7 @@ package Master;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
@@ -12,6 +12,7 @@ public class Terminal {
 	private RepositorioPOIs			 				repositorioPOIs;
 	private List<FuncionalidadExtraTerminal>		observers;
 	private String									nombreTerminal;
+	private List<ResultadoBusqueda>					busquedas;
 		
 	//CONSTRUCTOR
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
@@ -49,6 +50,10 @@ public class Terminal {
 		this.observers = observers;
 	}
 	
+	public List<ResultadoBusqueda> getResultadosBusqueda(){
+		return busquedas;
+	}
+	
 	
 	//METODOS
 	
@@ -61,14 +66,27 @@ public class Terminal {
 		duracion = (tFin - tInicio);
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
-		//this.contabilizarBusquedaXFecha(resultadoBusqueda);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
+		this.guardarBusqueda(resultadoBusqueda); // Para hacer el reporte por usuarios
 		return poisEncontrados;
 	}
-		
 	
-	/*public Integer getResultadoTotal(){	//suma de todos los resultados parciales
-		return this.getResultadosParciales().stream().reduce(0,(a,b)-> a + b);
-	}*/
+	
+	
+	// Necesite hacer esto para poder hacer el Reporte de Busquedas por Usuario. Ver como solucionarlo
+	public void guardarBusqueda(ResultadoBusqueda unResultado){
+		busquedas.add(unResultado);
+	}
+	
+	public Integer obtenerResultadosTotales(){ // Obtengo la suma de la lista creada en resultadosTotales()
+		return this.resultadosTotales().stream().reduce(0, (a,b) -> a + b);
+	}
+	
+	public List<Integer> resultadosTotales(){ // Obtengo una lista con todas las cantidades de resultados de las busquedas
+		return this.getResultadosBusqueda().stream()
+		.map(resultado -> resultado.getCantidadDeResultados())
+		.collect(Collectors.toList());
+	}
+	
 
 }

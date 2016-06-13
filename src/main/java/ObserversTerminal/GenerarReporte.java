@@ -9,10 +9,15 @@ public class GenerarReporte implements FuncionalidadExtraTerminal{
 	private GestorDeReportes gestorDeReportes;
 	
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
+		gestorDeReportes.contabilizarBusquedaXFecha(unResultadoBusqueda); 
+		
+		
 		Integer cantidadDeResultados;
-		gestorDeReportes.contabilizarBusquedaXFecha(unResultadoBusqueda);
 		cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();
 		gestorDeReportes.generarResultadosParciales(unaTerminal, cantidadDeResultados);
+		
+		
+		gestorDeReportes.generarTotalesPorUsuario(unaTerminal);
 	}
 	 
 	

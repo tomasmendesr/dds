@@ -1,6 +1,7 @@
 package Master;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,12 +10,14 @@ public class GestorDeReportes {
 	//ATRIBUTOS
 	private HashMap<LocalDate,Integer>		 		cantidadBusquedasXFecha;
 	private HashMap<Terminal,Integer>				resultadosParcialesPorTerminal;
-	private List<ResultadoBusqueda> listaDeResultados;
+	private HashMap<Terminal,Integer>				resultadosPorUsuario;
+	private List<ResultadoBusqueda>					listaDeResultados;
 	
 	//CONSTRUCTOR
 	public GestorDeReportes(){
 		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
 		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
+		resultadosPorUsuario = new HashMap<Terminal,Integer>();
 	}
 	
 	//Getters y setters
@@ -25,7 +28,7 @@ public class GestorDeReportes {
 	public void setListaDeResultados(List<ResultadoBusqueda> listaDeResultados) {
 		this.listaDeResultados = listaDeResultados;
 	}
-	
+
 	
 	//METODOS
 	
@@ -44,4 +47,10 @@ public class GestorDeReportes {
 		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
 	}
 	
+	// Reporte totales por usuario
+	public void generarTotalesPorUsuario(Terminal unaTerminal){
+		resultadosPorUsuario.put(unaTerminal, unaTerminal.obtenerResultadosTotales());
+	
+	}
+
 }

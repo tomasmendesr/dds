@@ -18,6 +18,7 @@ public class GestorDeReportes {
 		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
 		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
 		resultadosPorUsuario = new HashMap<Terminal,Integer>();
+		listaDeResultados = new ArrayList<ResultadoBusqueda>();
 	}
 	
 	//Getters y setters
@@ -31,6 +32,11 @@ public class GestorDeReportes {
 
 	
 	//METODOS
+	// Almacenar un resultado de busqueda
+	public void almacenarResultado(ResultadoBusqueda unResultadoBusqueda){
+		this.getListaDeResultados().add(unResultadoBusqueda);
+	}
+	
 	
 	// Reporte de busquedas por Fecha
 	public void contabilizarBusquedaXFecha(ResultadoBusqueda unResultadoBusqueda){

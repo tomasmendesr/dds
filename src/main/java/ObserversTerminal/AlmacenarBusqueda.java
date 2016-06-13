@@ -8,13 +8,17 @@ public class AlmacenarBusqueda implements FuncionalidadExtraTerminal  {
 
 	private GestorDeReportes gestorDeReportes;
 	
-	@Override
-	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
-		this.almacenarResultado(unResultadoBusqueda);
+	public AlmacenarBusqueda(GestorDeReportes unGestor){
+		this.setGestorDeReportes(unGestor);
 	}
 	
-	private void almacenarResultado(ResultadoBusqueda unResultadoBusqueda){
-		gestorDeReportes.getListaDeResultados().add(unResultadoBusqueda);
+	public void setGestorDeReportes(GestorDeReportes unGestor){
+		this.gestorDeReportes = unGestor;
 	}
-
+	
+	@Override
+	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
+		gestorDeReportes.almacenarResultado(unResultadoBusqueda);
+	}
+	
 }

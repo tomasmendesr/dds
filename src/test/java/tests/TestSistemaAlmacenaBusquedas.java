@@ -5,7 +5,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Master.*;
-import ObserversTerminal.NotificarAdministrador;
+import ObserversTerminal.AlmacenarBusqueda;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -17,7 +17,7 @@ import org.junit.Assert;
 import org.junit.Before;
 
 public class TestSistemaAlmacenaBusquedas {
-/*
+
 	private ResultadoBusqueda unResultado;
 	private Terminal terminal;
 	private Comuna comuna8;
@@ -28,7 +28,7 @@ public class TestSistemaAlmacenaBusquedas {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
-	private GenerarReporte observerGenerarReporte;
+	private AlmacenarBusqueda observerAlmacenarBusqueda;
 	private GestorDeReportes gestorDeReportes;
 	
 	@Before
@@ -80,14 +80,24 @@ public class TestSistemaAlmacenaBusquedas {
 	repositorioPOIs.agregarPOI(banco);
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
+	
+	// GestorDeReportes
+	gestorDeReportes = new GestorDeReportes();
 		
 	// ObserverGenerarReporte
-	observerGenerarReporte = new GenerarReporte();
+	observerAlmacenarBusqueda = new AlmacenarBusqueda(gestorDeReportes);
 	
 	// Terminal
 	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
-	terminal.addObserver(observerGenerarReporte);
+	terminal.addObserver(observerAlmacenarBusqueda);
 	
+}
+	
+	@Test 
+	public void seAlmacenanCorrectamenteLasBusquedas(){
+		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
+		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
+		Assert.assertEquals(2,gestorDeReportes.getListaDeResultados().size());
 	}
 	
 	@Test
@@ -103,11 +113,4 @@ public class TestSistemaAlmacenaBusquedas {
 		unResultado = gestorDeReportes.getListaDeResultados().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
 	}
-	
-	@Test
-	public void laBusquedaAlmacenadaTieneElTiempoDeBusqueda(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = gestorDeReportes.getListaDeResultados().get(0);
-		Assert.assertEquals(0, unResultado.getDuracionBusqueda(), 0.0);
-	}*/
 }

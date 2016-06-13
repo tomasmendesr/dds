@@ -6,16 +6,12 @@ import Master.TerminalAdministradora;
 
 public class NotificarAdministrador implements FuncionalidadExtraTerminal{
 
+	private TerminalAdministradora administrador;
+	
 	public NotificarAdministrador(TerminalAdministradora administrador){
 		this.setAdministrador(administrador);
 	}
 	
-	private TerminalAdministradora administrador;
-	
-	public TerminalAdministradora getAdministrador() {
-		return administrador;
-	}
-
 	public void setAdministrador(TerminalAdministradora administrador) {
 		this.administrador = administrador;
 	}

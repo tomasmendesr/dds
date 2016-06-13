@@ -1,17 +1,18 @@
 package tests;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+
 import java.time.LocalDateTime;
 
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.GestorDeReportes;
 import Master.RepositorioPOIs;
 import Master.Terminal;
+import ObserversTerminal.ReportePorFecha;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -19,10 +20,8 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 import org.junit.Assert;
-/*
-public class TestReporteCantidadDeBusqueda {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+
+public class TestReporteBusquedasPorFecha {
 	
 	private Terminal terminal;
 	private Comuna comuna8;
@@ -34,6 +33,8 @@ public class TestReporteCantidadDeBusqueda {
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
 	private LocalDateTime fechaActual;
+	private GestorDeReportes gestorDeReportes;
+	private ReportePorFecha observerReportePorFecha;
 	
 	@Before
 	public void init(){
@@ -85,30 +86,32 @@ public class TestReporteCantidadDeBusqueda {
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
 	
+	//Gestor
+	gestorDeReportes = new GestorDeReportes();
+	
+	//Observer
+	observerReportePorFecha = new ReportePorFecha(gestorDeReportes);
+	
+	//Terminal
 	terminal = new Terminal("Terminal Principal", repositorioPOIs);
+	terminal.addObserver(observerReportePorFecha);
+	
 	fechaActual = LocalDateTime.now();
-	
-	}
-	
-	@Before
-	public void setUpStreams() {
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
-	}
+}
 	
 	@Test
-    public void seMuestraLaFechaYLaCantidadDeBusquedasDeUnaTerminalConUnaSolaBusqueda(){
+	public void seRealizaronDosBusquedasElDiaDeHoy(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		terminal.obtenerInformeCantidadBusquedasXFecha();
-		Assert.assertEquals("Fecha: " + fechaActual.toLocalDate() + " -> Cantidad de busquedas: 1\n", outContent.toString());
+		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
+		int busquedasDeHoy = gestorDeReportes.busquedasEnFecha(fechaActual.toLocalDate());
+		Assert.assertEquals(2, busquedasDeHoy);
 	}
 	
-	@After
-	public void cleanUpStreams() {
-	    System.setOut(null);
-	    System.setErr(null);
+	@Test 
+	public void seRealizaUnaSolabusqueda(){
+		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
+		int busquedasDeHoy = gestorDeReportes.busquedasEnFecha(fechaActual.toLocalDate());
+		Assert.assertEquals(1, busquedasDeHoy);
 	}
 
-
 }
-*/

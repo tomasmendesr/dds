@@ -48,6 +48,11 @@ public class GestorDeReportes {
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
 	
+	public Integer busquedasEnFecha(LocalDate fecha){ // Sirve para el test
+		return cantidadBusquedasXFecha.get(fecha);
+	}
+	
+	
 	// Reporte de Resultados Parciales por Terminal
 	public void generarResultadosParciales(Terminal unaTerminal, Integer cantidadDeResultados){ 
 		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);

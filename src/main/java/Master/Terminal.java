@@ -1,11 +1,8 @@
 package Master;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
@@ -69,23 +66,9 @@ public class Terminal {
 		return poisEncontrados;
 	}
 		
-		/*		
-	public List<Integer> getResultadosParciales(){ //cuantos resultados hubo en cada busqueda
-		return listaDeResultadosBusqueda.stream().
-				map(resultadoBusqueda -> resultadoBusqueda.cantidadDeResultados()).
-				collect(Collectors.toList());
-	}
 	
-	public Integer getResultadoTotal(){	//suma de todos los resultados parciales
+	/*public Integer getResultadoTotal(){	//suma de todos los resultados parciales
 		return this.getResultadosParciales().stream().reduce(0,(a,b)-> a + b);
 	}*/
 
-	
-	/*public void generarReporteResultadosParciales(){
-		List<Integer> listaDeResultadosParciales = this.getResultadosParciales();
-		System.out.println("Parciales por Terminal");
-		System.out.println("Usuario: ".concat(this.getNombreTerminal()));
-		System.out.println("Cantidad de resultados parciales");
-		listaDeResultadosParciales.forEach(num -> System.out.println(num.toString()));
-	}	*/
 }

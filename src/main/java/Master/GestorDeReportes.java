@@ -5,18 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 
 public class GestorDeReportes {
+	
 	//ATRIBUTOS
 	private HashMap<LocalDate,Integer>		 		cantidadBusquedasXFecha;
+	private HashMap<Terminal,Integer>				resultadosParcialesPorTerminal;
+	private List<ResultadoBusqueda> listaDeResultados;
 	
 	//CONSTRUCTOR
 	public GestorDeReportes(){
 		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
+		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
 	}
 	
 	//Getters y setters
-	private List<ResultadoBusqueda> listaDeResultados;
-
-
 	public List<ResultadoBusqueda> getListaDeResultados() {
 		return listaDeResultados;
 	}
@@ -38,5 +39,9 @@ public class GestorDeReportes {
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
 	
+	// Reporte de Resultados Parciales por Terminal
+	public void generarResultadosParciales(Terminal unaTerminal, Integer cantidadDeResultados){ 
+		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
+	}
 	
 }

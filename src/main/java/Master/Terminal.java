@@ -19,6 +19,7 @@ public class Terminal {
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		this.setNombreTerminal(nombre);
 		observers = new ArrayList<FuncionalidadExtraTerminal>();
+		busquedas = new ArrayList<ResultadoBusqueda>();
 	}
 	
 	//GETERS Y SETERS

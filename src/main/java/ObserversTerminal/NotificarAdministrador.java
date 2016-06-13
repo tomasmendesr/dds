@@ -27,5 +27,7 @@ public class NotificarAdministrador implements FuncionalidadExtraTerminal{
 				this.notificarAdministrador();
 	}
 	
-	private void notificarAdministrador(){}
+	private void notificarAdministrador(){
+		administrador.recibirMail();
+	}
 }

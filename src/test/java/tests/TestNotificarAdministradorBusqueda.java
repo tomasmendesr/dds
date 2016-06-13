@@ -13,14 +13,14 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+import junit.framework.Assert;
 
 import static org.mockito.Mockito.*;
 
 public class TestNotificarAdministradorBusqueda {
-/*	
+
 	private Terminal terminal;
-	private NotificarAdministrador mockedNotificarAdministrador = mock(NotificarAdministrador.class);
-	private AdapterAdministrador adapterAdministrador;
+	private NotificarAdministrador observerNotificar;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
@@ -29,6 +29,7 @@ public class TestNotificarAdministradorBusqueda {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
+	private TerminalAdministradora terminalAdministradora;
 
 	@Before
 	public void init(){
@@ -81,16 +82,21 @@ public class TestNotificarAdministradorBusqueda {
 		repositorioPOIs.agregarPOI(libreriaEscolar);
 		repositorioPOIs.agregarPOI(kioskoDeDiarios);
 		
-		terminal = new Terminal("Terminal Principal", repositorioPOIs);
-		adapterAdministrador = new AdapterAdministrador(mockedNotificarAdministrador);
-		terminal.addObserver(adapterAdministrador);
+		// Terminal Administradora
+		terminalAdministradora = new TerminalAdministradora("Terminal Central", repositorioPOIs);
+		
+		// ObserverNotificar
+		observerNotificar = new NotificarAdministrador(terminalAdministradora);
+		
+		// Terminal
+		terminal = new Terminal("Terminal Lugano", repositorioPOIs);
+		terminal.addObserver(observerNotificar);
+		
 	}
 	
 	@Test
 	public void realizarUnaConsultaConTiempoEstimado0LlamaAlAdministrador(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", -1);
-		verify(mockedNotificarAdministrador).notificaAdministrador();
-		
+		Assert.assertTrue(terminalAdministradora.recibirMail());
 	}
-*/
 }

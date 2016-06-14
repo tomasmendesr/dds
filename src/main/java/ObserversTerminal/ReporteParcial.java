@@ -4,12 +4,16 @@ import Master.GestorDeReportes;
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 
+import java.util.HashMap;
+
 public class ReporteParcial implements FuncionalidadExtraTerminal {
 	
-	private GestorDeReportes gestorDeReportes;
+	private GestorDeReportes 				gestorDeReportes;
+	private HashMap<Terminal,Integer> 		resultadosParcialesPorTerminal;
 	
 	public ReporteParcial(GestorDeReportes unGestor){
 		this.setGestorDeReportes(unGestor);
+		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
 	}
 	
 	public void setGestorDeReportes(GestorDeReportes unGestor){
@@ -19,7 +23,12 @@ public class ReporteParcial implements FuncionalidadExtraTerminal {
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
 		Integer cantidadDeResultados;
 		cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();
-		gestorDeReportes.generarResultadosParciales(unaTerminal, cantidadDeResultados);
+		this.generarResultadosParciales(unaTerminal, cantidadDeResultados);
+	}
+
+	// Reporte de Resultados Parciales por Terminal
+	public void generarResultadosParciales(Terminal unaTerminal, Integer cantidadDeResultados){
+		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
 	}
 	
 }

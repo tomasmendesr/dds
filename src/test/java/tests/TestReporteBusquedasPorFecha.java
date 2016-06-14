@@ -79,7 +79,7 @@ public class TestReporteBusquedasPorFecha {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = new RepositorioPOIs();
+	repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
 	repositorioPOIs.agregarPOI(paradaDel47);
 	repositorioPOIs.agregarPOI(cgp);
 	repositorioPOIs.agregarPOI(banco);

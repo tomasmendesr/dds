@@ -10,17 +10,25 @@ public class RepositorioPOIs {
 	
 	//CONSTRUCTOR
 	
-	public RepositorioPOIs(){
+	private RepositorioPOIs(){
 		coleccionDePOIS = new ArrayList<POI>();
 		adapters = new ArrayList<AdapterConsulta>();
 	}
 	
 	//ATRIBUTOS
-
+	private static RepositorioPOIs repositorioPOIs;
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
 
 	//GETTERS Y SETTERS
+	
+	//Singleton del Repo
+	public static RepositorioPOIs getRepositorioPOIs(){
+		if(repositorioPOIs == null)
+			repositorioPOIs = new RepositorioPOIs();
+		
+		return repositorioPOIs;
+	}
 	
 	public void setColeccionDePOIS(List<POI> unaColeccion){
 		coleccionDePOIS = unaColeccion;

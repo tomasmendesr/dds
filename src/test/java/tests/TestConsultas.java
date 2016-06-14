@@ -35,9 +35,9 @@ public class TestConsultas {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repositorioPOIs;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private AdapterConsultaCGP adapterConsultaCGP;
+	private RepositorioPOIs repositorioPOIs;
 	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
 	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
 	
@@ -84,14 +84,9 @@ public class TestConsultas {
 		kioskoDeDiarios.setComuna(comuna8);
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
-				
-		//Agrega POIs al repositorioPOIs
-		repositorioPOIs = new RepositorioPOIs();
-		repositorioPOIs.agregarPOI(paradaDel47);
-		repositorioPOIs.agregarPOI(cgp);
-		repositorioPOIs.agregarPOI(banco);
-		repositorioPOIs.agregarPOI(libreriaEscolar);
-		repositorioPOIs.agregarPOI(kioskoDeDiarios);
+		
+		//Inicializo el repo
+		repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
 		
 		//Inicializo los componentes externos
 		
@@ -103,7 +98,6 @@ public class TestConsultas {
 		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
 		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
 		
-		//Agrega adapters al repositorioPOIs
 		repositorioPOIs.agregarAdapter(adapterConsultaBanco);
 		repositorioPOIs.agregarAdapter(adapterConsultaCGP);
 		
@@ -111,7 +105,7 @@ public class TestConsultas {
 	
 	@Test
 	public void consultaEnTodosLosOrigenesDeDatos(){
-		List<POI> listaResultante = this.repositorioPOIs.consultarPOIs("banco");
+		List<POI> listaResultante = repositorioPOIs.consultarPOIs("banco");
 		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
 	}
 	

@@ -7,20 +7,16 @@ import Adapters.AdapterConsulta;
 
 public class RepositorioPOIs {
 
-	
-	//CONSTRUCTOR
-	
-	public RepositorioPOIs(){
-		coleccionDePOIS = new ArrayList<POI>();
-		adapters = new ArrayList<AdapterConsulta>();
-	}
-	
 	//ATRIBUTOS
 	private static RepositorioPOIs repositorioPOIs;
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
-
-	//GETTERS Y SETTERS
+	
+	//CONSTRUCTOR
+	public RepositorioPOIs(){
+		coleccionDePOIS = new ArrayList<POI>();
+		adapters = new ArrayList<AdapterConsulta>();
+	}
 	
 	//Singleton del Repo
 	/*
@@ -31,6 +27,8 @@ public class RepositorioPOIs {
 		return repositorioPOIs;
 	}*/
 	
+	
+	//GETTERS Y SETTERS
 	public void setColeccionDePOIS(List<POI> unaColeccion){
 		coleccionDePOIS = unaColeccion;
 	}

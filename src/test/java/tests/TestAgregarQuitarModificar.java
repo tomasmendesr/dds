@@ -78,8 +78,13 @@ public class TestAgregarQuitarModificar {
 	@Test
 	public void TestRepositorioPOIsAgregaParadaDel114(){
 			repositorioPOIs.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
-			Assert.assertEquals(6, repositorioPOIs.getColeccionDePOIS().size()); 
+			Assert.assertTrue(repositorioPOIs.getColeccionDePOIS().contains(paradaDel114)); 
 		}
+	
+	@Test
+	public void elRepoContieneLos5POIsDelBefore(){
+		Assert.assertEquals(5, repositorioPOIs.getColeccionDePOIS().size());
+	}
 	
 	@Test 
 	public void TestRepositorioPOIsQuitaParadaDel47(){

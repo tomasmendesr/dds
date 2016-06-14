@@ -1,6 +1,5 @@
 package ObserversTerminal;
 
-import Master.GestorDeReportes;
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 
@@ -9,19 +8,15 @@ import java.util.HashMap;
 
 public class ReportePorFecha implements FuncionalidadExtraTerminal{
 
-	private GestorDeReportes 				gestorDeReportes;
+	//Atributos
 	private HashMap<LocalDate,Integer>		cantidadBusquedasXFecha;
 
-
-	public ReportePorFecha(GestorDeReportes unGestor){
-		this.setGestorDeReportes(unGestor);
+	//Constructor
+	public ReportePorFecha(){
 		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
 	}
 	
-	public void setGestorDeReportes(GestorDeReportes unGestor){
-		this.gestorDeReportes = unGestor;
-	}
-	
+	//Getters y Setters	
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
 		this.contabilizarBusquedaXFecha(unResultadoBusqueda);
 	}

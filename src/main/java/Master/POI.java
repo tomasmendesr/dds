@@ -11,13 +11,14 @@ import java.lang.String;
 
 public abstract class POI {
 
+	/*
 	@Override
 	public boolean equals(Object obj){
 	  if (!(obj instanceof POI))
 	    return false;
 	  POI unPOI = (POI) obj;
 	  return (this.getNombre().equals(unPOI.getNombre()) &&  this.getDireccion().equals(unPOI.getDireccion()));
-	}
+	}*/
 	
 	//ATRIBUTOS
 	private Point 					ubicacion;

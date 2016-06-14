@@ -1,6 +1,5 @@
 package ObserversTerminal;
 
-import Master.GestorDeReportes;
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 
@@ -8,25 +7,25 @@ import java.util.HashMap;
 
 public class ReporteTotalesPorUsuario implements FuncionalidadExtraTerminal {
 	
-	private GestorDeReportes 				gestorDeReportes;
-	private HashMap<Terminal,Integer> 		resultadosPorUsuario;
+	//Atributos
+	private HashMap<Terminal,Integer> 		resultadosPorTerminal;
 	
-	public ReporteTotalesPorUsuario(GestorDeReportes unGestor){
-		this.setGestorDeReportes(unGestor);
-		resultadosPorUsuario = new HashMap<Terminal,Integer>();
+	//Constructor
+	public ReporteTotalesPorUsuario(){
+		resultadosPorTerminal = new HashMap<Terminal,Integer>();
 	}
 	
-	public void setGestorDeReportes(GestorDeReportes unGestor){
-		this.gestorDeReportes = unGestor;
-	}
-	
+	//Getters y Setters
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {		
 		this.generarTotalesPorUsuario(unaTerminal);
 	}
 
 	// Reporte totales por usuario
 	public void generarTotalesPorUsuario(Terminal unaTerminal){
-		resultadosPorUsuario.put(unaTerminal, unaTerminal.obtenerResultadosTotales());
-
+		resultadosPorTerminal.put(unaTerminal, unaTerminal.obtenerResultadosTotales());
+	}
+	
+	public Integer resultadosTotalesEnTerminal(Terminal terminal){ // Sirve para el test por ahora
+		return resultadosPorTerminal.get(terminal);
 	}
 }

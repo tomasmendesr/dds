@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.GestorDeReportes;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;
@@ -33,7 +32,6 @@ public class TestReporteBusquedasPorFecha {
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
 	private LocalDateTime fechaActual;
-	private GestorDeReportes gestorDeReportes;
 	private ReportePorFecha observerReportePorFecha;
 	
 	@Before
@@ -79,18 +77,15 @@ public class TestReporteBusquedasPorFecha {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+	repositorioPOIs = new RepositorioPOIs();
 	repositorioPOIs.agregarPOI(paradaDel47);
 	repositorioPOIs.agregarPOI(cgp);
 	repositorioPOIs.agregarPOI(banco);
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
 	
-	//Gestor
-	gestorDeReportes = new GestorDeReportes();
-	
 	//Observer
-	observerReportePorFecha = new ReportePorFecha(gestorDeReportes);
+	observerReportePorFecha = new ReportePorFecha();
 	
 	//Terminal
 	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
@@ -103,14 +98,14 @@ public class TestReporteBusquedasPorFecha {
 	public void seRealizaronDosBusquedasElDiaDeHoy(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
 		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
-		int busquedasDeHoy = gestorDeReportes.busquedasEnFecha(fechaActual.toLocalDate());
+		int busquedasDeHoy = observerReportePorFecha.busquedasEnFecha(fechaActual.toLocalDate());
 		Assert.assertEquals(2, busquedasDeHoy);
 	}
 	
 	@Test 
 	public void seRealizaUnaSolabusqueda(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		int busquedasDeHoy = gestorDeReportes.busquedasEnFecha(fechaActual.toLocalDate());
+		int busquedasDeHoy = observerReportePorFecha.busquedasEnFecha(fechaActual.toLocalDate());
 		Assert.assertEquals(1, busquedasDeHoy);
 	}
 

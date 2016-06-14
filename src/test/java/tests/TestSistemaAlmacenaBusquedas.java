@@ -29,7 +29,6 @@ public class TestSistemaAlmacenaBusquedas {
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
-	private GestorDeReportes gestorDeReportes;
 	
 	@Before
 	public void init(){
@@ -74,18 +73,16 @@ public class TestSistemaAlmacenaBusquedas {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+	repositorioPOIs = new RepositorioPOIs();
 	repositorioPOIs.agregarPOI(paradaDel47);
 	repositorioPOIs.agregarPOI(cgp);
 	repositorioPOIs.agregarPOI(banco);
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
 	
-	// GestorDeReportes
-	gestorDeReportes = new GestorDeReportes();
 		
 	// ObserverGenerarReporte
-	observerAlmacenarBusqueda = new AlmacenarBusqueda(gestorDeReportes);
+	observerAlmacenarBusqueda = new AlmacenarBusqueda();
 	
 	// Terminal
 	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
@@ -97,20 +94,20 @@ public class TestSistemaAlmacenaBusquedas {
 	public void seAlmacenanCorrectamenteLasBusquedas(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
 		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
-		Assert.assertEquals(2,gestorDeReportes.getListaDeResultados().size());
+		Assert.assertEquals(2,observerAlmacenarBusqueda.getListaDeResultados().size());
 	}
 	
 	@Test
 	public void seAlmacenaLaFraseBuscada(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = gestorDeReportes.getListaDeResultados().get(0);
+		unResultado = observerAlmacenarBusqueda.getListaDeResultados().get(0);
 		Assert.assertEquals("deposito", unResultado.getFraseBuscada());
 	}
 	
 	@Test
 	public void seAlmacenaLaCantidadDePOIsEncontrados(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = gestorDeReportes.getListaDeResultados().get(0);
+		unResultado = observerAlmacenarBusqueda.getListaDeResultados().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
 	}
 }

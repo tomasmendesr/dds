@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.GestorDeReportes;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReporteParcial;
@@ -29,7 +28,6 @@ public class TestReporteResultadosParciales {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
-	private GestorDeReportes gestorDeReportes;
 	private ReporteParcial observerReportesParciales;
 	
 	@Before
@@ -76,18 +74,15 @@ public class TestReporteResultadosParciales {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+	repositorioPOIs = new RepositorioPOIs();
 	repositorioPOIs.agregarPOI(paradaDel47);
 	repositorioPOIs.agregarPOI(cgp);
 	repositorioPOIs.agregarPOI(banco);
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
-	
-	// Gestor
-	gestorDeReportes = new GestorDeReportes();
-	
+		
 	// Observer
-	observerReportesParciales = new ReporteParcial(gestorDeReportes);
+	observerReportesParciales = new ReporteParcial();
 	
 	// Terminal
 	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
@@ -97,16 +92,16 @@ public class TestReporteResultadosParciales {
 	
 	@Test
 	public void seRealizaBusquedaEnTerminalYSeObtiene1Resultado(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		int busquedas = gestorDeReportes.busquedasEnTerminal(terminal); // Las busquedas pertenecen a esta terminal
-		Assert.assertEquals(1, busquedas);
-	}
+		terminal.consultarPOIsXTiempoEstimado("asesoramiento", 0);
+		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // Las busquedas pertenecen a esta terminal
+		Assert.assertEquals(1, resultados);
+	} 
 	
 	@Test 
 	public void seRealizaBusquedaEnTerminalYSeObtienen2Resultados(){
 		terminal.consultarPOIsXTiempoEstimado("47", 0);
-		int busquedas = gestorDeReportes.busquedasEnTerminal(terminal); // las busquedas pertenecen a esta terminal
-		Assert.assertEquals(2, busquedas);
+		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // las busquedas pertenecen a esta terminal
+		Assert.assertEquals(2, resultados);
 	}
 	
 	

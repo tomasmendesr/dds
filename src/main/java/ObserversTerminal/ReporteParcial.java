@@ -1,6 +1,5 @@
 package ObserversTerminal;
 
-import Master.GestorDeReportes;
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 
@@ -8,18 +7,15 @@ import java.util.HashMap;
 
 public class ReporteParcial implements FuncionalidadExtraTerminal {
 	
-	private GestorDeReportes 				gestorDeReportes;
+	//Atributos
 	private HashMap<Terminal,Integer> 		resultadosParcialesPorTerminal;
 	
-	public ReporteParcial(GestorDeReportes unGestor){
-		this.setGestorDeReportes(unGestor);
+	//Constructor
+	public ReporteParcial(){
 		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
 	}
 	
-	public void setGestorDeReportes(GestorDeReportes unGestor){
-		this.gestorDeReportes = unGestor;
-	}
-	
+	//Getters y Setters
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
 		Integer cantidadDeResultados;
 		cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();
@@ -31,4 +27,7 @@ public class ReporteParcial implements FuncionalidadExtraTerminal {
 		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
 	}
 	
+	public Integer resultadosEnTerminal(Terminal terminal){ // Sirve para el test por ahora
+		return resultadosParcialesPorTerminal.get(terminal);
+	}
 }

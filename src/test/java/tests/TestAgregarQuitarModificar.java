@@ -41,6 +41,7 @@ public class TestAgregarQuitarModificar {
 				
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
+		paradaDel47.setNombre("Parada del 47");
 		
 		// Parada del 114 -- Mozart 2392
 		paradaDel114 = new ParadaDeColectivo(new Point(-34.6598, -58.4683));
@@ -66,7 +67,7 @@ public class TestAgregarQuitarModificar {
 		kioskoDeDiarios.setComuna(comuna8);
 		
 		//Agrego Pois al repo
-		repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+		repositorioPOIs = new RepositorioPOIs();
 		repositorioPOIs.agregarPOI(paradaDel47);
 		repositorioPOIs.agregarPOI(cgp);
 		repositorioPOIs.agregarPOI(banco);
@@ -74,7 +75,7 @@ public class TestAgregarQuitarModificar {
 		repositorioPOIs.agregarPOI(kioskoDeDiarios);
 	}
 	
-	/*@Test
+	@Test
 	public void TestRepositorioPOIsAgregaParadaDel114(){
 			repositorioPOIs.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
 			Assert.assertEquals(6, repositorioPOIs.getColeccionDePOIS().size()); 
@@ -82,23 +83,8 @@ public class TestAgregarQuitarModificar {
 	
 	@Test 
 	public void TestRepositorioPOIsQuitaParadaDel47(){
-		//Assert.assertTrue(repositorioPOIs.getColeccionDePOIS().contains(paradaDel47)); // esto pasa porque esta comparando por identidad y no esta comparando por equivalencia
 		repositorioPOIs.quitarPOI(paradaDel47);
-		Assert.assertEquals(5, repositorioPOIs.getColeccionDePOIS().size()); 
-		//Hay 5 ya que en el test anterior agrego a la del 114 y ahora saco a la del 47
-		 PORQUE TIRAN ERROR???
-		 */
+		Assert.assertEquals(4, repositorioPOIs.getColeccionDePOIS().size()); 
 	}
 	
-/*	@Test 
-	public void TestModificarNombreDelKioskoDeDiarios(){
-		repositorioPOIs.modificarNombre(kioskoDeDiarios, "Kiosko de Juan");
-		Assert.assertEquals("Kiosko de Juan", kioskoDeDiarios.getNombre());
-	}
-	
-	@Test
-	public void TestModificarDireccionKioskoDeDiarios(){
-		repositorioPOIs.modificarDireccion(kioskoDeDiarios, "Av Escalada 1561");
-		Assert.assertEquals("Av Escalada 1561", kioskoDeDiarios.getDireccion());
-	}
-	*/
+}

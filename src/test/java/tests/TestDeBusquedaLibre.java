@@ -49,6 +49,7 @@ public class TestDeBusquedaLibre {
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 		paradaDel47.setDireccion("Corvalan 3691");
+		paradaDel47.addTag("47");
 			
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669));
@@ -77,7 +78,7 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
 		//Agrega POIs al repoPOIs
-		repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+		repositorioPOIs = new RepositorioPOIs();
 		repositorioPOIs.agregarPOI(paradaDel47);
 		repositorioPOIs.agregarPOI(cgp);
 		repositorioPOIs.agregarPOI(banco);
@@ -89,21 +90,19 @@ public class TestDeBusquedaLibre {
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
 		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("47");
-		Assert.assertEquals(1, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 
+		Assert.assertEquals(2, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 y cgp
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
 		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("asesoramiento");
-		Assert.assertEquals(2, poisEncontrados.size()); 
-		// En la coleccion debe estar el cgp y la parada del 47 
+		Assert.assertEquals(1, poisEncontrados.size());  
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCaramelos(){
 		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("caramelos");
-		Assert.assertEquals(3, poisEncontrados.size()); 
-		// En la coleccion debe estar el kioskoDeDiarios, el cgp y la parada del 47
+		Assert.assertEquals(1, poisEncontrados.size()); 
 	}
 	
 	@Test

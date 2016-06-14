@@ -74,7 +74,7 @@ public class TestNotificarAdministradorBusqueda {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
 		//Agrega POIs al repositorioPOIs
-		repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+		repositorioPOIs = new RepositorioPOIs();
 		repositorioPOIs.agregarPOI(paradaDel47);
 		repositorioPOIs.agregarPOI(cgp);
 		repositorioPOIs.agregarPOI(banco);

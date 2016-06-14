@@ -86,7 +86,7 @@ public class TestConsultas {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		
 		//Inicializo el repo
-		repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+		repositorioPOIs = new RepositorioPOIs();
 		
 		//Inicializo los componentes externos
 		

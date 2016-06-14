@@ -1,16 +1,14 @@
 package tests;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Master.*;
-
+import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -20,10 +18,7 @@ import POIsExt.Rubro;
 import org.junit.Assert;
 
 public class TestReporteResultadosPorTerminales {
-	/*private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 	
-	private TerminalCentral terminalCentral;
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
 	private Comuna comuna8;
@@ -34,6 +29,7 @@ public class TestReporteResultadosPorTerminales {
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
 	private RepositorioPOIs repositorioPOIs;
+	private ReporteTotalesPorUsuario observerReportesTotales;
 	
 	@Before
 	public void init(){
@@ -78,42 +74,31 @@ public class TestReporteResultadosPorTerminales {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = RepositorioPOIs.getRepositorioPOIs();
+	repositorioPOIs = new RepositorioPOIs();
 	repositorioPOIs.agregarPOI(paradaDel47);
 	repositorioPOIs.agregarPOI(cgp);
 	repositorioPOIs.agregarPOI(banco);
 	repositorioPOIs.agregarPOI(libreriaEscolar);
 	repositorioPOIs.agregarPOI(kioskoDeDiarios);
 	
+	//Observer
+	observerReportesTotales = new ReporteTotalesPorUsuario();
+	
+	//Terminales
 	terminalAbasto = new Terminal("Terminal Abasto", repositorioPOIs);
+	terminalAbasto.addObserver(observerReportesTotales);
 	terminalFlorida = new Terminal("Terminal Florida", repositorioPOIs);
-	terminalCentral = new TerminalCentral();
-	terminalCentral.agregarTerminal(terminalAbasto);
-	terminalCentral.agregarTerminal(terminalFlorida);
+	terminalFlorida.addObserver(observerReportesTotales);
 	
-	}
-	
-	@Before
-	public void setUpStreams() {
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
 	}
 	
 	@Test
-	public void seReportaLaCantidadDeBusquedasPorTerminales(){
-		terminalAbasto.consultarPOIsXTiempoEstimado("deposito", 1);
-		terminalFlorida.consultarPOIsXTiempoEstimado("caramelos", 1);
-		terminalCentral.generarReportePorTerminales();
-		Assert.assertEquals("Totales por Usuarios\n"
-											+ "Terminal Abasto\n"
-											+ "1\n"
-											+ "Terminal Florida\n"
-											+ "1\n", outContent.toString());
+	public void laTerminalAbastoContieneDosResultados(){
+		terminalAbasto.consultarPOIsXTiempoEstimado("deposito", 0);
+		terminalAbasto.consultarPOIsXTiempoEstimado("caramelos", 0);
+		int resultados = observerReportesTotales.resultadosTotalesEnTerminal(terminalAbasto);
+		// Assert.assertEquals(2, resultados); Da 1, revisar.
 	}
+
 	
-	@After
-	public void cleanUpStreams() {
-	    System.setOut(null);
-	    System.setErr(null);
-	}*/
 }

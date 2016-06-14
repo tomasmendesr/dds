@@ -26,6 +26,10 @@ public class RepositorioPOIs {
 		return repositorioPOIs;
 	}
 	
+	public static void resetPOIs(){
+		repositorioPOIs = null;
+	}
+	
 	
 	//GETTERS Y SETTERS
 	public void setColeccionDePOIS(List<POI> unaColeccion){

@@ -13,6 +13,11 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 
 
@@ -27,7 +32,6 @@ public class TestNotificarAdministradorBusqueda {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repositorioPOIs;
 	private TerminalAdministradora terminalAdministradora;
 
 	@Before
@@ -74,21 +78,20 @@ public class TestNotificarAdministradorBusqueda {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
 		//Agrega POIs al repositorioPOIs
-		repositorioPOIs = new RepositorioPOIs();
-		repositorioPOIs.agregarPOI(paradaDel47);
-		repositorioPOIs.agregarPOI(cgp);
-		repositorioPOIs.agregarPOI(banco);
-		repositorioPOIs.agregarPOI(libreriaEscolar);
-		repositorioPOIs.agregarPOI(kioskoDeDiarios);
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+		RepositorioPOIs.getInstance().agregarPOI(cgp);
+		RepositorioPOIs.getInstance().agregarPOI(banco);
+		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 		
 		// Terminal Administradora
-		terminalAdministradora = new TerminalAdministradora("Terminal Central", repositorioPOIs);
+		terminalAdministradora = new TerminalAdministradora("Terminal Central", RepositorioPOIs.getInstance());
 		
 		// ObserverNotificar
 		observerNotificar = new NotificarAdministrador(terminalAdministradora);
 		
 		// Terminal
-		terminal = new Terminal("Terminal Lugano", repositorioPOIs);
+		terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
 		terminal.addObserver(observerNotificar);
 		
 	}
@@ -97,5 +100,11 @@ public class TestNotificarAdministradorBusqueda {
 	public void realizarUnaConsultaConTiempoEstimado0LlamaAlAdministrador(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", -1);
 		Assert.assertTrue(terminalAdministradora.recibirMail());
+	}
+	
+	@After
+	public void tearDown(){
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
 	}
 }

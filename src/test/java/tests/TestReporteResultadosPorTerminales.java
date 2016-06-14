@@ -15,6 +15,11 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 
 public class TestReporteResultadosPorTerminales {
@@ -28,7 +33,6 @@ public class TestReporteResultadosPorTerminales {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repositorioPOIs;
 	private ReporteTotalesPorUsuario observerReportesTotales;
 	
 	@Before
@@ -74,20 +78,19 @@ public class TestReporteResultadosPorTerminales {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = new RepositorioPOIs();
-	repositorioPOIs.agregarPOI(paradaDel47);
-	repositorioPOIs.agregarPOI(cgp);
-	repositorioPOIs.agregarPOI(banco);
-	repositorioPOIs.agregarPOI(libreriaEscolar);
-	repositorioPOIs.agregarPOI(kioskoDeDiarios);
+	RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+	RepositorioPOIs.getInstance().agregarPOI(cgp);
+	RepositorioPOIs.getInstance().agregarPOI(banco);
+	RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+	RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 	
 	//Observer
 	observerReportesTotales = new ReporteTotalesPorUsuario();
 	
 	//Terminales
-	terminalAbasto = new Terminal("Terminal Abasto", repositorioPOIs);
+	terminalAbasto = new Terminal("Terminal Abasto", RepositorioPOIs.getInstance());
 	terminalAbasto.addObserver(observerReportesTotales);
-	terminalFlorida = new Terminal("Terminal Florida", repositorioPOIs);
+	terminalFlorida = new Terminal("Terminal Florida", RepositorioPOIs.getInstance());
 	terminalFlorida.addObserver(observerReportesTotales);
 	
 	}
@@ -100,5 +103,10 @@ public class TestReporteResultadosPorTerminales {
 		// Assert.assertEquals(2, resultados); Da 1, revisar.
 	}
 
+	@After
+	public void tearDown(){
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+	}
 	
 }

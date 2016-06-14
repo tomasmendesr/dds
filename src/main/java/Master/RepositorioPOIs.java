@@ -13,19 +13,18 @@ public class RepositorioPOIs {
 	private List<AdapterConsulta> adapters;
 	
 	//CONSTRUCTOR
-	public RepositorioPOIs(){
+	private RepositorioPOIs(){
 		coleccionDePOIS = new ArrayList<POI>();
 		adapters = new ArrayList<AdapterConsulta>();
 	}
 	
 	//Singleton del Repo
-	/*
-	public static RepositorioPOIs getRepositorioPOIs(){
-		if(repositorioPOIs == null)
+	public static RepositorioPOIs getInstance(){
+		if(repositorioPOIs == null){
 			repositorioPOIs = new RepositorioPOIs();
-		
+		}
 		return repositorioPOIs;
-	}*/
+	}
 	
 	
 	//GETTERS Y SETTERS

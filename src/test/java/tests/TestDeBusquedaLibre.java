@@ -18,7 +18,10 @@ import POIsExt.Rubro;
 import Master.POI;
 import Master.RepositorioPOIs;
 
+import org.junit.After;
 import org.junit.Assert;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestDeBusquedaLibre {
@@ -29,7 +32,6 @@ public class TestDeBusquedaLibre {
 	private Banco banco;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
-	private RepositorioPOIs repositorioPOIs;
 	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
 	
@@ -78,45 +80,50 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
 		//Agrega POIs al repoPOIs
-		repositorioPOIs = new RepositorioPOIs();
-		repositorioPOIs.agregarPOI(paradaDel47);
-		repositorioPOIs.agregarPOI(cgp);
-		repositorioPOIs.agregarPOI(banco);
-		repositorioPOIs.agregarPOI(libreriaEscolar);
-		repositorioPOIs.agregarPOI(kioskoDeDiarios);
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+		RepositorioPOIs.getInstance().agregarPOI(cgp);
+		RepositorioPOIs.getInstance().agregarPOI(banco);
+		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 	}
 	
 		
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
-		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("47");
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("47");
 		Assert.assertEquals(2, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 y cgp
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
-		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
 		Assert.assertEquals(1, poisEncontrados.size());  
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCaramelos(){
-		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("caramelos");
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("caramelos");
 		Assert.assertEquals(1, poisEncontrados.size()); 
 	}
 	
 	@Test
 	public void testBusquedaDeTextoLibreDevuelveDireccionDelPOIEncontrado(){
-		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
 		String direccionPOI = poisEncontrados.get(0).getDireccion();
 		Assert.assertEquals("Av Escalada 3100", direccionPOI);
 	}
 	
 	@Test
 	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
-		poisEncontrados = repositorioPOIs.buscarPorTextoLibre("asesoramiento");
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
 		String nombrePOI = poisEncontrados.get(0).getNombre();
 		Assert.assertEquals("Asesoria", nombrePOI);
+	}
+	
+	@After
+	public void tearDown(){
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
 	}
 	
 }

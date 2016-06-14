@@ -1,11 +1,16 @@
 package tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.POI;
 import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
@@ -23,7 +28,6 @@ public class TestAgregarQuitarModificar {
 	private Banco banco;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
-	private RepositorioPOIs repositorioPOIs;
 	private Polygon	zonaComuna8;
 	
 	@Before
@@ -67,29 +71,34 @@ public class TestAgregarQuitarModificar {
 		kioskoDeDiarios.setComuna(comuna8);
 		
 		//Agrego Pois al repo
-		repositorioPOIs = new RepositorioPOIs();
-		repositorioPOIs.agregarPOI(paradaDel47);
-		repositorioPOIs.agregarPOI(cgp);
-		repositorioPOIs.agregarPOI(banco);
-		repositorioPOIs.agregarPOI(libreriaEscolar);
-		repositorioPOIs.agregarPOI(kioskoDeDiarios);
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+		RepositorioPOIs.getInstance().agregarPOI(cgp);
+		RepositorioPOIs.getInstance().agregarPOI(banco);
+		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 	}
 	
 	@Test
 	public void TestRepositorioPOIsAgregaParadaDel114(){
-			repositorioPOIs.agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
-			Assert.assertTrue(repositorioPOIs.getColeccionDePOIS().contains(paradaDel114)); 
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
+			Assert.assertTrue(RepositorioPOIs.getInstance().getColeccionDePOIS().contains(paradaDel114)); 
 		}
 	
 	@Test
 	public void elRepoContieneLos5POIsDelBefore(){
-		Assert.assertEquals(5, repositorioPOIs.getColeccionDePOIS().size());
+		Assert.assertEquals(5, RepositorioPOIs.getInstance().getColeccionDePOIS().size());
 	}
 	
 	@Test 
 	public void TestRepositorioPOIsQuitaParadaDel47(){
-		repositorioPOIs.quitarPOI(paradaDel47);
-		Assert.assertEquals(4, repositorioPOIs.getColeccionDePOIS().size()); 
+		RepositorioPOIs.getInstance().quitarPOI(paradaDel47);
+		Assert.assertEquals(4, RepositorioPOIs.getInstance().getColeccionDePOIS().size()); 
+	}
+	
+	@After
+	public void tearDown(){
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
 	}
 	
 }

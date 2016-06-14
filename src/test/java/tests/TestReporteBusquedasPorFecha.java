@@ -2,13 +2,15 @@ package tests;
 
 
 import java.time.LocalDateTime;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.POI;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;
@@ -18,6 +20,8 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+
+import org.junit.After;
 import org.junit.Assert;
 
 public class TestReporteBusquedasPorFecha {
@@ -30,7 +34,6 @@ public class TestReporteBusquedasPorFecha {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repositorioPOIs;
 	private LocalDateTime fechaActual;
 	private ReportePorFecha observerReportePorFecha;
 	
@@ -77,18 +80,17 @@ public class TestReporteBusquedasPorFecha {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = new RepositorioPOIs();
-	repositorioPOIs.agregarPOI(paradaDel47);
-	repositorioPOIs.agregarPOI(cgp);
-	repositorioPOIs.agregarPOI(banco);
-	repositorioPOIs.agregarPOI(libreriaEscolar);
-	repositorioPOIs.agregarPOI(kioskoDeDiarios);
+	RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+	RepositorioPOIs.getInstance().agregarPOI(cgp);
+	RepositorioPOIs.getInstance().agregarPOI(banco);
+	RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+	RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 	
 	//Observer
 	observerReportePorFecha = new ReportePorFecha();
 	
 	//Terminal
-	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
+	terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
 	terminal.addObserver(observerReportePorFecha);
 	
 	fechaActual = LocalDateTime.now();
@@ -109,4 +111,9 @@ public class TestReporteBusquedasPorFecha {
 		Assert.assertEquals(1, busquedasDeHoy);
 	}
 
+	@After
+	public void tearDown(){
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+	}
 }

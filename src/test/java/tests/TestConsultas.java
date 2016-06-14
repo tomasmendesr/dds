@@ -37,7 +37,6 @@ public class TestConsultas {
 	private Polygon	zonaComuna8;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private AdapterConsultaCGP adapterConsultaCGP;
-	private RepositorioPOIs repositorioPOIs;
 	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
 	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
 	
@@ -85,9 +84,6 @@ public class TestConsultas {
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		
-		//Inicializo el repo
-		repositorioPOIs = new RepositorioPOIs();
-		
 		//Inicializo los componentes externos
 		
 		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
@@ -98,14 +94,14 @@ public class TestConsultas {
 		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
 		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
 		
-		repositorioPOIs.agregarAdapter(adapterConsultaBanco);
-		repositorioPOIs.agregarAdapter(adapterConsultaCGP);
+		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaBanco);
+		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaCGP);
 		
 	}
 	
 	@Test
 	public void consultaEnTodosLosOrigenesDeDatos(){
-		List<POI> listaResultante = repositorioPOIs.consultarPOIs("banco");
+		List<POI> listaResultante = RepositorioPOIs.getInstance().consultarPOIs("banco");
 		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
 	}
 	

@@ -13,6 +13,10 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 
+import java.util.List;
+import java.util.ArrayList;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
@@ -27,7 +31,6 @@ public class TestSistemaAlmacenaBusquedas {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private RepositorioPOIs repositorioPOIs;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
 	
 	@Before
@@ -73,19 +76,18 @@ public class TestSistemaAlmacenaBusquedas {
 	kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 			
 	//Agrega POIs al repositorioPOIs
-	repositorioPOIs = new RepositorioPOIs();
-	repositorioPOIs.agregarPOI(paradaDel47);
-	repositorioPOIs.agregarPOI(cgp);
-	repositorioPOIs.agregarPOI(banco);
-	repositorioPOIs.agregarPOI(libreriaEscolar);
-	repositorioPOIs.agregarPOI(kioskoDeDiarios);
+	RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+	RepositorioPOIs.getInstance().agregarPOI(cgp);
+	RepositorioPOIs.getInstance().agregarPOI(banco);
+	RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+	RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 	
 		
 	// ObserverGenerarReporte
 	observerAlmacenarBusqueda = new AlmacenarBusqueda();
 	
 	// Terminal
-	terminal = new Terminal("Terminal Lugano", repositorioPOIs);
+	terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
 	terminal.addObserver(observerAlmacenarBusqueda);
 	
 }
@@ -109,5 +111,11 @@ public class TestSistemaAlmacenaBusquedas {
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
 		unResultado = observerAlmacenarBusqueda.getListaDeResultados().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
+	}
+		
+	@After
+	public void tearDown(){
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
 	}
 }

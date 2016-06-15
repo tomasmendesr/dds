@@ -101,18 +101,20 @@ public class TestReporteResultadosParciales {
 		Assert.assertEquals(1, resultados);
 	} 
 	
-	/*
+	
 	@Test 
 	public void seRealizaBusquedaEnTerminalYSeObtienen2Resultados(){
 		terminal.consultarPOIsXTiempoEstimado("47", 0);
 		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // las busquedas pertenecen a esta terminal
 		Assert.assertEquals(2, resultados);
 	}
-	*/
+	
 	
 	@After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
+		List<POI> coleccionVacia = new ArrayList<POI>();
+		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
 	}
 	
 

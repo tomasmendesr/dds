@@ -100,7 +100,7 @@ public class TestReporteResultadosPorTerminales {
 		terminalAbasto.consultarPOIsXTiempoEstimado("deposito", 0);
 		terminalAbasto.consultarPOIsXTiempoEstimado("caramelos", 0);
 		int resultados = observerReportesTotales.resultadosTotalesEnTerminal(terminalAbasto);
-		// Assert.assertEquals(2, resultados); Da 1, revisar.
+		//Assert.assertEquals(2, resultados); // Da 1, revisar.
 	}
 
 	@After

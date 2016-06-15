@@ -10,8 +10,7 @@ import java.util.List;
 import java.lang.String;
 
 public abstract class POI {
-
-	/*
+/*
 	@Override
 	public boolean equals(Object obj){
 	  if (!(obj instanceof POI))

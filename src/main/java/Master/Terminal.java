@@ -22,7 +22,7 @@ public class Terminal {
 		busquedas = new ArrayList<ResultadoBusqueda>();
 	}
 	
-	//GETERS Y SETERS
+	//GETTERS Y SETTERS
 	public String getNombreTerminal(){
 		return nombreTerminal;
 	}

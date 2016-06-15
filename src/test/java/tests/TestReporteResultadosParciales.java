@@ -110,8 +110,7 @@ public class TestReporteResultadosParciales {
 	
 	@After
 	public void tearDown(){
-		List<POI> coleccionVacia = new ArrayList<POI>();
-		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+		RepositorioPOIs.resetPOIs();
 	}
 	
 

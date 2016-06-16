@@ -14,8 +14,6 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -104,7 +102,6 @@ public class TestNotificarAdministradorBusqueda {
 	
 	@After
 	public void tearDown(){
-		List<POI> coleccionVacia = new ArrayList<POI>();
-		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+		RepositorioPOIs.resetPOIs();
 	}
 }

@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.POI;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReporteParcial;
@@ -16,9 +15,6 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -113,8 +109,6 @@ public class TestReporteResultadosParciales {
 	@After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
-		List<POI> coleccionVacia = new ArrayList<POI>();
-		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
 	}
 	
 

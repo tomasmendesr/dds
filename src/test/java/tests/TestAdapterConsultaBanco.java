@@ -48,35 +48,6 @@ public class TestAdapterConsultaBanco {
 		// Adapter consulta banco
 		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
 		
-		
-		/*
-		// Instancio banco
-		
-		banco = new Banco(new Point(-34.6719, -58.4695));
-		banco.setNombre("Banco Rio");
-		
-		//Instacio rango de atencion de banco
-		double	horaDeAperturaBanco				= 10.0;
-		double	horaDeCierreBanco				= 15.0;
-		int		diaDeInicioDeAtencionBanco		= 1;
-		int		diaDeFinDeAtencionBanco			= 5;
-		RangoDeAtencion rangoDeAtencionDeBanco = 
-		new RangoDeAtencion(horaDeAperturaBanco,horaDeCierreBanco,diaDeInicioDeAt11encionBanco,diaDeFinDeAtencionBanco);
-				
-		//Instancio servicios de banco
-		Servicio atencionAlCliente = new Servicio("Atencion al cliente", rangoDeAtencionDeBanco);
-		Servicio atencionTarjetasDeCredito = new Servicio("Atencion a tarjetas de credito", rangoDeAtencionDeBanco);
-			
-		//Instancio y seteo coleccion de servicios de banco
-		ArrayList<Servicio> coleccionDeServiciosDeBanco = new ArrayList<Servicio>();
-		coleccionDeServiciosDeBanco.add(atencionTarjetasDeCredito);
-		coleccionDeServiciosDeBanco.add(atencionAlCliente);
-		banco.setListaDeServicios(coleccionDeServiciosDeBanco);
-	
-		//Agrega POIs al mapa
-		repoPOIs = new RepositorioPOIs();
-		repoPOIs.agregarPOI(banco);
-		*/
 	}
 	
 	//TESTS DE COMPONENTE EXTERNO STUB

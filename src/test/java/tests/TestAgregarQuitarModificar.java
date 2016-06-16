@@ -1,7 +1,6 @@
 package tests;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.junit.After;
 import org.junit.Assert;
@@ -10,7 +9,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.POI;
 import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
@@ -97,8 +95,7 @@ public class TestAgregarQuitarModificar {
 	
 	@After
 	public void tearDown(){
-		List<POI> coleccionVacia = new ArrayList<POI>();
-		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+		RepositorioPOIs.resetPOIs();
 	}
 	
 }

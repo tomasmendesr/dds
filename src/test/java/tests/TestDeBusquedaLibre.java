@@ -21,7 +21,6 @@ import Master.RepositorioPOIs;
 import org.junit.After;
 import org.junit.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TestDeBusquedaLibre {
@@ -122,8 +121,7 @@ public class TestDeBusquedaLibre {
 	
 	@After
 	public void tearDown(){
-		List<POI> coleccionVacia = new ArrayList<POI>();
-		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+		RepositorioPOIs.resetPOIs();
 	}
 	
 }

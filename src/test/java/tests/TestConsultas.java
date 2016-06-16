@@ -3,6 +3,7 @@ package tests;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -105,7 +106,9 @@ public class TestConsultas {
 		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
 	}
 	
-	
-	
+	@After
+	public void tearDown(){
+		RepositorioPOIs.resetPOIs();
+	}
 	
 }

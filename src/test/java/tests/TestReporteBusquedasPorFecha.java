@@ -2,15 +2,12 @@ package tests;
 
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.POI;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;
@@ -113,7 +110,6 @@ public class TestReporteBusquedasPorFecha {
 
 	@After
 	public void tearDown(){
-		List<POI> coleccionVacia = new ArrayList<POI>();
-		RepositorioPOIs.getInstance().setColeccionDePOIS(coleccionVacia);
+		RepositorioPOIs.resetPOIs();
 	}
 }

@@ -3,6 +3,7 @@ package tests;
 
 
 import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
@@ -95,8 +96,9 @@ public class TestReporteResultadosPorTerminales {
 	public void laTerminalAbastoContieneDosResultados(){
 		terminalAbasto.consultarPOIsXTiempoEstimado("deposito", 0);
 		terminalAbasto.consultarPOIsXTiempoEstimado("caramelos", 0);
+		observerReportesTotales.generarTotalesPorUsuario(terminalAbasto);
 		int resultados = observerReportesTotales.resultadosTotalesEnTerminal(terminalAbasto);
-		//Assert.assertEquals(2, resultados); // Da 1, revisar.
+		Assert.assertEquals(2, resultados); 
 	}
 
 	@After

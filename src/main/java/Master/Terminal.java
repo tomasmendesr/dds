@@ -89,5 +89,8 @@ public class Terminal {
 		.collect(Collectors.toList());
 	}
 	
+	public Boolean recibirMail(){ // Creo este metodo para poder testearlo mientras tanto
+		return true;
+	}
 
 }

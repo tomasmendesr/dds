@@ -21,7 +21,6 @@ import org.junit.Assert;
 
 public class TestNotificarAdministradorBusqueda {
 
-	private Terminal terminal;
 	private NotificarAdministrador observerNotificar;
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
@@ -30,8 +29,9 @@ public class TestNotificarAdministradorBusqueda {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private TerminalAdministradora terminalAdministradora;
-
+	private Terminal terminalAdministradora;
+	private Terminal terminal;
+	
 	@Before
 	public void init(){
 		
@@ -83,7 +83,7 @@ public class TestNotificarAdministradorBusqueda {
 		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 		
 		// Terminal Administradora
-		terminalAdministradora = new TerminalAdministradora("Terminal Central", RepositorioPOIs.getInstance());
+		terminalAdministradora = new Terminal("Terminal Central", RepositorioPOIs.getInstance());
 		
 		// ObserverNotificar
 		observerNotificar = new NotificarAdministrador(terminalAdministradora);

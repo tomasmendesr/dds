@@ -2,17 +2,16 @@ package ObserversTerminal;
 
 import Master.ResultadoBusqueda;
 import Master.Terminal;
-import Master.TerminalAdministradora;
 
 public class NotificarAdministrador implements FuncionalidadExtraTerminal{
 
-	private TerminalAdministradora administrador;
+	private Terminal administrador;
 	
-	public NotificarAdministrador(TerminalAdministradora administrador){
+	public NotificarAdministrador(Terminal administrador){
 		this.setAdministrador(administrador);
 	}
 	
-	public void setAdministrador(TerminalAdministradora administrador) {
+	public void setAdministrador(Terminal administrador) {
 		this.administrador = administrador;
 	}
 	

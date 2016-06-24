@@ -3,7 +3,6 @@ package Master;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,7 +63,7 @@ public class Terminal {
 	
 	public String getFechaYHoraActual(){
 		Calendar fecha = new GregorianCalendar();
-		int año = fecha.get(Calendar.YEAR);
+		int anio = fecha.get(Calendar.YEAR);
 		int mes = fecha.get(Calendar.MONTH);
 		int dia = fecha.get(Calendar.DAY_OF_MONTH);
 		int hora = fecha.get(Calendar.HOUR_OF_DAY);
@@ -72,7 +71,7 @@ public class Terminal {
         int segundo = fecha.get(Calendar.SECOND);
         
         return hora + ":" + minuto + ":" + hora + ":" + segundo + 
-        		" " + dia + "/" + (mes +1) + "/" + año;
+        		" " + dia + "/" + (mes +1) + "/" + anio;
 	}
 	
 	//Consultar Busqueda POIs con TiempoMax

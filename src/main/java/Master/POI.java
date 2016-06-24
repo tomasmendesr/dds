@@ -139,5 +139,12 @@ public abstract class POI {
 	public boolean esValido(){
 		return (this.estaGeolocalizado() && this.tieneNombre()); 
 	}
-		
+
+	// Buscar palabras (para locales comerciales)
+	public void buscarLocalesPorNombre(String unNombre, String[] unasPalabras){
+		if(nombre.equals(unNombre)) { this.modificarPalabrasClave(unasPalabras); }
+	}
+
+	public void modificarPalabrasClave(String[] unasPalabras){}
+
 }

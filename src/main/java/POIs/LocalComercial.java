@@ -2,7 +2,9 @@ package POIs;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.lang.String;
 
 import org.uqbar.geodds.Point;
 
@@ -20,6 +22,8 @@ public class LocalComercial extends POI {
 		this.setRubro(unRubro);
 		ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion = new ArrayList<RangoDeAtencion>();
 		this.setColeccionDeRangosDeAtencion(unaColeccionDeRangosDeAtencion);
+		ArrayList<String> unaColeccionDePalabrasClave = new ArrayList<String>();
+		this.setPalabrasClave(unaColeccionDePalabrasClave);
 	}
 	
 	
@@ -27,6 +31,7 @@ public class LocalComercial extends POI {
 	
 	private Rubro 							rubro;
 	private	List<RangoDeAtencion>			coleccionDeRangosDeAtencion;
+	private	List<String>					coleccionDePalabrasClave;
 
 	
 	//GETTERS Y SETTERS
@@ -46,6 +51,13 @@ public class LocalComercial extends POI {
 	public void setColeccionDeRangosDeAtencion(List<RangoDeAtencion> unaColeccionDeRangosDeAtencion){
 		coleccionDeRangosDeAtencion = unaColeccionDeRangosDeAtencion;
 	}
+
+	public void setPalabrasClave(ArrayList<String> unaColeccionDepalabrasClave) { coleccionDePalabrasClave = unaColeccionDepalabrasClave; }
+
+	public List<String> getColeccionDePalabrasClave(){
+		return coleccionDePalabrasClave;
+	}
+
 	//METODOS
 	
 	public double cercaniaRequerida(){
@@ -65,6 +77,21 @@ public class LocalComercial extends POI {
 		this.getColeccionDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
 
-	
-	
+	public void addPalabraClave(String unaPalabraClave){
+		this.getColeccionDePalabrasClave().add(unaPalabraClave);
+	}
+
+	public void modificarPalabrasClave(String[] unasPalabras){
+		int cantidad = unasPalabras.length;
+		for(int i = 0; i < cantidad ; i+= 1 ){
+			int finalI = i;
+			if(coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[finalI]))){
+				coleccionDePalabrasClave.clear();
+				coleccionDePalabrasClave.addAll(Arrays.asList(unasPalabras));
+			}
+
+		}
+
+	}
+
 }

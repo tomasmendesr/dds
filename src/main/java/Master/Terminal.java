@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ObserversTerminal.FuncionalidadExtraTerminal;
+import POIsExt.Comuna;
 
 public class Terminal {
 	
@@ -14,6 +15,7 @@ public class Terminal {
 	private List<FuncionalidadExtraTerminal>		observers;
 	private String									nombreTerminal;
 	private List<ResultadoBusqueda>					busquedas;
+	private Comuna 									comuna;
 		
 	//CONSTRUCTOR
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
@@ -43,10 +45,6 @@ public class Terminal {
 	public List<FuncionalidadExtraTerminal> getObservers() {
 		return observers;
 	}
-
-	public void addObserver(FuncionalidadExtraTerminal observer){
-		observers.add(observer);
-	}
 	
 	public void setObservers(List<FuncionalidadExtraTerminal> observers) {
 		this.observers = observers;
@@ -56,6 +54,9 @@ public class Terminal {
 		return busquedas;
 	}
 	
+	public void setComuna(Comuna comuna){
+		this.comuna = comuna;
+	}
 	
 	//METODOS
 		
@@ -102,4 +103,12 @@ public class Terminal {
 			RepositorioPOIs.actualizarLocalesComerciales(aca tendria que ir el texto que le pasas);
 		}
 	}*/
+	
+	// Proceso 3: Agregar o quitar acciones
+	public void quitarAccion(FuncionalidadExtraTerminal observer){ // El observer es el encargado de realizar la accion
+		observers.remove(observer); 
+	}
+	public void addObserver(FuncionalidadExtraTerminal observer){
+			observers.add(observer);
+	}
 }

@@ -58,6 +58,10 @@ public class Terminal {
 		this.comuna = comuna;
 	}
 	
+	public Comuna getComuna(){
+		return comuna;
+	}
+	
 	//METODOS
 		
 	//Consultar Busqueda POIs con TiempoMax
@@ -109,6 +113,6 @@ public class Terminal {
 		observers.remove(observer); 
 	}
 	public void addObserver(FuncionalidadExtraTerminal observer){
-			observers.add(observer);
+		observers.add(observer);
 	}
 }

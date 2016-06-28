@@ -81,13 +81,15 @@ public class LocalComercial extends POI {
 		this.getColeccionDePalabrasClave().add(unaPalabraClave);
 	}
 
+	// Modificar palabras clave(Proceso 1)
 	public void modificarPalabrasClave(String[] unasPalabras){
 		int cantidad = unasPalabras.length;
 		for(int i = 0; i < cantidad ; i+= 1 ){
-			int finalI = i;
-			if(coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[finalI]))){
+			int iActual = i;
+			if(coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[iActual]))){
 				coleccionDePalabrasClave.clear();
-				coleccionDePalabrasClave.addAll(Arrays.asList(unasPalabras));
+				List<String> nuevaColeccionDePalabrasClave = new ArrayList<String>(Arrays.asList(unasPalabras));
+				coleccionDePalabrasClave.addAll(nuevaColeccionDePalabrasClave);
 			}
 
 		}

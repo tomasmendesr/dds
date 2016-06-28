@@ -85,12 +85,8 @@ public class RepositorioPOIs {
 		return listaDePOIsACompletar;
 	}
 
-	public void actualizarLocalesComerciales(String unTexto) {
-		String[] campos = unTexto.split(";");
-		String nombre = campos[0];
-		String palabras = campos[1];
-		String[] palabrasABuscar = palabras.split(" ");
-		coleccionDePOIS.stream().forEach(poi -> poi.buscarLocalesPorNombre(nombre,palabrasABuscar));
+	public void buscarPorNombrePOI(String nombre,  String[] unasPalabras) {
+		coleccionDePOIS.stream().forEach(poi -> poi.buscarPorNombre(nombre,unasPalabras));
 	}
 
 }

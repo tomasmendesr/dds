@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import Command.Command;
+import Command.Proceso;
 
 public abstract class Tareas {
 	
@@ -37,7 +37,7 @@ public abstract class Tareas {
 	
 	//Metodos
 	
-	public void ejecutarTarea(Command tipoTarea, Date horario){
+	public void ejecutarTarea(Proceso tipoTarea, Date horario){
 		Timer timer = new Timer();
 		TimerTask tareaProgramada = new TimerTask(){
 			@Override

@@ -2,7 +2,7 @@ package Command;
 
 import Procesos.AccionesUsuarios;
 
-public class ConfigAccionesUsuarios implements Command{
+public class ConfigAccionesUsuarios implements Proceso{
 	
 	
 	//Atributos

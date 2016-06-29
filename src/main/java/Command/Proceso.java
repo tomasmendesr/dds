@@ -1,5 +1,5 @@
 package Command;
 
-public interface Command {
+public interface Proceso {
 	void ejecutar();
 }

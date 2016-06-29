@@ -2,7 +2,7 @@ package Command;
 
 import Procesos.BajaDePOIs;
 
-public class DarBajaPOI implements Command{
+public class DarBajaPOI implements Proceso{
 	
 	//Atributos
 	private BajaDePOIs bajaDePois;

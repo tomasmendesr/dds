@@ -2,7 +2,7 @@ package Command;
 
 import Procesos.ActualizarLocalesComerciales;
 
-public class ActualizarLocales implements Command{
+public class ActualizarLocales implements Proceso{
 
 	//Atributos
 	private ActualizarLocalesComerciales local;

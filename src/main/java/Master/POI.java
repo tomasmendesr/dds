@@ -10,7 +10,7 @@ import java.util.List;
 import java.lang.String;
 
 public abstract class POI {
-/*
+	/*
 	@Override
 	public boolean equals(Object obj){
 	  if (!(obj instanceof POI))
@@ -20,6 +20,8 @@ public abstract class POI {
 	}*/
 	
 	//ATRIBUTOS
+	
+	private Integer					id;
 	private Point 					ubicacion;
 	private String 					nombre;
 	private String 					direccion;
@@ -32,10 +34,12 @@ public abstract class POI {
 	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
+		this.setID(Identity.getIdentityAndIncrement());
 	}	
 		
 	
 	//GETTERS Y SETTERS
+
 	void setUbicacion(Point unaUbicacion) {
 		ubicacion = unaUbicacion;
 		
@@ -93,6 +97,16 @@ public abstract class POI {
 	public Comuna getComuna(){
 		return this.comuna;
 	}
+	
+	public Integer getID() {
+		return id;
+	}
+
+	public void setID(Integer id) {
+		this.id = id;
+	}
+
+
 	//METODOS
 	
 	public boolean estaAMenosDeXMetrosDeOtroPOI(POI otroPOI,double metros){

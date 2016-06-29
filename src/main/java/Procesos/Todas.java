@@ -2,7 +2,7 @@ package Procesos;
 
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
-public class SinCriterio extends TipoDeCriterio { // Afecta a todas las terminales
+public class Todas extends TipoDeCriterio { // Afecta a todas las terminales
 	
 	//Metodos
 	public void agregar(FuncionalidadExtraTerminal accion){

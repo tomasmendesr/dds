@@ -1,4 +1,4 @@
-package tests;
+package testEntrega4;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -118,7 +118,7 @@ public class TestProcesoAccionesUsuarios {
 	}
 	
 	@Test
-	public void noSeAgregarElObserverATerminalFlorida(){ // porque no pertenece a esa comuna
+	public void noSeAgregaElObserverATerminalFlorida(){ // porque no pertenece a esa comuna
 		agregarAccionUsuario= new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
 		agregarAccionUsuario.agregarTerminal(terminalAbasto);
 		agregarAccionUsuario.agregarTerminal(terminalFlorida);

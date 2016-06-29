@@ -1,10 +1,15 @@
-package tests;
+package testEntrega2;
 
+
+
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -13,20 +18,15 @@ import POIsExt.Comuna;
 import POIsExt.Rubro;
 
 
-
-import org.junit.Assert;
-
-public class TestDeCercania {
-	
+public class TestAgregarQuitarModificar {
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
+	private ParadaDeColectivo paradaDel114;
 	private CGP cgp;
 	private Banco banco;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private Point ubicacionCercana;
-	private Point ubicacionLejana;
 	
 	@Before
 	public void init(){
@@ -39,15 +39,14 @@ public class TestDeCercania {
 		zonaComuna8.add(new Point(-34.6621,-58.4240));
 		zonaComuna8.add(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
-		
-		// UbicacionCercana en el Mapa - Sayos 4937 
-		ubicacionCercana = new Point(-34.6717, -58.4679);
-		
-		// UbicacionLejana en el mapa - Av. Juan B. Justo 4045
-		ubicacionLejana = new Point(-34.6048, -58.4591);
-		
+				
+				
 		// Parada del 47 -- Corvanalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
+		paradaDel47.setNombre("Parada del 47");
+		
+		// Parada del 114 -- Mozart 2392
+		paradaDel114 = new ParadaDeColectivo(new Point(-34.6598, -58.4683));
 		
 		// CGP -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669));	
@@ -65,57 +64,38 @@ public class TestDeCercania {
 		// Kiosko de Diarios -- Albariño 3702
 		Rubro rubroKioskoDeDiarios = new Rubro(200.0);
 		kioskoDeDiarios = new LocalComercial(new Point(-34.6717, -58.4673), rubroKioskoDeDiarios);
+		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
+		kioskoDeDiarios.setDireccion("Albariño 3702");
 		kioskoDeDiarios.setComuna(comuna8);
+		
+		//Agrego Pois al repo
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+		RepositorioPOIs.getInstance().agregarPOI(cgp);
+		RepositorioPOIs.getInstance().agregarPOI(banco);
+		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 	}
 	
 	@Test
-	public void testParada47CercanoAMenosDe100Metros(){
-		Assert.assertTrue(paradaDel47.estaCercaDe(ubicacionCercana)); 
-	}
+	public void TestRepositorioPOIsAgregaParadaDel114(){
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
+			Assert.assertTrue(RepositorioPOIs.getInstance().getColeccionDePOIS().contains(paradaDel114)); 
+		}
 	
 	@Test
-	public void testParada47Lejano(){
-		Assert.assertFalse(paradaDel47.estaCercaDe(ubicacionLejana)); 
-	}
-
-	@Test
-	public void testCGPDentroDeLaMismaComuna(){
-			Assert.assertTrue(cgp.estaCercaDe(ubicacionCercana)); 
-	}
-	
-	@Test
-	public void testCGPLejano(){
-			Assert.assertFalse(cgp.estaCercaDe(ubicacionLejana)); 
-	}
-
-	@Test 
-	public void testBancoCercanoAMenosDe500Metros(){
-		Assert.assertTrue(banco.estaCercaDe(ubicacionCercana)); 
+	public void elRepoContieneLos5POIsDelBefore(){
+		Assert.assertEquals(5, RepositorioPOIs.getInstance().getColeccionDePOIS().size());
 	}
 	
 	@Test 
-	public void testBancoLejano(){
-		Assert.assertFalse(banco.estaCercaDe(ubicacionLejana));  
+	public void TestRepositorioPOIsQuitaParadaDel47(){
+		RepositorioPOIs.getInstance().quitarPOI(paradaDel47);
+		Assert.assertEquals(4, RepositorioPOIs.getInstance().getColeccionDePOIS().size()); 
 	}
 	
-	@Test 
-	public void testLibreriaDentroDelRadio(){
-		Assert.assertTrue(libreriaEscolar.estaCercaDe(ubicacionCercana));
-	}
-	
-	@Test
-	public void testLibreriaFueraDelRadio(){
-		Assert.assertFalse(libreriaEscolar.estaCercaDe(ubicacionLejana));
-	}
-	
-	@Test
-	public void testKioskoDeDiariosDentroDelRadio(){
-		Assert.assertTrue(kioskoDeDiarios.estaCercaDe(ubicacionCercana));
-	}
-	
-	@Test
-	public void testKioskoDeDiariosLejano(){
-		Assert.assertFalse(kioskoDeDiarios.estaCercaDe(ubicacionLejana));
+	@After
+	public void tearDown(){
+		RepositorioPOIs.resetPOIs();
 	}
 	
 }

@@ -1,7 +1,5 @@
-package tests;
+package testEntrega3;
 
-
-import java.time.LocalDateTime;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +8,7 @@ import org.uqbar.geodds.Polygon;
 
 import Master.RepositorioPOIs;
 import Master.Terminal;
-import ObserversTerminal.ReportePorFecha;
+import ObserversTerminal.ReporteParcial;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -21,7 +19,7 @@ import POIsExt.Rubro;
 import org.junit.After;
 import org.junit.Assert;
 
-public class TestReporteBusquedasPorFecha {
+public class TestReporteResultadosParciales {
 	
 	private Terminal terminal;
 	private Comuna comuna8;
@@ -31,8 +29,7 @@ public class TestReporteBusquedasPorFecha {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private LocalDateTime fechaActual;
-	private ReportePorFecha observerReportePorFecha;
+	private ReporteParcial observerReportesParciales;
 	
 	@Before
 	public void init(){
@@ -49,6 +46,7 @@ public class TestReporteBusquedasPorFecha {
 	// Parada del 47 -- Corvalan 3691
 	paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 	paradaDel47.setDireccion("Corvalan 3691");
+	paradaDel47.addTag("47");
 		
 	// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 	cgp = new CGP(new Point(-34.6672, -58.4669));
@@ -82,34 +80,36 @@ public class TestReporteBusquedasPorFecha {
 	RepositorioPOIs.getInstance().agregarPOI(banco);
 	RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
 	RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
+		
+	// Observer
+	observerReportesParciales = new ReporteParcial();
 	
-	//Observer
-	observerReportePorFecha = new ReportePorFecha();
-	
-	//Terminal
+	// Terminal
 	terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
-	terminal.addObserver(observerReportePorFecha);
+	terminal.addObserver(observerReportesParciales);
 	
-	fechaActual = LocalDateTime.now();
 }
 	
 	@Test
-	public void seRealizaronDosBusquedasElDiaDeHoy(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
-		int busquedasDeHoy = observerReportePorFecha.busquedasEnFecha(fechaActual.toLocalDate());
-		Assert.assertEquals(2, busquedasDeHoy);
-	}
+	public void seRealizaBusquedaEnTerminalYSeObtiene1Resultado(){
+		terminal.consultarPOIsXTiempoEstimado("asesoramiento", 0);
+		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // Las busquedas pertenecen a esta terminal
+		Assert.assertEquals(1, resultados);
+	} 
+	
 	
 	@Test 
-	public void seRealizaUnaSolabusqueda(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		int busquedasDeHoy = observerReportePorFecha.busquedasEnFecha(fechaActual.toLocalDate());
-		Assert.assertEquals(1, busquedasDeHoy);
+	public void seRealizaBusquedaEnTerminalYSeObtienen2Resultados(){
+		terminal.consultarPOIsXTiempoEstimado("47", 0);
+		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // las busquedas pertenecen a esta terminal
+		Assert.assertEquals(2, resultados);
 	}
-
+	
+	
 	@After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
 	}
+	
+
 }

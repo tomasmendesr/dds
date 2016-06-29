@@ -1,42 +1,44 @@
-package tests;
+package testEntrega4;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.RepositorioPOIs;
+import Master.Terminal;
+import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
 import POIs.CGP;
-
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+import Procesos.AccionesUsuarios;
+import Procesos.ResultadoProceso;
+import Procesos.SegunComuna;
+import Procesos.SinCriterio;
 
+public class TestEjecutarProcesosEnHora {
 
-
-import Master.POI;
-import Master.RepositorioPOIs;
-
-import org.junit.After;
-import org.junit.Assert;
-
-import java.util.List;
-
-public class TestDeBusquedaLibre {
-
-	private Comuna comuna8;
-	private ParadaDeColectivo paradaDel47;
-	private CGP cgp;
-	private Banco banco;
-	private LocalComercial libreriaEscolar;
-	private LocalComercial kioskoDeDiarios;
-	private List<POI> poisEncontrados;
-	private Polygon	zonaComuna8;
 	
-	@Before
-	public void init(){
+		private Terminal terminalAbasto;
+		private Terminal terminalFlorida;
+		private Comuna comuna8;
+		private ParadaDeColectivo paradaDel47;
+		private CGP cgp;
+		private Banco banco;
+		private LocalComercial libreriaEscolar;
+		private LocalComercial kioskoDeDiarios;
+		private Polygon	zonaComuna8;
+		private ReporteTotalesPorUsuario observerReportesTotales;
+		private AccionesUsuarios agregarAccionUsuario;
+		private SegunComuna segunComuna;
+		private ResultadoProceso resultadoProceso;
+		private SinCriterio sinCriterio;
 		
+		@Before
+		public void init(){
 		// Comuna 8
 		comuna8 = new Comuna(8);
 		zonaComuna8 = new Polygon();
@@ -50,7 +52,6 @@ public class TestDeBusquedaLibre {
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 		paradaDel47.setDireccion("Corvalan 3691");
-		paradaDel47.addTag("47");
 			
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669));
@@ -78,50 +79,16 @@ public class TestDeBusquedaLibre {
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 				
-		//Agrega POIs al repoPOIs
+		//Agrega POIs al repositorioPOIs
 		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
 		RepositorioPOIs.getInstance().agregarPOI(cgp);
 		RepositorioPOIs.getInstance().agregarPOI(banco);
 		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
 		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
-	}
-	
+}
 		
-	@Test
-	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
-		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("47");
-		Assert.assertEquals(2, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 y cgp
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
-		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
-		Assert.assertEquals(1, poisEncontrados.size());  
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCaramelos(){
-		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("caramelos");
-		Assert.assertEquals(1, poisEncontrados.size()); 
-	}
-	
-	@Test
-	public void testBusquedaDeTextoLibreDevuelveDireccionDelPOIEncontrado(){
-		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
-		String direccionPOI = poisEncontrados.get(0).getDireccion();
-		Assert.assertEquals("Av Escalada 3100", direccionPOI);
-	}
-	
-	@Test
-	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
-		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
-		String nombrePOI = poisEncontrados.get(0).getNombre();
-		Assert.assertEquals("Asesoria", nombrePOI);
-	}
-	
-	@After
-	public void tearDown(){
-		RepositorioPOIs.resetPOIs();
-	}
-	
+		@Test
+		public void agregarAccionesSeEjecutaEnLaHoraActual(){
+			
+		}
 }

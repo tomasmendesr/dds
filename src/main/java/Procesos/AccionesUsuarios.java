@@ -69,6 +69,7 @@ public class AccionesUsuarios extends Tareas{
 		int afectados = this.getTipoDeCriterio().cantidadDeAfectados();
 		resultadoProceso.setCantElementosAfectados(afectados);
 		resultadoProceso.setResultadoDelProceso(true);
+		//Tareas.guardarTarea(resultadoProceso); tira error de static; Hacer un singleton de la lista de procesos en Tarea?
 		return resultadoProceso;
 	}	
 }

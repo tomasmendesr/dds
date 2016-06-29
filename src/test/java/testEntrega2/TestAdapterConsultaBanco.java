@@ -1,4 +1,4 @@
-package tests;
+package testEntrega2;
 
 
 import java.util.List;

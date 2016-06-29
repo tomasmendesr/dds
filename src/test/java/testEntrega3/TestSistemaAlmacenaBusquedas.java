@@ -1,4 +1,4 @@
-package tests;
+package testEntrega3;
 
 import org.junit.Test;
 import org.uqbar.geodds.Point;

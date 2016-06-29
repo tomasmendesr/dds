@@ -1,12 +1,20 @@
-package tests;
+package testEntrega2;
 
+
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.*;
-import ObserversTerminal.NotificarAdministrador;
+import Adapters.AdapterConsultaBanco;
+import Adapters.AdapterConsultaCGP;
+import ComponentesExternos.ComponenteExternoConsulta;
+import ComponentesExternos.ComponenteExternoConsultaBancoStub;
+import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -15,13 +23,12 @@ import POIsExt.Comuna;
 import POIsExt.Rubro;
 
 
-import org.junit.After;
-import org.junit.Assert;
 
+import Master.POI;
+import Master.RepositorioPOIs;
 
-public class TestNotificarAdministradorBusqueda {
-
-	private NotificarAdministrador observerNotificar;
+public class TestConsultas {
+	
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
@@ -29,8 +36,11 @@ public class TestNotificarAdministradorBusqueda {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private Terminal terminalAdministradora;
-	private Terminal terminal;
+	private AdapterConsultaBanco adapterConsultaBanco;
+	private AdapterConsultaCGP adapterConsultaCGP;
+	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
+	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
+	
 	
 	@Before
 	public void init(){
@@ -74,34 +84,31 @@ public class TestNotificarAdministradorBusqueda {
 		kioskoDeDiarios.setComuna(comuna8);
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
-				
-		//Agrega POIs al repositorioPOIs
-		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
-		RepositorioPOIs.getInstance().agregarPOI(cgp);
-		RepositorioPOIs.getInstance().agregarPOI(banco);
-		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
-		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 		
-		// Terminal Administradora
-		terminalAdministradora = new Terminal("Terminal Central", RepositorioPOIs.getInstance());
+		//Inicializo los componentes externos
 		
-		// ObserverNotificar
-		observerNotificar = new NotificarAdministrador(terminalAdministradora);
+		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
+		componenteExternoConsultaCGPStub = new ComponenteExternoConsultaCGPStub();		
 		
-		// Terminal
-		terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
-		terminal.addObserver(observerNotificar);
+		//Inicializo los adapters
+		
+		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
+		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
+		
+		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaBanco);
+		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaCGP);
 		
 	}
 	
 	@Test
-	public void realizarUnaConsultaConTiempoEstimado0LlamaAlAdministrador(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", -1);
-		Assert.assertTrue(terminalAdministradora.recibirMail());
+	public void consultaEnTodosLosOrigenesDeDatos(){
+		List<POI> listaResultante = RepositorioPOIs.getInstance().consultarPOIs("banco");
+		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
 	}
 	
 	@After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
 	}
+	
 }

@@ -1,22 +1,13 @@
-package tests;
+package testEntrega1;
 
-
-import java.util.List;
-
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Adapters.AdapterConsultaBanco;
-import Adapters.AdapterConsultaCGP;
-import ComponentesExternos.ComponenteExternoConsulta;
-import ComponentesExternos.ComponenteExternoConsultaBancoStub;
-import ComponentesExternos.ComponenteExternoConsultaCGPStub;
 import POIs.Banco;
 import POIs.CGP;
+
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
@@ -27,20 +18,21 @@ import POIsExt.Rubro;
 import Master.POI;
 import Master.RepositorioPOIs;
 
-public class TestConsultas {
-	
+import org.junit.After;
+import org.junit.Assert;
+
+import java.util.List;
+
+public class TestDeBusquedaLibre {
+
 	private Comuna comuna8;
 	private ParadaDeColectivo paradaDel47;
 	private CGP cgp;
 	private Banco banco;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
+	private List<POI> poisEncontrados;
 	private Polygon	zonaComuna8;
-	private AdapterConsultaBanco adapterConsultaBanco;
-	private AdapterConsultaCGP adapterConsultaCGP;
-	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
-	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
-	
 	
 	@Before
 	public void init(){
@@ -58,6 +50,7 @@ public class TestConsultas {
 		// Parada del 47 -- Corvalan 3691
 		paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 		paradaDel47.setDireccion("Corvalan 3691");
+		paradaDel47.addTag("47");
 			
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669));
@@ -84,26 +77,46 @@ public class TestConsultas {
 		kioskoDeDiarios.setComuna(comuna8);
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
+				
+		//Agrega POIs al repoPOIs
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+		RepositorioPOIs.getInstance().agregarPOI(cgp);
+		RepositorioPOIs.getInstance().agregarPOI(banco);
+		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
+	}
+	
 		
-		//Inicializo los componentes externos
-		
-		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
-		componenteExternoConsultaCGPStub = new ComponenteExternoConsultaCGPStub();		
-		
-		//Inicializo los adapters
-		
-		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
-		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
-		
-		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaBanco);
-		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaCGP);
-		
+	@Test
+	public void testLaBusquedaDeTextoLibreReconocePOIsConTag47(){
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("47");
+		Assert.assertEquals(2, poisEncontrados.size()); // En la coleccion debe estar paradaDel47 y cgp
 	}
 	
 	@Test
-	public void consultaEnTodosLosOrigenesDeDatos(){
-		List<POI> listaResultante = RepositorioPOIs.getInstance().consultarPOIs("banco");
-		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
+	public void testLaBusquedaDeTextoLibreReconocePOIsConTagAsesoramiento(){
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
+		Assert.assertEquals(1, poisEncontrados.size());  
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreReconocePOIsConTagCaramelos(){
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("caramelos");
+		Assert.assertEquals(1, poisEncontrados.size()); 
+	}
+	
+	@Test
+	public void testBusquedaDeTextoLibreDevuelveDireccionDelPOIEncontrado(){
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
+		String direccionPOI = poisEncontrados.get(0).getDireccion();
+		Assert.assertEquals("Av Escalada 3100", direccionPOI);
+	}
+	
+	@Test
+	public void testLaBusquedaDeTextoLibreGuardaEfectivamentePOIs(){
+		poisEncontrados = RepositorioPOIs.getInstance().buscarPorTextoLibre("asesoramiento");
+		String nombrePOI = poisEncontrados.get(0).getNombre();
+		Assert.assertEquals("Asesoria", nombrePOI);
 	}
 	
 	@After

@@ -1,24 +1,26 @@
 package Procesos;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.ArrayList;
+import java.util.List;
 
-import Command.Command;
 
 public abstract class Tareas {
 	
 	//Constructor
 	public Tareas(){
-		super();
+		listaProcesos = new ArrayList<ResultadoProceso>();
 	}
 	
 	//Atributos
 	private int cantARepetir;
 	private boolean enviarMailAdmin;
+	private List<ResultadoProceso> listaProcesos;
 	
 	//Getters y Setters
+	public List<ResultadoProceso> getListaProcesos(){
+		return listaProcesos;
+	}
 	public void setCantARepetir(int unaCant){
 		cantARepetir = unaCant;
 	}
@@ -37,18 +39,7 @@ public abstract class Tareas {
 	
 	//Metodos
 	
-	public void ejecutarTarea(Command tipoTarea, Date horario){
-		Timer timer = new Timer();
-		TimerTask tareaProgramada = new TimerTask(){
-			@Override
-			public void run(){
-				tipoTarea.ejecutar();
-			}
-		};
-		timer.schedule(tareaProgramada, horario); 
-		//Esto se ejecuta una vez al horario, para repetir: agregar 3er parametro indicando cada cuanto se repite
-	}
-	
+		
 	public ResultadoProceso realizaTarea(){
 		return new ResultadoProceso();
 	}
@@ -63,5 +54,9 @@ public abstract class Tareas {
 			cantARepetir--;
 		}
 		return resultadoProceso;
+	}
+	
+	public void guardarTarea(ResultadoProceso tarea){
+		this.getListaProcesos().add(tarea);
 	}
 }

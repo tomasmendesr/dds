@@ -1,4 +1,4 @@
-package tests;
+package testEntrega4;
 
 import Master.RepositorioPOIs;
 import Master.Terminal;

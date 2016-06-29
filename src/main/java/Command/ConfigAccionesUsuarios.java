@@ -14,6 +14,6 @@ public class ConfigAccionesUsuarios implements Command{
 	}
 	
 	public void ejecutar(){
-//		acciones.configurar(); En este metodo tienen que acoplarse a lo que haga su proceso
+		acciones.realizarAccion(); //En este metodo tienen que acoplarse a lo que haga su proceso
 	}
 }

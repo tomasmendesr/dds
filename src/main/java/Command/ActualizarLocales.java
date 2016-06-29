@@ -13,6 +13,6 @@ public class ActualizarLocales implements Command{
 	}
 	
 	public void ejecutar(){
-//		local.actualizar(); En este metodo tienen que acoplarse con lo que hagan sus procesos
+		local.realizarAccion(); //En este metodo tienen que acoplarse con lo que hagan sus procesos
 	}
 }

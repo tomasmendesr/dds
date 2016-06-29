@@ -21,9 +21,7 @@ public class RepositorioPOIs {
 
 	//Singleton del Repo
 	public static RepositorioPOIs getInstance() {
-		if (repositorioPOIs == null) {
-			repositorioPOIs = new RepositorioPOIs();
-		}
+		if (repositorioPOIs == null) repositorioPOIs = new RepositorioPOIs();
 		return repositorioPOIs;
 	}
 
@@ -54,7 +52,7 @@ public class RepositorioPOIs {
 	//ver como hacer para dejar de suponer que el POI ingresado es siempre valido
 
 	public void agregarPOI(POI unPOI) {
-		coleccionDePOIS.add(unPOI);
+		coleccionDePOIS.add(unPOI.getID(), unPOI);
 	}
 
 	public void quitarPOI(POI unPOI) {

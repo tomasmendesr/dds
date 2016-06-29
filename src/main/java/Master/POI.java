@@ -141,7 +141,7 @@ public abstract class POI {
 		return (this.estaGeolocalizado() && this.tieneNombre()); 
 	}
 
-	// Identificar si tiene el nombre especificado en el texto(para locales comerciales)
+	// Identificar si tiene el nombre especificado en el texto(para modificar locales comerciales)
 	public Integer tieneElNombreEspecificado(String unNombre,  String[] unasPalabras){
 		if(nombre.equals(unNombre)){ return this.tienePalabrasEspecificadas(unasPalabras); }
 		else return 0;

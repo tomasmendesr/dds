@@ -3,12 +3,12 @@ package Master;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import Command.Command;
+import Command.Proceso;
 
 public class Admin {
 
 
-	public void ejecutarTarea(Command tipoTarea, Date horario){
+	public void ejecutarTarea(Proceso tipoTarea, Date horario){
 		Timer timer = new Timer();
 		TimerTask tareaProgramada = new TimerTask(){
 			@Override
@@ -19,7 +19,7 @@ public class Admin {
 		timer.schedule(tareaProgramada, horario); 
 	}
 	
-	public void ejecutarTareaPeriodica(Command tipoTarea, Date horario, int frecuencia){
+	public void ejecutarTareaPeriodica(Proceso tipoTarea, Date horario, int frecuencia){
 		Timer timer = new Timer();
 		TimerTask tareaProgramada = new TimerTask(){
 			@Override

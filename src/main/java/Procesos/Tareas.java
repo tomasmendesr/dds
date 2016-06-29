@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public abstract class Tareas {
 	
 	//Constructor
@@ -39,7 +38,7 @@ public abstract class Tareas {
 	
 	//Metodos
 	
-		
+
 	public ResultadoProceso realizaTarea(){
 		return new ResultadoProceso();
 	}

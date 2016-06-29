@@ -2,6 +2,7 @@ package Procesos;
 
 import Master.RepositorioPOIs;
 import POIs.LocalComercial;
+import org.mockito.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,21 +13,43 @@ public class ActualizarLocalesComerciales extends Tareas{
 
     //ATRIBUTOS
     private List<LocalComercial> localesComerciales;
+    private String texto;
 
-    //Constructor
-    public ActualizarLocalesComerciales(RepositorioPOIs repositorioPOIs){
+    //CONSTRUCTOR
+    public ActualizarLocalesComerciales(){
         super();
         localesComerciales = new ArrayList<LocalComercial>();
 
     }
 
-    //Metodos
-    public void actualizarLocalesComerciales(String unTexto) {
-        String[] campos = unTexto.split(";");
+    //GETTERS Y SETTERS
+    public List<LocalComercial> getTodasLasTerminales() {
+        return localesComerciales;
+    }
+
+    public void setTodasLasTerminales(List<LocalComercial> localesComerciales) {
+        this.localesComerciales = localesComerciales;
+    }
+
+    public String getTexto(){
+        return texto;
+    }
+
+    public void setTexto(String unTexto){
+        texto = unTexto;
+    }
+
+    //METODOS
+    public void agregarLocalComercial(LocalComercial unLocal) {
+        localesComerciales.add(unLocal);
+    }
+
+    public ResultadoProceso realizarAccion() {
+        String[] campos = texto.split(";");
         String nombre = campos[0];
         String palabras = campos[1];
         String[] palabrasABuscar = palabras.split(" ");
-        this.buscarPorNombreLocalComercial(nombre,palabrasABuscar);
+        return this.buscarPorNombreLocalComercial(nombre,palabrasABuscar);
 
     }
 

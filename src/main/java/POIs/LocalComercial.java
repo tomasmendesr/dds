@@ -82,6 +82,7 @@ public class LocalComercial extends POI {
 		this.getColeccionDePalabrasClave().add(unaPalabraClave);
 	}
 
+	//Modificar locales comerciales
 	public int tieneElNombreBuscado(String nombre,  String[] unasPalabras){
 		if(nombre.equals(nombre)){ return this.tienePalabrasBuscadas(unasPalabras); }
 		else return 0;
@@ -93,9 +94,7 @@ public class LocalComercial extends POI {
 		for (int i = 0; i < cantidad; i += 1) {
 			int iActual = i;
 			if (coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[iActual]))) {
-				coleccionDePalabrasClave.clear();
-				List<String> nuevaColeccionDePalabrasClave = new ArrayList<String>(Arrays.asList(unasPalabras));
-				coleccionDePalabrasClave.addAll(nuevaColeccionDePalabrasClave);
+				this.actualizarPalabrasClaves(unasPalabras);
 				marcador = 1;
 			}
 
@@ -103,6 +102,12 @@ public class LocalComercial extends POI {
 		if(marcador == 1){ return 1; }
 		else return 0;
 
+	}
+
+	public void actualizarPalabrasClaves(String[] unasPalabras){
+		coleccionDePalabrasClave.clear();
+		List<String> nuevaColeccionDePalabrasClave = new ArrayList<String>(Arrays.asList(unasPalabras));
+		coleccionDePalabrasClave.addAll(nuevaColeccionDePalabrasClave);
 	}
 
 }

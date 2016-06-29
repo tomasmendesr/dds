@@ -1,6 +1,11 @@
 package Procesos;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import Command.Command;
 
 public abstract class Tareas {
 	
@@ -31,6 +36,19 @@ public abstract class Tareas {
 	}
 	
 	//Metodos
+	
+	public void ejecutarTarea(Command tipoTarea, Date horario){
+		Timer timer = new Timer();
+		TimerTask tareaProgramada = new TimerTask(){
+			@Override
+			public void run(){
+				tipoTarea.ejecutar();
+			}
+		};
+		timer.schedule(tareaProgramada, horario); 
+		//Esto se ejecuta una vez al horario, para repetir: agregar 3er parametro indicando cada cuanto se repite
+	}
+	
 	public ResultadoProceso realizaTarea(){
 		return new ResultadoProceso();
 	}

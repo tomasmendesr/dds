@@ -99,14 +99,6 @@ public class Terminal {
 		return true;
 	}
 	
-	/*public void ejecutarActualizarComercios(String fecha, String hora){
-		String fechaActual = FechaActual.getFecha();
-		String horaActual = FechaActual.getHora();
-		
-		if((fechaActual == fecha) && (horaActual == hora)){
-			RepositorioPOIs.actualizarLocalesComerciales(aca tendria que ir el texto que le pasas);
-		}
-	}*/
 	
 	// Proceso 3: Agregar o quitar acciones
 	public void quitarAccion(FuncionalidadExtraTerminal observer){ // El observer es el encargado de realizar la accion

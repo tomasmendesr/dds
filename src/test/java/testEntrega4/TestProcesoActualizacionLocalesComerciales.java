@@ -10,10 +10,15 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+<<<<<<< HEAD
 import Procesos.ActualizarLocalesComerciales;
 import Procesos.ResultadoProceso;
 import org.junit.After;
 import org.junit.Assert;
+=======
+
+import org.junit.After;
+>>>>>>> origin/master
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
@@ -156,6 +161,11 @@ public class TestProcesoActualizacionLocalesComerciales {
     public void tearDown(){
         RepositorioPOIs.resetPOIs();
     }
+    
+    @After
+	public void tearDown(){
+		RepositorioPOIs.resetPOIs();
+	}
 
 }
 

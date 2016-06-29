@@ -1,5 +1,6 @@
 package testEntrega4;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
@@ -17,7 +18,7 @@ import POIsExt.Rubro;
 import Procesos.AccionesUsuarios;
 import Procesos.ResultadoProceso;
 import Procesos.SegunComuna;
-import Procesos.SinCriterio;
+import Procesos.Todas;
 
 public class TestEjecutarProcesosEnHora {
 
@@ -35,7 +36,7 @@ public class TestEjecutarProcesosEnHora {
 		private AccionesUsuarios agregarAccionUsuario;
 		private SegunComuna segunComuna;
 		private ResultadoProceso resultadoProceso;
-		private SinCriterio sinCriterio;
+		private Todas sinCriterio;
 		
 		@Before
 		public void init(){
@@ -90,5 +91,10 @@ public class TestEjecutarProcesosEnHora {
 		@Test
 		public void agregarAccionesSeEjecutaEnLaHoraActual(){
 			
+		}
+		
+		@After
+		public void tearDown(){
+			RepositorioPOIs.resetPOIs();
 		}
 }

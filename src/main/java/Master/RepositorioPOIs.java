@@ -3,6 +3,7 @@ package Master;
 import Adapters.AdapterConsulta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,10 +84,6 @@ public class RepositorioPOIs {
 		adapters.forEach(adapter -> listaDePOIsACompletar.addAll(adapter.realizarConsulta(unaConsulta)));
 		listaDePOIsACompletar.addAll(this.buscarPorTextoLibre(unaConsulta));
 		return listaDePOIsACompletar;
-	}
-
-	public void buscarPorNombrePOI(String nombre,  String[] unasPalabras) {
-		coleccionDePOIS.stream().forEach(poi -> poi.buscarPorNombre(nombre,unasPalabras));
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.lang.String;
 
+import Procesos.ResultadoProceso;
 import org.uqbar.geodds.Point;
 
 import Master.POI;
@@ -81,18 +82,26 @@ public class LocalComercial extends POI {
 		this.getColeccionDePalabrasClave().add(unaPalabraClave);
 	}
 
-	// Modificar palabras clave(Proceso 1)
-	public void modificarPalabrasClave(String[] unasPalabras){
+	public int tieneElNombreBuscado(String nombre,  String[] unasPalabras){
+		if(nombre.equals(nombre)){ return this.tienePalabrasBuscadas(unasPalabras); }
+		else return 0;
+	}
+
+	public int tienePalabrasBuscadas(String[] unasPalabras) {
 		int cantidad = unasPalabras.length;
-		for(int i = 0; i < cantidad ; i+= 1 ){
+		int marcador = 0;
+		for (int i = 0; i < cantidad; i += 1) {
 			int iActual = i;
-			if(coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[iActual]))){
+			if (coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[iActual]))) {
 				coleccionDePalabrasClave.clear();
 				List<String> nuevaColeccionDePalabrasClave = new ArrayList<String>(Arrays.asList(unasPalabras));
 				coleccionDePalabrasClave.addAll(nuevaColeccionDePalabrasClave);
+				marcador = 1;
 			}
 
 		}
+		if(marcador == 1){ return 1; }
+		else return 0;
 
 	}
 

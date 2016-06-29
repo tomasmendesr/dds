@@ -9,6 +9,8 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+
+import org.junit.After;
 import org.junit.Before;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
@@ -52,6 +54,11 @@ public class TestProcesoActualizacionLocalesComerciales {
         RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 
     }
+    
+    @After
+	public void tearDown(){
+		RepositorioPOIs.resetPOIs();
+	}
 
 }
 

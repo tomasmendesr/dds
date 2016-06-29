@@ -1,5 +1,6 @@
 package testEntrega4;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
@@ -90,5 +91,10 @@ public class TestEjecutarProcesosEnHora {
 		@Test
 		public void agregarAccionesSeEjecutaEnLaHoraActual(){
 			
+		}
+		
+		@After
+		public void tearDown(){
+			RepositorioPOIs.resetPOIs();
 		}
 }

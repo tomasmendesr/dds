@@ -1,4 +1,4 @@
-package Command;
+package CommandProcesos;
 
 import Procesos.BajaDePOIs;
 

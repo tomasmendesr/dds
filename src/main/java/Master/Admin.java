@@ -3,7 +3,7 @@ package Master;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import Command.Proceso;
+import CommandProcesos.Proceso;
 
 public class Admin {
 

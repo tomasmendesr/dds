@@ -1,29 +1,23 @@
 package Master;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Identity {
 
 	//CUANDO SE HACE EL TEST SE VA A TENER QUE INICIALIZAR LA VARIABLE DE CLASE
 	
 	//ATRIBUTOS
 	
-	private static Integer num;
+	private static AtomicInteger num = new AtomicInteger(0);
 	
 	//Geters y seters
 	
-	public static Integer getIdentityAndIncrement(){
-		if(num == null) Identity.setIdentity(0);
-		Integer aux = num;
-		Identity.setIdentity(num++);
-		return aux;
-	}
-		
 	public static Integer getIdentity(){
-		if(num == null) Identity.setIdentity(0);
-		return num;
+		return num.get();
 	}
 	
-	public static void setIdentity(Integer numAux){
-		num = numAux;
+	public static Integer getIdentityAndIncrement(){
+		return num.getAndIncrement();		
 	}
 	
 	

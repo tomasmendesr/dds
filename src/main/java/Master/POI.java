@@ -142,11 +142,11 @@ public abstract class POI {
 	}
 
 	// Identificar si tiene el nombre especificado en el texto(para locales comerciales)
-	public int tieneElNombreEspecificado(String nombre,  String[] unasPalabras){
-		if(nombre.equals(nombre)){ return this.tienePalabrasEspecificadas(unasPalabras); }
+	public Integer tieneElNombreEspecificado(String unNombre,  String[] unasPalabras){
+		if(nombre.equals(unNombre)){ return this.tienePalabrasEspecificadas(unasPalabras); }
 		else return 0;
 	}
 
-	public int tienePalabrasEspecificadas(String[] unasPalabras) { return 0; }
+	public Integer tienePalabrasEspecificadas(String[] unasPalabras) { return 0; }
 
 }

@@ -16,7 +16,10 @@ public class ActualizarLocalesComerciales extends Tareas{
     private String texto;
 
     //CONSTRUCTOR
-    public ActualizarLocalesComerciales(){ super(); }
+    public ActualizarLocalesComerciales(RepositorioPOIs unRepositorioPOIs){
+        super();
+        repositorioPOIs = unRepositorioPOIs;
+    }
 
     //GETTERS Y SETTERS
     public String getTexto(){
@@ -34,15 +37,14 @@ public class ActualizarLocalesComerciales extends Tareas{
         String palabras = campos[1];
         String[] palabrasABuscar = palabras.split(" ");
         return this.modificarLocalesComerciales(nombre,palabrasABuscar);
-
     }
 
     public ResultadoProceso modificarLocalesComerciales(String nombre,  String[] unasPalabras) {
         ResultadoProceso resultadoProceso = new ResultadoProceso();
         resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
-        int localesAfectados = repositorioPOIs.cantidadDeLocalesModificados(nombre,unasPalabras);
+        Integer localesAfectados = repositorioPOIs.cantidadDeLocalesModificados(nombre,unasPalabras);
         resultadoProceso.setCantElementosAfectados(localesAfectados);
-        if(localesAfectados == 0) { resultadoProceso.setResultadoDelProceso(false); }
+        if(localesAfectados.equals(0)) { resultadoProceso.setResultadoDelProceso(false); }
         else { resultadoProceso.setResultadoDelProceso(true); }
         return resultadoProceso;
 

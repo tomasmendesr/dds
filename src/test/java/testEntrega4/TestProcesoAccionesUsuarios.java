@@ -85,7 +85,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(2,terminalAbasto.getObservers().size());
 		Assert.assertEquals(2,terminalLugano.getObservers().size());
 	}
@@ -96,7 +96,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(1, terminalFlorida.getObservers().size()); // tiene el ReportePorFecha
 	}
 	
@@ -106,7 +106,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		resultadoProceso = accionUsuario.realizarAccion();
+		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(2, resultadoProceso.getCantElementosAfectados()) ;
 	}
 	
@@ -118,7 +118,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(2,terminalAbasto.getObservers().size()); // reportePorFecha y reportestotales
 		Assert.assertEquals(2, terminalFlorida.getObservers().size());	
 	}
@@ -129,7 +129,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		resultadoProceso = accionUsuario.realizarAccion();
+		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(3, resultadoProceso.getCantElementosAfectados()) ;
 	}
 	
@@ -142,7 +142,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
 		accionUsuario.agregarTerminal(terminalLugano);
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalAbasto);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(2, terminalAbasto.getObservers().size()); // reportePorFecha y reportesTotales
 	}
 	
@@ -153,7 +153,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
 		accionUsuario.agregarTerminal(terminalLugano);
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalAbasto);
-		resultadoProceso = accionUsuario.realizarAccion();
+		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(1, resultadoProceso.getCantElementosAfectados());
 	}
 	
@@ -165,7 +165,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
 		accionUsuario.agregarTerminal(terminalLugano);
-		resultadoProceso = accionUsuario.realizarAccion();
+		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(0, terminalLugano.getObservers().size()); // no tienen ningun observer
 		Assert.assertEquals(0, terminalAbasto.getObservers().size());
 	}
@@ -176,7 +176,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
 		accionUsuario.agregarTerminal(terminalLugano);
-		resultadoProceso = accionUsuario.realizarAccion();
+		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(1, terminalFlorida.getObservers().size()); 
 	}
 	
@@ -186,7 +186,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		resultadoProceso = accionUsuario.realizarAccion();
+		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(2, resultadoProceso.getCantElementosAfectados()) ;
 	}
 	
@@ -198,7 +198,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalAbasto);
 		accionUsuario.agregarTerminal(terminalFlorida);
 		accionUsuario.agregarTerminal(terminalLugano);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(0,terminalAbasto.getObservers().size()); 
 		Assert.assertEquals(0, terminalFlorida.getObservers().size());	
 		Assert.assertEquals(0, terminalFlorida.getObservers().size());
@@ -213,7 +213,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
 		accionUsuario.agregarTerminal(terminalLugano);
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalLugano);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(0, terminalLugano.getObservers().size());
 	}
 	
@@ -224,7 +224,7 @@ public class TestProcesoAccionesUsuarios {
 		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
 		accionUsuario.agregarTerminal(terminalLugano);
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalLugano);
-		accionUsuario.realizarAccion();
+		accionUsuario.realizarProceso();
 		Assert.assertEquals(1, terminalAbasto.getObservers().size());
 		Assert.assertEquals(1, terminalFlorida.getObservers().size());
 	}

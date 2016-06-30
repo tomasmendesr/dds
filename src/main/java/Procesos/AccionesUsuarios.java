@@ -54,7 +54,7 @@ public class AccionesUsuarios extends Proceso{
 		todasLasTerminales.add(unaTerminal);
 	}
 	// Metodos
-	public ResultadoProceso realizarAccion(){
+	public ResultadoProceso realizarProceso(){
 		ResultadoProceso resultadoProceso = new ResultadoProceso();
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
 		this.getTipoDeCriterio().setTodasLasTerminales(this.getTodasLasTerminales());

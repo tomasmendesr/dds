@@ -3,9 +3,10 @@ package Master;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import Command.Proceso;
+import CommandProcesos.Proceso;
+import Procesos.ResultadoProceso;
 
-public class Admin {
+public class GestorProcesos {
 
 
 	public void ejecutarTarea(Proceso tipoTarea, Date horario){

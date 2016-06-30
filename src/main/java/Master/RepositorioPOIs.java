@@ -83,4 +83,12 @@ public class RepositorioPOIs {
 		return listaDePOIsACompletar;
 	}
 
+	//Cantidad de locales modificados
+	public Integer cantidadDeLocalesModificados(String nombre,  String[] unasPalabras) {
+		List<POI> localesModificados = new ArrayList<POI>();
+		localesModificados = coleccionDePOIS.stream().filter(unPOI -> (unPOI.tieneElNombreEspecificado(nombre, unasPalabras).equals(1))).collect(Collectors.toList());
+		Integer localesAfectados = localesModificados.size();
+		return localesAfectados;
+	}
+
 }

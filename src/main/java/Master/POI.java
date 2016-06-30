@@ -6,6 +6,7 @@ import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.lang.String;
@@ -155,11 +156,12 @@ public abstract class POI {
 		return (this.estaGeolocalizado() && this.tieneNombre()); 
 	}
 
-	// Buscar por nombre (para locales comerciales)
-	public void buscarPorNombre(String unNombre, String[] unasPalabras){
-		if(nombre.equals(unNombre)) { this.modificarPalabrasClave(unasPalabras); }
+	// Identificar si tiene el nombre especificado en el texto(para modificar locales comerciales)
+	public Integer tieneElNombreEspecificado(String unNombre,  String[] unasPalabras){
+		if(nombre.equals(unNombre)){ return this.tienePalabrasEspecificadas(unasPalabras); }
+		else return 0;
 	}
 
-	public void modificarPalabrasClave(String[] unasPalabras){}
+	public Integer tienePalabrasEspecificadas(String[] unasPalabras) { return 0; }
 
 }

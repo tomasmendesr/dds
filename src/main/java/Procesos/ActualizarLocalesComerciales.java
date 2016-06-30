@@ -39,7 +39,7 @@ public class ActualizarLocalesComerciales extends Proceso{
         resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
         Integer localesAfectados = repositorioPOIs.cantidadDeLocalesModificados(nombre,unasPalabras);
         resultadoProceso.setCantElementosAfectados(localesAfectados);
-        if(localesAfectados.equals(0)) { resultadoProceso.setResultadoDelProceso(false); }
+        if(localesAfectados.equals(0)) { this.falle(); }
         else { resultadoProceso.setResultadoDelProceso(true); }
         return resultadoProceso;
 

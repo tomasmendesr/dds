@@ -111,6 +111,7 @@ public class TestProcesoActualizacionLocalesComerciales {
         //Local comercial
         local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance());
         local.setTexto(texto);
+        local.setCantARepetir(3);
     }
 
    @Test

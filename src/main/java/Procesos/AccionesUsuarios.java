@@ -60,10 +60,18 @@ public class AccionesUsuarios extends Proceso{
 		this.getTipoDeCriterio().setTodasLasTerminales(this.getTodasLasTerminales());
 		switch (agregarOQuitar){
 		case "agregar":
-			this.getTipoDeCriterio().agregar(this.getAccion());
+			try{
+				this.getTipoDeCriterio().agregar(this.getAccion());
+			} catch (NullPointerException e){
+				this.falle();
+			}
 			break;
 		case "quitar":
-			this.getTipoDeCriterio().quitar(this.getAccion());
+			try{
+				this.getTipoDeCriterio().quitar(this.getAccion());
+			}catch(NullPointerException e){
+				this.falle();
+			}
 			break;
 		}
 		int afectados = this.getTipoDeCriterio().cantidadDeAfectados();

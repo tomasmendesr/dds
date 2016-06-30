@@ -1,5 +1,6 @@
 package Master;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -13,7 +14,18 @@ public class GestorProcesos {
 	//atributos
 	private List<ResultadoProceso> resultadosProcesos;
 	private List<Proceso> procesos;
+	
+	//constructor
+	public GestorProcesos(){
+		resultadosProcesos = new ArrayList<ResultadoProceso>();
+		procesos = new ArrayList<Proceso>();
+	}
 
+	//Getters Y setters
+	public List<ResultadoProceso> getResultadosProcesos(){
+		return resultadosProcesos;
+	}
+	
 	public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
 		procesos.add(proceso);
 		this.ejecutarTarea(proceso,horario);

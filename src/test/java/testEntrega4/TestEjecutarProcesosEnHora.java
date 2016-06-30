@@ -25,7 +25,7 @@ import Procesos.ResultadoProceso;
 import Procesos.SegunComuna;
 import Procesos.Proceso;
 import Procesos.Todas;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class TestEjecutarProcesosEnHora {
 
@@ -43,7 +43,9 @@ public class TestEjecutarProcesosEnHora {
 		private AccionesUsuarios agregarAccionUsuario;
 		private SegunComuna segunComuna;
 		private ResultadoProceso resultadoProceso;
-		private Date fecha1;
+		private Date fechaActual;
+		private AccionesUsuarios accionUsuario;
+		private GestorProcesos gestorProcesos;
 		
 		@Before
 		public void init(){
@@ -96,22 +98,24 @@ public class TestEjecutarProcesosEnHora {
 		RepositorioPOIs.getInstance().agregarPOI(banco);
 		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
 		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
-}
+
 		//Instancio gestor procesos
-		GestorProcesos gestorProcesos = new GestorProcesos();
+		gestorProcesos = new GestorProcesos();
 		
 		// Instancio fechas
+		fechaActual = new Date();
 		 
+		//Proceso 
+		accionUsuario = new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
+		accionUsuario.agregarTerminal(terminalAbasto);
+		accionUsuario.agregarTerminal(terminalFlorida);
 		
-		/*@Test
-		public void agregarAccionesSeEjecutaEnLaHoraActual(){
-			
-		ActualizarLocalesComerciales local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance());
-		Proceso actualizarLocales = new ActualizarLocales(local); 
-		Date fechaActual = new Date();
-		
-		gestorProcesos.ejecutarTarea(actualizarLocales,fechaActual);
-		
+}
+		/*
+		@Test
+		public void seEjecutaProcesoCorrectamente(){
+			gestorProcesos.agregarProcesoAEjecutar(agregarAccionUsuario, fechaActual);
+			Assert.assertEquals(1, gestorProcesos.getResultadosProcesos().size());
 		}*/
 		
 		@After

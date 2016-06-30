@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ActualizarLocalesComerciales extends Tareas{
+public class ActualizarLocalesComerciales extends Proceso{
 
     //ATRIBUTOS
     private RepositorioPOIs repositorioPOIs;

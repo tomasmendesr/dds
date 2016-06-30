@@ -8,7 +8,7 @@ import Master.Terminal;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
 
-public class AccionesUsuarios extends Tareas{
+public class AccionesUsuarios extends Proceso{
 
 	//Atributos
 	private TipoDeCriterio criterio;

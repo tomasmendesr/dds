@@ -1,7 +1,6 @@
 package testEntrega4;
 
 import Master.Identity;
-import CommandProcesos.ActualizarLocales;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;
@@ -31,7 +30,7 @@ public class TestProcesoActualizacionLocalesComerciales {
     private CGP cgp;
     private Banco banco;
     private Polygon zonaComuna8;
-    private ActualizarLocales actualizarLocales;
+    //private ActualizarLocales actualizarLocales;
     private ActualizarLocalesComerciales local;
     String texto;
     private ResultadoProceso resultadoProceso;

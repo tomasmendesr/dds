@@ -9,9 +9,6 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Master.Identity;
-import CommandProcesos.ActualizarLocales;
-import CommandProcesos.ConfigAccionesUsuarios;
-import CommandProcesos.Proceso;
 import Master.GestorProcesos;
 import Master.RepositorioPOIs;
 import Master.Terminal;
@@ -26,7 +23,7 @@ import Procesos.AccionesUsuarios;
 import Procesos.ActualizarLocalesComerciales;
 import Procesos.ResultadoProceso;
 import Procesos.SegunComuna;
-import Procesos.Tareas;
+import Procesos.Proceso;
 import Procesos.Todas;
 import junit.framework.Assert;
 

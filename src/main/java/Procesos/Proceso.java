@@ -4,10 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Tareas {
+public abstract class Proceso {
 	
 	//Constructor
-	public Tareas(){
+	public Proceso(){
+		
 		listaProcesos = new ArrayList<ResultadoProceso>();
 	}
 	
@@ -39,7 +40,7 @@ public abstract class Tareas {
 	//Metodos
 	
 
-	public ResultadoProceso realizaTarea(){
+	public ResultadoProceso realizarProceso(){
 		return new ResultadoProceso();
 	}
 	
@@ -49,7 +50,7 @@ public abstract class Tareas {
 		resultadoProceso.setCantElementosAfectados(0);
 		resultadoProceso.setResultadoDelProceso(false);
 		while(cantARepetir == 0){
-			resultadoProceso = this.realizaTarea();
+			resultadoProceso = this.realizarProceso();
 			cantARepetir--;
 		}
 		return resultadoProceso;
@@ -58,4 +59,5 @@ public abstract class Tareas {
 	public void guardarTarea(ResultadoProceso tarea){
 		this.getListaProcesos().add(tarea);
 	}
+	
 }

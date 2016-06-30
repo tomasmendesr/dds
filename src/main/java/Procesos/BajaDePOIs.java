@@ -2,7 +2,7 @@ package Procesos;
 
 import Master.RepositorioPOIs;
 
-public class BajaDePOIs extends Tareas{
+public class BajaDePOIs extends Proceso{
 	
 	//CONSTRUCTOR
 	
@@ -27,8 +27,15 @@ public class BajaDePOIs extends Tareas{
 	
 	//METODOS
 	
-	private void bajarUnPOI(Integer unID){
-		this.getRepositorioDePOIs().getColeccionDePOIS().remove(unID);
+	@Override
+	public ResultadoProceso realizarProceso(){
+		ResultadoProceso resultado = new ResultadoProceso();
+		
+		
+		
+		return null; 
 	}
+	
+	
 	
 }

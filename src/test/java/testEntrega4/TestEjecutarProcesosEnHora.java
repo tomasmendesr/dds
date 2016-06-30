@@ -1,11 +1,17 @@
 package testEntrega4;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import CommandProcesos.ActualizarLocales;
+import CommandProcesos.ConfigAccionesUsuarios;
+import CommandProcesos.Proceso;
+import Master.GestorProcesos;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReporteTotalesPorUsuario;
@@ -16,9 +22,12 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 import Procesos.AccionesUsuarios;
+import Procesos.ActualizarLocalesComerciales;
 import Procesos.ResultadoProceso;
 import Procesos.SegunComuna;
+import Procesos.Tareas;
 import Procesos.Todas;
+import junit.framework.Assert;
 
 public class TestEjecutarProcesosEnHora {
 
@@ -36,7 +45,7 @@ public class TestEjecutarProcesosEnHora {
 		private AccionesUsuarios agregarAccionUsuario;
 		private SegunComuna segunComuna;
 		private ResultadoProceso resultadoProceso;
-		private Todas sinCriterio;
+		private Date fecha1;
 		
 		@Before
 		public void init(){
@@ -87,11 +96,22 @@ public class TestEjecutarProcesosEnHora {
 		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
 		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 }
+		//Instancio gestor procesos
+		GestorProcesos gestorProcesos = new GestorProcesos();
 		
-		@Test
+		// Instancio fechas
+		 
+		
+		/*@Test
 		public void agregarAccionesSeEjecutaEnLaHoraActual(){
 			
-		}
+		ActualizarLocalesComerciales local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance());
+		Proceso actualizarLocales = new ActualizarLocales(local); 
+		Date fechaActual = new Date();
+		
+		gestorProcesos.ejecutarTarea(actualizarLocales,fechaActual);
+		
+		}*/
 		
 		@After
 		public void tearDown(){

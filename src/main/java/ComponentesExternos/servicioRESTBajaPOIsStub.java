@@ -16,7 +16,7 @@ public class servicioRESTBajaPOIsStub{
 		fecha.setMinutes(0);
 		fecha.setMonth(7);
 		fecha.setYear(116);		
-		poisABajar.put(fecha,poiID);
+		poisABajar.put(poiID,fecha);
 		return poisABajar;		
 	}
 	

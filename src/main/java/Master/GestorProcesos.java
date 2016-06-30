@@ -26,6 +26,13 @@ public class GestorProcesos {
 		return resultadosProcesos;
 	}
 	
+	public List<Proceso> getProcesos(){
+		return procesos;
+	}
+	
+	/*public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
+	}*/
+	
 	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantARepetir){
 		procesos.add(proceso);
 		this.ejecutarTarea(proceso,horario,cantARepetir);
@@ -39,6 +46,7 @@ public class GestorProcesos {
 				ResultadoProceso resultado = proceso.realizarProceso();
 				proceso.setCantARepetir(cantArepetir);
 				resultadosProcesos.add(resultado);
+				procesos.remove(proceso);
 			}
 		};
 		timer.schedule(tareaProgramada, horario,cantArepetir); 

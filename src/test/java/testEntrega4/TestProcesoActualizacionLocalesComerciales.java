@@ -1,10 +1,7 @@
 package testEntrega4;
 
-<<<<<<< HEAD
 import Master.Identity;
-=======
 import CommandProcesos.ActualizarLocales;
->>>>>>> 820c1016a708620f6bf5d976428f29161942dfb6
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;

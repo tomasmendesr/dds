@@ -8,14 +8,11 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-<<<<<<< HEAD
 import Master.Identity;
-=======
 import CommandProcesos.ActualizarLocales;
 import CommandProcesos.ConfigAccionesUsuarios;
 import CommandProcesos.Proceso;
 import Master.GestorProcesos;
->>>>>>> 820c1016a708620f6bf5d976428f29161942dfb6
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReporteTotalesPorUsuario;

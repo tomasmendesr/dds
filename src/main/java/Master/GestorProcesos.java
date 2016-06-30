@@ -26,15 +26,14 @@ public class GestorProcesos {
 		return resultadosProcesos;
 	}
 	
-<<<<<<< HEAD
 	public List<Proceso> getProcesos(){
 		return procesos;
 	}
 	
-	public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
-=======
+	/*public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
+	}*/
+	
 	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantARepetir){
->>>>>>> 4e3009d21434c637aedaa3d5ce84b101c94d12e5
 		procesos.add(proceso);
 		this.ejecutarTarea(proceso,horario,cantARepetir);
 	}

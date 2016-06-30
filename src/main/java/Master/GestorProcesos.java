@@ -26,31 +26,22 @@ public class GestorProcesos {
 		return resultadosProcesos;
 	}
 	
-	public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
+	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantARepetir){
 		procesos.add(proceso);
-		this.ejecutarTarea(proceso,horario);
+		this.ejecutarTarea(proceso,horario,cantARepetir);
 	}
 	
-	public void ejecutarTarea(Proceso proceso, Date horario){
+	public void ejecutarTarea(Proceso proceso, Date horario, int cantArepetir){
 		Timer timer = new Timer();
 		TimerTask tareaProgramada = new TimerTask(){
 			@Override
 			public void run(){
 				ResultadoProceso resultado = proceso.realizarProceso();
+				proceso.setCantARepetir(cantArepetir);
 				resultadosProcesos.add(resultado);
 			}
 		};
-		timer.schedule(tareaProgramada, horario); 
+		timer.schedule(tareaProgramada, horario,cantArepetir); 
 	}
 	
-	public void ejecutarTareaPeriodica(Proceso proceso, Date horario, int frecuencia){
-		Timer timer = new Timer();
-		TimerTask tareaProgramada = new TimerTask(){
-			@Override
-			public void run(){
-				proceso.realizarProceso();
-			}
-		};
-		timer.schedule(tareaProgramada, horario, frecuencia); 
-	}
 }

@@ -156,12 +156,14 @@ public abstract class POI {
 		return (this.estaGeolocalizado() && this.tieneNombre()); 
 	}
 
-	// Identificar si tiene el nombre especificado en el texto(para modificar locales comerciales)
-	public Integer tieneElNombreEspecificado(String unNombre,  String[] unasPalabras){
+	// Identificar si cumple los requisitos: si tiene el nombre especificado en el texto(para modificar locales comerciales)
+	public Boolean tieneNombreYPalabrasEspecificadas(String unNombre,  String[] unasPalabras){
 		if(nombre.equals(unNombre)){ return this.tienePalabrasEspecificadas(unasPalabras); }
-		else return 0;
+		else return Boolean.FALSE;
 	}
 
-	public Integer tienePalabrasEspecificadas(String[] unasPalabras) { return 0; }
+	public Boolean tienePalabrasEspecificadas(String[] unasPalabras) { return Boolean.FALSE; }
+
+	public void actualizarPalabrasClaves(String[] unasPalabras){ }
 
 }

@@ -83,12 +83,20 @@ public class RepositorioPOIs {
 		return listaDePOIsACompletar;
 	}
 
-	//Cantidad de locales modificados
-	public Integer cantidadDeLocalesModificados(String nombre,  String[] unasPalabras) {
-		List<POI> localesModificados = new ArrayList<POI>();
-		localesModificados = coleccionDePOIS.stream().filter(unPOI -> (unPOI.tieneElNombreEspecificado(nombre, unasPalabras).equals(1))).collect(Collectors.toList());
-		Integer localesAfectados = localesModificados.size();
-		return localesAfectados;
+	//Agregar y quitar lista de POIs (para locales comerciales)
+	public void eliminarListaDePOIs(List<POI> unaListaDePois){
+		this.coleccionDePOIS.forEach(unPOI -> this.quitarPOI(unPOI));
+	}
+
+	public void agregarListaDePOIs(List<POI> unaListaDePois){
+		this.coleccionDePOIS.forEach(unPOI -> this.agregarPOI(unPOI));
+	}
+
+	//Devolver Locales comerciales que cumplen requisitos para ser modificados
+	public List<POI> devolverLocalesComercialesQueCumplenRequisitos(String nombre,  String[] unasPalabras) {
+		List<POI> localesQueCumplenRequisitos = new ArrayList<POI>();
+		localesQueCumplenRequisitos = coleccionDePOIS.stream().filter(unPOI -> (unPOI.tieneNombreYPalabrasEspecificadas(nombre, unasPalabras).equals(Boolean.TRUE))).collect(Collectors.toList());
+		return localesQueCumplenRequisitos;
 	}
 
 }

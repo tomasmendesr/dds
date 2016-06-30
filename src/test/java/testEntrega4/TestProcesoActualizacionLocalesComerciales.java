@@ -108,13 +108,13 @@ public class TestProcesoActualizacionLocalesComerciales {
         //Texto
         texto = "Asterisco;escuela ropa uniformes buzos";
 
-        //Local comercial
+     /*   //Local comercial
         local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance());
         local.setTexto(texto);
-        local.setCantARepetir(3);
+        local.setCantARepetir(3); */
     }
 
-   @Test
+ /*  @Test
     public void laCantidadDeLocalesModificadosEs1(){
         ResultadoProceso resultadoProceso = local.realizarProceso();
         Assert.assertEquals(1, resultadoProceso.getCantElementosAfectados());
@@ -157,7 +157,7 @@ public class TestProcesoActualizacionLocalesComerciales {
     @After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
-	}
+	} */
 
 }
 

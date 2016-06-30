@@ -85,12 +85,12 @@ public class LocalComercial extends POI {
 	public int cantidadDePalabrasClave() { return coleccionDePalabrasClave.size(); }
 
 	//Modificar locales comerciales
-	public Integer tieneElNombreEspecificado(String nombre,  String[] unasPalabras){
+	public Boolean tieneNombreYPalabrasEspecificadas(String nombre,  String[] unasPalabras){
 		if(nombre.equals(nombre)){ return this.tienePalabrasEspecificadas(unasPalabras); }
-		else return 0;
+		else return Boolean.FALSE;
 	}
 
-	public Integer tienePalabrasEspecificadas(String[] unasPalabras) {
+	public Boolean tienePalabrasEspecificadas(String[] unasPalabras) {
 		int cantidad = unasPalabras.length;
 		Integer marcador = 0;
 		for (int i = 0; i < cantidad; i += 1) {
@@ -101,8 +101,8 @@ public class LocalComercial extends POI {
 			}
 
 		}
-		if(marcador.equals(1)){ return 1; }
-		else return 0;
+		if(marcador.equals(1)){ return Boolean.TRUE; }
+		else return Boolean.FALSE;
 
 	}
 

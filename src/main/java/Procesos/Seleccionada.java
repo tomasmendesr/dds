@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Master.Terminal;
-import ObserversTerminal.FuncionalidadExtraTerminal;
 
 public class Seleccionada extends TipoDeCriterio {
 	
@@ -16,11 +15,7 @@ public class Seleccionada extends TipoDeCriterio {
 		terminalesSeleccionadas = new ArrayList<Terminal>();
 	}
 	
-	//getters y setters
-	public List<Terminal> getTerminalesSeleccionadas() {
-		return terminalesSeleccionadas;
-	}
-	
+	//Getters y setters
 	public void setTerminalesSeleccionadas(List<Terminal> terminalesSeleccionadas) {
 		this.terminalesSeleccionadas = terminalesSeleccionadas;
 	}
@@ -30,16 +25,8 @@ public class Seleccionada extends TipoDeCriterio {
 	}
 	
 	//Metodos
-	public void agregar(FuncionalidadExtraTerminal accion){
-		terminalesSeleccionadas.forEach(terminal -> terminal.addObserver(accion));
+	public List<Terminal> terminalesAModificar() { // Devuelve la lista de terminales seleccionadas
+		return terminalesSeleccionadas;
 	}
-	
-	public void quitar(FuncionalidadExtraTerminal accion){
-		terminalesSeleccionadas.forEach(terminal -> terminal.quitarAccion(accion));
-	}
-		
-	public Integer cantidadDeAfectados(){
-		return terminalesSeleccionadas.size();
-	}
-	
+			
 }

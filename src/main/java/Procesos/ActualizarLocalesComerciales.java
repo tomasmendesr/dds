@@ -1,13 +1,8 @@
 package Procesos;
 
 import Master.RepositorioPOIs;
-import POIs.LocalComercial;
-import org.mockito.cglib.core.Local;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class ActualizarLocalesComerciales extends Proceso{
 
@@ -31,7 +26,7 @@ public class ActualizarLocalesComerciales extends Proceso{
     }
 
     //METODOS
-    public ResultadoProceso realizarAccion() {
+    public ResultadoProceso realizarProceso() {
         String[] campos = texto.split(";");
         String nombre = campos[0];
         String palabras = campos[1];

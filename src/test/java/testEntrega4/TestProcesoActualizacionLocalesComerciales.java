@@ -2,8 +2,6 @@ package testEntrega4;
 
 import Master.Identity;
 import Master.RepositorioPOIs;
-import Master.Terminal;
-import ObserversTerminal.ReportePorFecha;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -117,21 +115,21 @@ public class TestProcesoActualizacionLocalesComerciales {
 
    @Test
     public void laCantidadDeLocalesModificadosEs1(){
-        ResultadoProceso resultadoProceso = local.realizarAccion();
+        ResultadoProceso resultadoProceso = local.realizarProceso();
         Assert.assertEquals(1, resultadoProceso.getCantElementosAfectados());
     }
 
     @Test
     public void laCantidadDeLocalesModificadosEs2(){
         RepositorioPOIs.getInstance().agregarPOI(tiendaDeRopa);
-        ResultadoProceso resultadoProceso = local.realizarAccion();
+        ResultadoProceso resultadoProceso = local.realizarProceso();
         Assert.assertEquals(2, resultadoProceso.getCantElementosAfectados());
     }
 
     @Test
     public void laCantidadDeLocalesModificadosEs0(){
         RepositorioPOIs.getInstance().quitarPOI(libreriaEscolar);
-        ResultadoProceso resultadoProceso = local.realizarAccion();
+        ResultadoProceso resultadoProceso = local.realizarProceso();
         Assert.assertEquals(0, resultadoProceso.getCantElementosAfectados());
     }
 
@@ -143,14 +141,14 @@ public class TestProcesoActualizacionLocalesComerciales {
 
     @Test
     public void laCantidadDePalabrasClaveDeLibreriaEscolarDespuesDeActualizarLosLocalesComercialesEs4(){
-        ResultadoProceso resultadoProceso = local.realizarAccion();
+        ResultadoProceso resultadoProceso = local.realizarProceso();
         int cantidadPalabrasClave = libreriaEscolar.cantidadDePalabrasClave();
         Assert.assertEquals(4, cantidadPalabrasClave);
     }
 
     @Test
     public void laCantidadDePalabrasClaveDeKioskoDeDiariosDespuesDeActualizarLosLocalesComercialesEs3(){
-        ResultadoProceso resultadoProceso = local.realizarAccion();
+        ResultadoProceso resultadoProceso = local.realizarProceso();
         int cantidadPalabrasClave = kioskoDeDiarios.cantidadDePalabrasClave();
         Assert.assertEquals(3, cantidadPalabrasClave);
     }

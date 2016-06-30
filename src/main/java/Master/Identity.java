@@ -8,9 +8,11 @@ public class Identity {
 	
 	//ATRIBUTOS
 	
-	private static AtomicInteger num = new AtomicInteger(0);
+	private static AtomicInteger num = new AtomicInteger();
 	
 	//Geters y seters
+	
+	
 	
 	public static Integer getIdentity(){
 		return num.get();
@@ -18,6 +20,14 @@ public class Identity {
 	
 	public static Integer getIdentityAndIncrement(){
 		return num.getAndIncrement();		
+	}
+	
+	public static void setIdentity(Integer numAux){
+		num.set(numAux);
+	}
+	
+	public static void initializeIdentity(){
+		Identity.setIdentity(0);
 	}
 	
 	

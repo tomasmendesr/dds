@@ -7,16 +7,17 @@ import POIsExt.RangoDeAtencion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.lang.String;
 
 public abstract class POI {
-	/*
-	@Override
+	
+	/*@Override
 	public boolean equals(Object obj){
 	  if (!(obj instanceof POI))
 	    return false;
 	  POI unPOI = (POI) obj;
-	  return (this.getNombre().equals(unPOI.getNombre()) &&  this.getDireccion().equals(unPOI.getDireccion()));
+	  return (this.getID() == unPOI.getID());
 	}*/
 	
 	//ATRIBUTOS

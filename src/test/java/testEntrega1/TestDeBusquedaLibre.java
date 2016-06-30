@@ -12,9 +12,7 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-
-
-
+import Master.Identity;
 import Master.POI;
 import Master.RepositorioPOIs;
 
@@ -36,6 +34,8 @@ public class TestDeBusquedaLibre {
 	
 	@Before
 	public void init(){
+		
+		Identity.initializeIdentity();
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);

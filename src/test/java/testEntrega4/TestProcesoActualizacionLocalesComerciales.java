@@ -1,5 +1,6 @@
 package testEntrega4;
 
+import Master.Identity;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;
@@ -24,7 +25,10 @@ public class TestProcesoActualizacionLocalesComerciales {
 
     @Before
     public void init() {
-        // Comuna 8
+    	
+    	Identity.initializeIdentity();
+    	
+    	// Comuna 8
         comuna8 = new Comuna(8);
         zonaComuna8 = new Polygon();
         zonaComuna8.add(new Point(-34.6744, -58.5025));

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Master.Identity;
 import Master.RepositorioPOIs;
 import Master.Terminal;
 import ObserversTerminal.ReporteTotalesPorUsuario;
@@ -40,6 +41,9 @@ public class TestProcesoAccionesUsuarios {
 	
 	@Before
 	public void init(){
+	
+	Identity.initializeIdentity();
+		
 	// Comuna 8
 	comuna8 = new Comuna(8);
 	zonaComuna8 = new Polygon();

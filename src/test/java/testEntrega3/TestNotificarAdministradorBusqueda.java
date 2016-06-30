@@ -35,6 +35,8 @@ public class TestNotificarAdministradorBusqueda {
 	@Before
 	public void init(){
 		
+		Identity.initializeIdentity();
+		
 		// Comuna 8
 		comuna8 = new Comuna(8);
 		zonaComuna8 = new Polygon();

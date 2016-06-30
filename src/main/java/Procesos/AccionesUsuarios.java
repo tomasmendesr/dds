@@ -12,14 +12,14 @@ public class AccionesUsuarios extends Proceso{
 
 	//Atributos
 	private TipoDeCriterio criterio;
-	private String agregarOQuitar;
 	private FuncionalidadExtraTerminal accion;
 	private List<Terminal> todasLasTerminales;
+	private int agregarOQuitar; // 1 si es "agregar", 2 si es "quitar"
 
 	//Constructor
-	public AccionesUsuarios(TipoDeCriterio criterio, String agregarOQuitar, FuncionalidadExtraTerminal accion){
+	public AccionesUsuarios(TipoDeCriterio criterio, String opcionAgregarOQuitar, FuncionalidadExtraTerminal accion){
 		this.setTipoDeCriterio(criterio);
-		this.setAgregarOQuitar(agregarOQuitar);
+		this.asignarValorAlAgregarOQuitar(opcionAgregarOQuitar);
 		this.setAccion(accion);
 		todasLasTerminales = new ArrayList<Terminal>();
 	}
@@ -30,9 +30,6 @@ public class AccionesUsuarios extends Proceso{
 	}
 	public TipoDeCriterio getTipoDeCriterio(){
 		return criterio;
-	}
-	public void setAgregarOQuitar(String agregarOQuitar){
-		this.agregarOQuitar = agregarOQuitar;
 	}
 	
 	public void setAccion(FuncionalidadExtraTerminal accion){
@@ -53,26 +50,22 @@ public class AccionesUsuarios extends Proceso{
 	public void agregarTerminal(Terminal unaTerminal){
 		todasLasTerminales.add(unaTerminal);
 	}
-	// Metodos
+	// Metodos	
 	public ResultadoProceso realizarProceso(){
 		ResultadoProceso resultadoProceso = new ResultadoProceso();
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
 		this.getTipoDeCriterio().setTodasLasTerminales(this.getTodasLasTerminales());
+		try{
 		switch (agregarOQuitar){
-		case "agregar":
-			try{
+		case 1:
 				this.getTipoDeCriterio().agregar(this.getAccion());
-			} catch (NullPointerException e){
-				this.falle();
-			}
 			break;
-		case "quitar":
-			try{
+		case 2:
 				this.getTipoDeCriterio().quitar(this.getAccion());
-			}catch(NullPointerException e){
-				this.falle();
-			}
 			break;
+		}
+		}catch(NullPointerException e){
+			this.falle();
 		}
 		int afectados = this.getTipoDeCriterio().cantidadDeAfectados();
 		resultadoProceso.setCantElementosAfectados(afectados);
@@ -80,4 +73,17 @@ public class AccionesUsuarios extends Proceso{
 		//Tareas.guardarTarea(resultadoProceso); tira error de static; Hacer un singleton de la lista de procesos en Tarea?
 		return resultadoProceso;
 	}	
+	
+	public void asignarValorAlAgregarOQuitar(String opcionAgregarOQuitar){
+		switch(opcionAgregarOQuitar){
+		case "agregar":
+			agregarOQuitar = 1;
+			break;
+		case "quitar":
+			agregarOQuitar = 2; 
+			break;
+		default:
+			agregarOQuitar = 0; // error
+		}
+	}
 }

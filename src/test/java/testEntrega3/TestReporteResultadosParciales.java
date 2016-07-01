@@ -97,7 +97,7 @@ public class TestReporteResultadosParciales {
 	@Test
 	public void seRealizaBusquedaEnTerminalYSeObtiene1Resultado(){
 		terminal.consultarPOIsXTiempoEstimado("asesoramiento", 0);
-		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // Las busquedas pertenecen a esta terminal
+		int resultados = observerReportesParciales.generarReporteParcialPorTerminal(terminal); // Las busquedas pertenecen a esta terminal
 		Assert.assertEquals(1, resultados);
 	} 
 	
@@ -105,7 +105,7 @@ public class TestReporteResultadosParciales {
 	@Test 
 	public void seRealizaBusquedaEnTerminalYSeObtienen2Resultados(){
 		terminal.consultarPOIsXTiempoEstimado("47", 0);
-		int resultados = observerReportesParciales.resultadosEnTerminal(terminal); // las busquedas pertenecen a esta terminal
+		int resultados = observerReportesParciales.generarReporteParcialPorTerminal(terminal); // las busquedas pertenecen a esta terminal
 		Assert.assertEquals(2, resultados);
 	}
 	

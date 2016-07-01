@@ -15,9 +15,9 @@ public class ReporteTotalesPorUsuario implements FuncionalidadExtraTerminal {
 		resultadosPorTerminal = new HashMap<Terminal,Integer>();
 	}
 	
-	//Getters y Setters
+	//Metodos
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {		
-		this.generarTotalesPorUsuario(unaTerminal);
+		this.generarTotalesPorUsuario(unaTerminal); // Guardo los datos
 	}
 
 	// Reporte totales por usuario
@@ -25,7 +25,7 @@ public class ReporteTotalesPorUsuario implements FuncionalidadExtraTerminal {
 		resultadosPorTerminal.put(unaTerminal, unaTerminal.obtenerResultadosTotales());
 	}
 	
-	public Integer resultadosTotalesEnTerminal(Terminal terminal){ // Sirve para el test por ahora
+	public Integer generarReporteTotalPorTerminal(Terminal terminal){ // Sirve para el test por ahora
 		return resultadosPorTerminal.get(terminal);
 	}
 }

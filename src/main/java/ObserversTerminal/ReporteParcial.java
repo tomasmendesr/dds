@@ -19,7 +19,7 @@ public class ReporteParcial implements FuncionalidadExtraTerminal {
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
 		Integer cantidadDeResultados;
 		cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();
-		this.generarResultadosParciales(unaTerminal, cantidadDeResultados);
+		this.generarResultadosParciales(unaTerminal, cantidadDeResultados); // Guardo los datos para hacer el repote
 	}
 
 	// Reporte de Resultados Parciales por Terminal
@@ -27,7 +27,7 @@ public class ReporteParcial implements FuncionalidadExtraTerminal {
 		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
 	}
 	
-	public Integer resultadosEnTerminal(Terminal terminal){ // Sirve para el test por ahora
+	public Integer generarReporteParcialPorTerminal(Terminal terminal){ // Genero el reporte por terminal cuando me lo pidan
 		return resultadosParcialesPorTerminal.get(terminal);
 	}
 }

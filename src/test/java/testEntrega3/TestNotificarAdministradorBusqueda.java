@@ -29,7 +29,6 @@ public class TestNotificarAdministradorBusqueda {
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
 	private Polygon	zonaComuna8;
-	private Terminal terminalAdministradora;
 	private Terminal terminal;
 	
 	@Before
@@ -83,12 +82,9 @@ public class TestNotificarAdministradorBusqueda {
 		RepositorioPOIs.getInstance().agregarPOI(banco);
 		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
 		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
-		
-		// Terminal Administradora
-		terminalAdministradora = new Terminal("Terminal Central", RepositorioPOIs.getInstance());
-		
+				
 		// ObserverNotificar
-		observerNotificar = new NotificarAdministrador(terminalAdministradora);
+		observerNotificar = new NotificarAdministrador();
 		
 		// Terminal
 		terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
@@ -99,7 +95,7 @@ public class TestNotificarAdministradorBusqueda {
 	@Test
 	public void realizarUnaConsultaConTiempoEstimado0LlamaAlAdministrador(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", -1);
-		Assert.assertTrue(terminalAdministradora.recibirMail());
+		Assert.assertTrue(observerNotificar.notificarAdministrador());
 	}
 	
 	@After

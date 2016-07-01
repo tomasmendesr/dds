@@ -13,7 +13,7 @@ public abstract class Proceso {
 	}
 	
 	//Atributos
-	private int cantARepetir;
+	private int cantidadAIterar;
 	private boolean enviarMailAdmin;
 	private List<ResultadoProceso> listaProcesos;
 	
@@ -21,16 +21,16 @@ public abstract class Proceso {
 	public List<ResultadoProceso> getListaProcesos(){
 		return listaProcesos;
 	}
-	public void setCantARepetir(int unaCant){
-		cantARepetir = unaCant;
+	public void setCantidadAIterar(int unaCant){
+		cantidadAIterar = unaCant;
 	}
 	
 	public void setEnviarMailAdmin(boolean value){
 		enviarMailAdmin = value;		
 	}
 	
-	public int getCantARepetir(){
-		return cantARepetir;
+	public int getCantidadAIterar(){
+		return cantidadAIterar;
 	}
 	
 	public boolean getEnviarMailAdmin(){
@@ -49,9 +49,9 @@ public abstract class Proceso {
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
 		resultadoProceso.setCantElementosAfectados(0);
 		resultadoProceso.setResultadoDelProceso(false);
-		while(cantARepetir == 0){
+		while(cantidadAIterar == 0){
 			resultadoProceso = this.realizarProceso();
-			cantARepetir--;
+			cantidadAIterar--;
 		}
 		return resultadoProceso;
 	}

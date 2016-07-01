@@ -38,18 +38,18 @@ public class GestorProcesos {
 		this.ejecutarTarea(proceso,horario,cantARepetir);
 	}
 	
-	public void ejecutarTarea(Proceso proceso, Date horario, int cantArepetir){
+	public void ejecutarTarea(Proceso proceso, Date horario, int frecuencia){
 		Timer timer = new Timer();
 		TimerTask tareaProgramada = new TimerTask(){
 			@Override
 			public void run(){
 				ResultadoProceso resultado = proceso.realizarProceso();
-				proceso.setCantARepetir(cantArepetir);
+				proceso.setCantidadAIterar(frecuencia);
 				resultadosProcesos.add(resultado);
 				procesos.remove(proceso);
 			}
 		};
-		timer.schedule(tareaProgramada, horario,cantArepetir); 
+		timer.schedule(tareaProgramada, horario,frecuencia); 
 	}
 	
 }

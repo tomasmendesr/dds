@@ -7,6 +7,7 @@ import Master.Terminal;
 import POIsExt.Comuna;
 
 public class SegunComuna extends TipoDeCriterio {
+	
 	//atributo
 	private Comuna comunaSeleccionada;
 	

@@ -15,7 +15,7 @@ public class GestorProcesos {
 	private List<ResultadoProceso> resultadosProcesos;
 	private List<Proceso> procesos;
 	
-	//constructor
+	//Constructor
 	public GestorProcesos(){
 		resultadosProcesos = new ArrayList<ResultadoProceso>();
 		procesos = new ArrayList<Proceso>();
@@ -29,10 +29,8 @@ public class GestorProcesos {
 	public List<Proceso> getProcesos(){
 		return procesos;
 	}
-	
-	/*public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
-	}*/
-	
+		
+	//Metodos
 	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantARepetir){
 		procesos.add(proceso);
 		this.ejecutarTarea(proceso,horario,cantARepetir);
@@ -51,5 +49,6 @@ public class GestorProcesos {
 		};
 		timer.schedule(tareaProgramada, horario,cantArepetir); 
 	}
+
 	
 }

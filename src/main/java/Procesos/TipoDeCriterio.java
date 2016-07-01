@@ -12,8 +12,8 @@ public abstract class TipoDeCriterio {
 	protected List<Terminal> todasLasTerminales;
 	
 	// constructor
-	public void TipoDeCriteiro(){
-		todasLasTerminales = new ArrayList<Terminal>();
+	public TipoDeCriterio(){
+		todasLasTerminales = new ArrayList<>();
 	}
 
 	//Getters y Setters

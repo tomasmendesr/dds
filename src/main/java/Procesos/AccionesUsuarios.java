@@ -1,10 +1,8 @@
 package Procesos;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-import Master.Terminal;
+import Master.RepositorioTerminales;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
 
@@ -13,15 +11,14 @@ public class AccionesUsuarios extends Proceso{
 	//Atributos
 	private TipoDeCriterio criterio;
 	private FuncionalidadExtraTerminal accion;
-	private List<Terminal> todasLasTerminales;
 	private int agregarOQuitar; // 1 si es "agregar", 2 si es "quitar"
+	private RepositorioTerminales repositorioTerminales;
 
 	//Constructor
 	public AccionesUsuarios(TipoDeCriterio criterio, String opcionAgregarOQuitar, FuncionalidadExtraTerminal accion){
 		this.setTipoDeCriterio(criterio);
 		this.asignarValorAlAgregarOQuitar(opcionAgregarOQuitar);
-		this.setAccion(accion);
-		todasLasTerminales = new ArrayList<Terminal>();
+		this.setAccion(accion);		
 	}
 	
 	//Getters y setters
@@ -40,21 +37,15 @@ public class AccionesUsuarios extends Proceso{
 		return accion;
 	}
 	
-	public List<Terminal> getTodasLasTerminales() {
-		return todasLasTerminales;
+	public void setRepositorioTerminales(RepositorioTerminales repositorioTerminales) {
+		this.repositorioTerminales = repositorioTerminales;
 	}
-	public void setTodasLasTerminales(List<Terminal> todasLasTerminales) {
-		this.todasLasTerminales = todasLasTerminales;
-	}
-	
-	public void agregarTerminal(Terminal unaTerminal){
-		todasLasTerminales.add(unaTerminal);
-	}
+		
 	// Metodos	
 	public ResultadoProceso realizarProceso(){
 		ResultadoProceso resultadoProceso = new ResultadoProceso();
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
-		this.getTipoDeCriterio().setTodasLasTerminales(this.getTodasLasTerminales());
+		this.getTipoDeCriterio().setTodasLasTerminales(this.repositorioTerminales.getTerminales());
 		try{
 		switch (agregarOQuitar){
 		case 1:

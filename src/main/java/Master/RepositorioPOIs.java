@@ -84,12 +84,12 @@ public class RepositorioPOIs {
 	}
 
 	//Agregar y quitar lista de POIs (para locales comerciales)
-	public void eliminarListaDePOIs(List<POI> unaListaDePois){
-		this.coleccionDePOIS.forEach(unPOI -> this.quitarPOI(unPOI));
+	public void eliminarListaDePOIs(List<POI> unaListaDePOIs){
+		unaListaDePOIs.forEach(unPOI -> this.quitarPOI(unPOI));
 	}
 
-	public void agregarListaDePOIs(List<POI> unaListaDePois){
-		this.coleccionDePOIS.forEach(unPOI -> this.agregarPOI(unPOI));
+	public void agregarListaDePOIs(List<POI> unaListaDePOIs){
+		unaListaDePOIs.forEach(unPOI -> this.agregarPOI(unPOI));
 	}
 
 	//Devolver Locales comerciales que cumplen requisitos para ser modificados

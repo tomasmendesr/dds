@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
-public class ActualizarLocalesComerciales extends Proceso{
+public class ActualizarLocalesComerciales extends Proceso {
 
     //ATRIBUTOS
     private RepositorioPOIs repositorioPOIs;
@@ -25,11 +25,11 @@ public class ActualizarLocalesComerciales extends Proceso{
     }
 
     //GETTERS Y SETTERS
-    public String getTexto(){
+    public String getTexto() {
         return texto;
     }
 
-    public void setTexto(String unTexto){
+    public void setTexto(String unTexto) {
         texto = unTexto;
     }
 
@@ -39,42 +39,66 @@ public class ActualizarLocalesComerciales extends Proceso{
         String nombre = campos[0];
         String palabras = campos[1];
         String[] palabrasABuscar = palabras.split(" ");
-        return this.buscarLocalesComercialesAModificar(nombre,palabrasABuscar);
+        return this.buscarLocalesComercialesAModificar(nombre, palabrasABuscar);
     }
 
-    public ResultadoProceso buscarLocalesComercialesAModificar(String nombre,  String[] unasPalabras) {
+    public ResultadoProceso buscarLocalesComercialesAModificar(String nombre, String[] unasPalabras) {
         ResultadoProceso resultadoProceso = new ResultadoProceso();
         resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
         List<POI> localesAModificar = new ArrayList<POI>();
-        localesAModificar = repositorioPOIs.devolverLocalesComercialesQueCumplenRequisitos(nombre,unasPalabras);
-        this.modificarLocalesComerciales(localesAModificar,unasPalabras);
+        localesAModificar = repositorioPOIs.devolverLocalesComercialesQueCumplenRequisitos(nombre, unasPalabras);
+        this.modificarLocalesComerciales(localesAModificar, unasPalabras);
         Integer localesAfectados = localesAModificar.size();
         resultadoProceso.setCantElementosAfectados(localesAfectados);
-        if(localesAfectados.equals(0)) { this.falle(); }
-        else { resultadoProceso.setResultadoDelProceso(true); }
+        if (localesAfectados.equals(0)) {
+            this.falle();
+        } else {
+            resultadoProceso.setResultadoDelProceso(true);
+        }
         return resultadoProceso;
 
     }
 
-    public void modificarLocalesComerciales(List<POI> localesAModificar, String [] unasPalabras){
+    public void modificarLocalesComerciales(List<POI> localesAModificar, String[] unasPalabras) {
         repositorioPOIs.eliminarListaDePOIs(localesAModificar);
-        localesAModificar.stream().forEach(localComercial->localComercial.actualizarPalabrasClaves(unasPalabras));
+        localesAModificar.stream().forEach(localComercial -> localComercial.actualizarPalabrasClaves(unasPalabras));
         repositorioPOIs.agregarListaDePOIs(localesAModificar);
     }
 
 
     public void leerArchivo(String unaRuta) throws IOException {
+        String textoDelArchivo = "";
+        String archivo = unaRuta;
         try {
-            FileInputStream fstream = new FileInputStream(unaRuta);
-            DataInputStream entrada = new DataInputStream(fstream);
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(entrada));
+            InputStream ips = new FileInputStream(archivo);
+            InputStreamReader ipsr = new InputStreamReader(ips);
+            BufferedReader br = new BufferedReader(ipsr);
             String linea;
-
-            while ((linea = buffer.readLine()) != null) { System.out.println(linea); }
-            this.setTexto(linea);
-            entrada.close();
+            while ((linea = br.readLine()) != null) {
+                textoDelArchivo += linea + "\n";
+            }
+            this.setTexto(textoDelArchivo);
+            br.close();
         }
-        catch (Exception e) { System.err.println("Ocurrio un error: " + e.getMessage()); }
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

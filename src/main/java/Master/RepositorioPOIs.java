@@ -52,7 +52,7 @@ public class RepositorioPOIs {
 	//ver como hacer para dejar de suponer que el POI ingresado es siempre valido
 
 	public void agregarPOI(POI unPOI) {
-		coleccionDePOIS.add(unPOI.getID(), unPOI);
+		coleccionDePOIS.add(unPOI);
 	}
 
 	public void quitarPOI(POI unPOI) {

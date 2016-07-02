@@ -30,8 +30,7 @@ public class GestorProcesos {
 		return procesos;
 	}
 	
-	/*public void agregarProcesoAEjecutar(Proceso proceso, Date horario){
-	}*/
+	
 	
 	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantARepetir){
 		procesos.add(proceso);

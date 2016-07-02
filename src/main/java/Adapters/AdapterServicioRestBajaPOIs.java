@@ -50,7 +50,7 @@ public class AdapterServicioRestBajaPOIs {
 			BajaDePOIs procesoBaja = new BajaDePOIs(id,fecha);
 			if(!this.existeElProceso(procesoBaja)){
 				gestor.getProcesos().add(procesoBaja);
-				gestor.ejecutarTarea(procesoBaja, procesoBaja.getFecha(),1);
+				gestor.agregarProcesoAEjecutar(procesoBaja, procesoBaja.getFecha(),1); ////???????????
 			}
 		}
 		return poisABajar;

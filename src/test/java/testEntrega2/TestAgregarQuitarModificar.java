@@ -77,10 +77,11 @@ public class TestAgregarQuitarModificar {
 		
 		//Agrego Pois al repo
 		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 		RepositorioPOIs.getInstance().agregarPOI(cgp);
 		RepositorioPOIs.getInstance().agregarPOI(banco);
 		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
-		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
+		
 		
 	}
 		
@@ -96,11 +97,11 @@ public class TestAgregarQuitarModificar {
 		Assert.assertEquals(5, RepositorioPOIs.getInstance().getColeccionDePOIS().size());
 	}
 	
-	/*@Test 
+	@Test 
 	public void TestRepositorioPOIsQuitaParadaDel47(){
 		RepositorioPOIs.getInstance().quitarPOI(paradaDel47);
 		Assert.assertEquals(4, RepositorioPOIs.getInstance().getColeccionDePOIS().size()); 
-	}*/
+	}
 	
 	@After
 	public void tearDown(){

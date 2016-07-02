@@ -16,15 +16,17 @@ public class BajaDePOIs extends Proceso{
 		this.setFecha(fecha);
 		this.setIdPOI(id);
 	}
-	
+
+
 	//ATRIBUTOS
+
 	
 	RepositorioPOIs repositorioDePOIs;
 	Integer idPOI;
 	Date	fecha;
-	
+
 	//GETERS Y SETERS
-	
+
 	public RepositorioPOIs getRepositorioDePOIs() {
 		return repositorioDePOIs;
 	}
@@ -32,7 +34,7 @@ public class BajaDePOIs extends Proceso{
 	public void setRepositorioDePOIs(RepositorioPOIs repositorioDePOIs) {
 		this.repositorioDePOIs = repositorioDePOIs;
 	}
-	
+
 	
 	public Integer getIdPOI() {
 		return idPOI;
@@ -45,6 +47,7 @@ public class BajaDePOIs extends Proceso{
 	public Date getFecha() {
 		return fecha;
 	}
+
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
@@ -74,6 +77,8 @@ public class BajaDePOIs extends Proceso{
 	public Boolean fueBorrado(){
 		return !this.getRepositorioDePOIs().getColeccionDePOIS().stream().anyMatch(poi -> poi.getID() == this.getIdPOI());
 	}
+
+
 	
 	
 }

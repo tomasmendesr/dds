@@ -18,7 +18,7 @@ public class ReportePorFecha implements FuncionalidadExtraTerminal{
 	
 	//Getters y Setters	
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
-		this.contabilizarBusquedaXFecha(unResultadoBusqueda);
+		this.contabilizarBusquedaXFecha(unResultadoBusqueda); // Guardo los datos para hacer el reporte
 	}
 
 	// Reporte de busquedas por Fecha
@@ -31,8 +31,7 @@ public class ReportePorFecha implements FuncionalidadExtraTerminal{
 		cantidadBusquedasXFecha.put(fechaBusqueda,cantidadAnterior + 1);
 	}
 
-	public Integer busquedasEnFecha(LocalDate fecha){ // Sirve para el test por ahora
+	public Integer generarReportePorFecha(LocalDate fecha){ // Genero el reporte cuando me lo pidan
 		return cantidadBusquedasXFecha.get(fecha);
-
 	}
 }

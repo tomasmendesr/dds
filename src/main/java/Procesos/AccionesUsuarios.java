@@ -1,10 +1,8 @@
 package Procesos;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-import Master.Terminal;
+import Master.RepositorioTerminales;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
 
@@ -12,16 +10,15 @@ public class AccionesUsuarios extends Proceso{
 
 	//Atributos
 	private TipoDeCriterio criterio;
-	private String agregarOQuitar;
 	private FuncionalidadExtraTerminal accion;
-	private List<Terminal> todasLasTerminales;
+	private int agregarOQuitar; // 1 si es "agregar", 2 si es "quitar"
+	private RepositorioTerminales repositorioTerminales;
 
 	//Constructor
-	public AccionesUsuarios(TipoDeCriterio criterio, String agregarOQuitar, FuncionalidadExtraTerminal accion){
+	public AccionesUsuarios(TipoDeCriterio criterio, String opcionAgregarOQuitar, FuncionalidadExtraTerminal accion){
 		this.setTipoDeCriterio(criterio);
-		this.setAgregarOQuitar(agregarOQuitar);
-		this.setAccion(accion);
-		todasLasTerminales = new ArrayList<Terminal>();
+		this.asignarValorAlAgregarOQuitar(opcionAgregarOQuitar);
+		this.setAccion(accion);		
 	}
 	
 	//Getters y setters
@@ -30,9 +27,6 @@ public class AccionesUsuarios extends Proceso{
 	}
 	public TipoDeCriterio getTipoDeCriterio(){
 		return criterio;
-	}
-	public void setAgregarOQuitar(String agregarOQuitar){
-		this.agregarOQuitar = agregarOQuitar;
 	}
 	
 	public void setAccion(FuncionalidadExtraTerminal accion){
@@ -43,36 +37,26 @@ public class AccionesUsuarios extends Proceso{
 		return accion;
 	}
 	
-	public List<Terminal> getTodasLasTerminales() {
-		return todasLasTerminales;
+	public void setRepositorioTerminales(RepositorioTerminales repositorioTerminales) {
+		this.repositorioTerminales = repositorioTerminales;
 	}
-	public void setTodasLasTerminales(List<Terminal> todasLasTerminales) {
-		this.todasLasTerminales = todasLasTerminales;
-	}
-	
-	public void agregarTerminal(Terminal unaTerminal){
-		todasLasTerminales.add(unaTerminal);
-	}
-	// Metodos
+		
+	// Metodos	
 	public ResultadoProceso realizarProceso(){
 		ResultadoProceso resultadoProceso = new ResultadoProceso();
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
-		this.getTipoDeCriterio().setTodasLasTerminales(this.getTodasLasTerminales());
+		this.getTipoDeCriterio().setTodasLasTerminales(this.repositorioTerminales.getTerminales());
+		try{
 		switch (agregarOQuitar){
-		case "agregar":
-			try{
+		case 1:
 				this.getTipoDeCriterio().agregar(this.getAccion());
-			} catch (NullPointerException e){
-				this.falle();
-			}
 			break;
-		case "quitar":
-			try{
+		case 2:
 				this.getTipoDeCriterio().quitar(this.getAccion());
-			}catch(NullPointerException e){
-				this.falle();
-			}
 			break;
+		}
+		}catch(NullPointerException e){
+			this.falle();
 		}
 		int afectados = this.getTipoDeCriterio().cantidadDeAfectados();
 		resultadoProceso.setCantElementosAfectados(afectados);
@@ -80,4 +64,17 @@ public class AccionesUsuarios extends Proceso{
 		//Tareas.guardarTarea(resultadoProceso); tira error de static; Hacer un singleton de la lista de procesos en Tarea?
 		return resultadoProceso;
 	}	
+	
+	public void asignarValorAlAgregarOQuitar(String opcionAgregarOQuitar){
+		switch(opcionAgregarOQuitar){
+		case "agregar":
+			agregarOQuitar = 1;
+			break;
+		case "quitar":
+			agregarOQuitar = 2; 
+			break;
+		default:
+			agregarOQuitar = 0; // error
+		}
+	}
 }

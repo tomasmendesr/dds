@@ -1,22 +1,15 @@
 package Procesos;
 
-import ObserversTerminal.FuncionalidadExtraTerminal;
+import java.util.List;
+
+import Master.Terminal;
 
 public class Todas extends TipoDeCriterio { // Afecta a todas las terminales
 	
 	//Metodos
-	public void agregar(FuncionalidadExtraTerminal accion){
-		this.getTodasLasTerminales().forEach(terminal -> terminal.addObserver(accion));
+	public List<Terminal> terminalesAModificar(){
+		return todasLasTerminales;
 	}
-	
-	public void quitar(FuncionalidadExtraTerminal accion){
-		this.getTodasLasTerminales().forEach(terminal -> terminal.quitarAccion(accion));
-	}
-	
-	public Integer cantidadDeAfectados(){
-		return this.getTodasLasTerminales().size();
-	}
-
 
 
 }

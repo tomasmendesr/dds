@@ -17,6 +17,8 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import java.io.IOException;
+
 public class TestProcesoActualizacionLocalesComerciales {
 
 
@@ -28,14 +30,13 @@ public class TestProcesoActualizacionLocalesComerciales {
     private CGP cgp;
     private Banco banco;
     private Polygon zonaComuna8;
-    //private ActualizarLocales actualizarLocales;
     private ActualizarLocalesComerciales local;
-    String texto;
     private ResultadoProceso resultadoProceso;
+    private String unaRuta;
 
 
     @Before
-    public void init() {
+    public void init() throws IOException {
     	
     	Identity.initializeIdentity();
     	
@@ -106,14 +107,13 @@ public class TestProcesoActualizacionLocalesComerciales {
         RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 
         //Texto
-        texto = "Asterisco;escuela ropa uniformes buzos";
+        unaRuta = "C:\\Users\\micka\\Documents\\palabrasClave.txt";
 
-        //Local comercial
-        local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance());
-        local.setTexto(texto);
-        local.setCantARepetir(3);
+       //Actualizar Local Comercial
+        local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance(),unaRuta);
+        local.setCantidadAIterar(3);
     }
-
+/*
    @Test
     public void laCantidadDeLocalesModificadosEs1(){
         ResultadoProceso resultadoProceso = local.realizarProceso();
@@ -153,7 +153,7 @@ public class TestProcesoActualizacionLocalesComerciales {
         int cantidadPalabrasClave = kioskoDeDiarios.cantidadDePalabrasClave();
         Assert.assertEquals(3, cantidadPalabrasClave);
     }
-
+*/
     @After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();

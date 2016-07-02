@@ -7,6 +7,7 @@ import org.uqbar.geodds.Polygon;
 
 import Master.Identity;
 import Master.RepositorioPOIs;
+import Master.RepositorioTerminales;
 import Master.Terminal;
 import ObserversTerminal.ReportePorFecha;
 import ObserversTerminal.ReporteTotalesPorUsuario;
@@ -17,6 +18,7 @@ import Procesos.SegunComuna;
 import Procesos.Seleccionada;
 import Procesos.Todas;
 
+import org.junit.After;
 import org.junit.Assert;
 
 public class TestProcesoAccionesUsuarios {
@@ -64,7 +66,11 @@ public class TestProcesoAccionesUsuarios {
 	terminalLugano = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
 	terminalLugano.setComuna(comuna8);
 	terminalLugano.addObserver(observerReportePorFecha);
-
+	
+	//RepositorioTerminales
+	RepositorioTerminales.getInstance().addTerminal(terminalAbasto);
+	RepositorioTerminales.getInstance().addTerminal(terminalFlorida);
+	RepositorioTerminales.getInstance().addTerminal(terminalLugano);
 	
 	// Criterio segun la comuna
 	segunComuna = new SegunComuna();
@@ -82,9 +88,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void agregoObserverReportesTotalesALaTerminalAbastoyLugano(){ 
 		accionUsuario = new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(2,terminalAbasto.getObservers().size());
 		Assert.assertEquals(2,terminalLugano.getObservers().size());
@@ -93,9 +97,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void noSeAgregaElObserverATerminalFlorida(){ // porque no pertenece a esa comuna
 		accionUsuario= new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(1, terminalFlorida.getObservers().size()); // tiene el ReportePorFecha
 	}
@@ -103,9 +105,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void laCantidadDeAfectadosEs2(){
 		accionUsuario= new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(2, resultadoProceso.getCantElementosAfectados()) ;
 	}
@@ -115,9 +115,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void agregoElObserverALasTerminales(){
 		accionUsuario = new AccionesUsuarios(todasLasTerminales, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(2,terminalAbasto.getObservers().size()); // reportePorFecha y reportestotales
 		Assert.assertEquals(2, terminalFlorida.getObservers().size());	
@@ -126,9 +124,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void laCantidadDeAfectadosEs3(){
 		accionUsuario= new AccionesUsuarios(todasLasTerminales, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(3, resultadoProceso.getCantElementosAfectados()) ;
 	}
@@ -138,9 +134,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void agregoElObserverALaTerminalSeleccionada(){
 		accionUsuario= new AccionesUsuarios(seleccionadas, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalAbasto);
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(2, terminalAbasto.getObservers().size()); // reportePorFecha y reportesTotales
@@ -149,9 +143,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void cantidadDeAfectadosEs1(){
 		accionUsuario= new AccionesUsuarios(seleccionadas, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalAbasto);
 		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(1, resultadoProceso.getCantElementosAfectados());
@@ -162,9 +154,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void quitoAccionDeLasTerminalesDeLacomuna8(){
 		accionUsuario = new AccionesUsuarios(segunComuna, "quitar", observerReportePorFecha);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(0, terminalLugano.getObservers().size()); // no tienen ningun observer
 		Assert.assertEquals(0, terminalAbasto.getObservers().size());
@@ -173,9 +163,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void quitoAccionDeLasTerminalesDeLaComuna8YTerminalFloridaLaSigueTeniendo(){
 		accionUsuario = new AccionesUsuarios(segunComuna, "quitar", observerReportePorFecha);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(1, terminalFlorida.getObservers().size()); 
 	}
@@ -183,9 +171,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test 
 	public void cantidadDeAfectadosEs2(){
 		accionUsuario = new AccionesUsuarios(segunComuna, "quitar", observerReportePorFecha);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		resultadoProceso = accionUsuario.realizarProceso();
 		Assert.assertEquals(2, resultadoProceso.getCantElementosAfectados()) ;
 	}
@@ -195,9 +181,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void quitoAccionDeLasTerminales(){
 		accionUsuario = new AccionesUsuarios(todasLasTerminales, "quitar", observerReportePorFecha);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(0,terminalAbasto.getObservers().size()); 
 		Assert.assertEquals(0, terminalFlorida.getObservers().size());	
@@ -209,9 +193,7 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void quitoAccionDeLasTerminalesSeleccionadas(){
 		accionUsuario = new AccionesUsuarios(seleccionadas, "quitar", observerReportePorFecha);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalLugano);
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(0, terminalLugano.getObservers().size());
@@ -220,13 +202,15 @@ public class TestProcesoAccionesUsuarios {
 	@Test
 	public void quitoAccionDeLaTerminalSeleccionadaYLasDemasLaSiguenTeniendo(){
 		accionUsuario = new AccionesUsuarios(seleccionadas, "quitar", observerReportePorFecha);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida); // Posee todas las terminales
-		accionUsuario.agregarTerminal(terminalLugano);
+		accionUsuario.setRepositorioTerminales(RepositorioTerminales.getInstance());
 		seleccionadas.agregarTerminalSeleccionadaPorAdmin(terminalLugano);
 		accionUsuario.realizarProceso();
 		Assert.assertEquals(1, terminalAbasto.getObservers().size());
 		Assert.assertEquals(1, terminalFlorida.getObservers().size());
 	}
 	
+	@After
+	public void tearDown(){
+		RepositorioTerminales.resetTerminales();
+	}
 }

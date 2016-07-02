@@ -11,6 +11,7 @@ import org.uqbar.geodds.Polygon;
 import Master.Identity;
 import Master.GestorProcesos;
 import Master.RepositorioPOIs;
+import Master.RepositorioTerminales;
 import Master.Terminal;
 import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
@@ -107,10 +108,8 @@ public class TestEjecutarProcesosEnHora {
 		 
 		//Proceso 
 		accionUsuario = new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
-		accionUsuario.agregarTerminal(terminalAbasto);
-		accionUsuario.agregarTerminal(terminalFlorida);
+	}
 		
-}
 		/*
 		@Test
 		public void seEjecutaProcesoCorrectamente(){

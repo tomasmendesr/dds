@@ -11,24 +11,32 @@ public abstract class TipoDeCriterio {
 	//Atributos
 	protected List<Terminal> todasLasTerminales;
 	
-	public void TipoDeCriteiro(){
-		todasLasTerminales = new ArrayList<Terminal>();
+	// constructor
+	public TipoDeCriterio(){
+		todasLasTerminales = new ArrayList<>();
 	}
 
 	//Getters y Setters
-		public List<Terminal> getTodasLasTerminales() {
-			return todasLasTerminales;
-		}
-		public void setTodasLasTerminales(List<Terminal> todasLasTerminales) {
-			this.todasLasTerminales = todasLasTerminales;
-		}
+	public List<Terminal> getTodasLasTerminales() {
+		return todasLasTerminales;
+	}
+	public void setTodasLasTerminales(List<Terminal> todasLasTerminales) {
+		this.todasLasTerminales = todasLasTerminales;
+	}
 		
-			
-	public abstract Integer cantidadDeAfectados();
+	// Metodos
+	public void agregar(FuncionalidadExtraTerminal accion){
+		this.terminalesAModificar().forEach(terminal -> terminal.addObserver(accion));
+	}
 	
-	public abstract void agregar(FuncionalidadExtraTerminal accion);
+	public void quitar(FuncionalidadExtraTerminal accion){
+		this.terminalesAModificar().forEach(terminal -> terminal.quitarAccion(accion));
+	}
 	
-	public abstract void quitar(FuncionalidadExtraTerminal accion);
+	public Integer cantidadDeAfectados(){
+		return this.terminalesAModificar().size();
+	}
 	
-		
+	public abstract List<Terminal> terminalesAModificar();
+	
 }

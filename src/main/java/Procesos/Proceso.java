@@ -1,63 +1,56 @@
 package Procesos;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+
+import Master.Terminal;
 
 public abstract class Proceso {
 	
-	//Constructor
-	public Proceso(){
-		
-		listaProcesos = new ArrayList<ResultadoProceso>();
-	}
-	
 	//Atributos
-	private int cantARepetir;
+	private int cantidadAIterar;
 	private boolean enviarMailAdmin;
-	private List<ResultadoProceso> listaProcesos;
-	
+	private List<Terminal> terminales;
+			
 	//Getters y Setters
-	public List<ResultadoProceso> getListaProcesos(){
-		return listaProcesos;
-	}
-	public void setCantARepetir(int unaCant){
-		cantARepetir = unaCant;
+
+	public void setCantidadAIterar(int unaCant){
+		cantidadAIterar = unaCant;
 	}
 	
 	public void setEnviarMailAdmin(boolean value){
 		enviarMailAdmin = value;		
 	}
 	
-	public int getCantARepetir(){
-		return cantARepetir;
+	public int getCantidadAIterar(){
+		return cantidadAIterar;
 	}
 	
 	public boolean getEnviarMailAdmin(){
 		return enviarMailAdmin;
+	}	
+	
+	public void setTerminales(List<Terminal> terminales){
+		this.terminales = terminales;
+	}
+	
+	public List<Terminal> getTerminales(){
+		return terminales;
 	}
 	
 	//Metodos
-	
-
-	public ResultadoProceso realizarProceso(){
-		return new ResultadoProceso();
-	}
+	public abstract ResultadoProceso realizarProceso();
 	
 	protected ResultadoProceso falle(){
 		ResultadoProceso resultadoProceso = new ResultadoProceso();
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
 		resultadoProceso.setCantElementosAfectados(0);
 		resultadoProceso.setResultadoDelProceso(false);
-		while(cantARepetir == 0){
+		while(cantidadAIterar == 0){
 			resultadoProceso = this.realizarProceso();
-			cantARepetir--;
+			cantidadAIterar--;
 		}
 		return resultadoProceso;
 	}
-	
-	public void guardarTarea(ResultadoProceso tarea){
-		this.getListaProcesos().add(tarea);
-	}
-	
+		
 }

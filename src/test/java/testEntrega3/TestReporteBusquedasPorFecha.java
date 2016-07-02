@@ -101,14 +101,14 @@ public class TestReporteBusquedasPorFecha {
 	public void seRealizaronDosBusquedasElDiaDeHoy(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
 		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
-		int busquedasDeHoy = observerReportePorFecha.busquedasEnFecha(fechaActual.toLocalDate());
+		int busquedasDeHoy = observerReportePorFecha.generarReportePorFecha(fechaActual.toLocalDate());
 		Assert.assertEquals(2, busquedasDeHoy);
 	}
 	
 	@Test 
 	public void seRealizaUnaSolabusqueda(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		int busquedasDeHoy = observerReportePorFecha.busquedasEnFecha(fechaActual.toLocalDate());
+		int busquedasDeHoy = observerReportePorFecha.generarReportePorFecha(fechaActual.toLocalDate());
 		Assert.assertEquals(1, busquedasDeHoy);
 	}
 

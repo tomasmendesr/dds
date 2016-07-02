@@ -7,14 +7,15 @@ import java.util.List;
 import Adapters.AdapterServicioRestBajaPOIs;
 import Master.RepositorioPOIs;
 
-public class BajaDePOIs extends Proceso{
+public class BajaDePOI extends Proceso{
 	
 	//CONSTRUCTOR
 	
-	public BajaDePOIs(Integer id, Date fecha){
+	public BajaDePOI(Integer id, Date fecha,GestorPOIsABajar gestorPB){
 		this.setRepositorioDePOIs(RepositorioPOIs.getInstance());
 		this.setFecha(fecha);
 		this.setIdPOI(id);
+		gestorPOIsABajar = gestorPB;
 	}
 
 
@@ -24,6 +25,7 @@ public class BajaDePOIs extends Proceso{
 	RepositorioPOIs repositorioDePOIs;
 	Integer idPOI;
 	Date	fecha;
+	GestorPOIsABajar gestorPOIsABajar;
 
 	//GETERS Y SETERS
 
@@ -72,6 +74,8 @@ public class BajaDePOIs extends Proceso{
 	
 	public void darDeBaja(){
 		this.getRepositorioDePOIs().getColeccionDePOIS().remove(this.getIdPOI());
+		if(this.fueBorrado()) 	gestorPOIsABajar.getListaDePOIsABajar().
+								removeIf(poi -> poi.getIdPOI().equals(this.getIdPOI()));
 	}
 	
 	public Boolean fueBorrado(){

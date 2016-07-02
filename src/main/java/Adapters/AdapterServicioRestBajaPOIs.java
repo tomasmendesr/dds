@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 
 import ComponentesExternos.servicioRESTBajaPOIsStub;
 import Master.GestorProcesos;
-import Procesos.BajaDePOIs;
 import Procesos.Proceso;
 import ProcesosExt.POIABajar;
 
@@ -25,7 +24,6 @@ public class AdapterServicioRestBajaPOIs {
 	//ATRIBUTOS
 	
 	servicioRESTBajaPOIsStub servicio;
-	GestorProcesos gestor;
 
 	
 	//GETERS Y SETERS
@@ -47,18 +45,9 @@ public class AdapterServicioRestBajaPOIs {
 		while(it.hasNext()){
 			Integer id = it.next();
 			Date fecha = (Date) poisObtenidos.get(id);
-			BajaDePOIs procesoBaja = new BajaDePOIs(id,fecha);
-			if(!this.existeElProceso(procesoBaja)){
-				gestor.getProcesos().add(procesoBaja);
-				gestor.agregarProcesoAEjecutar(procesoBaja, procesoBaja.getFecha(),1); ////???????????
-			}
+			poisABajar.add(new POIABajar(fecha,id));
 		}
 		return poisABajar;
-	} //DESPUES HACER QUE TODAS LAS NOCHES SE PIDAN LOS POIS A BAJAR
-		//SERIA UNA NUEVA CLASE QUE HEREDA DE PROCESO Y QUE VA A CONTENER EL CODIGO QUE TIENE ESTE ADAPTER
-			// QUE NO DEBERIA TENER
-	public Boolean existeElProceso(Proceso unProceso){
-		return gestor.getProcesos().stream().anyMatch(proceso -> proceso.equals(unProceso));
 	}
 	
 	

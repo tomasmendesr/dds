@@ -40,23 +40,23 @@ public class GestorProcesos {
 		
 	//Metodos
 
-	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantARepetir){
+	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantAIterar){
 		if(!procesos.contains(proceso)) { procesos.add(proceso);
-		this.ejecutarTarea(proceso,horario,cantARepetir); }
+		this.ejecutarTarea(proceso,horario,cantAIterar); }
 	}
 	
-	public void ejecutarTarea(Proceso proceso, Date horario, int frecuencia){
+	public void ejecutarTarea(Proceso proceso, Date horario, int cantAIterar){
 		Timer timer = new Timer();
 		TimerTask tareaProgramada = new TimerTask(){
 			@Override
 			public void run(){
 				ResultadoProceso resultado = proceso.realizarProceso();
-				proceso.setCantidadAIterar(frecuencia);
+				proceso.setCantidadAIterar(cantAIterar);
 				resultadosProcesos.add(resultado);
 				procesos.remove(proceso);
 			}
 		};
-		timer.schedule(tareaProgramada, horario,frecuencia); 
+		timer.schedule(tareaProgramada, horario,cantAIterar); 
 	}
 
 	private void iniciarProcesoDeBajaAutomaticaDePOIs(){

@@ -1,16 +1,12 @@
 package Procesos;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import Master.Terminal;
 
 public abstract class Proceso {
 	
 	//Atributos
 	private int cantidadAIterar;
 	private boolean enviarMailAdmin;
-	private List<Terminal> terminales;
 			
 	//Getters y Setters
 
@@ -30,14 +26,6 @@ public abstract class Proceso {
 		return enviarMailAdmin;
 	}	
 	
-	public void setTerminales(List<Terminal> terminales){
-		this.terminales = terminales;
-	}
-	
-	public List<Terminal> getTerminales(){
-		return terminales;
-	}
-	
 	//Metodos
 
 	public abstract ResultadoProceso realizarProceso();
@@ -47,7 +35,7 @@ public abstract class Proceso {
 		resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
 		resultadoProceso.setCantElementosAfectados(0);
 		resultadoProceso.setResultadoDelProceso(false);
-		while(cantidadAIterar == 0){
+		while(cantidadAIterar > 0 && resultadoProceso.getResultadoDelProceso() == false){
 			resultadoProceso = this.realizarProceso();
 			cantidadAIterar--;
 		}

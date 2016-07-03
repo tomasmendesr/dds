@@ -12,20 +12,22 @@ import Procesos.Proceso;
 import Procesos.ResultadoProceso;
 
 public class GestorProcesos {
-	
+
+	//Constructor
+	public GestorProcesos(){
+		resultadosProcesos = new ArrayList<ResultadoProceso>();
+		procesos = new ArrayList<Proceso>();
+		gestorPOIsABajar = new GestorPOIsABajar(this);
+	}
+
 	//atributos
+
 	private List<ResultadoProceso> resultadosProcesos;
 	private List<Proceso> procesos;
 	private GestorPOIsABajar gestorPOIsABajar;
 	/*SI BIEN ESTE ULTIMO GESTOR PODRIA ESTAR CONTENDIO EN ESTA CLASE
 	CONSIDERAMOS QUE ES MEJOR SEPARAR EL COMPORTAMTIENTO DE ESTA FORMA EN POS DE LA COHESION*/
 	
-	//Constructor
-	public GestorProcesos(){
-		resultadosProcesos = new ArrayList<ResultadoProceso>();
-		procesos = new ArrayList<Proceso>();
-		gestorPOIsABajar = new GestorPOIsABajar(this); 
-	}
 
 	//Getters Y setters
 	public List<ResultadoProceso> getResultadosProcesos(){
@@ -57,4 +59,11 @@ public class GestorProcesos {
 		timer.schedule(tareaProgramada, horario,frecuencia); 
 	}
 
+	private void iniciarProcesoDeBajaAutomaticaDePOIs(){
+		gestorPOIsABajar = new GestorPOIsABajar(this);
+		gestorPOIsABajar.ponerPOIsABajar();
+	}
 }
+
+
+

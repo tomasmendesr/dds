@@ -11,7 +11,7 @@ public class BajaDePOI extends Proceso{
 	
 	//CONSTRUCTOR
 	
-	public BajaDePOI(Integer id, Date fecha,GestorPOIsABajar gestorPB){
+	public BajaDePOI(Integer id, Date fecha, GestorPOIsABajar gestorPB){
 		this.setRepositorioDePOIs(RepositorioPOIs.getInstance());
 		this.setFecha(fecha);
 		this.setIdPOI(id);

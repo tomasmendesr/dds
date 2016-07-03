@@ -39,6 +39,7 @@ public abstract class Proceso {
 	}
 	
 	//Metodos
+
 	public abstract ResultadoProceso realizarProceso();
 	
 	protected ResultadoProceso falle(){

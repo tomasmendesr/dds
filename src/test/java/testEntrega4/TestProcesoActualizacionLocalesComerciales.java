@@ -107,7 +107,7 @@ public class TestProcesoActualizacionLocalesComerciales {
         RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 
         //Texto
-        unaRuta = "C:\\Users\\micka\\Documents\\palabrasClave.txt";
+        unaRuta = "src/palabrasClave.txt";
 
        //Actualizar Local Comercial
         local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance(),unaRuta);

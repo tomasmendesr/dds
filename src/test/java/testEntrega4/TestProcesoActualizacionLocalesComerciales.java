@@ -113,26 +113,26 @@ public class TestProcesoActualizacionLocalesComerciales {
         local = new ActualizarLocalesComerciales(RepositorioPOIs.getInstance(),unaRuta);
         local.setCantidadAIterar(3);
     }
-/*
+
    @Test
     public void laCantidadDeLocalesModificadosEs1(){
-        ResultadoProceso resultadoProceso = local.realizarProceso();
+        resultadoProceso = local.realizarProceso();
         Assert.assertEquals(1, resultadoProceso.getCantElementosAfectados());
     }
 
     @Test
     public void laCantidadDeLocalesModificadosEs2(){
         RepositorioPOIs.getInstance().agregarPOI(tiendaDeRopa);
-        ResultadoProceso resultadoProceso = local.realizarProceso();
+        resultadoProceso = local.realizarProceso();
         Assert.assertEquals(2, resultadoProceso.getCantElementosAfectados());
     }
 
-    @Test
+   /* @Test
     public void laCantidadDeLocalesModificadosEs0(){
         RepositorioPOIs.getInstance().quitarPOI(libreriaEscolar);
         ResultadoProceso resultadoProceso = local.realizarProceso();
         Assert.assertEquals(0, resultadoProceso.getCantElementosAfectados());
-    }
+    }*/
 
     @Test
     public void laCantidadDePalabrasClaveDeLibreriaEscolarAntesDeActualizarLosLocalesComercialesEs2(){
@@ -142,18 +142,18 @@ public class TestProcesoActualizacionLocalesComerciales {
 
     @Test
     public void laCantidadDePalabrasClaveDeLibreriaEscolarDespuesDeActualizarLosLocalesComercialesEs4(){
-        ResultadoProceso resultadoProceso = local.realizarProceso();
+        resultadoProceso = local.realizarProceso();
         int cantidadPalabrasClave = libreriaEscolar.cantidadDePalabrasClave();
         Assert.assertEquals(4, cantidadPalabrasClave);
     }
 
     @Test
     public void laCantidadDePalabrasClaveDeKioskoDeDiariosDespuesDeActualizarLosLocalesComercialesEs3(){
-        ResultadoProceso resultadoProceso = local.realizarProceso();
+        resultadoProceso = local.realizarProceso();
         int cantidadPalabrasClave = kioskoDeDiarios.cantidadDePalabrasClave();
         Assert.assertEquals(3, cantidadPalabrasClave);
     }
-*/
+
     @After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();

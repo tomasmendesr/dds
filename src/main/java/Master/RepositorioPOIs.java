@@ -84,7 +84,7 @@ public class RepositorioPOIs {
 	}
 
 	//Agregar y quitar lista de POIs (para locales comerciales)
-	public void eliminarListaDePOIs(List<POI> unaListaDePOIs){
+	public void quitarListaDePOIs(List<POI> unaListaDePOIs){
 		unaListaDePOIs.forEach(unPOI -> this.quitarPOI(unPOI));
 	}
 

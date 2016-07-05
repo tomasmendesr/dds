@@ -44,6 +44,7 @@ public class ActualizarLocalesComerciales extends Proceso {
 
     public ResultadoProceso buscarLocalesComercialesAModificar(String nombre, String[] unasPalabras) {
         ResultadoProceso resultadoProceso = new ResultadoProceso();
+        ResultadoProceso resultadoProcesoSiFalla = new ResultadoProceso();
         resultadoProceso.setMomentoDeEjecucion(LocalDateTime.now());
         List<POI> localesAModificar = new ArrayList<POI>();
         localesAModificar = repositorioPOIs.devolverLocalesComercialesQueCumplenRequisitos(nombre, unasPalabras);
@@ -51,16 +52,16 @@ public class ActualizarLocalesComerciales extends Proceso {
         Integer localesAfectados = localesAModificar.size();
         resultadoProceso.setCantElementosAfectados(localesAfectados);
         if (localesAfectados.equals(0)) {
-            this.falle();
+           resultadoProcesoSiFalla = this.falle();
+           return resultadoProcesoSiFalla;
         } else {
             resultadoProceso.setResultadoDelProceso(true);
+            return resultadoProceso;
         }
-        return resultadoProceso;
-
     }
 
     public void modificarLocalesComerciales(List<POI> localesAModificar, String[] unasPalabras) {
-        repositorioPOIs.eliminarListaDePOIs(localesAModificar);
+        repositorioPOIs.quitarListaDePOIs(localesAModificar);
         localesAModificar.stream().forEach(localComercial -> localComercial.actualizarPalabrasClaves(unasPalabras));
         repositorioPOIs.agregarListaDePOIs(localesAModificar);
     }

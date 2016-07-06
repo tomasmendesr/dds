@@ -17,7 +17,14 @@ public class GestorProcesos {
 	public GestorProcesos(){
 		resultadosProcesos = new ArrayList<ResultadoProceso>();
 		procesos = new ArrayList<Proceso>();
-		gestorPOIsABajar = new GestorPOIsABajar(this);
+	}
+
+	public static GestorProcesos nuevoGestorProcesosConBajaPOIs(){
+		GestorProcesos gestorProcesos = new GestorProcesos();
+		GestorPOIsABajar gestorPOIsABajar = GestorPOIsABajar.nuevoGestorConGestorDeProcesos(gestorProcesos);
+		gestorProcesos.setGestorPOIsABajar(gestorPOIsABajar);
+		gestorProcesos.iniciarProcesoDeBajaAutomaticaDePOIs();
+		return gestorProcesos;
 	}
 
 	//atributos
@@ -37,6 +44,8 @@ public class GestorProcesos {
 	public List<Proceso> getProcesos(){
 		return procesos;
 	}
+
+	public void setGestorPOIsABajar(GestorPOIsABajar unGestor){gestorPOIsABajar = unGestor;}
 		
 	//Metodos
 
@@ -60,8 +69,7 @@ public class GestorProcesos {
 	}
 
 	private void iniciarProcesoDeBajaAutomaticaDePOIs(){
-		gestorPOIsABajar = new GestorPOIsABajar(this);
-		gestorPOIsABajar.ponerPOIsABajar();
+		gestorPOIsABajar.iniciarBajaDePOIsAutomaticamente();
 	}
 }
 

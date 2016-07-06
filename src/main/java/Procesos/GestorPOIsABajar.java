@@ -13,9 +13,12 @@ public class GestorPOIsABajar {
 	
 	//CONSTRUCTOR
 	
-	public GestorPOIsABajar(GestorProcesos unGestor){
-		gestor = unGestor;
-		this.iniciarBajaDePOIsAutomaticamente();
+	public static GestorPOIsABajar nuevoGestorConGestorDeProcesos(GestorProcesos unGestorProcesos){
+		GestorPOIsABajar gestor = new GestorPOIsABajar();
+		gestor.setGestorProcesos(unGestorProcesos);
+		//gestor.iniciarBajaDePOIsAutomaticamente(); esto se debe llamar una vez instanciado el gestor
+		//sino null pointer ====>> BOOOM ==> GASTON SE ENOJA ===> RECURSAMOS TODOS ==> TERMINAMOS SIENDO VERDULEROS
+		return gestor;
 	}
 
 	private AdapterServicioRestBajaPOIs adapter;
@@ -34,7 +37,10 @@ public class GestorPOIsABajar {
 	public void setListaDePOIsABajar(List<POIABajar> listaDePOIsABajar) {
 		this.listaDePOIsABajar = listaDePOIsABajar;
 	}	
-	
+
+	public void setGestorProcesos(GestorProcesos unGestor){
+		gestor = unGestor;
+	}
 
 	//METODOS
 

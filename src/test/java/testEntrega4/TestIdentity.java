@@ -27,15 +27,15 @@ public class TestIdentity {
 		Assert.assertEquals(1, Identity.getIdentity(),0);
 	}
 	
-	/*@Test
+	@Test
 	public void poiTieneUnIDQueVale0(){
-		Assert.assertEquals(1, new ParadaDeColectivo(null).getID() ,0);
+		Assert.assertEquals(0, new ParadaDeColectivo(null).getID() ,0);
 	}
 		
 	@Test
 	public void tresPOIsDistitntosTienenDistintoID(){
-		Assert.assertEquals(2, new ParadaDeColectivo(null).getID(),0);
-		Assert.assertEquals(3, new CGP(null).getID(),0);
-		Assert.assertEquals(4, new Banco(null).getID(),0);
-	}*/
+		Assert.assertEquals(0, new ParadaDeColectivo(null).getID(),0);
+		Assert.assertEquals(1, new CGP(null).getID(),0);
+		Assert.assertEquals(2, new Banco(null).getID(),0);
+	}
 }

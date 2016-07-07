@@ -99,6 +99,8 @@ public class RepositorioPOIs {
 		return localesQueCumplenRequisitos;
 	}
 
-
+	public Boolean contienePOISegunID(int id){
+		return this.getColeccionDePOIS().stream().map(poi -> poi.getID()).collect(Collectors.toList()).contains(id);
+	}
 
 }

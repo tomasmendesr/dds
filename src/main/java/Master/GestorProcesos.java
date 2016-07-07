@@ -3,7 +3,7 @@ package Master;
 import java.util.*;
 
 import Adapters.AdapterServicioRestBajaPOIs;
-import ComponentesExternos.servicioRESTBajaPOIsStub;
+import ComponentesExternos.ServicioRESTBajaPOIsStub;
 import Procesos.BajaDePOI;
 import Procesos.Proceso;
 import Procesos.ResultadoProceso;
@@ -18,7 +18,7 @@ public class GestorProcesos {
 	public GestorProcesos(){
 		resultadosProcesos = new ArrayList<ResultadoProceso>();
 		procesos = new ArrayList<Proceso>();
-		adapterServicioRestBajaPOIs = new AdapterServicioRestBajaPOIs(new servicioRESTBajaPOIsStub());
+		adapterServicioRestBajaPOIs = new AdapterServicioRestBajaPOIs();
 		timerBajaPOIs = new Timer();
 	}
 

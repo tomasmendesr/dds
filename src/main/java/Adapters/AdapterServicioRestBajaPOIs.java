@@ -5,34 +5,32 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import ComponentesExternos.ServicioRESTBajaPOIsStub;
 import org.json.simple.JSONObject;
 
-import ComponentesExternos.servicioRESTBajaPOIsStub;
-import Master.GestorProcesos;
-import Procesos.Proceso;
 import ProcesosExt.POIABajar;
 
 public class AdapterServicioRestBajaPOIs {
 
 	//CONSTRUCTOR
 	
-	public AdapterServicioRestBajaPOIs(servicioRESTBajaPOIsStub unServicio){
-		this.setServicio(unServicio);
+	public AdapterServicioRestBajaPOIs(){
+		this.setServicio(new ServicioRESTBajaPOIsStub());
 	}
 	
 	
 	//ATRIBUTOS
 	
-	servicioRESTBajaPOIsStub servicio;
+	ServicioRESTBajaPOIsStub servicio;
 
 	
 	//GETERS Y SETERS
 	
-	public servicioRESTBajaPOIsStub getServicio() {
+	public ServicioRESTBajaPOIsStub getServicio() {
 		return servicio;
 	}
 
-	public void setServicio(servicioRESTBajaPOIsStub servicio) {
+	public void setServicio(ServicioRESTBajaPOIsStub servicio) {
 		this.servicio = servicio;
 	}
 	

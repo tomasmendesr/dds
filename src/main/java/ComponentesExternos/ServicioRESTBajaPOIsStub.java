@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.json.simple.JSONObject;
 
-public class servicioRESTBajaPOIsStub{
+public class ServicioRESTBajaPOIsStub {
 
 	public JSONObject getPOIs(){
 		JSONObject poisABajar = new JSONObject();

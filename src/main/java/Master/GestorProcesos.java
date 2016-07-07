@@ -1,76 +1,117 @@
 package Master;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import Procesos.GestorPOIsABajar;
+import java.util.*;
+
+import Adapters.AdapterServicioRestBajaPOIs;
+import ComponentesExternos.servicioRESTBajaPOIsStub;
+import Procesos.BajaDePOI;
 import Procesos.Proceso;
 import Procesos.ResultadoProceso;
+import ProcesosExt.POIABajar;
 
 public class GestorProcesos {
 
+	//VER COMENTARIO EN ponerPOIsABajar()
+
 	//Constructor
+
 	public GestorProcesos(){
 		resultadosProcesos = new ArrayList<ResultadoProceso>();
 		procesos = new ArrayList<Proceso>();
+		adapterServicioRestBajaPOIs = new AdapterServicioRestBajaPOIs(new servicioRESTBajaPOIsStub());
+		timerBajaPOIs = new Timer();
 	}
 
 	public static GestorProcesos nuevoGestorProcesosConBajaPOIs(){
 		GestorProcesos gestorProcesos = new GestorProcesos();
-		GestorPOIsABajar gestorPOIsABajar = GestorPOIsABajar.nuevoGestorConGestorDeProcesos(gestorProcesos);
-		gestorProcesos.setGestorPOIsABajar(gestorPOIsABajar);
 		gestorProcesos.iniciarProcesoDeBajaAutomaticaDePOIs();
 		return gestorProcesos;
+
 	}
 
-	//atributos
+	//Atributos
 
-	private List<ResultadoProceso> resultadosProcesos;
-	private List<Proceso> procesos;
-	private GestorPOIsABajar gestorPOIsABajar;
-	/*SI BIEN ESTE ULTIMO GESTOR PODRIA ESTAR CONTENDIO EN ESTA CLASE
-	CONSIDERAMOS QUE ES MEJOR SEPARAR EL COMPORTAMTIENTO DE ESTA FORMA EN POS DE LA COHESION*/
-	
+	private List<ResultadoProceso> 			resultadosProcesos;
+	private List<Proceso> 					procesos;
+	private AdapterServicioRestBajaPOIs		adapterServicioRestBajaPOIs;
+	private Timer		 					timerBajaPOIs;
 
-	//Getters Y setters
+	//Metodos
+
+		//region MAIN
+
+		public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantAIterar){
+			if(!procesos.contains(proceso)) { procesos.add(proceso);
+			this.ejecutarTarea(proceso,horario,cantAIterar); }
+		}
+
+		public void ejecutarTarea(Proceso proceso, Date horario, int cantAIterar){
+			Timer timer = new Timer();
+			TimerTask tareaProgramada = new TimerTask(){
+				@Override
+				public void run(){
+					ResultadoProceso resultado = proceso.realizarProceso();
+					proceso.setCantidadAIterar(cantAIterar);
+					resultadosProcesos.add(resultado);
+					procesos.remove(proceso);
+				}
+			};
+			timer.schedule(tareaProgramada, horario,cantAIterar);
+		}
+
+		private void iniciarProcesoDeBajaAutomaticaDePOIs(){
+			GestorProcesos miGestor = this;
+			TimerTask taskBajaPOIs = new TimerTask() {
+				@Override
+				public void run() {
+					miGestor.ponerPOIsABajar();
+				}
+			};
+			Date diaDeHoy = this.getDiaDeHoy();
+			Integer cada24hs = (60*60*24*1000) ;
+			timerBajaPOIs.schedule(taskBajaPOIs,diaDeHoy,cada24hs);
+		}
+
+		private void ponerPOIsABajar(){
+			List<POIABajar> listaDePOIsABajar = this.getAdapterServicioRestBajaPOIs().getPOIsABajar();
+			listaDePOIsABajar.forEach(poiABorrar -> {
+					BajaDePOI procesoDeBaja = new BajaDePOI(poiABorrar.getIdPOI(), poiABorrar.getFecha());
+					this.agregarProcesoAEjecutar(procesoDeBaja,procesoDeBaja.getFecha(),0); } );
+			//VER SI LA CANTIDAD DE VECES A ITERAR ES 0 O 1
+		}
+
+		//endregion
+
+		//region EXTRAS
+
+		private Date getDiaDeHoy(){
+			Date diaDeHoy = new Date();
+			org.joda.time.LocalDateTime dia = new org.joda.time.LocalDateTime().now();
+			diaDeHoy.setYear(dia.getYear());
+			diaDeHoy.setDate(dia.getDayOfMonth());
+			diaDeHoy.setHours(dia.getHourOfDay());
+			diaDeHoy.setMinutes(dia.getMinuteOfHour());
+			diaDeHoy.setSeconds(dia.getSecondOfMinute());
+			return diaDeHoy;
+		}
+
+		//endregion
+
+
+	//region Getters Y setters
+
 	public List<ResultadoProceso> getResultadosProcesos(){
 		return resultadosProcesos;
 	}
-	
+
 	public List<Proceso> getProcesos(){
 		return procesos;
 	}
 
-	public void setGestorPOIsABajar(GestorPOIsABajar unGestor){gestorPOIsABajar = unGestor;}
-		
-	//Metodos
+	public AdapterServicioRestBajaPOIs getAdapterServicioRestBajaPOIs() {return adapterServicioRestBajaPOIs;}
 
-	public void agregarProcesoAEjecutar(Proceso proceso, Date horario, int cantAIterar){
-		if(!procesos.contains(proceso)) { procesos.add(proceso);
-		this.ejecutarTarea(proceso,horario,cantAIterar); }
-	}
-	
-	public void ejecutarTarea(Proceso proceso, Date horario, int cantAIterar){
-		Timer timer = new Timer();
-		TimerTask tareaProgramada = new TimerTask(){
-			@Override
-			public void run(){
-				ResultadoProceso resultado = proceso.realizarProceso();
-				proceso.setCantidadAIterar(cantAIterar);
-				resultadosProcesos.add(resultado);
-				procesos.remove(proceso);
-			}
-		};
-		timer.schedule(tareaProgramada, horario,cantAIterar); 
-	}
+	//endregion
 
-	private void iniciarProcesoDeBajaAutomaticaDePOIs(){
-		gestorPOIsABajar.iniciarBajaDePOIsAutomaticamente();
-	}
 }
 
 

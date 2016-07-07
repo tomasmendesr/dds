@@ -56,7 +56,7 @@ public class RepositorioPOIs {
 	}
 
 	public void quitarPOI(POI unPOI) {
-		coleccionDePOIS.remove(unPOI);
+		coleccionDePOIS.removeIf(poi -> poi.getID() == unPOI.getID());
 	}
 
 	// Agregar y quitar adapters consulta
@@ -98,5 +98,7 @@ public class RepositorioPOIs {
 		localesQueCumplenRequisitos = coleccionDePOIS.stream().filter(unPOI -> (unPOI.tieneNombreYPalabrasEspecificadas(nombre, unasPalabras).equals(Boolean.TRUE))).collect(Collectors.toList());
 		return localesQueCumplenRequisitos;
 	}
+
+
 
 }

@@ -97,4 +97,9 @@ public class TestProcesoBajaDePOIs {
         procesoDeBaja.darDeBaja();
         Assert.assertEquals(6,repositorioPOIs.getColeccionDePOIS().size());
     }
+
+    @After
+    public void tearDown(){
+        repositorioPOIs.resetPOIs();
+    }
 }

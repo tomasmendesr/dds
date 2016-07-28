@@ -19,6 +19,7 @@ import org.mockito.cglib.core.Local;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class TestProcesoBajaDePOIs {
@@ -81,7 +82,19 @@ public class TestProcesoBajaDePOIs {
     @Test
     public void elProcesoBajaPOIEliminaElPOIConID3(){
         Assert.assertEquals(6,repositorioPOIs.getColeccionDePOIS().size());
-        /*BajaDePOI procesoDeBajaPOI = new BajaDePOI(3,null);
-        procesoDeBajaPOI.darDeBaja();*/
+        int cgp2ID = cgp2.getID();
+        BajaDePOI procesoDeBajaPOI = new BajaDePOI(cgp2ID,null);
+        procesoDeBajaPOI.darDeBaja();
+        Assert.assertFalse(repositorioPOIs.contienePOISegunID(cgp2ID));
+        Assert.assertEquals(5,repositorioPOIs.getColeccionDePOIS().size());
+    }
+
+    @Test
+    public void elProcesoBajaPOINoEliminaPOIQueNoEstaEnElRepositorio(){
+        Assert.assertEquals(6,repositorioPOIs.getColeccionDePOIS().size());
+        int poiID = 8;
+        BajaDePOI procesoDeBaja = new BajaDePOI(poiID,null);
+        procesoDeBaja.darDeBaja();
+        Assert.assertEquals(6,repositorioPOIs.getColeccionDePOIS().size());
     }
 }

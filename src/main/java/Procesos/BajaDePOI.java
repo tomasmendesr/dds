@@ -6,6 +6,7 @@ import java.util.List;
 
 import Adapters.AdapterServicioRestBajaPOIs;
 import Master.GestorProcesos;
+import Master.POI;
 import Master.RepositorioPOIs;
 
 public class BajaDePOI extends Proceso{

@@ -100,7 +100,7 @@ public class RepositorioPOIs {
 	}
 
 	public Boolean contienePOISegunID(int id){
-		return this.getColeccionDePOIS().stream().map(poi -> poi.getID()).collect(Collectors.toList()).contains(id);
+		return this.getColeccionDePOIS().stream().anyMatch(poi -> poi.getID() == id);
 	}
 
 }

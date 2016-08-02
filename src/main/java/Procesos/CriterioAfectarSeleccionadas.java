@@ -5,13 +5,13 @@ import java.util.List;
 
 import Master.Terminal;
 
-public class Seleccionada extends TipoDeCriterio {
+public class CriterioAfectarSeleccionadas extends TipoDeCriterio {
 	
 	//atributo
 	private List<Terminal> terminalesSeleccionadas;
 	
 	//constructor
-	public Seleccionada(){
+	public CriterioAfectarSeleccionadas(){
 		terminalesSeleccionadas = new ArrayList<Terminal>();
 	}
 	

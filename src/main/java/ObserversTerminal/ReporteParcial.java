@@ -17,15 +17,16 @@ public class ReporteParcial implements FuncionalidadExtraTerminal {
 	
 	//Getters y Setters
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
-		Integer cantidadDeResultados;
-		cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();
-		this.generarResultadosParciales(unaTerminal, cantidadDeResultados); // Guardo los datos para hacer el repote
-	}
+        Integer cantidadDeResultados;
+        cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();
+        this.generarResultadosParciales(unaTerminal, cantidadDeResultados); // Guardo los datos para hacer el repote
+    }
 
 	// Reporte de Resultados Parciales por Terminal
 	public void generarResultadosParciales(Terminal unaTerminal, Integer cantidadDeResultados){
 		resultadosParcialesPorTerminal.put(unaTerminal, cantidadDeResultados);
 	}
+
 	
 	public Integer generarReporteParcialPorTerminal(Terminal terminal){ // Genero el reporte por terminal cuando me lo pidan
 		return resultadosParcialesPorTerminal.get(terminal);

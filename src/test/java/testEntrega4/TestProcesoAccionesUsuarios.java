@@ -14,9 +14,9 @@ import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIsExt.Comuna;
 import Procesos.AccionesUsuarios;
 import Procesos.ResultadoProceso;
-import Procesos.SegunComuna;
-import Procesos.Seleccionada;
-import Procesos.Todas;
+import Procesos.CriterioSegunComuna;
+import Procesos.CriterioAfectarSeleccionadas;
+import Procesos.CriterioAfectarTodas;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -30,10 +30,10 @@ public class TestProcesoAccionesUsuarios {
 	private Polygon	zonaComuna8;
 	private ReporteTotalesPorUsuario observerReportesTotales;
 	private AccionesUsuarios accionUsuario;
-	private SegunComuna segunComuna;
+	private CriterioSegunComuna segunComuna;
 	private ResultadoProceso resultadoProceso;
-	private Todas todasLasTerminales;
-	private Seleccionada seleccionadas;
+	private CriterioAfectarTodas todasLasTerminales;
+	private CriterioAfectarSeleccionadas seleccionadas;
 	private ReportePorFecha observerReportePorFecha;
 	
 	@Before
@@ -73,15 +73,15 @@ public class TestProcesoAccionesUsuarios {
 	RepositorioTerminales.getInstance().addTerminal(terminalLugano);
 	
 	// Criterio segun la comuna
-	segunComuna = new SegunComuna();
+	segunComuna = new CriterioSegunComuna();
 	segunComuna.setComunaSeleccionada(comuna8);
 
 	
 	// Criterio para afectar a todas las terminales
-	todasLasTerminales = new Todas();
+	todasLasTerminales = new CriterioAfectarTodas();
 	
 	// Criterio para afectar las terminales seleccionadas
-	seleccionadas = new Seleccionada();
+	seleccionadas = new CriterioAfectarSeleccionadas();
 	}
 	
 	// Proceso1: Agregar accion ReportesTotales a las terminales segun la comuna

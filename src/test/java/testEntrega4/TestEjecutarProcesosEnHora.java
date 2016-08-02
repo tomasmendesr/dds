@@ -24,9 +24,9 @@ import POIsExt.Rubro;
 import Procesos.AccionesUsuarios;
 import Procesos.ActualizarLocalesComerciales;
 import Procesos.ResultadoProceso;
-import Procesos.SegunComuna;
+import Procesos.CriterioSegunComuna;
 import Procesos.Proceso;
-import Procesos.Todas;
+import Procesos.CriterioAfectarTodas;
 import org.junit.Assert;
 
 public class TestEjecutarProcesosEnHora {
@@ -44,7 +44,7 @@ public class TestEjecutarProcesosEnHora {
 		private Polygon	zonaComuna8;
 		private ReporteTotalesPorUsuario observerReportesTotales;
 		private AccionesUsuarios agregarAccionUsuario;
-		private SegunComuna segunComuna;
+		private CriterioSegunComuna segunComuna;
 		private ResultadoProceso resultadoProceso;
 		private Date fechaActual;
 		private AccionesUsuarios accionUsuario;

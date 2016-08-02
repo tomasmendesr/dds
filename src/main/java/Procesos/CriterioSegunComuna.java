@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import Master.Terminal;
 import POIsExt.Comuna;
 
-public class SegunComuna extends TipoDeCriterio {
+public class CriterioSegunComuna extends TipoDeCriterio {
 	
 	//atributo
 	private Comuna comunaSeleccionada;

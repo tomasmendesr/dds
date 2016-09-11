@@ -6,10 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class RepositorioPOIs {
 
 	//ATRIBUTOS
+	@Id
+	@GeneratedValue
+	private Integer id;
 	private static RepositorioPOIs repositorioPOIs;
+
 	private List<POI> coleccionDePOIS;
 	private List<AdapterConsulta> adapters;
 

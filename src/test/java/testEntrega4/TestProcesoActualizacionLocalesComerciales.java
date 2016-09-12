@@ -1,6 +1,5 @@
 package testEntrega4;
 
-import Master.Identity;
 import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
@@ -38,8 +37,7 @@ public class TestProcesoActualizacionLocalesComerciales {
     @Before
     public void init() throws IOException {
     	
-    	Identity.initializeIdentity();
-    	
+
     	// Comuna 8
         comuna8 = new Comuna(8);
         zonaComuna8 = new Polygon();

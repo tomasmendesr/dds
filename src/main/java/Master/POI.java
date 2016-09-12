@@ -48,8 +48,7 @@ public abstract class POI {
 	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
-		this.setID(Identity.getIdentityAndIncrement());
-	}	
+	}
 		
 	
 	//GETTERS Y SETTERS

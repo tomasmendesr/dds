@@ -5,14 +5,11 @@ import java.util.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.Identity;
 import Master.GestorProcesos;
 import Master.RepositorioPOIs;
-import Master.RepositorioTerminales;
 import Master.Terminal;
 import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
@@ -22,12 +19,8 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 import Procesos.AccionesUsuarios;
-import Procesos.ActualizarLocalesComerciales;
 import Procesos.ResultadoProceso;
 import Procesos.CriterioSegunComuna;
-import Procesos.Proceso;
-import Procesos.CriterioAfectarTodas;
-import org.junit.Assert;
 
 public class TestEjecutarProcesosEnHora {
 
@@ -53,7 +46,6 @@ public class TestEjecutarProcesosEnHora {
 	@Before
 	public void init(){
 
-	Identity.initializeIdentity();
 
 	// Comuna 8
 	comuna8 = new Comuna(8);

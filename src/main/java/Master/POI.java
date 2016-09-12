@@ -23,7 +23,7 @@ public abstract class POI {
 	@Id
 	@GeneratedValue
 	@Column(name="POI_ID")
-	private Integer			id;
+	private Integer					id;
 	
 	@Column(name="UBICACION")
 	private Point 					ubicacion;

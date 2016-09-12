@@ -8,7 +8,7 @@ public class ResultadoBusqueda{
 	
 	//CONSTRUCTOR
 
-	public ResultadoBusqueda(){ }
+	public ResultadoBusqueda(){}
 
 	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta){
 		this.setMomentoDeBusqueda(LocalDateTime.now());
@@ -22,17 +22,17 @@ public class ResultadoBusqueda{
 	@Id
 	@GeneratedValue
 	@Column(name="RESULTADO_BUSQUEDA_ID")
-	int 			id;
+	private int 			id;
 	@Column(name="FRASE_BUSCADA")
-	String 			fraseBuscada;
+	private String 			fraseBuscada;
 	@Column(name="DURACION_BUSQUEDA")
-	double 			duracionBusqueda;
+	private double 			duracionBusqueda;
 	@Transient
-	List<POI>		resultadoBusqueda;
+	private List<POI>		resultadoBusqueda;
 	@Transient
-	LocalDateTime	momentoDeBusqueda;
+	private LocalDateTime	momentoDeBusqueda;
 	@Column(name="TIEMPO_ESTIMADO_BUSQUEDA")
-	Double			tiempoEstimadoBusqueda;
+	private Double			tiempoEstimadoBusqueda;
 	
 
 	// GETTERS Y SETTERS

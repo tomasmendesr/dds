@@ -38,47 +38,7 @@ public class Terminal {
 		busquedas = new ArrayList<ResultadoBusqueda>();
 	}
 	
-	//GETTERS Y SETTERS
 
-	public Integer getId() {  return id;  }
-
-	public void setId(Integer id) {  this.id = id;  }
-
-	public String getNombreTerminal(){
-		return nombreTerminal;
-	}
-	
-	public void setNombreTerminal(String nombre){
-		nombreTerminal = nombre;
-	}
-	
-	public RepositorioPOIs getRepositorioPOIs() {
-		return repositorioPOIs;
-	}
-
-	public void setRepositorioPOIs(RepositorioPOIs repositorioPOIs) {
-		this.repositorioPOIs = repositorioPOIs;
-	}
-	
-	public List<FuncionalidadExtraTerminal> getObservers() {
-		return observers;
-	}
-	
-	public void setObservers(List<FuncionalidadExtraTerminal> observers) {
-		this.observers = observers;
-	}
-	
-	public List<ResultadoBusqueda> getResultadosBusqueda(){
-		return busquedas;
-	}
-	
-	public void setComuna(Comuna comuna){
-		this.comuna = comuna;
-	}
-	
-	public Comuna getComuna(){
-		return comuna;
-	}
 	
 	//METODOS
 		
@@ -125,4 +85,49 @@ public class Terminal {
 	public void addObserver(FuncionalidadExtraTerminal observer){
 		observers.add(observer);
 	}
+
+
+	//GETTERS Y SETTERS
+
+	public Integer getId() {  return id;  }
+
+	public void setId(Integer id) {  this.id = id;  }
+
+	public String getNombreTerminal(){
+		return nombreTerminal;
+	}
+
+	public void setNombreTerminal(String nombre){
+		nombreTerminal = nombre;
+	}
+
+	public RepositorioPOIs getRepositorioPOIs() {
+		return repositorioPOIs;
+	}
+
+	public void setRepositorioPOIs(RepositorioPOIs repositorioPOIs) {
+		this.repositorioPOIs = repositorioPOIs;
+	}
+
+	public List<FuncionalidadExtraTerminal> getObservers() {
+		return observers;
+	}
+
+	public void setObservers(List<FuncionalidadExtraTerminal> observers) {
+		this.observers = observers;
+	}
+
+	public List<ResultadoBusqueda> getResultadosBusqueda(){
+		return busquedas;
+	}
+
+	public void setComuna(Comuna comuna){
+		this.comuna = comuna;
+	}
+
+	public Comuna getComuna(){
+		return comuna;
+	}
+
+
 }

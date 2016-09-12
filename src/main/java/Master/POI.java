@@ -1,43 +1,46 @@
 package Master;
 
 import org.uqbar.geodds.Point;
+
 import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+
 import java.lang.String;
 
 @Entity
+@Table(name="POI")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="subclass", discriminatorType = DiscriminatorType.STRING)
+// P: ParadaaDeColectivo - C: CGP - B: Banco - L: LocalComercial
 public abstract class POI {
-	
-	/*@Override
-	public boolean equals(Object obj){
-	  if (!(obj instanceof POI))
-	    return false;
-	  POI unPOI = (POI) obj;
-	  return (this.getID() == unPOI.getID());
-	}*/
-	
+
 	//ATRIBUTOS
 
 	@Id
 	@GeneratedValue
 	@Column(name="POI_ID")
-	private Integer					id;
+	private Integer			id;
+	
 	@Column(name="UBICACION")
 	private Point 					ubicacion;
 	@Column(name="NOMBRE")
 	private String 					nombre;
 	@Column(name="DIRECCION")
 	private String 					direccion;
-	@Transient
+	@ElementCollection
+	@CollectionTable(name="TAG", joinColumns=@JoinColumn(name="POI_ID"))
+	@Column(name="TAG") 
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
+	
 	@OneToMany(mappedBy="poi")
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
 	@Column(name="COMUNA")
+	@ManyToOne
+	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))
 	private Comuna					comuna;
 
 	

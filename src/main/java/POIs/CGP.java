@@ -1,7 +1,12 @@
 package POIs;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
 
+@Entity
+@DiscriminatorValue("C")
 public class CGP extends POIConServicio {
 
 	//CONSTRUCTOR

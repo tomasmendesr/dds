@@ -19,7 +19,6 @@ import java.lang.String;
 public abstract class POI {
 
 	//ATRIBUTOS
-
 	@Id
 	@GeneratedValue
 	@Column(name="POI_ID")

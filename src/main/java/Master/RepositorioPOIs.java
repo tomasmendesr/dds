@@ -12,11 +12,11 @@ public class RepositorioPOIs {
 	//ATRIBUTOS
 	@Id
 	@GeneratedValue
-	@Column(name="RANGO_DE_ATENCION_ID")
 	private Integer id;
 	@Transient
 	private static RepositorioPOIs repositorioPOIs;
-	@Transient
+	@OneToMany 
+	@JoinColumn(name="POI_ID")
 	private List<POI> coleccionDePOIS;
 	@Transient
 	private List<AdapterConsulta> adapters;

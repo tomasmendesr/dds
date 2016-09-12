@@ -4,6 +4,7 @@ import org.uqbar.geodds.Polygon;
 
 import javax.persistence.*;
 
+@Entity
 public class Comuna {
 	
 	//Constructor

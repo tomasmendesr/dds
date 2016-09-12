@@ -1,12 +1,9 @@
 package Master;
 
 import org.uqbar.geodds.Point;
-
 import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,16 +24,26 @@ public abstract class POI {
 
 	@Id
 	@GeneratedValue
+	@Column(name="POI_ID")
 	private Integer					id;
+	@Column(name="UBICACION")
 	private Point 					ubicacion;
+	@Column(name="NOMBRE")
 	private String 					nombre;
+	@Column(name="DIRECCION")
 	private String 					direccion;
+	@Transient
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
-	private List<RangoDeAtencion>	listaDeRangosDeAtencion; 
+	@Transient
+	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
+	@Column(name="COMUNA")
 	private Comuna					comuna;
 	
 	
-	//CONSTRUCTOR 
+	//CONSTRUCTOR
+
+	public POI() { }
+
 	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags

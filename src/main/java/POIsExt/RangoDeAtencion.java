@@ -1,13 +1,14 @@
 package POIsExt;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 public class RangoDeAtencion {
 
 	//Constructor
-	
+
+	public RangoDeAtencion() { }
+
 	public RangoDeAtencion(int numeroDeDiaDeLaSemana,int horarioDesde,int minutosDesde, int horarioHasta, int minutosHasta){
 		this.setNumeroDeDiaDeLaSemana(numeroDeDiaDeLaSemana);
 		this.setHorarioDesde(horarioDesde);
@@ -20,11 +21,17 @@ public class RangoDeAtencion {
 
 	@Id
 	@GeneratedValue
+	@Column(name="RANGO_DE_ATENCION_ID")
 	private int id;
+	@Column(name="NUMERO_DE_DIA_DE_LA_SEMANA")
 	private int numeroDeDiaDeLaSemana; //EJ "1=Lunes, 2=Martes..."
+	@Column(name="HORARIO_DESDE")
 	private int horarioDesde; //EJ 9
+	@Column(name="MINUTOS_DESDE")
 	private int minutosDesde; //EJ 0
+	@Column(name="HORARIO_HASTA")
 	private int horarioHasta; //EJ 18
+	@Column(name="MINUTOS_HASTA")
 	private int minutosHasta; //EJ 0
 	
 	//Geters y seters

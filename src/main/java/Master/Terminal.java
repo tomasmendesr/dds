@@ -4,25 +4,33 @@ package Master;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import ObserversTerminal.FuncionalidadExtraTerminal;
 import POIsExt.Comuna;
+import javax.persistence.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 public class Terminal {
 
 	//ATRIBUTOS
 	@Id
 	@GeneratedValue
+	@Column(name="TERMINAL_ID")
+	private Integer									id;
+    @Column(name="REPOSITORIO_POIS")
 	private RepositorioPOIs			 				repositorioPOIs;
+    @Transient
 	private List<FuncionalidadExtraTerminal>		observers;
+    @Column(name="NOMBRE")
 	private String									nombreTerminal;
+    @Transient
 	private List<ResultadoBusqueda>					busquedas;
+    @Column(name="COMUNA")
 	private Comuna 									comuna;
 		
 	//CONSTRUCTOR
+
+    public Terminal() { }
+
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		this.setNombreTerminal(nombre);

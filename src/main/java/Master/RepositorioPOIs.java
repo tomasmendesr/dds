@@ -1,14 +1,10 @@
 package Master;
 
 import Adapters.AdapterConsulta;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class RepositorioPOIs {
@@ -16,13 +12,17 @@ public class RepositorioPOIs {
 	//ATRIBUTOS
 	@Id
 	@GeneratedValue
+	@Column(name="RANGO_DE_ATENCION_ID")
 	private Integer id;
+	@Transient
 	private static RepositorioPOIs repositorioPOIs;
-
+	@Transient
 	private List<POI> coleccionDePOIS;
+	@Transient
 	private List<AdapterConsulta> adapters;
 
 	//CONSTRUCTOR
+
 	private RepositorioPOIs() {
 		coleccionDePOIS = new ArrayList<POI>();
 		adapters = new ArrayList<AdapterConsulta>();

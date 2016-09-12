@@ -1,14 +1,15 @@
 package Master;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class ResultadoBusqueda{
 	
 	//CONSTRUCTOR
-	
+
+	public ResultadoBusqueda(){ }
+
 	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta){
 		this.setMomentoDeBusqueda(LocalDateTime.now());
 		this.setFraseBuscada(fraseBuscada);
@@ -20,11 +21,17 @@ public class ResultadoBusqueda{
 
 	@Id
 	@GeneratedValue
+	@Column(name="RESULTADO_BUSQUEDA_ID")
 	int 			id;
+	@Column(name="FRASE_BUSCADA")
 	String 			fraseBuscada;
+	@Column(name="DURACION_BUSQUEDA")
 	double 			duracionBusqueda;
+	@Transient
 	List<POI>		resultadoBusqueda;
+	@Transient
 	LocalDateTime	momentoDeBusqueda;
+	@Column(name="TIEMPO_ESTIMADO_BUSQUEDA")
 	Double			tiempoEstimadoBusqueda;
 	
 

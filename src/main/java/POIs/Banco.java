@@ -4,14 +4,18 @@ package POIs;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
 
 import POIsExt.RangoDeAtencion;
 
+@Entity
+@DiscriminatorValue("B")
 public class Banco extends POIConServicio {
 
 	//CONSTRUCTOR
-	
 	public Banco(Point ubicacion) {
 		super(ubicacion);
 		this.setearRangoDeAtencionBancario();

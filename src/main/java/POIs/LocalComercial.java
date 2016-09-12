@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import java.lang.String;
 
 import Procesos.ResultadoProceso;
@@ -13,11 +17,11 @@ import Master.POI;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
 
+@Entity
+@DiscriminatorValue("L")
 public class LocalComercial extends POI {
 
 	//CONSTRUCTOR
-	
-
 	public LocalComercial(Point unaUbicacion, Rubro unRubro){
 		super(unaUbicacion);
 		this.setRubro(unRubro);

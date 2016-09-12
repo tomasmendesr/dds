@@ -1,5 +1,7 @@
 package Master;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +17,10 @@ public class ResultadoBusqueda{
 	}
 	
 	// ATRIBUTOS
-	
+
+	@Id
+	@GeneratedValue
+	int 			id;
 	String 			fraseBuscada;
 	double 			duracionBusqueda;
 	List<POI>		resultadoBusqueda;
@@ -24,7 +29,12 @@ public class ResultadoBusqueda{
 	
 
 	// GETTERS Y SETTERS
-	 
+
+
+	public int getId() { return id;  }
+
+	public void setId(int id) {  this.id = id;  }
+
 	public int getCantidadDeResultados(){
 		return resultadoBusqueda.size();
 	}

@@ -8,9 +8,14 @@ import java.util.stream.Collectors;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 import POIsExt.Comuna;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Terminal {
-	
+
 	//ATRIBUTOS
+	@Id
+	@GeneratedValue
 	private RepositorioPOIs			 				repositorioPOIs;
 	private List<FuncionalidadExtraTerminal>		observers;
 	private String									nombreTerminal;
@@ -26,6 +31,11 @@ public class Terminal {
 	}
 	
 	//GETTERS Y SETTERS
+
+	public Integer getId() {  return id;  }
+
+	public void setId(Integer id) {  this.id = id;  }
+
 	public String getNombreTerminal(){
 		return nombreTerminal;
 	}

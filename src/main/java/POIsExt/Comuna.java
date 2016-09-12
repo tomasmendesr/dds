@@ -2,6 +2,8 @@ package POIsExt;
 
 import org.uqbar.geodds.Polygon;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 public class Comuna {
 	
 	//Constructor
@@ -14,6 +16,8 @@ public class Comuna {
 	//ATRIBUTOS
 	
 	private Polygon 	zona;
+	@Id
+	@GeneratedValue
 	private int			numeroDeComuna;
 	
 	//GETERS Y SETERS 

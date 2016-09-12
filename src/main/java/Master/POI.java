@@ -5,6 +5,8 @@ import org.uqbar.geodds.Point;
 import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +24,9 @@ public abstract class POI {
 	}*/
 	
 	//ATRIBUTOS
-	
+
+	@Id
+	@GeneratedValue
 	private Integer					id;
 	private Point 					ubicacion;
 	private String 					nombre;

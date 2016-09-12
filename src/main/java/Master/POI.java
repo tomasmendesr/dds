@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.lang.String;
 
+@Entity
 public abstract class POI {
 	
 	/*@Override
@@ -34,11 +35,11 @@ public abstract class POI {
 	private String 					direccion;
 	@Transient
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
-	@Transient
+	@OneToMany(mappedBy="poi")
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
 	@Column(name="COMUNA")
 	private Comuna					comuna;
-	
+
 	
 	//CONSTRUCTOR
 

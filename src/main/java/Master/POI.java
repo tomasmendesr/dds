@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.lang.String;
+import Converter.*;
 
 @Entity
 @Table(name="POI")
@@ -25,6 +26,7 @@ public abstract class POI {
 	private Integer					id;
 	
 	@Column(name="UBICACION")
+	// @Convert(converter = Converter.PointConverter.class)
 	private Point 					ubicacion;
 	@Column(name="NOMBRE")
 	private String 					nombre;
@@ -32,9 +34,9 @@ public abstract class POI {
 	private String 					direccion;
 	@ElementCollection
 	@CollectionTable(name="TAG", joinColumns=@JoinColumn(name="POI_ID"))
-	@Column(name="TAG") 
+	// @Convert(converter = Converter.ListToStringConveter.class)
+	@Column(name="TAG")
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
-	
 	@OneToMany(mappedBy="poi")
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
 	@Column(name="COMUNA")

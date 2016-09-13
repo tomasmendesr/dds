@@ -5,7 +5,12 @@ import Master.Terminal;
 
 import java.util.HashMap;
 
-public class ReporteTotalesPorUsuario implements FuncionalidadExtraTerminal {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("RU")
+public class ReporteTotalesPorUsuario extends FuncionalidadExtraTerminal {
 	
 	//Atributos
 	private HashMap<Terminal,Integer> 		resultadosPorTerminal;

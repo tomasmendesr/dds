@@ -6,7 +6,12 @@ import Master.Terminal;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-public class ReportePorFecha implements FuncionalidadExtraTerminal{
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("RF")
+public class ReportePorFecha extends FuncionalidadExtraTerminal{
 
 	//Atributos
 	private HashMap<LocalDate,Integer>		cantidadBusquedasXFecha;

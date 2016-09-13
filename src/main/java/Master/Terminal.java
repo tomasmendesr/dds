@@ -8,7 +8,7 @@ import ObserversTerminal.FuncionalidadExtraTerminal;
 import POIsExt.Comuna;
 import javax.persistence.*;
 
-
+@Entity
 public class Terminal {
 
 	//ATRIBUTOS
@@ -18,13 +18,19 @@ public class Terminal {
 	private Integer									id;
     @Column(name="REPOSITORIO_POIS")
 	private RepositorioPOIs			 				repositorioPOIs;
-    @Transient
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "funcionalidad_x_terminal", joinColumns = {
+			@JoinColumn(name = "TERMIJNAL_ID", nullable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "FUNCIONALIDAD_ID",
+					nullable = false) })
 	private List<FuncionalidadExtraTerminal>		observers;
     @Column(name="NOMBRE")
 	private String									nombreTerminal;
-    @Transient
+    @OneToMany
 	private List<ResultadoBusqueda>					busquedas;
     @Column(name="COMUNA")
+    @ManyToOne
+	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))
 	private Comuna 									comuna;
 		
 	//CONSTRUCTOR

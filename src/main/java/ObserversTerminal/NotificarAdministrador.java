@@ -1,9 +1,14 @@
 package ObserversTerminal;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 
-public class NotificarAdministrador implements FuncionalidadExtraTerminal{
+@Entity
+@DiscriminatorValue("NA")
+public class NotificarAdministrador extends FuncionalidadExtraTerminal{
 
 	
 	@Override

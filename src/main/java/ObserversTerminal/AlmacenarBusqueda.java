@@ -3,9 +3,15 @@ package ObserversTerminal;
 import Master.ResultadoBusqueda;
 import Master.Terminal;
 import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import java.util.ArrayList;
 
-public class AlmacenarBusqueda implements FuncionalidadExtraTerminal  {
+@Entity
+@DiscriminatorValue("AB")
+public class AlmacenarBusqueda extends FuncionalidadExtraTerminal  {
 
 	//ATRIBUTOS
 	private List<ResultadoBusqueda>			listaDeResultados;

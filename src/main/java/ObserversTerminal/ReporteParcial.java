@@ -5,7 +5,12 @@ import Master.Terminal;
 
 import java.util.HashMap;
 
-public class ReporteParcial implements FuncionalidadExtraTerminal {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("RP")
+public class ReporteParcial extends FuncionalidadExtraTerminal {
 	
 	//Atributos
 	private HashMap<Terminal,Integer> 		resultadosParcialesPorTerminal;

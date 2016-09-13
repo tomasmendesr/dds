@@ -9,7 +9,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("RP")
 public class ReporteParcial extends FuncionalidadExtraTerminal {
 	
 	//Atributos

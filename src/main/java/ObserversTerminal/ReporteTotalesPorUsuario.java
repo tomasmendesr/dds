@@ -9,7 +9,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("RU")
 public class ReporteTotalesPorUsuario extends FuncionalidadExtraTerminal {
 	
 	//Atributos

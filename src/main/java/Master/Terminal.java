@@ -15,7 +15,7 @@ public class Terminal {
 	@Id
 	@GeneratedValue
 	@Column(name="TERMINAL_ID")
-	private Integer									id;
+	private Long									id;
     @Column(name="REPOSITORIO_POIS")
 	private RepositorioPOIs			 				repositorioPOIs;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -95,9 +95,9 @@ public class Terminal {
 
 	//GETTERS Y SETTERS
 
-	public Integer getId() {  return id;  }
+	public Long getId() {  return id;  }
 
-	public void setId(Integer id) {  this.id = id;  }
+	public void setId(Long id) {  this.id = id;  }
 
 	public String getNombreTerminal(){
 		return nombreTerminal;

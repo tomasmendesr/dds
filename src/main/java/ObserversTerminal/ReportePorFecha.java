@@ -10,7 +10,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("RF")
 public class ReportePorFecha extends FuncionalidadExtraTerminal{
 
 	//Atributos

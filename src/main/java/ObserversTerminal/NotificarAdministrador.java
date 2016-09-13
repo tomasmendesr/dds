@@ -7,7 +7,6 @@ import Master.ResultadoBusqueda;
 import Master.Terminal;
 
 @Entity
-@DiscriminatorValue("NA")
 public class NotificarAdministrador extends FuncionalidadExtraTerminal{
 
 	

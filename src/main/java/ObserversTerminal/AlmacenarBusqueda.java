@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import java.util.ArrayList;
 
 @Entity
-@DiscriminatorValue("AB")
 public class AlmacenarBusqueda extends FuncionalidadExtraTerminal  {
 
 	//ATRIBUTOS

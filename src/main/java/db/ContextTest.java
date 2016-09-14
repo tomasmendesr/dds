@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 
 public class ContextTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
+   @Test
     public void contextUp() {
 
         ParadaDeColectivo paradaDel47;
@@ -20,5 +21,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
         paradaDel47.setNombre("Parada del 47");
         paradaDel47.setID(1);
         persist(paradaDel47);
+    }
 
 }

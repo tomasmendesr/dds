@@ -16,6 +16,7 @@ public class EntityManagerHelper {
 
     static {
         try {
+            emf = Persistence.createEntityManagerFactory("db");
             threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();

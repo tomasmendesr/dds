@@ -6,10 +6,10 @@ import javax.persistence.*;
 import java.util.*;
 
 @Converter
-public class ListToStringConveter implements AttributeConverter <List<String>, String> {
+public class ListToStringConveter implements AttributeConverter <List, String> {
 
     @Override
-    public String convertToDatabaseColumn(List<String> attribute) {
+    public String convertToDatabaseColumn(List attribute) {
         if (attribute == null || attribute.isEmpty()) {
             return "";
         }

@@ -1,13 +1,15 @@
 package Master;
 
 import Adapters.AdapterConsulta;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.*;
 
 @Entity
-public class RepositorioPOIs {
+public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	//ATRIBUTOS
 	@Id
@@ -110,6 +112,27 @@ public class RepositorioPOIs {
 
 	public Boolean contienePOISegunID(int id){
 		return this.getColeccionDePOIS().stream().anyMatch(poi -> poi.getID() == id);
+	}
+
+	public List<POI> listar() {
+		return entityManager()//
+				.createQuery("from POI", POI.class) //
+				.getResultList();
+	}
+
+	public POI buscar(long id) {
+		return entityManager().find(POI.class, id);
+	}
+
+	public void agregar(POI poi) {
+		entityManager().persist(poi);
+	}
+
+	public List<POI> buscarPorNombre(String nombre) {
+		return entityManager() //
+				.createQuery("from POI p where p.nombre like :nombre",POI.class) //
+				.setParameter("nombre", "%" + nombre + "%") //
+				.getResultList();
 	}
 
 }

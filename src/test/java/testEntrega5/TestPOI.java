@@ -2,13 +2,17 @@ package testEntrega5;
 
 import javax.persistence.*;
 import Master.POI;
+import Master.RepositorioPOIs;
 import POIs.*;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
+import db.EntityManagerHelper;
 import org.junit.*;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
-import EntityManager.*;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
+import static junit.framework.TestCase.assertNotNull;
 
 public class TestPOI {
     ParadaDeColectivo paradaDel47;
@@ -16,8 +20,8 @@ public class TestPOI {
     private Polygon zonaComuna8;
     private CGP cgp;
     private Banco banco;
-    private POIEntityManager POIem;
-    
+    RepositorioPOIs repositorioPOIs;
+
     @Before
     public void init() {
         // Comuna 8
@@ -46,25 +50,27 @@ public class TestPOI {
         banco.addTag("deposito");
         banco.setNombre("Banco Nacion");
         banco.setComuna(comuna8);
-        
-        // POI Entity Manager
-        POIem = new POIEntityManager();
+
+        //Inicializo el repo de POIs
+
+        repositorioPOIs = RepositorioPOIs.getInstance();
+
     }
-    
-  /*  @Test
+
+    /*@Test
     public void TestGuardoPOI(){
-        POIem.guardarPOI(paradaDel47);
+        repositorioPOIs.agregar(paradaDel47);
     }
     
-      @Test
+     @Test
 	public void verificarPOIGuardado(){
-		POIem.guardarPOI(paradaDel47); //Esta paradaDel47 tiene ID=1 => Busco parada con mismo Id y comparo
-		ParadaDeColectivo unaParadaDel47 = POIem.buscarPOI(1); 
-		assertEquals(1, unaParadaDel47.getId());
+		repositorioPOIs.agregar(paradaDel47); //Esta paradaDel47 tiene ID=1 => Busco parada con mismo Id y comparo
+		POI unaParadaDel47 = repositorioPOIs.buscar(1);
+		assertEquals(new Long(1), new Long(unaParadaDel47.getID()));
 		assertEquals("Corvalan 3961", unaParadaDel47.getDireccion());
 		assertEquals("Parada del 47", unaParadaDel47.getNombre());
-		}*/
-    
+		}
+    */
     
 }  
 

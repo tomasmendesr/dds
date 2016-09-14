@@ -24,7 +24,7 @@ public abstract class POI {
 	@Id
 	@GeneratedValue
 	@Column(name="POI_ID")
-	private Integer					id;
+	private long				id;
 	
 	@Column(name="UBICACION")
 	@Convert(converter = PointConverter.class)
@@ -121,11 +121,11 @@ public abstract class POI {
 		return this.comuna;
 	}
 	
-	public Integer getID() {
+	public long getID() {
 		return id;
 	}
 
-	public void setID(Integer id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 

@@ -29,17 +29,22 @@ public abstract class POI {
 	@Column(name="UBICACION")
 	@Convert(converter = PointConverter.class)
 	private Point 					ubicacion;
+	
 	@Column(name="NOMBRE")
 	private String 					nombre;
+	
 	@Column(name="DIRECCION")
 	private String 					direccion;
+	
 	@ElementCollection
 	@CollectionTable(name="TAG", joinColumns=@JoinColumn(name="POI_ID"))
 	@Column(name="TAG")
 	@Convert(converter = ListToStringConveter.class)
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
+	
 	@OneToMany(mappedBy="poi")
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
+	
 	@Column(name="COMUNA")
 	@ManyToOne
 	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))

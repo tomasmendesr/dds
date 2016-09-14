@@ -16,18 +16,23 @@ public class Terminal {
 	@GeneratedValue
 	@Column(name="TERMINAL_ID")
 	private Long									id;
+	
     @Column(name="REPOSITORIO_POIS")
 	private RepositorioPOIs			 				repositorioPOIs;
+    
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "funcionalidad_x_terminal", joinColumns = {
 			@JoinColumn(name = "TERMIJNAL_ID", nullable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "FUNCIONALIDAD_ID",
 					nullable = false) })
 	private List<FuncionalidadExtraTerminal>		observers;
+    
     @Column(name="NOMBRE")
 	private String									nombreTerminal;
+    
     @OneToMany
 	private List<ResultadoBusqueda>					busquedas;
+    
     @Column(name="COMUNA")
     @ManyToOne
 	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))

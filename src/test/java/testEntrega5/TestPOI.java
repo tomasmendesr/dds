@@ -44,6 +44,7 @@ public class TestPOI {
         banco.addTag("deposito");
         banco.setNombre("Banco Nacion");
         banco.setComuna(comuna8);
+        
         // POI Entity Manager
         POIem = new POIEntityManager();
     }

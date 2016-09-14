@@ -6,6 +6,7 @@ import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 import javax.persistence.*;
 import java.util.ArrayList;
+import Converter.*;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public abstract class POI {
 	private Integer					id;
 	
 	@Column(name="UBICACION")
-	// @Convert(converter = Converter.PointConverter.class)
+	@Convert(converter = PointConverter.class)
 	private Point 					ubicacion;
 	@Column(name="NOMBRE")
 	private String 					nombre;
@@ -34,8 +35,8 @@ public abstract class POI {
 	private String 					direccion;
 	@ElementCollection
 	@CollectionTable(name="TAG", joinColumns=@JoinColumn(name="POI_ID"))
-	// @Convert(converter = Converter.ListToStringConveter.class)
 	@Column(name="TAG")
+	@Convert(converter = ListToStringConveter.class)
 	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
 	@OneToMany(mappedBy="poi")
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;

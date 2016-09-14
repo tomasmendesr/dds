@@ -17,6 +17,7 @@ public class TestPOI {
     private CGP cgp;
     private Banco banco;
     private POIEntityManager POIem;
+    
     @Before
     public void init() {
         // Comuna 8
@@ -32,6 +33,7 @@ public class TestPOI {
         paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
         paradaDel47.setDireccion("Corvalan 3691");
         paradaDel47.setNombre("Parada del 47");
+        paradaDel47.setID(1);
         // CGP que provee Asesoramiento Legal -- Av Escalada 3100
         cgp = new CGP(new Point(-34.6672, -58.4669));
         cgp.setDireccion("Av Escalada 3100");
@@ -48,10 +50,21 @@ public class TestPOI {
         // POI Entity Manager
         POIem = new POIEntityManager();
     }
+    
   /*  @Test
     public void TestGuardoPOI(){
         POIem.guardarPOI(paradaDel47);
-    }*/
-
-}
+    }
+    
+      @Test
+	public void verificarPOIGuardado(){
+		POIem.guardarPOI(paradaDel47); //Esta paradaDel47 tiene ID=1 => Busco parada con mismo Id y comparo
+		ParadaDeColectivo unaParadaDel47 = POIem.buscarPOI(1); 
+		assertEquals(1, unaParadaDel47.getId());
+		assertEquals("Corvalan 3961", unaParadaDel47.getDireccion());
+		assertEquals("Parada del 47", unaParadaDel47.getNombre());
+		}*/
+    
+    
+}  
 

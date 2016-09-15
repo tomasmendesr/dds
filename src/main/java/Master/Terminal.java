@@ -12,9 +12,7 @@ import javax.persistence.*;
 public class Terminal {
 
 	//ATRIBUTOS
-	@Id
-	@GeneratedValue
-	@Column(name="TERMINAL_ID")
+	@Id	@GeneratedValue	@Column(name="TERMINAL_ID")
 	private Long									id;
 	
     @Column(name="REPOSITORIO_POIS")
@@ -33,8 +31,7 @@ public class Terminal {
     @OneToMany
 	private List<ResultadoBusqueda>					busquedas;
     
-    @Column(name="COMUNA")
-    @ManyToOne
+    @Column(name="COMUNA")@ManyToOne
 	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))
 	private Comuna 									comuna;
 		
@@ -60,7 +57,7 @@ public class Terminal {
 		poisEncontrados = repositorioPOIs.consultarPOIs(unaConsulta);
 		tFin = System.currentTimeMillis();
 		duracion = (tFin - tInicio);
-		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion);
+		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion,this);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
 		this.guardarBusqueda(resultadoBusqueda); // Para hacer el reporte por usuarios

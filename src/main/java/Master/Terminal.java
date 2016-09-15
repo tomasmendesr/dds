@@ -69,6 +69,7 @@ public class Terminal {
 	// Necesite hacer esto para poder hacer el Reporte de Busquedas por Usuario. Ver como solucionarlo
 	public void guardarBusqueda(ResultadoBusqueda unResultado){
 		busquedas.add(unResultado);
+//		unResultado.persistite(); como no esta terminado, rompe en este momento
 	}
 	
 	public Integer obtenerResultadosTotales(){ // Obtengo la suma de la lista creada en resultadosTotales()

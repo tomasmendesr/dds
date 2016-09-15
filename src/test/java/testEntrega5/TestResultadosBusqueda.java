@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
  */
 public class TestResultadosBusqueda {
 
-    EntityManager entityManager;
+   /* EntityManager entityManager;
 
     @Before
     public void init(){
@@ -23,5 +23,5 @@ public class TestResultadosBusqueda {
     public void sePersisteUnResultadoBusqueda(){
         
     }
-
+*/
 }

@@ -1,5 +1,7 @@
 package Master;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,6 +18,7 @@ public class ResultadoBusqueda{
 		setResultadoBusqueda(resultadoBusqueda);
 		setDuracionBusqueda(duracionConsulta);
 		setTerminalId(terminal.getId());
+		entityManager = PerThreadEntityManagers.getEntityManager();
 	}
 	
 	// ATRIBUTOS
@@ -34,6 +37,8 @@ public class ResultadoBusqueda{
 	private Double			tiempoEstimadoBusqueda;
 	@Column(name = "RES_TERMINAL_ID") @ManyToOne
 	private Long			terminalId;
+	@Transient
+	private EntityManager entityManager;
 
 	//METODOS
 	public int cantidadDeResultados(){
@@ -42,6 +47,10 @@ public class ResultadoBusqueda{
 
 	public boolean sinTiempoEstimado(){
 		return tiempoEstimadoBusqueda == null;
+	}
+
+	public void guardarBusqueda(){
+		entityManager.persist(this);
 	}
 
 	// GETTERS Y SETTERS

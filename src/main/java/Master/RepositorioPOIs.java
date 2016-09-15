@@ -125,7 +125,13 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	}
 
 	public void agregar(POI poi) {
-		entityManager().persist(poi);
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.persist(poi);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
 	}
 
 	public List<POI> buscarPorNombre(String nombre) {

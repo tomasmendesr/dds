@@ -13,6 +13,7 @@ import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.*;
 
 public class TestPOI {
     ParadaDeColectivo paradaDel47;
@@ -60,17 +61,17 @@ public class TestPOI {
     /*@Test
     public void TestGuardoPOI(){
         repositorioPOIs.agregar(paradaDel47);
-    }
+    }*/
     
      @Test
 	public void verificarPOIGuardado(){
 		repositorioPOIs.agregar(paradaDel47); //Esta paradaDel47 tiene ID=1 => Busco parada con mismo Id y comparo
 		POI unaParadaDel47 = repositorioPOIs.buscar(1);
-		assertEquals(new Long(1), new Long(unaParadaDel47.getID()));
-		assertEquals("Corvalan 3961", unaParadaDel47.getDireccion());
-		assertEquals("Parada del 47", unaParadaDel47.getNombre());
+		Assert.assertEquals(new Long(1), new Long(unaParadaDel47.getID()));
+		Assert.assertEquals("Corvalan 3961", unaParadaDel47.getDireccion());
+		Assert.assertEquals("Parada del 47", unaParadaDel47.getNombre());
 		}
-    */
+    
     
 }  
 

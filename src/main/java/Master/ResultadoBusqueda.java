@@ -3,25 +3,24 @@ package Master;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Entity@Table
 public class ResultadoBusqueda{
 	
 	//CONSTRUCTOR
 
 	public ResultadoBusqueda(){}
 
-	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta){
-		this.setMomentoDeBusqueda(LocalDateTime.now());
-		this.setFraseBuscada(fraseBuscada);
-		this.setResultadoBusqueda(resultadoBusqueda);
-		this.setDuracionBusqueda(duracionConsulta);
+	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, Terminal terminal){
+		setMomentoDeBusqueda(LocalDateTime.now());
+		setFraseBuscada(fraseBuscada);
+		setResultadoBusqueda(resultadoBusqueda);
+		setDuracionBusqueda(duracionConsulta);
+		setTerminalId(terminal.getId());
 	}
 	
 	// ATRIBUTOS
 
-	@Id
-	@GeneratedValue
-	@Column(name="RESULTADO_BUSQUEDA_ID")
+	@Id	@GeneratedValue @Column(name="RESULTADO_BUSQUEDA_ID")
 	private int 			id;
 	@Column(name="FRASE_BUSCADA")
 	private String 			fraseBuscada;
@@ -29,14 +28,23 @@ public class ResultadoBusqueda{
 	private double 			duracionBusqueda;
 	@Transient
 	private List<POI>		resultadoBusqueda;
-	@Transient
+	@Column (name="RES_MOMENTO_BUSQUEDA")
 	private LocalDateTime	momentoDeBusqueda;
 	@Column(name="TIEMPO_ESTIMADO_BUSQUEDA")
 	private Double			tiempoEstimadoBusqueda;
-	
+	@Column(name = "RES_TERMINAL_ID") @ManyToOne
+	private Long			terminalId;
+
+	//METODOS
+	public int cantidadDeResultados(){
+		return this.getResultadoBusqueda().size();
+	}
+
+	public boolean sinTiempoEstimado(){
+		return tiempoEstimadoBusqueda == null;
+	}
 
 	// GETTERS Y SETTERS
-
 
 	public int getId() { return id;  }
 
@@ -86,12 +94,13 @@ public class ResultadoBusqueda{
 		this.tiempoEstimadoBusqueda = tiempoEstimadoBusqueda;
 	}
 
-	//METODOS
-	public int cantidadDeResultados(){
-		return this.getResultadoBusqueda().size();
+	public Long getTerminalId() {
+		return terminalId;
 	}
-	
-	public boolean sinTiempoEstimado(){
-		return tiempoEstimadoBusqueda == null;
+
+	public void setTerminalId(Long terminalId) {
+		this.terminalId = terminalId;
 	}
+
+
 }

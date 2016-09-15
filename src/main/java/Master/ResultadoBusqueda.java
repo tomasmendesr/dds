@@ -1,5 +1,6 @@
 package Master;
 
+import DAO.ResultadoBusquedaDAOImpl;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class ResultadoBusqueda{
 		setResultadoBusqueda(resultadoBusqueda);
 		setDuracionBusqueda(duracionConsulta);
 		setTerminalId(terminal.getId());
-		entityManager = PerThreadEntityManagers.getEntityManager();
+		//resultadoBusquedaDAO = new ResultadoBusquedaDAOImpl(); aca tira nullPointer
 	}
 	
 	// ATRIBUTOS
@@ -38,7 +39,7 @@ public class ResultadoBusqueda{
 	@Column(name = "RES_TERMINAL_ID") @ManyToOne
 	private Long			terminalId;
 	@Transient
-	private EntityManager entityManager;
+	private ResultadoBusquedaDAOImpl resultadoBusquedaDAO;
 
 	//METODOS
 	public int cantidadDeResultados(){
@@ -49,10 +50,9 @@ public class ResultadoBusqueda{
 		return tiempoEstimadoBusqueda == null;
 	}
 
-	public void guardarBusqueda(){
-		entityManager.persist(this);
+	public void persistite(){
+		resultadoBusquedaDAO.persistirResultadoBusqueda(this);
 	}
-
 	// GETTERS Y SETTERS
 
 	public int getId() { return id;  }

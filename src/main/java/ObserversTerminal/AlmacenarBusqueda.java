@@ -4,7 +4,6 @@ import Master.ResultadoBusqueda;
 import Master.Terminal;
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import java.util.ArrayList;
@@ -20,6 +19,14 @@ public class AlmacenarBusqueda extends FuncionalidadExtraTerminal  {
 		listaDeResultados = new ArrayList<ResultadoBusqueda>();
 	}
 
+	@Override
+	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda){
+		this.almacenarResultado(unResultadoBusqueda);
+	}
+	public void almacenarResultado(ResultadoBusqueda unResultadoBusqueda){
+		listaDeResultados.add(unResultadoBusqueda);
+	}
+	
 	//Getters y setters
 	public List<ResultadoBusqueda> getListaDeResultados() {
 		return listaDeResultados;
@@ -27,14 +34,6 @@ public class AlmacenarBusqueda extends FuncionalidadExtraTerminal  {
 
 	public void setListaDeResultados(List<ResultadoBusqueda> listaDeResultados) {
 		this.listaDeResultados = listaDeResultados;
-	}
-	
-	@Override
-	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda){
-		this.almacenarResultado(unResultadoBusqueda);
-	}
-	public void almacenarResultado(ResultadoBusqueda unResultadoBusqueda){
-		listaDeResultados.add(unResultadoBusqueda);
 	}
 
 }

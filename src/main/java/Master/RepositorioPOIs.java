@@ -24,7 +24,6 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	private List<AdapterConsulta> adapters;
 
 	//CONSTRUCTOR
-
 	private RepositorioPOIs() {
 		coleccionDePOIS = new ArrayList<POI>();
 		adapters = new ArrayList<AdapterConsulta>();
@@ -40,15 +39,6 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 		repositorioPOIs = null;
 	}
 
-
-	//GETTERS Y SETTERS
-	public void setColeccionDePOIS(List<POI> unaColeccion) {
-		coleccionDePOIS = unaColeccion;
-	}
-
-	public List<POI> getColeccionDePOIS() {
-		return coleccionDePOIS;
-	}
 
 	//Busqueda por texto libre
 
@@ -139,6 +129,15 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 				.createQuery("from POI p where p.nombre like :nombre",POI.class) //
 				.setParameter("nombre", "%" + nombre + "%") //
 				.getResultList();
+	}
+	
+	//GETTERS Y SETTERS
+	public void setColeccionDePOIS(List<POI> unaColeccion) {
+		coleccionDePOIS = unaColeccion;
+	}
+
+	public List<POI> getColeccionDePOIS() {
+		return coleccionDePOIS;
 	}
 
 }

@@ -14,17 +14,15 @@ import javax.persistence.Entity;
 @Entity
 public abstract class POIConServicio extends POI {
 
-		
 	//ATRIBUTOS
-	
 	public POIConServicio(Point unaUbicacion) {
 		super(unaUbicacion);
 	}
 
 	private List<Servicio> 	servicios;
 
-	//METODOS
 	
+	//METODOS
 	public boolean estaDisponible(String unNombreDeServicio,LocalDateTime unTiempo){
 		if(unNombreDeServicio == null){
 			return this.algunServicioDisponible();
@@ -50,7 +48,6 @@ public abstract class POIConServicio extends POI {
 	}
 
 	//GETERS Y SETERS
-
 	public List<Servicio> getColeccionServicios(){
 		return servicios;
 	}

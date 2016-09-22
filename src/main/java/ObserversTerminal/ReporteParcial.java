@@ -5,7 +5,6 @@ import Master.Terminal;
 
 import java.util.HashMap;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity

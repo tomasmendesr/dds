@@ -2,18 +2,16 @@ package POIsExt;
 
 public class Rubro {
 	
-	//CONSTRUCTOR 
+	//ATRIBUTOS
+	private Double radioDeCercania;
 	
+	//CONSTRUCTOR 	
 	public Rubro(Double unRadioDeCercania){
 		this.setRadioDeCercania(unRadioDeCercania);
 	}	
 	
-	//ATRIBUTOS
-	
-	private Double radioDeCercania;
 	
 	//GETTERS Y SETTERS
-	
 	public Double getRadioDeCercania(){
 		return radioDeCercania;
 	}

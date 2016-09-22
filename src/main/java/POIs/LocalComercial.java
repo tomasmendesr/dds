@@ -20,30 +20,17 @@ import POIsExt.Rubro;
 @DiscriminatorValue("L")
 public class LocalComercial extends POI {
 
+	//ATRIBUTOS
+	private Rubro 							rubro;
+	
 	//CONSTRUCTOR
 	public LocalComercial(Point unaUbicacion, Rubro unRubro){
 		super(unaUbicacion);
 		this.setRubro(unRubro);
 	}
-	
-	
-	//ATRIBUTOS
-	
-	private Rubro 							rubro;
-	
-	//GETTERS Y SETTERS
-	
-	public Rubro getRubro(){
-		return rubro;
-	}
-	
-	public void setRubro(Rubro unRubro){
-		rubro = unRubro;
-	}
 
-
+	
 	//METODOS
-	
 	public double cercaniaRequerida(){
 		return this.getRubro().getRadioDeCercania();
 	}
@@ -94,5 +81,15 @@ public class LocalComercial extends POI {
 		List<String> nuevaColeccionDePalabrasClave = new ArrayList<String>(Arrays.asList(unasPalabras));
 		tags.addAll(nuevaColeccionDePalabrasClave);
 	}
+	
+	//GETTERS Y SETTERS
+		public Rubro getRubro(){
+			return rubro;
+		}
+		
+		public void setRubro(Rubro unRubro){
+			rubro = unRubro;
+		}
+
 
 }

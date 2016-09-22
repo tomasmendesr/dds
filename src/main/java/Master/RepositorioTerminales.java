@@ -32,19 +32,20 @@ public class RepositorioTerminales {
 		repositorioTerminales = null;
 	}
 	
-	//Getters y setters
-	public List<Terminal> getTerminales() {
-		return terminales;
-	}
-
-	public void setTerminales(List<Terminal> terminales) {
-		this.terminales = terminales;
-	}
 	
 	// Metodos
 	public void addTerminal(Terminal terminal){
 		terminales.add(terminal);
 	}
+	
+	//Getters y setters
+		public List<Terminal> getTerminales() {
+			return terminales;
+		}
+
+		public void setTerminales(List<Terminal> terminales) {
+			this.terminales = terminales;
+		}
 	
 	
 	

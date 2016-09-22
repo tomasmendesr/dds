@@ -1,29 +1,15 @@
 package Master;
 
 import DAO.ResultadoBusquedaDAOImpl;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Entity@Table
 public class ResultadoBusqueda{
 	
-	//CONSTRUCTOR
-
-	public ResultadoBusqueda(){}
-
-	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, Terminal terminal){
-		setMomentoDeBusqueda(LocalDateTime.now());
-		setFraseBuscada(fraseBuscada);
-		setResultadoBusqueda(resultadoBusqueda);
-		setDuracionBusqueda(duracionConsulta);
-		setTerminalId(terminal.getId());
-		//resultadoBusquedaDAO = new ResultadoBusquedaDAOImpl(); aca tira nullPointer
-	}
-	
 	// ATRIBUTOS
-
 	@Id	@GeneratedValue @Column(name="RESULTADO_BUSQUEDA_ID")
 	private int 			id;
 	@Column(name="FRASE_BUSCADA")
@@ -40,7 +26,19 @@ public class ResultadoBusqueda{
 	private Long			terminalId;
 	@Transient
 	private ResultadoBusquedaDAOImpl resultadoBusquedaDAO;
+	
+	//CONSTRUCTOR
+	public ResultadoBusqueda(){}
 
+	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, Terminal terminal){
+		setMomentoDeBusqueda(LocalDateTime.now());
+		setFraseBuscada(fraseBuscada);
+		setResultadoBusqueda(resultadoBusqueda);
+		setDuracionBusqueda(duracionConsulta);
+		setTerminalId(terminal.getId());
+		//resultadoBusquedaDAO = new ResultadoBusquedaDAOImpl(); aca tira nullPointer
+	}
+	
 	//METODOS
 	public int cantidadDeResultados(){
 		return this.getResultadoBusqueda().size();
@@ -53,8 +51,8 @@ public class ResultadoBusqueda{
 	public void persistite(){
 		resultadoBusquedaDAO.persistirResultadoBusqueda(this);
 	}
+	
 	// GETTERS Y SETTERS
-
 	public int getId() { return id;  }
 
 	public void setId(int id) {  this.id = id;  }

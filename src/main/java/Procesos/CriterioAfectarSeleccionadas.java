@@ -7,13 +7,19 @@ import Master.Terminal;
 
 public class CriterioAfectarSeleccionadas extends TipoDeCriterio {
 	
-	//atributo
+	//atributos
 	private List<Terminal> terminalesSeleccionadas;
 	
 	//constructor
 	public CriterioAfectarSeleccionadas(){
 		terminalesSeleccionadas = new ArrayList<Terminal>();
 	}
+	
+	//Metodos
+	public List<Terminal> terminalesAModificar() { // Devuelve la lista de terminales seleccionadas
+		return terminalesSeleccionadas;
+	}
+	
 	
 	//Getters y setters
 	public void setTerminalesSeleccionadas(List<Terminal> terminalesSeleccionadas) {
@@ -22,11 +28,6 @@ public class CriterioAfectarSeleccionadas extends TipoDeCriterio {
 	
 	public void agregarTerminalSeleccionadaPorAdmin(Terminal unaTerminal){
 		terminalesSeleccionadas.add(unaTerminal);
-	}
-	
-	//Metodos
-	public List<Terminal> terminalesAModificar() { // Devuelve la lista de terminales seleccionadas
-		return terminalesSeleccionadas;
 	}
 			
 }

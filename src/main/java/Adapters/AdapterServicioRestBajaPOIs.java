@@ -36,6 +36,7 @@ public class AdapterServicioRestBajaPOIs {
 	
 	//METODOS
 	
+	@SuppressWarnings("unchecked")
 	public List<POIABajar> getPOIsABajar(){
 		List<POIABajar> poisABajar = new ArrayList<POIABajar>();
 		JSONObject poisObtenidos = servicio.getPOIs();

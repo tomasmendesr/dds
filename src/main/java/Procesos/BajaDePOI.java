@@ -2,31 +2,24 @@ package Procesos;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
-import Adapters.AdapterServicioRestBajaPOIs;
-import Master.GestorProcesos;
-import Master.POI;
 import Master.RepositorioPOIs;
 
 public class BajaDePOI extends Proceso{
 	
-	//CONSTRUCTOR
+	//ATRIBUTOS
+	private RepositorioPOIs 	repositorioDePOIs;
+	private	Integer 			idPOI;
+	private Date				fecha;
 	
+	//CONSTRUCTOR
 	public BajaDePOI(Integer id, Date fecha){
 		this.setRepositorioDePOIs(RepositorioPOIs.getInstance());
 		this.setFecha(fecha);
 		this.setIdPOI(id);
 	}
 
-	//ATRIBUTOS
-
-	private RepositorioPOIs 	repositorioDePOIs;
-	private	Integer 			idPOI;
-	private Date				fecha;
-
 	//METODOS
-
 	@Override
 	public ResultadoProceso realizarProceso(){
 		ResultadoProceso resultado = new ResultadoProceso();
@@ -53,7 +46,6 @@ public class BajaDePOI extends Proceso{
 	}
 
 	//GETERS Y SETERS
-
 	public RepositorioPOIs getRepositorioDePOIs() {
 		return repositorioDePOIs;
 	}

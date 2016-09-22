@@ -61,78 +61,6 @@ public abstract class POI {
 	}
 		
 	
-	//GETTERS Y SETTERS
-
-	void setUbicacion(Point unaUbicacion) {
-		ubicacion = unaUbicacion;
-		
-	}
-	
-	public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
-		return listaDeRangosDeAtencion;
-	}
-
-	public void setListaDeRangosDeAtencion(List<RangoDeAtencion> unaListaDeRangosDeAtencion) {
-		listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
-	}
-	
-	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
-		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
-	}
-	
-
-	public Point getUbicacion(){
-		return ubicacion;
-	}
-	
-	public String getNombre(){
-		return nombre;
-	}
-	
-	public void setNombre(String unNombre){
-		nombre = unNombre;
-	}
-	
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String unaDireccion) {
-		direccion = unaDireccion;
-	}
-	
-	public void instanciarNuevaColeccionDeTags(){
-		tags = new ArrayList<String>();
-	}
-	
-	public List<String> getTags(){
-		return tags;
-	}
-	
-	public void addTag(String tag){//Agrega un tag al ArrayList
-		tags.add(tag);
-	}
-	
-	public void removeTag(String tag){
-		tags.remove(tag);
-	}
-	
-	public void setComuna(Comuna unaComuna){
-		comuna = unaComuna;
-	}
-	
-	public Comuna getComuna(){
-		return this.comuna;
-	}
-	
-	public long getID() {
-		return id;
-	}
-
-	public void setID(long id) {
-		this.id = id;
-	}
-
 
 	//METODOS
 	
@@ -190,5 +118,79 @@ public abstract class POI {
 	public Boolean tienePalabrasEspecificadas(String[] unasPalabras) { return Boolean.FALSE; }
 
 	public void actualizarPalabrasClaves(String[] unasPalabras){ }
+
+	
+	//GETTERS Y SETTERS
+
+		void setUbicacion(Point unaUbicacion) {
+			ubicacion = unaUbicacion;
+			
+		}
+		
+		public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
+			return listaDeRangosDeAtencion;
+		}
+
+		public void setListaDeRangosDeAtencion(List<RangoDeAtencion> unaListaDeRangosDeAtencion) {
+			listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
+		}
+		
+		public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
+			this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
+		}
+		
+
+		public Point getUbicacion(){
+			return ubicacion;
+		}
+		
+		public String getNombre(){
+			return nombre;
+		}
+		
+		public void setNombre(String unNombre){
+			nombre = unNombre;
+		}
+		
+		public String getDireccion() {
+			return direccion;
+		}
+
+		public void setDireccion(String unaDireccion) {
+			direccion = unaDireccion;
+		}
+		
+		public void instanciarNuevaColeccionDeTags(){
+			tags = new ArrayList<String>();
+		}
+		
+		public List<String> getTags(){
+			return tags;
+		}
+		
+		public void addTag(String tag){//Agrega un tag al ArrayList
+			tags.add(tag);
+		}
+		
+		public void removeTag(String tag){
+			tags.remove(tag);
+		}
+		
+		public void setComuna(Comuna unaComuna){
+			comuna = unaComuna;
+		}
+		
+		public Comuna getComuna(){
+			return this.comuna;
+		}
+		
+		public long getID() {
+			return id;
+		}
+
+		public void setID(long id) {
+			this.id = id;
+		}
+
 
 }

@@ -36,7 +36,6 @@ public class Terminal {
 	private Comuna 									comuna;
 		
 	//CONSTRUCTOR
-
     public Terminal() { }
 
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
@@ -64,12 +63,8 @@ public class Terminal {
 		return poisEncontrados;
 	}
 	
-	
-	
-	// Necesite hacer esto para poder hacer el Reporte de Busquedas por Usuario. Ver como solucionarlo
 	public void guardarBusqueda(ResultadoBusqueda unResultado){
 		busquedas.add(unResultado);
-//		unResultado.persistite(); como no esta terminado, rompe en este momento
 	}
 	
 	public Integer obtenerResultadosTotales(){ // Obtengo la suma de la lista creada en resultadosTotales()
@@ -97,7 +92,6 @@ public class Terminal {
 
 
 	//GETTERS Y SETTERS
-
 	public Long getId() {  return id;  }
 
 	public void setId(Long id) {  this.id = id;  }

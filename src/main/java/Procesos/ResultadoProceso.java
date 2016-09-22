@@ -3,19 +3,17 @@ package Procesos;
 import java.time.LocalDateTime;
 
 public class ResultadoProceso {
-	
-	//Constructor
-	public ResultadoProceso(){
-		super();
-	}
-	
 	//Atributos
 	private int cantElementosAfectados;
 	private boolean resultadoDelProceso;
 	private LocalDateTime momentoDeEjecucion;
-	
+
+	//Constructor
+	public ResultadoProceso(){
+		super();
+	}
+
 	//Getters y Setters
-	
 	public void setCantElementosAfectados(int unaCant){
 		cantElementosAfectados = unaCant;
 	}

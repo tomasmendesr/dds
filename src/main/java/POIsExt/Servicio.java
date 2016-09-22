@@ -5,20 +5,27 @@ import java.util.List;
 
 public class Servicio {
 
-	//CONSTRUCTOR 
+	//ATRIBUTOS
+	String 						nombre;
+	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
+	//CONSTRUCTOR 
 	public Servicio(String unNombre,List<RangoDeAtencion> listaDeRangosDeAtencion){
 		this.setNombre(unNombre);
 		this.setListaDeRangosDeAtencion(listaDeRangosDeAtencion);
 	}
+
 	
-	//ATRIBUTOS
-	
-	String 						nombre;
-	List<RangoDeAtencion>		listaDeRangosDeAtencion;
+	//METODOS
+	public boolean estaDisponible(LocalDateTime unaMomento){
+		return this.algunRangoDeAtencionDisponible(unaMomento);
+	}
+
+	public boolean algunRangoDeAtencionDisponible(LocalDateTime unMomento){
+		return listaDeRangosDeAtencion.stream().anyMatch(rangoDeAtencion -> rangoDeAtencion.disponible(unMomento));
+	}
 	
 	//GETERS Y SETERunNombreS
-	
 	public String getNombre(){
 		return nombre;
 	}
@@ -35,15 +42,5 @@ public class Servicio {
 		this.listaDeRangosDeAtencion = listaDeRangosDeAtencion;
 	}
 
-	//METODOS
-	
-
-	public boolean estaDisponible(LocalDateTime unaMomento){
-		return this.algunRangoDeAtencionDisponible(unaMomento);
-	}
-
-	public boolean algunRangoDeAtencionDisponible(LocalDateTime unMomento){
-		return listaDeRangosDeAtencion.stream().anyMatch(rangoDeAtencion -> rangoDeAtencion.disponible(unMomento));
-	}
 		
 }

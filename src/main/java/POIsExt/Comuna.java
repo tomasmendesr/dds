@@ -9,17 +9,7 @@ import javax.persistence.*;
 @Entity
 public class Comuna {
 	
-	//Constructor
-
-	public Comuna(){ }
-	
-	public Comuna(int numeroDeComuna){
-		this.setNumeroDeComuna(numeroDeComuna);
-	}
-	
-	
 	//ATRIBUTOS
-	
 	private Polygon 	zona;
 	
 	@Id	@Column(name="COMUNA_NUMERO")
@@ -29,9 +19,15 @@ public class Comuna {
 	@JoinColumn (name = "TERMINAL_ID", foreignKey = @ForeignKey(name = "TERMINAL_ID_FK"))
 	private Terminal terminal;
 	
+	//Constructor
+	public Comuna(){ }
+	
+	public Comuna(int numeroDeComuna){
+		this.setNumeroDeComuna(numeroDeComuna);
+	}
+
 
 	//GETERS Y SETERS 
-	
 	public Polygon getZona() {
 		return zona;
 	}

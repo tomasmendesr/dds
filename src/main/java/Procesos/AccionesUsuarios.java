@@ -21,26 +21,6 @@ public class AccionesUsuarios extends Proceso{
 		this.setAccion(accion);		
 	}
 	
-	//Getters y setters
-	public void setTipoDeCriterio(TipoDeCriterio criterio){
-		this.criterio = criterio;
-	}
-	public TipoDeCriterio getTipoDeCriterio(){
-		return criterio;
-	}
-	
-	public void setAccion(FuncionalidadExtraTerminal accion){
-		this.accion = accion;
-	}
-	
-	public FuncionalidadExtraTerminal getAccion(){
-		return accion;
-	}
-	
-	public void setRepositorioTerminales(RepositorioTerminales repositorioTerminales) {
-		this.repositorioTerminales = repositorioTerminales;
-	}
-		
 	// Metodos	
 	public ResultadoProceso realizarProceso(){
 		ResultadoProceso resultadoProceso = new ResultadoProceso();
@@ -76,5 +56,25 @@ public class AccionesUsuarios extends Proceso{
 		default:
 			agregarOQuitar = 0; // error
 		}
+	}
+	
+	//Getters y setters
+	public void setTipoDeCriterio(TipoDeCriterio criterio){
+		this.criterio = criterio;
+	}
+	public TipoDeCriterio getTipoDeCriterio(){
+		return criterio;
+	}
+	
+	public void setAccion(FuncionalidadExtraTerminal accion){
+		this.accion = accion;
+	}
+	
+	public FuncionalidadExtraTerminal getAccion(){
+		return accion;
+	}
+	
+	public void setRepositorioTerminales(RepositorioTerminales repositorioTerminales) {
+		this.repositorioTerminales = repositorioTerminales;
 	}
 }

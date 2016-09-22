@@ -1,26 +1,12 @@
 package POIsExt;
 
-import Master.POI;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class RangoDeAtencion {
 
-	//Constructor
-
-	public RangoDeAtencion() { }
-
-	public RangoDeAtencion(int numeroDeDiaDeLaSemana,int horarioDesde,int minutosDesde, int horarioHasta, int minutosHasta){
-		this.setNumeroDeDiaDeLaSemana(numeroDeDiaDeLaSemana);
-		this.setHorarioDesde(horarioDesde);
-		this.setMinutosDesde(minutosDesde);
-		this.setHorarioHasta(horarioHasta);
-		this.setMinutosHasta(minutosHasta);
-	}
-		
 	//Atributos
-
 	@Id
 	@GeneratedValue
 	@Column(name="RANGO_DE_ATENCION_ID")
@@ -36,8 +22,18 @@ public class RangoDeAtencion {
 	@Column(name="MINUTOS_HASTA")
 	private int minutosHasta; //EJ 0
 
+	//Constructor
+	public RangoDeAtencion() { }
+
+	public RangoDeAtencion(int numeroDeDiaDeLaSemana,int horarioDesde,int minutosDesde, int horarioHasta, int minutosHasta){
+		this.setNumeroDeDiaDeLaSemana(numeroDeDiaDeLaSemana);
+		this.setHorarioDesde(horarioDesde);
+		this.setMinutosDesde(minutosDesde);
+		this.setHorarioHasta(horarioHasta);
+		this.setMinutosHasta(minutosHasta);
+	}
+		
 	//METODOS
-	
 	public boolean disponible(LocalDateTime unTiempo){
 		return this.diaDisponible(unTiempo) && this.horarioDisponible(unTiempo);
 	}
@@ -73,8 +69,7 @@ public class RangoDeAtencion {
 		return horaHasta + (minutosHasta/100);
 	}
 
-	//Geters y seters
-
+	//Getters y setters
 	public Integer getId() {  return id;  }
 	public void setId(Integer id) {  this.id = id;  }
 	public int getNumeroDeDiaDeLaSemana() {

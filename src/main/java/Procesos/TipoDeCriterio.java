@@ -15,14 +15,6 @@ public abstract class TipoDeCriterio {
 	public TipoDeCriterio(){
 		todasLasTerminales = new ArrayList<>();
 	}
-
-	//Getters y Setters
-	public List<Terminal> getTodasLasTerminales() {
-		return todasLasTerminales;
-	}
-	public void setTodasLasTerminales(List<Terminal> todasLasTerminales) {
-		this.todasLasTerminales = todasLasTerminales;
-	}
 		
 	// Metodos
 	public void agregar(FuncionalidadExtraTerminal accion){
@@ -39,4 +31,11 @@ public abstract class TipoDeCriterio {
 	
 	public abstract List<Terminal> terminalesAModificar();
 	
+	//Getters y Setters
+	public List<Terminal> getTodasLasTerminales() {
+		return todasLasTerminales;
+	}
+	public void setTodasLasTerminales(List<Terminal> todasLasTerminales) {
+		this.todasLasTerminales = todasLasTerminales;
+	}
 }

@@ -19,13 +19,16 @@ import Master.Terminal;
 @DiscriminatorColumn(name="subclass", discriminatorType = DiscriminatorType.STRING)
 public abstract class FuncionalidadExtraTerminal {
 	
+	//Atributos
 	@Id
 	@GeneratedValue
 	@Column(name ="funcionalidad_id")
 	private Long id;
 
+	//Metodos
 	public abstract void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda);
-
+	
+	//Getters y setters
 	public Long getId() {
 		return id;
 	}

@@ -7,9 +7,6 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-
 
 public class ActualizarLocalesComerciales extends Proceso {
 
@@ -22,15 +19,6 @@ public class ActualizarLocalesComerciales extends Proceso {
         super();
         repositorioPOIs = unRepositorioPOIs;
         this.leerArchivo(unaRuta);
-    }
-
-    //GETTERS Y SETTERS
-    public String getTexto() {
-        return texto;
-    }
-
-    public void setTexto(String unTexto) {
-        texto = unTexto;
     }
 
     //METODOS
@@ -84,6 +72,15 @@ public class ActualizarLocalesComerciales extends Proceso {
         catch (Exception e) {
             System.out.println(e.toString());
         }
+    }
+    
+    //GETTERS Y SETTERS
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String unTexto) {
+        texto = unTexto;
     }
 
 

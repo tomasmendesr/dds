@@ -22,7 +22,6 @@ public class Banco extends POIConServicio {
 	}
 	
 	//METODOS
-	
 	private void setearRangoDeAtencionBancario(){
 		RangoDeAtencion rangoBancarioLunes = new RangoDeAtencion(1,10,0,15,0);
 		RangoDeAtencion rangoBancarioMartes = new RangoDeAtencion(2,10,0,15,0);
@@ -35,6 +34,7 @@ public class Banco extends POIConServicio {
 		rangoDeAtencionBancario.add(4, rangoBancarioViernes);
 		this.setListaDeRangosDeAtencion(rangoDeAtencionBancario);
 	}
+	
 	public double cercaniaRequerida(){
 		return 500;
 	}

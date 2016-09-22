@@ -7,25 +7,7 @@ public abstract class Proceso {
 	//Atributos
 	private int cantidadAIterar;
 	private boolean enviarMailAdmin;
-			
-	//Getters y Setters
-
-	public void setCantidadAIterar(int unaCant){
-		cantidadAIterar = unaCant;
-	}
-	
-	public void setEnviarMailAdmin(boolean value){
-		enviarMailAdmin = value;		
-	}
-	
-	public int getCantidadAIterar(){
-		return cantidadAIterar;
-	}
-	
-	public boolean getEnviarMailAdmin(){
-		return enviarMailAdmin;
-	}	
-	
+				
 	//Metodos
 
 	public abstract ResultadoProceso realizarProceso();
@@ -41,5 +23,22 @@ public abstract class Proceso {
 		}
 		return resultadoProceso;
 	}
+	
+	//Getters y Setters
+	public void setCantidadAIterar(int unaCant){
+		cantidadAIterar = unaCant;
+	}
+	
+	public void setEnviarMailAdmin(boolean value){
+		enviarMailAdmin = value;		
+	}
+	
+	public int getCantidadAIterar(){
+		return cantidadAIterar;
+	}
+	
+	public boolean getEnviarMailAdmin(){
+		return enviarMailAdmin;
+	}	
 		
 }

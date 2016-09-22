@@ -8,7 +8,7 @@ import POIsExt.Comuna;
 
 public class CriterioSegunComuna extends TipoDeCriterio {
 	
-	//atributo
+	//atributos
 	private Comuna comunaSeleccionada;
 	
 	//getters y setters

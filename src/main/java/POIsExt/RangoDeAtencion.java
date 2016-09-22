@@ -35,45 +35,7 @@ public class RangoDeAtencion {
 	private int horarioHasta; //EJ 18
 	@Column(name="MINUTOS_HASTA")
 	private int minutosHasta; //EJ 0
-	
-	
-	//Geters y seters
 
-	public Integer getId() {  return id;  }
-	public void setId(Integer id) {  this.id = id;  }
-	public int getNumeroDeDiaDeLaSemana() {
-		return numeroDeDiaDeLaSemana;
-	}
-	public void setNumeroDeDiaDeLaSemana(int numeroDeDiaDeLaSemana) {
-		this.numeroDeDiaDeLaSemana = numeroDeDiaDeLaSemana;
-	}
-	public int getHorarioDesde() {
-		return horarioDesde;
-	}
-	public void setHorarioDesde(int horarioDesde) {
-		this.horarioDesde = horarioDesde;
-	}
-	public int getMinutosDesde() {
-		return minutosDesde;
-	}
-	public void setMinutosDesde(int minutosDesde) {
-		this.minutosDesde = minutosDesde;
-	}
-	public int getHorarioHasta() {
-		return horarioHasta;
-	}
-	public void setHorarioHasta(int horarioHasta) {
-		this.horarioHasta = horarioHasta;
-	}
-	public int getMinutosHasta() {
-		return minutosHasta;
-	}
-	public void setMinutosHasta(int minutosHasta) {
-		this.minutosHasta = minutosHasta;
-	}
-		
-	
-	
 	//METODOS
 	
 	public boolean disponible(LocalDateTime unTiempo){
@@ -109,5 +71,40 @@ public class RangoDeAtencion {
 		double horaHasta = this.getHorarioHasta();
 		double minutosHasta = this.getMinutosHasta();
 		return horaHasta + (minutosHasta/100);
+	}
+
+	//Geters y seters
+
+	public Integer getId() {  return id;  }
+	public void setId(Integer id) {  this.id = id;  }
+	public int getNumeroDeDiaDeLaSemana() {
+		return numeroDeDiaDeLaSemana;
+	}
+	public void setNumeroDeDiaDeLaSemana(int numeroDeDiaDeLaSemana) {
+		this.numeroDeDiaDeLaSemana = numeroDeDiaDeLaSemana;
+	}
+	public int getHorarioDesde() {
+		return horarioDesde;
+	}
+	public void setHorarioDesde(int horarioDesde) {
+		this.horarioDesde = horarioDesde;
+	}
+	public int getMinutosDesde() {
+		return minutosDesde;
+	}
+	public void setMinutosDesde(int minutosDesde) {
+		this.minutosDesde = minutosDesde;
+	}
+	public int getHorarioHasta() {
+		return horarioHasta;
+	}
+	public void setHorarioHasta(int horarioHasta) {
+		this.horarioHasta = horarioHasta;
+	}
+	public int getMinutosHasta() {
+		return minutosHasta;
+	}
+	public void setMinutosHasta(int minutosHasta) {
+		this.minutosHasta = minutosHasta;
 	}
 }

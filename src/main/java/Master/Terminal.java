@@ -15,7 +15,7 @@ public class Terminal {
 	@Id	@GeneratedValue	@Column(name="TERMINAL_ID")
 	private Long									id;
 	
-    @Column(name="REPOSITORIO_POIS")
+	@Transient
 	private RepositorioPOIs			 				repositorioPOIs;
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

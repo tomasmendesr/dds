@@ -31,10 +31,6 @@ public class Comuna {
 	@JoinColumn (name = "TERMINAL_ID", foreignKey = @ForeignKey(name = "TERMINAL_ID_FK"))
 	private Terminal terminal;
 	
-	@Column(name="POIs")
-	@OneToMany
-	@JoinColumn(name = "POI_ID", foreignKey = @ForeignKey(name = "POI_ID_FK"))
-	private Master.POI					POI;
 	
 	//GETERS Y SETERS 
 	

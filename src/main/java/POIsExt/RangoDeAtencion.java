@@ -35,9 +35,7 @@ public class RangoDeAtencion {
 	private int horarioHasta; //EJ 18
 	@Column(name="MINUTOS_HASTA")
 	private int minutosHasta; //EJ 0
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="POI_ID", nullable=false)
-	private POI poi;
+	
 	
 	//Geters y seters
 

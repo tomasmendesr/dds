@@ -84,7 +84,7 @@ public class TestDeCalculoDeDisponibilidad {
 		listaDeRangosDeAtencionLibreria.add(rangoViernesManana);
 		listaDeRangosDeAtencionLibreria.add(rangoViernesTarde);
 		listaDeRangosDeAtencionLibreria.add(rangoSabadoManana);
-		libreriaEscolar.setColeccionDeRangosDeAtencion(listaDeRangosDeAtencionLibreria);
+		libreriaEscolar.setListaDeRangosDeAtencion(listaDeRangosDeAtencionLibreria);
 		
 		
 		//Instancio servicio de tramite de DNI

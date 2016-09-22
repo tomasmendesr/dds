@@ -24,16 +24,12 @@ public class LocalComercial extends POI {
 	public LocalComercial(Point unaUbicacion, Rubro unRubro){
 		super(unaUbicacion);
 		this.setRubro(unRubro);
-		ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion = new ArrayList<RangoDeAtencion>();
-		this.setColeccionDeRangosDeAtencion(unaColeccionDeRangosDeAtencion);
 	}
 	
 	
 	//ATRIBUTOS
 	
 	private Rubro 							rubro;
-	private	List<RangoDeAtencion>			coleccionDeRangosDeAtencion;
-
 	
 	//GETTERS Y SETTERS
 	
@@ -44,14 +40,6 @@ public class LocalComercial extends POI {
 	public void setRubro(Rubro unRubro){
 		rubro = unRubro;
 	}
-	
-	public List<RangoDeAtencion> getColeccionDeRangosDeAtencion(){
-		return coleccionDeRangosDeAtencion;
-	}
-	
-	public void setColeccionDeRangosDeAtencion(List<RangoDeAtencion> unaColeccionDeRangosDeAtencion){
-		coleccionDeRangosDeAtencion = unaColeccionDeRangosDeAtencion;
-	}
 
 
 	//METODOS
@@ -61,7 +49,7 @@ public class LocalComercial extends POI {
 	}
 	
 	public boolean estaDisponible(LocalDateTime unTiempo){
-		return this.getColeccionDeRangosDeAtencion().stream().
+		return this.getListaDeRangosDeAtencion().stream().
 			   anyMatch(rangoDeAtencion -> this.rangoDeAtencionDisponible(rangoDeAtencion,unTiempo));
 	}
 	
@@ -70,7 +58,7 @@ public class LocalComercial extends POI {
 	}
 	
 	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
-		this.getColeccionDeRangosDeAtencion().add(unRangoDeAtencion);
+		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
 
 	public void addPalabraClave(String unaPalabraClave){

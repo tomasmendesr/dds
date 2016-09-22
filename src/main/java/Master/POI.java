@@ -76,6 +76,10 @@ public abstract class POI {
 		listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
 	}
 	
+	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
+		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
+	}
+	
 
 	public Point getUbicacion(){
 		return ubicacion;

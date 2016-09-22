@@ -22,16 +22,14 @@ public class Comuna {
 	
 	private Polygon 	zona;
 	
-	@Id
-	@Column(name="COMUNA_NUMERO")
+	@Id	@Column(name="COMUNA_NUMERO")
 	private int			numeroDeComuna;
 	
-	@OneToMany
-	@Column(name = "TERMINAL")
+	@OneToMany	@Column(name = "TERMINAL")
 	@JoinColumn (name = "TERMINAL_ID", foreignKey = @ForeignKey(name = "TERMINAL_ID_FK"))
 	private Terminal terminal;
 	
-	
+
 	//GETERS Y SETERS 
 	
 	public Polygon getZona() {

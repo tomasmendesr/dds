@@ -12,6 +12,7 @@ public class RepositorioTerminales {
 
 	//Atributos
 	private static RepositorioTerminales repositorioTerminales;
+	private List<ResultadoBusqueda> resultadosBusquedas;
 	
 	@OneToMany
 	@JoinColumn(name = "TERMINAL_ID")
@@ -20,6 +21,7 @@ public class RepositorioTerminales {
 	//Constructor
 		private RepositorioTerminales() {
 			setTerminales(new ArrayList<Terminal>());
+			setResultadosBusquedas(new ArrayList<ResultadoBusqueda>());
 		}
 			
 	//Singleton 
@@ -38,6 +40,10 @@ public class RepositorioTerminales {
 		terminales.add(terminal);
 	}
 	
+	public void addResultadoBusqueda(ResultadoBusqueda resultadoBusqueda){
+		resultadosBusquedas.add(resultadoBusqueda);
+	}
+	
 	//Getters y setters
 		public List<Terminal> getTerminales() {
 			return terminales;
@@ -45,6 +51,14 @@ public class RepositorioTerminales {
 
 		public void setTerminales(List<Terminal> terminales) {
 			this.terminales = terminales;
+		}
+
+		public List<ResultadoBusqueda> getResultadosBusquedas() {
+			return resultadosBusquedas;
+		}
+
+		public void setResultadosBusquedas(List<ResultadoBusqueda> resultadosBusquedas) {
+			this.resultadosBusquedas = resultadosBusquedas;
 		}
 	
 	

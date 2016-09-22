@@ -95,25 +95,26 @@ public class TestSistemaAlmacenaBusquedas {
 	public void seAlmacenanCorrectamenteLasBusquedas(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
 		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
-		Assert.assertEquals(2,observerAlmacenarBusqueda.getListaDeResultados().size());
+		Assert.assertEquals(2,RepositorioTerminales.getInstance().getResultadosBusquedas().size());
 	}
 	
 	@Test
 	public void seAlmacenaLaFraseBuscada(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = observerAlmacenarBusqueda.getListaDeResultados().get(0);
+		unResultado = RepositorioTerminales.getInstance().getResultadosBusquedas().get(0);
 		Assert.assertEquals("deposito", unResultado.getFraseBuscada());
 	}
 	
 	@Test
 	public void seAlmacenaLaCantidadDePOIsEncontrados(){
 		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		unResultado = observerAlmacenarBusqueda.getListaDeResultados().get(0);
+		unResultado = RepositorioTerminales.getInstance().getResultadosBusquedas().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
 	}
 		
 	@After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
+		RepositorioTerminales.resetTerminales();
 	}
 }

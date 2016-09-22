@@ -17,7 +17,7 @@ public class ResultadoBusqueda{
 	@Column(name="DURACION_BUSQUEDA")
 	private double 			duracionBusqueda;
 	@Transient
-	private List<POI>		resultadoBusqueda;
+	private List<POI>		poisEncontrados;
 	@Column (name="RES_MOMENTO_BUSQUEDA")
 	private LocalDateTime	momentoDeBusqueda;
 	@Column(name="TIEMPO_ESTIMADO_BUSQUEDA")
@@ -58,7 +58,7 @@ public class ResultadoBusqueda{
 	public void setId(int id) {  this.id = id;  }
 
 	public int getCantidadDeResultados(){
-		return resultadoBusqueda.size();
+		return poisEncontrados.size();
 	}
 	
 	public String getFraseBuscada() {
@@ -70,11 +70,11 @@ public class ResultadoBusqueda{
 	}
 
 	public List<POI> getResultadoBusqueda() {
-		return resultadoBusqueda;
+		return poisEncontrados;
 	}
 
 	public void setResultadoBusqueda(List<POI> resultadoBusqueda) {
-		this.resultadoBusqueda = resultadoBusqueda;
+		this.poisEncontrados = resultadoBusqueda;
 	}
 
 	public double getDuracionBusqueda(){

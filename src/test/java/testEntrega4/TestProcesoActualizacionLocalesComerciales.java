@@ -82,9 +82,9 @@ public class TestProcesoActualizacionLocalesComerciales {
         kioskoDeDiarios.setComuna(comuna8);
         kioskoDeDiarios.addTag("caramelos");
         kioskoDeDiarios.setNombre("Kiosko de Carlitos");
-        kioskoDeDiarios.addPalabraClave("diarios");
-        kioskoDeDiarios.addPalabraClave("revistas");
-        kioskoDeDiarios.addPalabraClave("libros");
+        kioskoDeDiarios.addTag("diarios");
+        kioskoDeDiarios.addTag("revistas");
+        kioskoDeDiarios.addTag("libros");
 
         // Farmacia -- Corrientes 3702
         Rubro rubroTiendasDeRopa = new Rubro(200.0);
@@ -92,9 +92,9 @@ public class TestProcesoActualizacionLocalesComerciales {
         tiendaDeRopa.setComuna(comuna8);
         tiendaDeRopa.addTag("pantalones");
         tiendaDeRopa.setNombre("Asterico");
-        tiendaDeRopa.addPalabraClave("remeras");
-        tiendaDeRopa.addPalabraClave("polleras");
-        tiendaDeRopa.addPalabraClave("ropa");
+        tiendaDeRopa.addTag("remeras");
+        tiendaDeRopa.addTag("polleras");
+        tiendaDeRopa.addTag("ropa");
 
 
         //Agrega POIs al repositorioPOIs
@@ -135,7 +135,7 @@ public class TestProcesoActualizacionLocalesComerciales {
     @Test
     public void laCantidadDePalabrasClaveDeLibreriaEscolarAntesDeActualizarLosLocalesComercialesEs2(){
         int cantidadPalabrasClave = libreriaEscolar.cantidadDePalabrasClave();
-        Assert.assertEquals(2, cantidadPalabrasClave);
+        Assert.assertEquals(3, cantidadPalabrasClave);
     }
 
     @Test
@@ -149,7 +149,7 @@ public class TestProcesoActualizacionLocalesComerciales {
     public void laCantidadDePalabrasClaveDeKioskoDeDiariosDespuesDeActualizarLosLocalesComercialesEs3(){
         resultadoProceso = local.realizarProceso();
         int cantidadPalabrasClave = kioskoDeDiarios.cantidadDePalabrasClave();
-        Assert.assertEquals(3, cantidadPalabrasClave);
+        Assert.assertEquals(4, cantidadPalabrasClave);
     }
 
     @After

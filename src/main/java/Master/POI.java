@@ -40,7 +40,7 @@ public abstract class POI {
 	@CollectionTable(name="TAG", joinColumns=@JoinColumn(name="POI_ID"))
 	@Column(name="TAG")
 	@Convert(converter = ListToStringConveter.class)
-	private List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre
+	protected List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre - PALABRAS CLAVE
 	
 	@OneToMany(mappedBy="poi")
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;

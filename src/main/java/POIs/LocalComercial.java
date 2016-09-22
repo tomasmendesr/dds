@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 
 import java.lang.String;
 
-import Procesos.ResultadoProceso;
 import org.uqbar.geodds.Point;
 
 import Master.POI;
@@ -27,8 +26,6 @@ public class LocalComercial extends POI {
 		this.setRubro(unRubro);
 		ArrayList<RangoDeAtencion> unaColeccionDeRangosDeAtencion = new ArrayList<RangoDeAtencion>();
 		this.setColeccionDeRangosDeAtencion(unaColeccionDeRangosDeAtencion);
-		ArrayList<String> unaColeccionDePalabrasClave = new ArrayList<String>();
-		this.setPalabrasClave(unaColeccionDePalabrasClave);
 	}
 	
 	
@@ -36,7 +33,6 @@ public class LocalComercial extends POI {
 	
 	private Rubro 							rubro;
 	private	List<RangoDeAtencion>			coleccionDeRangosDeAtencion;
-	private	List<String>					coleccionDePalabrasClave;
 
 	
 	//GETTERS Y SETTERS
@@ -57,11 +53,6 @@ public class LocalComercial extends POI {
 		coleccionDeRangosDeAtencion = unaColeccionDeRangosDeAtencion;
 	}
 
-	public void setPalabrasClave(ArrayList<String> unaColeccionDepalabrasClave) { coleccionDePalabrasClave = unaColeccionDepalabrasClave; }
-
-	public List<String> getColeccionDePalabrasClave(){
-		return coleccionDePalabrasClave;
-	}
 
 	//METODOS
 	
@@ -83,10 +74,10 @@ public class LocalComercial extends POI {
 	}
 
 	public void addPalabraClave(String unaPalabraClave){
-		this.getColeccionDePalabrasClave().add(unaPalabraClave);
+		this.getTags().add(unaPalabraClave);
 	}
 
-	public int cantidadDePalabrasClave() { return coleccionDePalabrasClave.size(); }
+	public int cantidadDePalabrasClave() { return tags.size(); }
 
 	//Modificar locales comerciales
 	public Boolean tieneNombreYPalabrasEspecificadas(String nombre,  String[] unasPalabras){
@@ -99,7 +90,7 @@ public class LocalComercial extends POI {
 		Integer marcador = 0;
 		for (int i = 0; i < cantidad; i += 1) {
 			int iActual = i;
-			if (coleccionDePalabrasClave.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[iActual]))) {
+			if (tags.stream().anyMatch(palabraClave -> palabraClave.equals(unasPalabras[iActual]))) {
 				this.actualizarPalabrasClaves(unasPalabras);
 				marcador = 1;
 			}
@@ -111,9 +102,9 @@ public class LocalComercial extends POI {
 	}
 
 	public void actualizarPalabrasClaves(String[] unasPalabras){
-		coleccionDePalabrasClave.clear();
+		tags.clear();
 		List<String> nuevaColeccionDePalabrasClave = new ArrayList<String>(Arrays.asList(unasPalabras));
-		coleccionDePalabrasClave.addAll(nuevaColeccionDePalabrasClave);
+		tags.addAll(nuevaColeccionDePalabrasClave);
 	}
 
 }

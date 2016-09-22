@@ -19,22 +19,7 @@ public abstract class POIConServicio extends POI {
 	}
 
 	private List<Servicio> 	servicios;
-	
-	
-	//GETERS Y SETERS
-	
-	public List<Servicio> getColeccionServicios(){
-		return servicios;
-	}
-	
-	public void setListaDeServicios(List<Servicio> nuevaListaDeServicios){
-		servicios = nuevaListaDeServicios;
-	}
-	
-	public void addServicio(Servicio unServicio){
-		servicios.add(unServicio);
-	}
-	
+
 	//METODOS
 	
 	public boolean estaDisponible(String unNombreDeServicio,LocalDateTime unTiempo){
@@ -59,5 +44,19 @@ public abstract class POIConServicio extends POI {
 		return this.getColeccionServicios().stream().
 				filter(servicio -> servicio.getNombre() == unNombreDeServicio).
 				collect(Collectors.toList()).get(0); //SE SUPONE QUE EL SERVICIO INGRESADO SIEMPRE ES VALIDO
+	}
+
+	//GETERS Y SETERS
+
+	public List<Servicio> getColeccionServicios(){
+		return servicios;
+	}
+
+	public void setListaDeServicios(List<Servicio> nuevaListaDeServicios){
+		servicios = nuevaListaDeServicios;
+	}
+
+	public void addServicio(Servicio unServicio){
+		servicios.add(unServicio);
 	}
 }

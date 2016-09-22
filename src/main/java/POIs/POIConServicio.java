@@ -9,6 +9,9 @@ import org.uqbar.geodds.Point;
 import Master.POI;
 import POIsExt.Servicio;
 
+import javax.persistence.Entity;
+
+@Entity
 public abstract class POIConServicio extends POI {
 
 		

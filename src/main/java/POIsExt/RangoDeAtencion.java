@@ -2,6 +2,8 @@ package POIsExt;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class RangoDeAtencion {
@@ -67,6 +69,19 @@ public class RangoDeAtencion {
 		double horaHasta = this.getHorarioHasta();
 		double minutosHasta = this.getMinutosHasta();
 		return horaHasta + (minutosHasta/100);
+	}
+	
+	public List<RangoDeAtencion> rangoDeAtencionBancario(){
+		RangoDeAtencion rangoBancarioLunes = new RangoDeAtencion(1,10,0,15,0);
+		RangoDeAtencion rangoBancarioMartes = new RangoDeAtencion(2,10,0,15,0);
+		RangoDeAtencion rangoBancarioMiercoles = new RangoDeAtencion(3,10,0,15,0);
+		RangoDeAtencion rangoBancarioJueves = new RangoDeAtencion(4,10,0,15,0);
+		RangoDeAtencion rangoBancarioViernes = new RangoDeAtencion(5,10,0,15,0);
+		List<RangoDeAtencion> rangoDeAtencionBancario = new ArrayList<RangoDeAtencion>();
+		rangoDeAtencionBancario.add(0, rangoBancarioLunes);		rangoDeAtencionBancario.add(1, rangoBancarioMartes);
+		rangoDeAtencionBancario.add(2, rangoBancarioMiercoles);	rangoDeAtencionBancario.add(3, rangoBancarioJueves);
+		rangoDeAtencionBancario.add(4, rangoBancarioViernes);
+		return rangoDeAtencionBancario;
 	}
 
 	//Getters y setters

@@ -15,11 +15,12 @@ import javax.persistence.Entity;
 public abstract class POIConServicio extends POI {
 
 	//ATRIBUTOS
+	private List<Servicio> 	servicios;
+	
+	//Constructor
 	public POIConServicio(Point unaUbicacion) {
 		super(unaUbicacion);
 	}
-
-	private List<Servicio> 	servicios;
 	
 	public POIConServicio(){ }
 

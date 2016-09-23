@@ -17,7 +17,7 @@ import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
 
 @Entity
-@DiscriminatorValue("L")
+@DiscriminatorValue("4")
 public class LocalComercial extends POI {
 
 	//ATRIBUTOS

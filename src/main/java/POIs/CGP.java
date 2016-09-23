@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import org.uqbar.geodds.Point;
 
 @Entity
-@DiscriminatorValue("C")
+@DiscriminatorValue("2")
 public class CGP extends POIConServicio {
 
 	//CONSTRUCTOR

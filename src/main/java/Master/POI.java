@@ -16,8 +16,8 @@ import java.lang.String;
 @Entity
 @Table(name="POI")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="subclass", discriminatorType = DiscriminatorType.CHAR)
-// P: ParadaaDeColectivo - C: CGP - B: Banco - L: LocalComercial
+@DiscriminatorColumn(name="tipoPOI", discriminatorType = DiscriminatorType.INTEGER)
+// 1: ParadaaDeColectivo - 2: CGP - 3: Banco - 4: LocalComercial
 public abstract class POI {
 
 	//ATRIBUTOS

@@ -12,7 +12,7 @@ import Master.POI;
 import POIsExt.Comuna;
 
 @Entity
-@DiscriminatorValue("P")
+@DiscriminatorValue("1")
 public class ParadaDeColectivo extends POI {
 
 	//CONSTRUCTOR

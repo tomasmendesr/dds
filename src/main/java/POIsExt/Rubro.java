@@ -1,14 +1,24 @@
 package POIsExt;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Rubro {
 	
 	//ATRIBUTOS
+	@Id @GeneratedValue @Column(name = "rubro_id")
+	private Long id;
 	private Double radioDeCercania;
 	
 	//CONSTRUCTOR 	
 	public Rubro(Double unRadioDeCercania){
 		this.setRadioDeCercania(unRadioDeCercania);
 	}	
+	
+	public Rubro(){ }
 	
 	
 	//GETTERS Y SETTERS

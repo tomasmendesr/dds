@@ -42,7 +42,7 @@ public abstract class POI {
 	@Convert(converter = ListToStringConveter.class)
 	protected List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre - PALABRAS CLAVE
 	
-	@OneToMany(mappedBy="poi")
+	@OneToMany
 	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
 	
 	@Column(name="COMUNA")

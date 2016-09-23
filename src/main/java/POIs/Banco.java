@@ -21,6 +21,8 @@ public class Banco extends POIConServicio {
 		this.setearRangoDeAtencionBancario();
 	}
 	
+	public Banco(){ }
+	
 	//METODOS
 	private void setearRangoDeAtencionBancario(){
 		RangoDeAtencion rangoBancarioLunes = new RangoDeAtencion(1,10,0,15,0);

@@ -14,6 +14,8 @@ public class CGP extends POIConServicio {
 		super(ubicacion);
 	}
 	
+	public CGP(){ }
+	
 	//METODOS
 	@Override
 	public boolean estaCercaDe(Point unaUbicacion){

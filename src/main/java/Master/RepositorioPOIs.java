@@ -8,19 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.*;
 
-@Entity
 public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	//ATRIBUTOS
-	@Id
-	@GeneratedValue
-	private Integer id;
-	@Transient
 	private static RepositorioPOIs repositorioPOIs;
-	@OneToMany 
-	@JoinColumn(name="POI_ID")
 	private List<POI> coleccionDePOIS;
-	@Transient
 	private List<AdapterConsulta> adapters;
 
 	//CONSTRUCTOR

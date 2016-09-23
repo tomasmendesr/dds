@@ -28,6 +28,8 @@ public class LocalComercial extends POI {
 		super(unaUbicacion);
 		this.setRubro(unRubro);
 	}
+	
+	public LocalComercial() { }
 
 	
 	//METODOS

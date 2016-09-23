@@ -3,9 +3,17 @@ package POIsExt;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Servicio {
 
 	//ATRIBUTOS
+	@Id @GeneratedValue @Column(name="servicio_id")
+	Long						id;
 	String 						nombre;
 	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
@@ -14,6 +22,8 @@ public class Servicio {
 		this.setNombre(unNombre);
 		this.setListaDeRangosDeAtencion(listaDeRangosDeAtencion);
 	}
+	
+	public Servicio(){}
 
 	
 	//METODOS

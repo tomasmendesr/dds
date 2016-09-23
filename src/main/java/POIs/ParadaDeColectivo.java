@@ -21,6 +21,8 @@ public class ParadaDeColectivo extends POI {
 		//this.instanciarRangoDeAtencionDeColectivo();
 	}
 	
+	public ParadaDeColectivo(){ }
+	
 	//METODOS
 	@Override
 	public double cercaniaRequerida(){

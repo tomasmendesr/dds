@@ -2,33 +2,23 @@ package Master;
 
 import DAO.ResultadoBusquedaDAOImpl;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity@Table
 public class ResultadoBusqueda{
 	
 	// ATRIBUTOS
-	@Id	@GeneratedValue @Column(name="RESULTADO_BUSQUEDA_ID")
 	private int 			id;
-	@Column(name="FRASE_BUSCADA")
 	private String 			fraseBuscada;
-	@Column(name="DURACION_BUSQUEDA")
 	private double 			duracionBusqueda;
-	@Transient
 	private List<POI>		poisEncontrados;
-	@Column (name="RES_MOMENTO_BUSQUEDA")
 	private LocalDateTime	momentoDeBusqueda;
-	@Column(name="TIEMPO_ESTIMADO_BUSQUEDA")
 	private Double			tiempoEstimadoBusqueda;
-	@Column(name = "RES_TERMINAL_ID") @ManyToOne
 	private Long			terminalId;
-	@Transient
 	private ResultadoBusquedaDAOImpl resultadoBusquedaDAO;
 	
 	//CONSTRUCTOR
-	public ResultadoBusqueda(){}
+	public ResultadoBusqueda() { }
 
 	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, Terminal terminal){
 		setMomentoDeBusqueda(LocalDateTime.now());

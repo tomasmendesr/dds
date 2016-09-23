@@ -3,19 +3,13 @@ package Master;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
-@Entity
 public class RepositorioTerminales {
 
 	//Atributos
 	private static RepositorioTerminales repositorioTerminales;
-	private List<ResultadoBusqueda> resultadosBusquedas;
+	private List<ResultadoBusqueda> resultadosBusquedas; //Guarda la de todas las terminales
 	
-	@OneToMany
-	@JoinColumn(name = "TERMINAL_ID")
 	private List<Terminal> terminales;
 	
 	//Constructor

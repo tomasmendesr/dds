@@ -28,7 +28,7 @@ public class Terminal {
     @Column(name="NOMBRE")
 	private String									nombreTerminal;
     
-    @OneToMany
+    //Mapear con NOSQL
 	private List<ResultadoBusqueda>					busquedas;
     
     @Column(name="COMUNA")@ManyToOne

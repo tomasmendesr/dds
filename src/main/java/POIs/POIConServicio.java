@@ -20,6 +20,8 @@ public abstract class POIConServicio extends POI {
 	}
 
 	private List<Servicio> 	servicios;
+	
+	public POIConServicio(){ }
 
 	
 	//METODOS

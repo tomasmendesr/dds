@@ -8,7 +8,7 @@ import org.uqbar.geodds.Point;
 import AdaptersExt.CentroDTO;
 import AdaptersExt.ServicioDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
-import Master.POI;
+import Model.POI;
 import POIs.CGP;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;

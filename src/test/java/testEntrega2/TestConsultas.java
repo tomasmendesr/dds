@@ -15,17 +15,14 @@ import Adapters.AdapterConsultaCGP;
 import ComponentesExternos.ComponenteExternoConsulta;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
+import Model.POI;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-
-
-
-import Master.POI;
-import Master.RepositorioPOIs;
+import Repos.RepositorioPOIs;
 
 public class TestConsultas {
 	

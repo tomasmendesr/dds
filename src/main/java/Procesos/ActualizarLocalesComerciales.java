@@ -1,12 +1,13 @@
 package Procesos;
 
-import Master.POI;
-import Master.RepositorioPOIs;
+import Repos.RepositorioPOIs;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.POI;
 
 public class ActualizarLocalesComerciales extends Proceso {
 

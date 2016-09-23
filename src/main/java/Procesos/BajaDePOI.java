@@ -3,7 +3,7 @@ package Procesos;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import Master.RepositorioPOIs;
+import Repos.RepositorioPOIs;
 
 public class BajaDePOI extends Proceso{
 	

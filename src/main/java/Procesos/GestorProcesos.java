@@ -1,11 +1,8 @@
-package Master;
+package Procesos;
 
 import java.util.*;
 
 import Adapters.AdapterServicioRestBajaPOIs;
-import Procesos.BajaDePOI;
-import Procesos.Proceso;
-import Procesos.ResultadoProceso;
 import ProcesosExt.POIABajar;
 
 public class GestorProcesos {

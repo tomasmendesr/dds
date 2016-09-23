@@ -2,7 +2,7 @@ package Procesos;
 
 import java.util.List;
 
-import Master.Terminal;
+import Model.Terminal;
 
 public class CriterioAfectarTodas extends TipoDeCriterio { // Afecta a todas las terminales
 	

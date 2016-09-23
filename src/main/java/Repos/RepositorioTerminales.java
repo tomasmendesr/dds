@@ -1,7 +1,10 @@
-package Master;
+package Repos;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.ResultadoBusqueda;
+import Model.Terminal;
 
 
 public class RepositorioTerminales {

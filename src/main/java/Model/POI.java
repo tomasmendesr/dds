@@ -1,4 +1,4 @@
-package Master;
+package Model;
 
 import org.uqbar.geodds.Point;
 

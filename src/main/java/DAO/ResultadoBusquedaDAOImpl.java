@@ -1,8 +1,9 @@
 package DAO;
 
-import Master.ResultadoBusqueda;
 import db.EntityManagerHelper;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
+import Model.ResultadoBusqueda;
 
 import javax.persistence.EntityManager;
 

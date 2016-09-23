@@ -2,8 +2,8 @@ package Procesos;
 
 import java.time.LocalDateTime;
 
-import Master.RepositorioTerminales;
 import ObserversTerminal.FuncionalidadExtraTerminal;
+import Repos.RepositorioTerminales;
 
 
 public class AccionesUsuarios extends Proceso{

@@ -1,4 +1,4 @@
-package Master;
+package Model;
 
 
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 import POIsExt.Comuna;
+import Repos.RepositorioPOIs;
+
 import javax.persistence.*;
 
 @Entity

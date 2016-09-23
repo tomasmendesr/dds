@@ -8,8 +8,8 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-    	<class>Master.POI</class>
-    	<class>Master.Terminal</class>
+    	<class>Model.POI</class>
+    	<class>Model.Terminal</class>
     	<class>ObserversTerminal.AlmacenarBusqueda</class>
     	<class>ObserversTerminal.FuncionalidadExtraTerminal</class>
     	<class>ObserversTerminal.NotificarAdministrador</class>

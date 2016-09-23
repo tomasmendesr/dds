@@ -1,6 +1,6 @@
 package DAO;
 
-import Master.ResultadoBusqueda;
+import Model.ResultadoBusqueda;
 
 /**
  * Created by fede on 15/09/16.

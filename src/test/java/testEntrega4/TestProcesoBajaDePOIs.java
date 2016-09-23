@@ -1,14 +1,15 @@
 package testEntrega4;
 
 import ComponentesExternos.ServicioRESTBajaPOIsStub;
-import Master.GestorProcesos;
-import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Servicio;
 import Procesos.BajaDePOI;
+import Procesos.GestorProcesos;
+import Repos.RepositorioPOIs;
+
 import org.json.simple.JSONObject;
 import org.junit.After;
 import org.junit.Assert;

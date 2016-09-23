@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Model.POI;
 import POIs.Banco;
 import POIs.CGP;
 
@@ -12,8 +13,7 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
-import Master.POI;
-import Master.RepositorioPOIs;
+import Repos.RepositorioPOIs;
 
 import org.junit.After;
 import org.junit.Assert;

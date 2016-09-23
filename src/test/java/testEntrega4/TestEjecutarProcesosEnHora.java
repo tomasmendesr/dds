@@ -8,9 +8,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.GestorProcesos;
-import Master.RepositorioPOIs;
-import Master.Terminal;
+import Model.Terminal;
 import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
 import POIs.CGP;
@@ -20,7 +18,9 @@ import POIsExt.Comuna;
 import POIsExt.Rubro;
 import Procesos.AccionesUsuarios;
 import Procesos.ResultadoProceso;
+import Repos.RepositorioPOIs;
 import Procesos.CriterioSegunComuna;
+import Procesos.GestorProcesos;
 
 public class TestEjecutarProcesosEnHora {
 

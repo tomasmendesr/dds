@@ -1,10 +1,11 @@
 package ObserversTerminal;
 
-import Master.RepositorioTerminales;
-import Master.ResultadoBusqueda;
-import Master.Terminal;
+import Repos.RepositorioTerminales;
 
 import javax.persistence.Entity;
+
+import Model.ResultadoBusqueda;
+import Model.Terminal;
 
 @Entity
 public class AlmacenarBusqueda extends FuncionalidadExtraTerminal  {

@@ -5,14 +5,14 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.RepositorioPOIs;
-import Master.RepositorioTerminales;
-import Master.Terminal;
+import Model.Terminal;
 import ObserversTerminal.ReportePorFecha;
 import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIsExt.Comuna;
 import Procesos.AccionesUsuarios;
 import Procesos.ResultadoProceso;
+import Repos.RepositorioPOIs;
+import Repos.RepositorioTerminales;
 import Procesos.CriterioSegunComuna;
 import Procesos.CriterioAfectarSeleccionadas;
 import Procesos.CriterioAfectarTodas;

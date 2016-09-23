@@ -3,7 +3,7 @@ package Procesos;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import Master.Terminal;
+import Model.Terminal;
 import POIsExt.Comuna;
 
 public class CriterioSegunComuna extends TipoDeCriterio {

@@ -13,7 +13,7 @@ import org.uqbar.geodds.Point;
 import Adapters.AdapterConsultaCGP;
 import AdaptersExt.CentroDTO;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
-import Master.POI;
+import Model.POI;
 import POIs.CGP;
 
 import POIsExt.Comuna;

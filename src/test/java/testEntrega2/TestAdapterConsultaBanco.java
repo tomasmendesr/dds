@@ -13,9 +13,7 @@ import org.uqbar.geodds.Polygon;
 
 import Adapters.AdapterConsultaBanco;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
-import Master.POI;
-
-
+import Model.POI;
 import POIsExt.Comuna;
 
 

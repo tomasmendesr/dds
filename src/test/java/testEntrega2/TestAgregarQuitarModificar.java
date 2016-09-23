@@ -10,13 +10,13 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+import Repos.RepositorioPOIs;
 
 
 public class TestAgregarQuitarModificar {

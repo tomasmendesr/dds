@@ -1,6 +1,5 @@
 package testEntrega4;
 
-import Master.RepositorioPOIs;
 import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
@@ -9,6 +8,8 @@ import POIsExt.Comuna;
 import POIsExt.Rubro;
 import Procesos.ActualizarLocalesComerciales;
 import Procesos.ResultadoProceso;
+import Repos.RepositorioPOIs;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

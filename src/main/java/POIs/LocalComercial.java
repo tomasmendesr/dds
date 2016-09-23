@@ -12,7 +12,7 @@ import java.lang.String;
 
 import org.uqbar.geodds.Point;
 
-import Master.POI;
+import Model.POI;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
 

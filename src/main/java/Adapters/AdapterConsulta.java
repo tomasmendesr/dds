@@ -2,8 +2,7 @@ package Adapters;
 
 import java.util.List;
 
-
-import Master.POI;
+import Model.POI;
 
 public interface AdapterConsulta {
 

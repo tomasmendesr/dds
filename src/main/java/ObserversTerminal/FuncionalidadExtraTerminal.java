@@ -10,8 +10,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import Master.ResultadoBusqueda;
-import Master.Terminal;
+import Model.ResultadoBusqueda;
+import Model.Terminal;
 
 @Entity
 @Table(name="Funcionalidad")

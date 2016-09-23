@@ -1,16 +1,18 @@
 package testEntrega5;
 
 import javax.persistence.*;
-import Master.POI;
-import Master.RepositorioPOIs;
+
 import POIs.*;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
+import Repos.RepositorioPOIs;
 import db.EntityManagerHelper;
 import org.junit.*;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
+import Model.POI;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;

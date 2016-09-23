@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
-import Master.POI;
+import Model.POI;
 import POIsExt.Servicio;
 
 import javax.persistence.Entity;

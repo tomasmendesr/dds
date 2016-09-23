@@ -2,8 +2,8 @@ package ObserversTerminal;
 
 import javax.persistence.Entity;
 
-import Master.ResultadoBusqueda;
-import Master.Terminal;
+import Model.ResultadoBusqueda;
+import Model.Terminal;
 
 @Entity
 public class NotificarAdministrador extends FuncionalidadExtraTerminal{

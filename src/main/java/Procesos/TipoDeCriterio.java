@@ -3,7 +3,7 @@ package Procesos;
 import java.util.ArrayList;
 import java.util.List;
 
-import Master.Terminal;
+import Model.Terminal;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 
 public abstract class TipoDeCriterio {

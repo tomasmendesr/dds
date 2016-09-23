@@ -1,6 +1,8 @@
-package Master;
+package Repos;
 
 import Adapters.AdapterConsulta;
+import Model.POI;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.ArrayList;

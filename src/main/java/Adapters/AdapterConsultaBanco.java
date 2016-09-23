@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 import org.uqbar.geodds.Point;
 
 import ComponentesExternos.ComponenteExternoConsulta;
-import Master.POI;
+import Model.POI;
 import POIs.Banco;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;

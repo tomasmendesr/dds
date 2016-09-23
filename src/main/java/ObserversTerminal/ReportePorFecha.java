@@ -1,13 +1,13 @@
 package ObserversTerminal;
 
-import Master.ResultadoBusqueda;
-import Master.Terminal;
-
 import java.time.LocalDate;
 import java.util.HashMap;
 
 
 import javax.persistence.Entity;
+
+import Model.ResultadoBusqueda;
+import Model.Terminal;
 
 @Entity
 public class ReportePorFecha extends FuncionalidadExtraTerminal{

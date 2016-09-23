@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Master.*;
+import Model.*;
 import ObserversTerminal.AlmacenarBusqueda;
 import POIs.Banco;
 import POIs.CGP;
@@ -12,6 +12,8 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+import Repos.RepositorioPOIs;
+import Repos.RepositorioTerminales;
 
 import org.junit.After;
 import org.junit.Assert;

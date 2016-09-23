@@ -7,14 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity
+@Entity @Table(name="servicios")
 public class Servicio {
 
 	//ATRIBUTOS
 	@Id @GeneratedValue @Column(name="servicio_id")
 	Long						id;
+	@Column(name="nombre")
 	String 						nombre;
+	@OneToMany
 	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR 

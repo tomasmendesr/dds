@@ -9,12 +9,16 @@ import org.uqbar.geodds.Point;
 import Model.POI;
 import POIsExt.Servicio;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public abstract class POIConServicio extends POI {
 
 	//ATRIBUTOS
+	@OneToMany(cascade = CascadeType.ALL) @JoinColumn(name = "poi_id") // falta mappedBy en el OneToMany?
 	private List<Servicio> 	servicios;
 	
 	//Constructor

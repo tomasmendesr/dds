@@ -36,7 +36,7 @@ public abstract class POI {
 	@ElementCollection
 	@CollectionTable(name="tags", joinColumns=@JoinColumn(name="poi_id"))
 	@Column(name="tag")
-	protected List<String> tags; //Array de String que contienen todos los tags de busqueda libre - PALABRAS CLAVE
+	protected List<String> tags; // palabras claves
 	
 	//Ver que hacer (leer issue "POI NO DEBERIA TENER RANGO DE ATENCION")
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;

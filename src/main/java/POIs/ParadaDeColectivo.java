@@ -11,14 +11,12 @@ import org.uqbar.geodds.Point;
 import Model.POI;
 import POIsExt.Comuna;
 
-@Entity
-@DiscriminatorValue("1")
+@Entity @DiscriminatorValue("1")
 public class ParadaDeColectivo extends POI {
 
 	//CONSTRUCTOR
 	public ParadaDeColectivo(Point miUbicacion) {
 		super(miUbicacion);
-		//this.instanciarRangoDeAtencionDeColectivo();
 	}
 	
 	public ParadaDeColectivo(){ }

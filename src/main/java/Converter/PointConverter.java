@@ -3,9 +3,7 @@ package Converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 import org.uqbar.geodds.Point;
-import java.util.*;
 
 @Converter
 public class PointConverter implements AttributeConverter<Point, String>{
@@ -22,9 +20,9 @@ public class PointConverter implements AttributeConverter<Point, String>{
 
     @Override
     public Point convertToEntityAttribute(String pointString) {
-        String[] rgb = pointString.split(SEPARATOR);
-        return new Point(Integer.parseInt(rgb[0]),
-                Integer.parseInt(rgb[1]));
+        String[] ubicacion = pointString.split(SEPARATOR);
+        return new Point(Integer.parseInt(ubicacion[0]),
+                Integer.parseInt(ubicacion[1]));
 
     }
 

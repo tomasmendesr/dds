@@ -15,10 +15,10 @@ public class Terminal {
 
 	//ATRIBUTOS
 	@Id	@GeneratedValue	@Column(name="TERMINAL_ID")
-	private Long									id;
+	private Long id;
 	
 	@Transient
-	private RepositorioPOIs			 				repositorioPOIs;
+	private RepositorioPOIs	repositorioPOIs;
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "funcionalidad_x_terminal", joinColumns = {
@@ -47,7 +47,6 @@ public class Terminal {
 		busquedas = new ArrayList<ResultadoBusqueda>();
 	}
 	
-
 	
 	//METODOS
 		

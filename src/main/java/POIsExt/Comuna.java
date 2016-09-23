@@ -5,11 +5,11 @@ import org.uqbar.geodds.Polygon;
 
 import javax.persistence.*;
 
-@Entity
+@Entity @Table(name = "comunas")
 public class Comuna {
 	
 	//ATRIBUTOS
-	@Id	@Column(name="COMUNA_NUMERO")
+	@Id	@Column(name="comuna_numero")
 	private int			numeroDeComuna;
 	private Polygon 	zona;
 	

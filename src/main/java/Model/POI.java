@@ -14,41 +14,35 @@ import java.lang.String;
 
 
 @Entity
-@Table(name="POI")
+@Table(name="pois")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="tipoPOI", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.INTEGER)
 // 1: ParadaaDeColectivo - 2: CGP - 3: Banco - 4: LocalComercial
 public abstract class POI {
 
 	//ATRIBUTOS
-	@Id
-	@GeneratedValue
-	@Column(name="POI_ID")
-	private long				id;
+	@Id @GeneratedValue @Column(name="poi_id")
+	private long id;
 	
-	@Column(name="UBICACION")
-	@Convert(converter = PointConverter.class)
-	private Point 					ubicacion;
+	@Column(name="ubicacion") @Convert(converter = PointConverter.class)
+	private Point ubicacion;
 	
-	@Column(name="NOMBRE")
-	private String 					nombre;
+	@Column(name="nombre")
+	private String nombre;
 	
-	@Column(name="DIRECCION")
-	private String 					direccion;
+	@Column(name="direccion")
+	private String direccion;
 	
 	@ElementCollection
-	@CollectionTable(name="TAG", joinColumns=@JoinColumn(name="POI_ID"))
-	@Column(name="TAG")
-	@Convert(converter = ListToStringConveter.class)
-	protected List<String> 			tags; //Array de String que contienen todos los tags de busqueda libre - PALABRAS CLAVE
+	@CollectionTable(name="tags", joinColumns=@JoinColumn(name="poi_id"))
+	@Column(name="tag")
+	protected List<String> tags; //Array de String que contienen todos los tags de busqueda libre - PALABRAS CLAVE
 	
 	@OneToMany
-	private List<RangoDeAtencion>	listaDeRangosDeAtencion;
+	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
-	@Column(name="COMUNA")
-	@ManyToOne
-	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))
-	private Comuna					comuna;
+	@Column(name="comuna")	@ManyToOne	@JoinColumn(name = "comuna_numero")
+	private Comuna comuna;
 
 	
 	//CONSTRUCTOR

@@ -11,8 +11,7 @@ import org.uqbar.geodds.Point;
 
 import POIsExt.RangoDeAtencion;
 
-@Entity
-@DiscriminatorValue("3")
+@Entity @DiscriminatorValue("3")
 public class Banco extends POIConServicio {
 
 	//CONSTRUCTOR

@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import java.lang.String;
 
@@ -16,12 +19,12 @@ import Model.POI;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
 
-@Entity
-@DiscriminatorValue("4")
+@Entity @DiscriminatorValue("4")
 public class LocalComercial extends POI {
 
 	//ATRIBUTOS
-	private Rubro 							rubro;
+	@Column(name="rubro_id") @ManyToOne @JoinColumn(name="rubro_id")
+	private Rubro rubro;
 	
 	//CONSTRUCTOR
 	public LocalComercial(Point unaUbicacion, Rubro unRubro){

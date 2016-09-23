@@ -38,10 +38,10 @@ public abstract class POI {
 	@Column(name="tag")
 	protected List<String> tags; //Array de String que contienen todos los tags de busqueda libre - PALABRAS CLAVE
 	
-	@OneToMany
+	//Ver que hacer (leer issue "POI NO DEBERIA TENER RANGO DE ATENCION")
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
-	@Column(name="comuna")	@ManyToOne	@JoinColumn(name = "comuna_numero")
+	@Column(name="comuna_numero")	@ManyToOne	@JoinColumn(name = "comuna_numero")
 	private Comuna comuna;
 
 	

@@ -10,11 +10,11 @@ import Repos.RepositorioPOIs;
 
 import javax.persistence.*;
 
-@Entity
+@Entity @Table(name = "terminales")
 public class Terminal {
 
 	//ATRIBUTOS
-	@Id	@GeneratedValue	@Column(name="TERMINAL_ID")
+	@Id	@GeneratedValue	@Column(name="terminal_id")
 	private Long id;
 	
 	@Transient
@@ -22,20 +22,19 @@ public class Terminal {
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "funcionalidad_x_terminal", joinColumns = {
-			@JoinColumn(name = "TERMIJNAL_ID", nullable = false) },
+			@JoinColumn(name = "terminal_id", nullable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "FUNCIONALIDAD_ID",
 					nullable = false) })
-	private List<FuncionalidadExtraTerminal>		observers;
+	private List<FuncionalidadExtraTerminal> observers; // fijarse que onda ese choclo
     
-    @Column(name="NOMBRE")
-	private String									nombreTerminal;
+    @Column(name="nombre")
+	private String nombreTerminal;
     
-    //Mapear con NOSQL
-	private List<ResultadoBusqueda>					busquedas;
+    @Transient
+	private List<ResultadoBusqueda>	busquedas;
     
-    @Column(name="COMUNA")@ManyToOne
-	@JoinColumn(name = "COMUNA_NUMERO", foreignKey = @ForeignKey(name = "COMUNA_NUMERO_FK"))
-	private Comuna 									comuna;
+	@Column(name="comuna_numero")	@ManyToOne	@JoinColumn(name="comuna_numero")
+	private Comuna comuna;
 		
 	//CONSTRUCTOR
     public Terminal() { }

@@ -4,13 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity @Table(name = "rubros")
 public class Rubro {
 	
 	//ATRIBUTOS
 	@Id @GeneratedValue @Column(name = "rubro_id")
 	private Long id;
+	
+	@Column(name = "radio_cercania")
 	private Double radioDeCercania;
 	
 	//CONSTRUCTOR 	

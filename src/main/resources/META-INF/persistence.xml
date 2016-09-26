@@ -8,7 +8,7 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-    	<class>Model.POI</class>
+    <class>Model.POI</class>
     	<class>Model.Terminal</class>
     	<class>ObserversTerminal.AlmacenarBusqueda</class>
     	<class>ObserversTerminal.FuncionalidadExtraTerminal</class>
@@ -25,6 +25,7 @@
     	<class>POIsExt.RangoDeAtencion</class>
     	<class>POIsExt.Rubro</class>
     	<class>POIsExt.Servicio</class>
+    	 
     	 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

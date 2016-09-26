@@ -72,8 +72,8 @@ public class TestPOI {
 		Assert.assertEquals(new Long(1), new Long(unaParadaDel47.getID()));
 		Assert.assertEquals("Corvalan 3961", unaParadaDel47.getDireccion());
 		Assert.assertEquals("Parada del 47", unaParadaDel47.getNombre());
-		}*/
-    
+		}
+    */
     
 }  
 

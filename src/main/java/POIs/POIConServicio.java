@@ -55,6 +55,8 @@ public abstract class POIConServicio extends POI {
 	}
 
 	//GETERS Y SETERS
+
+	
 	public List<Servicio> getColeccionServicios(){
 		return servicios;
 	}

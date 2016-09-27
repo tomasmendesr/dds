@@ -1,6 +1,7 @@
 package POIs;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class Banco extends POIConServicio {
 		this.setearRangoDeAtencionBancario();
 	}
 	
+	private List<RangoDeAtencion> listaDeRangosDeAtencion;
+	
 	public Banco(){ }
 	
 	//METODOS
@@ -36,8 +39,28 @@ public class Banco extends POIConServicio {
 		this.setListaDeRangosDeAtencion(rangoDeAtencionBancario);
 	}
 	
+	public boolean estaDisponible(String unNombreDeServicio,LocalDateTime unTiempo){
+		if( listaDeRangosDeAtencion.stream().anyMatch(rangoDeAtencion -> rangoDeAtencion.disponible(unTiempo))){
+			return super.estaDisponible(unNombreDeServicio, unTiempo);
+		} else {
+			return false;
+		}
+	}
+	
 	public double cercaniaRequerida(){
 		return 500;
 	}
 	
+	//GETTERS y SETTERS
+	public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
+		return listaDeRangosDeAtencion;
+	}
+
+	public void setListaDeRangosDeAtencion(List<RangoDeAtencion> unaListaDeRangosDeAtencion) {
+		listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
+	}
+	
+	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
+		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
+	}
 }

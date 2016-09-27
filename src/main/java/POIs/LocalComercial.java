@@ -25,6 +25,7 @@ public class LocalComercial extends POI {
 	//ATRIBUTOS
 	@Column(name="rubro_id") @ManyToOne @JoinColumn(name="rubro_id")
 	private Rubro rubro;
+	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR
 	public LocalComercial(Point unaUbicacion, Rubro unRubro){
@@ -47,10 +48,6 @@ public class LocalComercial extends POI {
 	
 	public boolean rangoDeAtencionDisponible(RangoDeAtencion unRangoDeAtencion, LocalDateTime unTiempo){
 		return unRangoDeAtencion.disponible(unTiempo);
-	}
-	
-	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
-		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
 	}
 
 	public void addPalabraClave(String unaPalabraClave){
@@ -88,13 +85,25 @@ public class LocalComercial extends POI {
 	}
 	
 	//GETTERS Y SETTERS
-		public Rubro getRubro(){
+	public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
+		return listaDeRangosDeAtencion;
+	}
+
+	public void setListaDeRangosDeAtencion(List<RangoDeAtencion> unaListaDeRangosDeAtencion) {
+		listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
+	}
+	
+	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
+		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
+	}
+	
+	public Rubro getRubro(){
 			return rubro;
 		}
 		
-		public void setRubro(Rubro unRubro){
+	public void setRubro(Rubro unRubro){
 			rubro = unRubro;
-		}
+	}
 
 
 }

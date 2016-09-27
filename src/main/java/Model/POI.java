@@ -3,7 +3,6 @@ package Model;
 import org.uqbar.geodds.Point;
 
 import POIsExt.Comuna;
-import POIsExt.RangoDeAtencion;
 import javax.persistence.*;
 import java.util.ArrayList;
 import Converter.*;
@@ -37,9 +36,6 @@ public abstract class POI {
 	@CollectionTable(name="tags", joinColumns=@JoinColumn(name="poi_id"))
 	@Column(name="tag")
 	protected List<String> tags; // palabras claves
-	
-	//Ver que hacer (leer issue "POI NO DEBERIA TENER RANGO DE ATENCION")
-	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	@Column(name="comuna_numero")	@ManyToOne	@JoinColumn(name = "comuna_numero")
 	private Comuna comuna;
@@ -120,19 +116,6 @@ public abstract class POI {
 			ubicacion = unaUbicacion;
 			
 		}
-		
-		public List<RangoDeAtencion> getListaDeRangosDeAtencion() {
-			return listaDeRangosDeAtencion;
-		}
-
-		public void setListaDeRangosDeAtencion(List<RangoDeAtencion> unaListaDeRangosDeAtencion) {
-			listaDeRangosDeAtencion =  unaListaDeRangosDeAtencion;
-		}
-		
-		public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
-			this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
-		}
-		
 
 		public Point getUbicacion(){
 			return ubicacion;

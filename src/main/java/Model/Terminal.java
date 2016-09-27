@@ -33,7 +33,8 @@ public class Terminal {
     @Transient
 	private List<ResultadoBusqueda>	busquedas;
     
-	@Column(name="comuna_numero")	@ManyToOne	@JoinColumn(name="comuna_numero")
+	//@Column(name="comuna_numero")	
+    @ManyToOne	@JoinColumn(name="comuna_numero")
 	private Comuna comuna;
 		
 	//CONSTRUCTOR

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import org.uqbar.geodds.Point;
 
@@ -20,7 +21,7 @@ public class Banco extends POIConServicio {
 		super(ubicacion);
 		this.setearRangoDeAtencionBancario();
 	}
-	
+	@OneToMany
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	public Banco(){ }

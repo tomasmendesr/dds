@@ -5,6 +5,8 @@ import javax.persistence.*;
 import POIs.*;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
+import POIsExt.RangoDeAtencion;
+import POIsExt.Servicio;
 import Repos.RepositorioPOIs;
 import db.EntityManagerHelper;
 import org.junit.*;
@@ -17,6 +19,10 @@ import Model.POI;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestPOI {
     ParadaDeColectivo paradaDel47;
     private Comuna comuna8;
@@ -24,6 +30,10 @@ public class TestPOI {
     private CGP cgp;
     private Banco banco;
     RepositorioPOIs repositorioPOIs;
+    private Servicio servicio;
+    private RangoDeAtencion rangoUno;
+    private RangoDeAtencion rangoDos;
+    private List<RangoDeAtencion> listaRangos;
 
     @Before
     public void init() {
@@ -53,11 +63,36 @@ public class TestPOI {
         banco.addTag("deposito");
         banco.setNombre("Banco Nacion");
         banco.setComuna(comuna8);
+        
+        rangoUno = new RangoDeAtencion(1,10,0,15,0);
+        rangoDos = new RangoDeAtencion(2,10,0,15,0);
+        listaRangos = new ArrayList<RangoDeAtencion>();
+        listaRangos.add(rangoUno);
+        listaRangos.add(rangoDos);
+        servicio = new Servicio("Rentas" , listaRangos);
 
         //Inicializo el repo de POIs
 
         repositorioPOIs = RepositorioPOIs.getInstance();
 
+    }
+    
+    @Test
+    public void testPersistoUnServicioYAdemasSeGuardaSusRangos(){
+    	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory( "db" );
+    	EntityManager entityManager = entityManagerFactory.createEntityManager();
+    	entityManager.getTransaction().begin();
+    	entityManager.persist(servicio);
+    	entityManager.getTransaction().commit();
+    	entityManager.close();
+    	
+    	entityManager = entityManagerFactory.createEntityManager();
+    	entityManager.getTransaction().begin();
+    	List<Servicio> result = entityManager.createQuery( "from Servicio", Servicio.class ).getResultList();
+    	Assert.assertTrue(result.stream().anyMatch( servicio -> servicio.getNombre() == "Rentas"));
+    	Assert.assertTrue(result.stream().anyMatch(servicio -> servicio.estaDisponible(LocalDateTime.of(2016, 9, 27, 12, 30))));
+    	entityManager.getTransaction().commit();
+    	entityManager.close();
     }
 
     /*@Test

@@ -24,6 +24,7 @@ public abstract class POI {
 	private long id;
 	
 	@Column(name="ubicacion") @Convert(converter = PointConverter.class)
+	//@Transient
 	private Point ubicacion;
 	
 	@Column(name="nombre")
@@ -37,7 +38,8 @@ public abstract class POI {
 	@Column(name="tag")
 	protected List<String> tags; // palabras claves
 	
-	@Column(name="comuna_numero")	@ManyToOne	@JoinColumn(name = "comuna_numero")
+	//@Column(name="comuna_numero")
+	@ManyToOne	@JoinColumn(name = "comuna_numero")
 	private Comuna comuna;
 
 	

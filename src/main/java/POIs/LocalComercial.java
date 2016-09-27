@@ -10,6 +10,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import java.lang.String;
 
@@ -23,8 +24,10 @@ import POIsExt.Rubro;
 public class LocalComercial extends POI {
 
 	//ATRIBUTOS
-	@Column(name="rubro_id") @ManyToOne @JoinColumn(name="rubro_id")
+	//@Column(name="rubro_id")
+	@ManyToOne @JoinColumn(name="rubro_id")
 	private Rubro rubro;
+	@OneToMany
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR

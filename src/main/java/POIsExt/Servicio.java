@@ -3,6 +3,7 @@ package POIsExt;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class Servicio {
 	Long						id;
 	@Column(name="nombre")
 	String 						nombre;
-	@OneToMany
+	@OneToMany( cascade = {CascadeType.PERSIST, CascadeType.REMOVE} )
 	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR 
@@ -55,6 +56,9 @@ public class Servicio {
 	public void setListaDeRangosDeAtencion(List<RangoDeAtencion> listaDeRangosDeAtencion) {
 		this.listaDeRangosDeAtencion = listaDeRangosDeAtencion;
 	}
-
+	
+	public void addRangoDeAtencion(RangoDeAtencion unRangoDeAtencion){
+		this.getListaDeRangosDeAtencion().add(unRangoDeAtencion);
+	}
 		
 }

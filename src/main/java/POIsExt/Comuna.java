@@ -11,7 +11,8 @@ public class Comuna {
 	//ATRIBUTOS
 	@Id	@Column(name="comuna_numero")
 	private int			numeroDeComuna;
-	@Column(name="zona_id") // falta mapear la clase polygon
+	//@Column(name="zona_id") // falta mapear la clase polygon
+	@Transient
 	private Polygon 	zona;
 	
 		

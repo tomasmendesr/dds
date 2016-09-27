@@ -83,7 +83,7 @@ public class TestPOI {
 
     }
     
-    @Test
+   /* @Test
     public void testPersistoUnServicioYAdemasSeGuardaSusRangos(){
     	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory( "db" );
     	EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -99,7 +99,7 @@ public class TestPOI {
     	Assert.assertTrue(result.stream().anyMatch(servicio -> servicio.estaDisponible(LocalDateTime.of(2016, 9, 27, 12, 30))));
     	entityManager.getTransaction().commit();
     	entityManager.close();
-    }
+    } */
 
     /*@Test
     public void TestGuardoPOI(){

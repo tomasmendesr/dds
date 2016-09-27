@@ -4,12 +4,14 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
+@DiscriminatorValue("Fecha")
 public class ReportePorFecha extends FuncionalidadExtraTerminal{
 
 	//Atributos

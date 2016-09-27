@@ -2,12 +2,14 @@ package ObserversTerminal;
 
 import java.util.HashMap;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
+@DiscriminatorValue("Parcial")
 public class ReporteParcial extends FuncionalidadExtraTerminal {
 	
 	//Atributos

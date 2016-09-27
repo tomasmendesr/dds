@@ -10,11 +10,9 @@ public class Comuna {
 	//ATRIBUTOS
 	@Id	@Column(name="comuna_numero")
 	private int			numeroDeComuna;
-	//@Column(name="zona_id") // falta mapear la clase polygon
 
-	//@Column(name = "zona_numero",columnDefinition="Geometry",  nullable = true)
-	//@Type(type = "org.hibernate.spatial.GeometryType")
-	@Transient
+	/* @Column(name = "zona_numero",columnDefinition="Geometry",  nullable = true)
+	@Type(type = "org.hibernate.spatial.GeometryType") */
 	private Polygon 	zona;
 
 	//Constructor

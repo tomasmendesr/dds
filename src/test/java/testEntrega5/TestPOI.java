@@ -83,7 +83,7 @@ public class TestPOI {
 
     }
     
-   /* @Test
+    @Test
     public void testPersistoUnServicioYAdemasSeGuardaSusRangos(){
     	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory( "db" );
     	EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -99,19 +99,16 @@ public class TestPOI {
     	Assert.assertTrue(result.stream().anyMatch(servicio -> servicio.estaDisponible(LocalDateTime.of(2016, 9, 27, 12, 30))));
     	entityManager.getTransaction().commit();
     	entityManager.close();
-    } */
+    }
 
-    /*@Test
-    public void TestGuardoPOI(){
-        repositorioPOIs.agregar(paradaDel47);
-    }*/
-    
+
     /*@Test
     public void testFuncionaBienElPointConverter(){
     	PointConverter convertidor = new PointConverter();
     	Assert.assertEquals(new Point(-34.6715, -58.4676), convertidor.convertToEntityAttribute("-34.6715,-58.4676"));
     }*/
-    @Test
+
+     @Test
 	public void testVerificarPOIGuardado(){
 		repositorioPOIs.agregar(paradaDel47); //Esta paradaDel47 tiene ID=1 => Busco parada con mismo Id y comparo
 		POI unaParadaDel47 = repositorioPOIs.buscarPorNombre("Parada del 47").get(0);

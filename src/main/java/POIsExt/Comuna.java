@@ -13,6 +13,7 @@ public class Comuna {
 
 	/* @Column(name = "zona_numero",columnDefinition="Geometry",  nullable = true)
 	@Type(type = "org.hibernate.spatial.GeometryType") */
+	@Transient
 	private Polygon 	zona;
 
 	//Constructor

@@ -1,8 +1,7 @@
 package POIsExt;
 
+import org.hibernate.annotations.Type;
 import org.uqbar.geodds.Polygon;
-
-
 import javax.persistence.*;
 
 @Entity @Table(name = "comunas")
@@ -11,10 +10,11 @@ public class Comuna {
 	//ATRIBUTOS
 	@Id	@Column(name="comuna_numero")
 	private int			numeroDeComuna;
-	@Column(name="zona_id") // falta mapear la clase polygon
+
+	@Column(name = "zona_numero",columnDefinition="Geometry",  nullable = true)
+	@Type(type = "org.hibernate.spatial.GeometryType")
 	private Polygon 	zona;
-	
-		
+
 	//Constructor
 	public Comuna(){ }
 	

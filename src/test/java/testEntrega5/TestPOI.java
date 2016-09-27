@@ -14,6 +14,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import Converter.PointConverter;
 import Model.POI;
 
 import static junit.framework.TestCase.assertNotNull;
@@ -46,11 +47,16 @@ public class TestPOI {
         zonaComuna8.add(new Point(-34.6621, -58.4240));
         zonaComuna8.add(new Point(-34.7048, -58.4612));
         comuna8.setZona(zonaComuna8);
+        comuna8.setNumeroDeComuna(8);
         // Parada del 47 -- Corvalan 3691
         paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
         paradaDel47.setDireccion("Corvalan 3691");
         paradaDel47.setNombre("Parada del 47");
-        paradaDel47.setID(1);
+        //paradaDel47.setID(1);
+        paradaDel47.setUbicacion(new Point(-34.6715, -58.4676));
+        paradaDel47.addTag("47");
+        paradaDel47.setComuna(comuna8);
+        
         // CGP que provee Asesoramiento Legal -- Av Escalada 3100
         cgp = new CGP(new Point(-34.6672, -58.4669));
         cgp.setDireccion("Av Escalada 3100");
@@ -98,17 +104,22 @@ public class TestPOI {
     /*@Test
     public void TestGuardoPOI(){
         repositorioPOIs.agregar(paradaDel47);
-    }
+    }*/
     
-     @Test
-	public void verificarPOIGuardado(){
+    /*@Test
+    public void testFuncionaBienElPointConverter(){
+    	PointConverter convertidor = new PointConverter();
+    	Assert.assertEquals(new Point(-34.6715, -58.4676), convertidor.convertToEntityAttribute("-34.6715,-58.4676"));
+    }*/
+    @Test
+	public void testVerificarPOIGuardado(){
 		repositorioPOIs.agregar(paradaDel47); //Esta paradaDel47 tiene ID=1 => Busco parada con mismo Id y comparo
-		POI unaParadaDel47 = repositorioPOIs.buscar(1);
+		POI unaParadaDel47 = repositorioPOIs.buscarPorNombre("Parada del 47").get(0);
 		Assert.assertEquals(new Long(1), new Long(unaParadaDel47.getID()));
-		Assert.assertEquals("Corvalan 3961", unaParadaDel47.getDireccion());
+		Assert.assertEquals("Corvalan 3691", unaParadaDel47.getDireccion());
 		Assert.assertEquals("Parada del 47", unaParadaDel47.getNombre());
 		}
-    */
+    
     
 }  
 

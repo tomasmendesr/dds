@@ -114,7 +114,7 @@ public abstract class POI {
 	
 	//GETTERS Y SETTERS
 
-		void setUbicacion(Point unaUbicacion) {
+		public void setUbicacion(Point unaUbicacion) {
 			ubicacion = unaUbicacion;
 			
 		}

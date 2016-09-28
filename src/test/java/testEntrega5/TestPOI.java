@@ -105,10 +105,7 @@ public class TestPOI {
     @Test
     public void testFuncionaBienElPointConverter(){
     	PointConverter convertidor = new PointConverter();
-        final double DELTA = 1e-15;
-        double p1 = -34.6715;
-        double p2 = -58.4676;
-        Point punto = new Point(p1,p2);
+        Point punto = new Point(-34.6715,-58.4676);
         punto.equals(convertidor.convertToEntityAttribute("-34.6715,-58.4676"));
     }
 

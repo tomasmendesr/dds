@@ -102,11 +102,15 @@ public class TestPOI {
     }
 
 
-    /*@Test
+    @Test
     public void testFuncionaBienElPointConverter(){
     	PointConverter convertidor = new PointConverter();
-    	Assert.assertEquals(new Point(-34.6715, -58.4676), convertidor.convertToEntityAttribute("-34.6715,-58.4676"));
-    }*/
+        final double DELTA = 1e-15;
+        double p1 = -34.6715;
+        double p2 = -58.4676;
+        Point punto = new Point(p1,p2);
+        punto.equals(convertidor.convertToEntityAttribute("-34.6715,-58.4676"));
+    }
 
      @Test
 	public void testVerificarPOIGuardado(){

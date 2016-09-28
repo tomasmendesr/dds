@@ -1,8 +1,8 @@
 package POIsExt;
 
-import org.hibernate.annotations.Type;
-import org.uqbar.geodds.Polygon;
 import javax.persistence.*;
+
+import Adapters.PolygonAdapter;
 
 @Entity @Table(name = "comunas")
 public class Comuna {
@@ -11,10 +11,8 @@ public class Comuna {
 	@Id	@Column(name="comuna_numero")
 	private int			numeroDeComuna;
 
-	/* @Column(name = "zona_numero",columnDefinition="Geometry",  nullable = true)
-	@Type(type = "org.hibernate.spatial.GeometryType") */
-	@Transient
-	private Polygon 	zona;
+	@OneToOne
+	private PolygonAdapter 	zona;
 
 	//Constructor
 	public Comuna(){ }
@@ -24,11 +22,11 @@ public class Comuna {
 	}
 
 	//GETTERS Y SETTERS 
-	public Polygon getZona() {
+	public PolygonAdapter getZona() {
 		return zona;
 	}
 
-	public void setZona(Polygon zona) {
+	public void setZona(PolygonAdapter zona) {
 		this.zona = zona;
 	}
 

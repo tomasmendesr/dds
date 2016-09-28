@@ -25,6 +25,8 @@
     	<class>POIsExt.RangoDeAtencion</class>
     	<class>POIsExt.Rubro</class>
     	<class>POIsExt.Servicio</class>
+      <class>Adapters.PolygonAdapter</class>
+      <class>Adapters.PointAdapter</class>
 
 
         <properties>

@@ -24,7 +24,6 @@ public abstract class POI {
 	private long id;
 	
 	@Column(name="ubicacion") @Convert(converter = PointConverter.class)
-	//@Transient
 	private Point ubicacion;
 	
 	@Column(name="nombre")

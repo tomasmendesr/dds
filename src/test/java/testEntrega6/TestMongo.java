@@ -30,9 +30,10 @@ public class TestMongo {
         Assert.assertEquals(1,1);
     }
 
-    @Test
+    /*@Test
     public void test2(){
-        RepoBusquedas.getInstance().
-    }
+        List<ResultadoBusqueda> resultado = RepoBusquedas.getInstance().getAllBusquedas();
+        Assert.assertTrue(!resultado.isEmpty());
+    }*/
 
 }

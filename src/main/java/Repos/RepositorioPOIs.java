@@ -46,10 +46,6 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	//ver como hacer para dejar de suponer que el POI ingresado es siempre valido
 
-	public void agregarPOI(POI unPOI) {
-		coleccionDePOIS.add(unPOI);
-	}
-
 	public void quitarPOI(POI unPOI) {
 		coleccionDePOIS.removeIf(poi -> poi.getID() == unPOI.getID());
 	}
@@ -109,6 +105,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	}
 
 	public void agregar(POI poi) {
+		coleccionDePOIS.add(poi);
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();

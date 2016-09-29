@@ -20,32 +20,29 @@ public class Terminal {
 	@Transient
 	private RepositorioPOIs	repositorioPOIs;
     
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "funcionalidad_x_terminal", joinColumns = {
 			@JoinColumn(name = "terminal_id", nullable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "FUNCIONALIDAD_ID",
-					nullable = false) })
-	private List<FuncionalidadExtraTerminal> observers; // fijarse que onda ese choclo
+					nullable = false) })*/
+	@Transient
+	private List<FuncionalidadExtraTerminal> observers; 
     
     @Column(name="nombre")
-	private String nombreTerminal;
+	private String nombre;
     
     @Transient
 	private List<ResultadoBusqueda>	busquedas;
     
-	//@Column(name="comuna_numero")	
     @ManyToOne	@JoinColumn(name="comuna_numero")
 	private Comuna comuna;
-
-
-
 
 	//CONSTRUCTOR
     public Terminal() { }
 
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
 		this.setRepositorioPOIs(unRepositorioDePOIs);
-		this.setNombreTerminal(nombre);
+		this.setNombre(nombre);
 		observers = new ArrayList<FuncionalidadExtraTerminal>();
 		busquedas = new ArrayList<ResultadoBusqueda>();
 
@@ -102,12 +99,12 @@ public class Terminal {
 
 	public void setId(Long id) {  this.id = id;  }
 
-	public String getNombreTerminal(){
-		return nombreTerminal;
+	public String getNombre(){
+		return nombre;
 	}
 
-	public void setNombreTerminal(String nombre){
-		nombreTerminal = nombre;
+	public void setNombre(String nombre){
+		this.nombre = nombre;
 	}
 
 	public RepositorioPOIs getRepositorioPOIs() {

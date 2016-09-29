@@ -1,4 +1,4 @@
-package testEntrega5;
+package testEntrega5PersistenciaRelacional;
 
 import db.EntityManagerHelper;
 import org.junit.Before;

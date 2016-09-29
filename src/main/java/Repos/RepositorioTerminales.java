@@ -7,11 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 
-public class RepositorioTerminales {
+public class RepositorioTerminales implements WithGlobalEntityManager {
 
 	//Atributos
 	private static RepositorioTerminales repositorioTerminales;
@@ -52,6 +54,13 @@ public class RepositorioTerminales {
 		entityManager.persist(terminal);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+	}
+	
+	public List<Terminal> buscarPorNombre(String nombre) {
+		return entityManager() //
+				.createQuery("from Terminal t where t.nombre like :nombre",Terminal.class) 
+				.setParameter("nombre", "%" + nombre + "%") //
+				.getResultList();
 	}
 	
 	//Getters y setters

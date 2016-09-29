@@ -1,4 +1,4 @@
-package testEntrega5;
+package testEntrega5PersistenciaRelacional;
 
 import javax.persistence.*;
 
@@ -8,17 +8,13 @@ import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;
 import Repos.RepositorioPOIs;
-import db.EntityManagerHelper;
 import org.junit.*;
 import org.uqbar.geodds.Point;
-import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import Adapters.PolygonAdapter;
 import Converter.PointConverter;
 import Model.POI;
 
-import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

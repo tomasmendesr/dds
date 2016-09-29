@@ -46,9 +46,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	//ver como hacer para dejar de suponer que el POI ingresado es siempre valido
 
-	public void agregarPOI(POI unPOI) {
-		coleccionDePOIS.add(unPOI);
-	}
+	public void agregarPOI(POI unPOI) { coleccionDePOIS.add(unPOI); }
 
 	public void quitarPOI(POI unPOI) {
 		coleccionDePOIS.removeIf(poi -> poi.getID() == unPOI.getID());

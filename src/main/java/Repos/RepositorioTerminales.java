@@ -3,6 +3,10 @@ package Repos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
@@ -39,6 +43,15 @@ public class RepositorioTerminales {
 	
 	public void addResultadoBusqueda(ResultadoBusqueda resultadoBusqueda){
 		resultadosBusquedas.add(resultadoBusqueda);
+	}
+	
+	public void persistTerminal(Terminal terminal){
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		entityManager.persist(terminal);
+		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 	
 	//Getters y setters

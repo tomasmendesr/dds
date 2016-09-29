@@ -18,7 +18,7 @@ public class CGP extends POIConServicio {
 	//METODOS
 	@Override
 	public boolean estaCercaDe(Point unaUbicacion){
-		return this.getComuna().getZona().isInside(unaUbicacion);
+		return this.getComuna().getZona().getPolygon().isInside(unaUbicacion);
 	}
 
 

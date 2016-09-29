@@ -5,7 +5,6 @@ import POIs.Banco;
 import POIs.CGP;
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
-import POIsExt.Servicio;
 import Procesos.BajaDePOI;
 import Procesos.GestorProcesos;
 import Repos.RepositorioPOIs;
@@ -15,11 +14,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.cglib.core.Local;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class TestProcesoBajaDePOIs {
@@ -88,7 +82,7 @@ public class TestProcesoBajaDePOIs {
         Assert.assertEquals(5,repositorioPOIs.getColeccionDePOIS().size());
     }*/ //ROMPE PORQUE BORRAMOS LA CLASE IDENTITY, HACER LO DE PERSISTENCIA Y DESPUES REVISAR
 
-    @Test
+   @Test
     public void elProcesoBajaPOINoEliminaPOIQueNoEstaEnElRepositorio(){
         Assert.assertEquals(6,repositorioPOIs.getColeccionDePOIS().size());
         int poiID = 8;

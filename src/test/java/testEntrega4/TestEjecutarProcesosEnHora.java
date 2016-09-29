@@ -6,9 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
-import Model.Terminal;
+import Adapters.PolygonAdapter;
 import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
 import POIs.CGP;
@@ -17,7 +16,6 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 import Procesos.AccionesUsuarios;
-import Procesos.ResultadoProceso;
 import Repos.RepositorioPOIs;
 import Procesos.CriterioSegunComuna;
 import Procesos.GestorProcesos;
@@ -25,37 +23,28 @@ import Procesos.GestorProcesos;
 public class TestEjecutarProcesosEnHora {
 
 	
-		private RepositorioPOIs repositorioPOIs;
-		private Terminal terminalAbasto;
-		private Terminal terminalFlorida;
 		private Comuna comuna8;
 		private ParadaDeColectivo paradaDel47;
 		private CGP cgp;
 		private Banco banco;
 		private LocalComercial libreriaEscolar;
 		private LocalComercial kioskoDeDiarios;
-		private Polygon	zonaComuna8;
+		private PolygonAdapter	zonaComuna8;
 		private ReporteTotalesPorUsuario observerReportesTotales;
-		private AccionesUsuarios agregarAccionUsuario;
 		private CriterioSegunComuna segunComuna;
-		private ResultadoProceso resultadoProceso;
-		private Date fechaActual;
-		private AccionesUsuarios accionUsuario;
-		private GestorProcesos gestorProcesos;
-		
-	@Before
+		@Before
 	public void init(){
 
 
 	// Comuna 8
-	comuna8 = new Comuna(8);
-	zonaComuna8 = new Polygon();
-	zonaComuna8.add(new Point(-34.6744,-58.5025));
-	zonaComuna8.add(new Point(-34.6578,-58.4787));
-	zonaComuna8.add(new Point(-34.6648,-58.4697));
-	zonaComuna8.add(new Point(-34.6621,-58.4240));
-	zonaComuna8.add(new Point(-34.7048,-58.4612));
-	comuna8.setZona(zonaComuna8);
+		comuna8 = new Comuna(8);
+		zonaComuna8 = new PolygonAdapter();
+		zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
+		zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
+		zonaComuna8.agregarPoint(new Point(-34.6648,-58.4697));
+		zonaComuna8.agregarPoint(new Point(-34.6621,-58.4240));
+		zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
+		comuna8.setZona(zonaComuna8);
 
 	// Parada del 47 -- Corvalan 3691
 	paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
@@ -94,18 +83,15 @@ public class TestEjecutarProcesosEnHora {
 	RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
 	RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
 
-	//Instancio gestor procesos
-	gestorProcesos = new GestorProcesos();
+	new GestorProcesos();
 		
-	// Instancio fechas
-	fechaActual = new Date();
+	new Date();
 		 
-	//Proceso
-	accionUsuario = new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
+	new AccionesUsuarios(segunComuna, "agregar", observerReportesTotales);
 
 	//Instancio repositorio POIs
 
-	repositorioPOIs = RepositorioPOIs.getInstance();
+	RepositorioPOIs.getInstance();
 
 	}
 		

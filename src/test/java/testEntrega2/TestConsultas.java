@@ -8,10 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
-
 import Adapters.AdapterConsultaBanco;
 import Adapters.AdapterConsultaCGP;
+import Adapters.PolygonAdapter;
 import ComponentesExternos.ComponenteExternoConsulta;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
@@ -32,7 +31,7 @@ public class TestConsultas {
 	private Banco banco;
 	private LocalComercial libreriaEscolar;
 	private LocalComercial kioskoDeDiarios;
-	private Polygon	zonaComuna8;
+	private PolygonAdapter	zonaComuna8;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private AdapterConsultaCGP adapterConsultaCGP;
 	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
@@ -44,12 +43,12 @@ public class TestConsultas {
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
-		zonaComuna8 = new Polygon();
-		zonaComuna8.add(new Point(-34.6744,-58.5025));
-		zonaComuna8.add(new Point(-34.6578,-58.4787));
-		zonaComuna8.add(new Point(-34.6648,-58.4697));
-		zonaComuna8.add(new Point(-34.6621,-58.4240));
-		zonaComuna8.add(new Point(-34.7048,-58.4612));
+		zonaComuna8 = new PolygonAdapter();
+		zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
+		zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
+		zonaComuna8.agregarPoint(new Point(-34.6648,-58.4697));
+		zonaComuna8.agregarPoint(new Point(-34.6621,-58.4240));
+		zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
 				
 		// Parada del 47 -- Corvalan 3691

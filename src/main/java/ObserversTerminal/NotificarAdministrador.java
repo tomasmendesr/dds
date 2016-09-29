@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
+@Entity
 public class NotificarAdministrador extends FuncionalidadExtraTerminal{
 
 	@Override

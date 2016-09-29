@@ -36,7 +36,10 @@ public class Terminal {
 	//@Column(name="comuna_numero")	
     @ManyToOne	@JoinColumn(name="comuna_numero")
 	private Comuna comuna;
-		
+
+
+
+
 	//CONSTRUCTOR
     public Terminal() { }
 
@@ -45,6 +48,7 @@ public class Terminal {
 		this.setNombreTerminal(nombre);
 		observers = new ArrayList<FuncionalidadExtraTerminal>();
 		busquedas = new ArrayList<ResultadoBusqueda>();
+
 	}
 	
 	
@@ -66,6 +70,7 @@ public class Terminal {
 	
 	public void guardarBusqueda(ResultadoBusqueda unResultado){
 		busquedas.add(unResultado);
+		unResultado.persistite();
 	}
 	
 	public Integer obtenerResultadosTotales(){ // Obtengo la suma de la lista creada en resultadosTotales()

@@ -1,6 +1,7 @@
 package Model;
 
-import DAO.ResultadoBusquedaDAOImpl;
+import DAO.ResultadoBusquedaDAOMongo;
+import Repos.RepoBusquedas;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,8 +16,7 @@ public class ResultadoBusqueda{
 	private LocalDateTime	momentoDeBusqueda;
 	private Double			tiempoEstimadoBusqueda;
 	private Long			terminalId;
-	private ResultadoBusquedaDAOImpl resultadoBusquedaDAO;
-	
+
 	//CONSTRUCTOR
 	public ResultadoBusqueda() { }
 
@@ -26,7 +26,6 @@ public class ResultadoBusqueda{
 		setResultadoBusqueda(resultadoBusqueda);
 		setDuracionBusqueda(duracionConsulta);
 		setTerminalId(terminal.getId());
-		//resultadoBusquedaDAO = new ResultadoBusquedaDAOImpl(); aca tira nullPointer
 	}
 	
 	//METODOS
@@ -39,9 +38,12 @@ public class ResultadoBusqueda{
 	}
 
 	public void persistite(){
-		resultadoBusquedaDAO.persistirResultadoBusqueda(this);
+		RepoBusquedas.getInstance().guardarBusqueda(this);
 	}
-	
+
+
+
+
 	// GETTERS Y SETTERS
 	public int getId() { return id;  }
 

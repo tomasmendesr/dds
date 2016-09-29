@@ -82,7 +82,7 @@ public class TestProcesoBajaDePOIs {
         Assert.assertEquals(5,repositorioPOIs.getColeccionDePOIS().size());
     }*/ //ROMPE PORQUE BORRAMOS LA CLASE IDENTITY, HACER LO DE PERSISTENCIA Y DESPUES REVISAR
 
-    @Test
+   @Test
     public void elProcesoBajaPOINoEliminaPOIQueNoEstaEnElRepositorio(){
         Assert.assertEquals(6,repositorioPOIs.getColeccionDePOIS().size());
         int poiID = 8;

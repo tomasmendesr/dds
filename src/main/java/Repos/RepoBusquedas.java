@@ -42,12 +42,10 @@ public class RepoBusquedas {
         append("pois encontrados", unaBusqueda.getResultadoBusqueda().stream().
                         map(poi -> poi.getNombre().toString())).
         append("duracion",unaBusqueda.getDuracionBusqueda());
-        try {
-            collection.insertOne(dbObject);
-            System.out.println("Se inserto correctamente un documento");
-        } catch (Exception e){
-            System.out.println("Hubo un error");
-        }
+
+        collection.insertOne(dbObject);
+
+        //usar morphia
 
     }
 

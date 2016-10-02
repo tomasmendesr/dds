@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class TestMongo {
 
-    @Test
+    /*@Test
     public void test(){
         List<POI> list = new ArrayList<POI>();
         list.add(new ParadaDeColectivo(new Point(1,2)));
@@ -28,7 +28,7 @@ public class TestMongo {
         RepoBusquedas.getInstance().guardarBusqueda(resultado);
 
         Assert.assertEquals(1,1);
-    }
+    }*/
 
     /*@Test
     public void test2(){

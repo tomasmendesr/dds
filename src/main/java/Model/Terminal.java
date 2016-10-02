@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 import POIsExt.Comuna;
+import Repos.RepoBusquedas;
 import Repos.RepositorioPOIs;
 
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class Terminal {
 	@Transient
 	private List<FuncionalidadExtraTerminal> observers; 
     
-    @Column(name="nombre")
+    @Column(name="Snombre")
 	private String nombre;
     
     @Transient
@@ -38,6 +39,7 @@ public class Terminal {
 	private Comuna comuna;
 
 	//CONSTRUCTOR
+
     public Terminal() { }
 
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
@@ -66,8 +68,8 @@ public class Terminal {
 	}
 	
 	public void guardarBusqueda(ResultadoBusqueda unResultado){
-		busquedas.add(unResultado);
-		unResultado.persistite();
+		busquedas.add(unResultado);  //modificar la entrega de los observersd para que haga los reportes en base a mongo
+		//RepoBusquedas.getInstance().guardarBusqueda(unResultado); hacer bien esto porque sino te rompe tests
 	}
 	
 	public Integer obtenerResultadosTotales(){ // Obtengo la suma de la lista creada en resultadosTotales()

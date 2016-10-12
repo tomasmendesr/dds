@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ObserversTerminal.FuncionalidadExtraTerminal;
 import POIsExt.Comuna;
-import Repos.RepoBusquedas;
 import Repos.RepositorioPOIs;
 
 import javax.persistence.*;
@@ -37,7 +36,7 @@ public class Terminal {
     
     @ManyToOne	@JoinColumn(name="comuna_numero")
 	private Comuna comuna;
-
+    
 	//CONSTRUCTOR
 
     public Terminal() { }
@@ -47,7 +46,6 @@ public class Terminal {
 		this.setNombre(nombre);
 		observers = new ArrayList<FuncionalidadExtraTerminal>();
 		busquedas = new ArrayList<ResultadoBusqueda>();
-
 	}
 	
 	

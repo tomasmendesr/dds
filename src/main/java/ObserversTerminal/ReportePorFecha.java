@@ -3,9 +3,7 @@ package ObserversTerminal;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import Model.ResultadoBusqueda;
 import Model.Terminal;
@@ -15,6 +13,10 @@ import Model.Terminal;
 public class ReportePorFecha extends AccionesTerminal{
 
 	//Atributos
+	@ElementCollection
+	@CollectionTable(name = "cantidadBusquedasXFecha", joinColumns = @JoinColumn(name = "accion_id"))
+	@MapKeyJoinColumn(name = "localdate_id") 
+	@Column(name = "cantidad")
 	private HashMap<LocalDate,Integer>		cantidadBusquedasXFecha;
 
 	//Constructor

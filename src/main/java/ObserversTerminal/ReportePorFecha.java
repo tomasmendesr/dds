@@ -11,8 +11,8 @@ import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
-@DiscriminatorValue("Fecha")
-public class ReportePorFecha extends FuncionalidadExtraTerminal{
+@DiscriminatorValue("4")
+public class ReportePorFecha extends AccionesTerminal{
 
 	//Atributos
 	private HashMap<LocalDate,Integer>		cantidadBusquedasXFecha;

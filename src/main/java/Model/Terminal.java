@@ -4,7 +4,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import ObserversTerminal.FuncionalidadExtraTerminal;
+import ObserversTerminal.AccionesTerminal;
 import POIsExt.Comuna;
 import Repos.RepositorioPOIs;
 
@@ -20,13 +20,11 @@ public class Terminal {
 	@Transient
 	private RepositorioPOIs	repositorioPOIs;
     
-    /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "funcionalidad_x_terminal", joinColumns = {
-			@JoinColumn(name = "terminal_id", nullable = false) },
-			inverseJoinColumns = { @JoinColumn(name = "FUNCIONALIDAD_ID",
-					nullable = false) })*/
-	@Transient
-	private List<FuncionalidadExtraTerminal> observers; 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="observers_x_terminal", 
+		joinColumns = {@JoinColumn(name="terminal_id", referencedColumnName="terminal_id") },
+		inverseJoinColumns= { @JoinColumn(name="accion_id", referencedColumnName="accion_id") } )
+	private List<AccionesTerminal> observers; 
     
     @Column(name="Snombre")
 	private String nombre;
@@ -44,7 +42,7 @@ public class Terminal {
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		this.setNombre(nombre);
-		observers = new ArrayList<FuncionalidadExtraTerminal>();
+		observers = new ArrayList<AccionesTerminal>();
 		busquedas = new ArrayList<ResultadoBusqueda>();
 	}
 	
@@ -86,10 +84,10 @@ public class Terminal {
 	
 	
 	// Proceso 3: Agregar o quitar acciones
-	public void quitarAccion(FuncionalidadExtraTerminal observer){ // El observer es el encargado de realizar la accion
+	public void quitarAccion(AccionesTerminal observer){ // El observer es el encargado de realizar la accion
 		observers.remove(observer); 
 	}
-	public void addObserver(FuncionalidadExtraTerminal observer){
+	public void addObserver(AccionesTerminal observer){
 		observers.add(observer);
 	}
 
@@ -115,11 +113,11 @@ public class Terminal {
 		this.repositorioPOIs = repositorioPOIs;
 	}
 
-	public List<FuncionalidadExtraTerminal> getObservers() {
+	public List<AccionesTerminal> getObservers() {
 		return observers;
 	}
 
-	public void setObservers(List<FuncionalidadExtraTerminal> observers) {
+	public void setObservers(List<AccionesTerminal> observers) {
 		this.observers = observers;
 	}
 

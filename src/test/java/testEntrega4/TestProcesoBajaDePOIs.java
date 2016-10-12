@@ -93,6 +93,6 @@ public class TestProcesoBajaDePOIs {
 
     @After
     public void tearDown(){
-        repositorioPOIs.resetPOIs();
+        RepositorioPOIs.resetPOIs();
     }
 }

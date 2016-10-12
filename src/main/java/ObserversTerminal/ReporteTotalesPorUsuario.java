@@ -9,8 +9,8 @@ import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
-@DiscriminatorValue("Usuario")
-public class ReporteTotalesPorUsuario extends FuncionalidadExtraTerminal {
+@DiscriminatorValue("5")
+public class ReporteTotalesPorUsuario extends AccionesTerminal {
 	
 	//Atributos
 	private HashMap<Terminal,Integer> 		resultadosPorTerminal;

@@ -2,15 +2,17 @@ package ObserversTerminal;
 
 import Repos.RepositorioTerminales;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
-public class AlmacenarBusqueda extends FuncionalidadExtraTerminal  {
+@DiscriminatorValue("1")
+public class AlmacenarBusqueda extends AccionesTerminal  {
 
-	@Override // Guardo resultado en el Repositorio de Terminales
+	 // Guardo resultado en el Repositorio de Terminales
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda){
 		RepositorioTerminales.getInstance().addResultadoBusqueda(unResultadoBusqueda);
 	}

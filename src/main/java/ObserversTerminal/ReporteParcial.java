@@ -9,8 +9,8 @@ import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
-@DiscriminatorValue("Parcial")
-public class ReporteParcial extends FuncionalidadExtraTerminal {
+@DiscriminatorValue("3")
+public class ReporteParcial extends AccionesTerminal {
 	
 	//Atributos
 	private HashMap<Terminal,Integer> 		resultadosParcialesPorTerminal;
@@ -20,7 +20,6 @@ public class ReporteParcial extends FuncionalidadExtraTerminal {
 		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
 	}
 	
-	//Getters y Setters
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
         Integer cantidadDeResultados;
         cantidadDeResultados = unResultadoBusqueda.cantidadDeResultados();

@@ -14,15 +14,16 @@ import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
-@Table(name="Funcionalidad")
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="subclass", discriminatorType = DiscriminatorType.STRING)
-public abstract class FuncionalidadExtraTerminal {
+@Table(name="acciones")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.INTEGER)
+// 1: Almacenar - 2: Notificar - 3: ReporteParcial - 4: ReporteFecha - 5: ReporteTotales
+public abstract class AccionesTerminal {
 	
 	//Atributos
 	@Id
 	@GeneratedValue
-	@Column(name ="funcionalidad_id")
+	@Column(name ="accion_id")
 	private Long id;
 
 	//Metodos

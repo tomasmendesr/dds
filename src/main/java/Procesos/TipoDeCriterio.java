@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Terminal;
-import ObserversTerminal.FuncionalidadExtraTerminal;
+import ObserversTerminal.AccionesTerminal;
 
 public abstract class TipoDeCriterio {
 		
@@ -17,11 +17,11 @@ public abstract class TipoDeCriterio {
 	}
 		
 	// Metodos
-	public void agregar(FuncionalidadExtraTerminal accion){
+	public void agregar(AccionesTerminal accion){
 		this.terminalesAModificar().forEach(terminal -> terminal.addObserver(accion));
 	}
 	
-	public void quitar(FuncionalidadExtraTerminal accion){
+	public void quitar(AccionesTerminal accion){
 		this.terminalesAModificar().forEach(terminal -> terminal.quitarAccion(accion));
 	}
 	

@@ -2,7 +2,7 @@ package Procesos;
 
 import java.time.LocalDateTime;
 
-import ObserversTerminal.FuncionalidadExtraTerminal;
+import ObserversTerminal.AccionesTerminal;
 import Repos.RepositorioTerminales;
 
 
@@ -10,12 +10,12 @@ public class AccionesUsuarios extends Proceso{
 
 	//Atributos
 	private TipoDeCriterio criterio;
-	private FuncionalidadExtraTerminal accion;
+	private AccionesTerminal accion;
 	private int agregarOQuitar; // 1 si es "agregar", 2 si es "quitar"
 	private RepositorioTerminales repositorioTerminales;
 
 	//Constructor
-	public AccionesUsuarios(TipoDeCriterio criterio, String opcionAgregarOQuitar, FuncionalidadExtraTerminal accion){
+	public AccionesUsuarios(TipoDeCriterio criterio, String opcionAgregarOQuitar, AccionesTerminal accion){
 		this.setTipoDeCriterio(criterio);
 		this.asignarValorAlAgregarOQuitar(opcionAgregarOQuitar);
 		this.setAccion(accion);		
@@ -66,11 +66,11 @@ public class AccionesUsuarios extends Proceso{
 		return criterio;
 	}
 	
-	public void setAccion(FuncionalidadExtraTerminal accion){
+	public void setAccion(AccionesTerminal accion){
 		this.accion = accion;
 	}
 	
-	public FuncionalidadExtraTerminal getAccion(){
+	public AccionesTerminal getAccion(){
 		return accion;
 	}
 	

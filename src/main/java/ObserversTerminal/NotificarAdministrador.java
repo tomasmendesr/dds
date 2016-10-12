@@ -1,14 +1,15 @@
 package ObserversTerminal;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 @Entity
-public class NotificarAdministrador extends FuncionalidadExtraTerminal{
+@DiscriminatorValue("2")
+public class NotificarAdministrador extends AccionesTerminal{
 
-	@Override
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
 		if(!unResultadoBusqueda.sinTiempoEstimado())
 			if(unResultadoBusqueda.getDuracionBusqueda()>unResultadoBusqueda.getTiempoEstimadoBusqueda())

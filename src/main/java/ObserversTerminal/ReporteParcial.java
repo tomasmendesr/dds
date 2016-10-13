@@ -2,7 +2,7 @@ package ObserversTerminal;
 
 import java.util.HashMap;
 
-
+import java.util.Map;
 import javax.persistence.*;
 
 import Model.ResultadoBusqueda;
@@ -17,7 +17,7 @@ public class ReporteParcial extends AccionesTerminal {
 	@CollectionTable(name = "resultadosParcialesPorTerminal", joinColumns = @JoinColumn(name = "accion_id"))
 	@MapKeyJoinColumn(name = "terminal_id")
 	@Column(name = "cantidad")
-	private HashMap<Terminal,Integer> 		resultadosParcialesPorTerminal;
+	private Map<Terminal,Integer> 		resultadosParcialesPorTerminal;
 	
 	//Constructor
 	public ReporteParcial(){

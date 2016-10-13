@@ -2,6 +2,7 @@ package ObserversTerminal;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class ReportePorFecha extends AccionesTerminal{
 	@CollectionTable(name = "cantidadBusquedasXFecha", joinColumns = @JoinColumn(name = "accion_id"))
 	@MapKeyJoinColumn(name = "localdate_id") 
 	@Column(name = "cantidad")
-	private HashMap<LocalDate,Integer>		cantidadBusquedasXFecha;
+	private Map<LocalDate,Integer>		cantidadBusquedasXFecha;
 
 	//Constructor
 	public ReportePorFecha(){

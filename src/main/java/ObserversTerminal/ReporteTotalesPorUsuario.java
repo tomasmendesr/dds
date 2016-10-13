@@ -1,6 +1,8 @@
 package ObserversTerminal;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.*;
 
 
@@ -16,7 +18,7 @@ public class ReporteTotalesPorUsuario extends AccionesTerminal {
 	@CollectionTable(name = "resultadosPorTerminal", joinColumns = @JoinColumn(name = "accion_id"))
 	@MapKeyJoinColumn(name = "terminal_id")
 	@Column(name = "cantidad")
-	private HashMap<Terminal,Integer> 		resultadosPorTerminal;
+	private Map<Terminal,Integer> 		resultadosPorTerminal;
 	
 	//Constructor
 	public ReporteTotalesPorUsuario(){

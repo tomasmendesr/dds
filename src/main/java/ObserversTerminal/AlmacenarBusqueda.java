@@ -1,6 +1,6 @@
 package ObserversTerminal;
 
-import Repos.RepositorioTerminales;
+import Repos.RepositorioBusquedas;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ public class AlmacenarBusqueda extends AccionesTerminal  {
 
 	 // Guardo resultado en el Repositorio de Terminales
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda){
-		RepositorioTerminales.getInstance().addResultadoBusqueda(unResultadoBusqueda);
+		RepositorioBusquedas.getInstance().addResultadoBusqueda(unResultadoBusqueda);
 	}
 
 }

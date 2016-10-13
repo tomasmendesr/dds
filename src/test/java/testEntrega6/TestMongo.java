@@ -4,7 +4,7 @@ import Model.POI;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 import POIs.ParadaDeColectivo;
-import Repos.RepoBusquedas;
+import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import org.junit.Assert;
 import org.junit.Test;

@@ -7,23 +7,28 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by fede on 29/09/16.
- */
-public class RepoBusquedas {
+public class RepositorioBusquedas {
+	
+	private List<ResultadoBusqueda> resultadosBusquedas;
 
+    private static RepositorioBusquedas repositorioBusquedas;
 
-    public static RepoBusquedas getInstance() {
-        return ourInstance;
-    }
-    private static RepoBusquedas ourInstance = new RepoBusquedas();
-
-    private RepoBusquedas() {
-
+    private RepositorioBusquedas() {
+    	setResultadosBusquedas(new ArrayList<>());
     }
 
+    public static RepositorioBusquedas getInstance() {
+		if (repositorioBusquedas == null) repositorioBusquedas = new RepositorioBusquedas();
+			return repositorioBusquedas;
+	}
+    
+	public static void resetBusquedas() {
+		repositorioBusquedas = null;
+	}
+	
     private MongoDatabase conectarAMongo(){
         MongoClient mongoClient = new MongoClient("localhost",27017);
         System.out.println("Conectado a MongoDB.");
@@ -59,4 +64,18 @@ public class RepoBusquedas {
     private List<ResultadoBusqueda> adaptarResultado(FindIterable unResultado){
         return null;
     }
+    
+	public List<ResultadoBusqueda> getResultadosBusquedas() {
+		return resultadosBusquedas;
+	}
+
+	public void setResultadosBusquedas(List<ResultadoBusqueda> resultadosBusquedas) {
+		this.resultadosBusquedas = resultadosBusquedas;
+	}
+
+	public void addResultadoBusqueda(ResultadoBusqueda resultadoBusqueda){
+		resultadosBusquedas.add(resultadoBusqueda);
+	}
+	
+
 }

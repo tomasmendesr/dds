@@ -1,7 +1,7 @@
 package Model;
 
 import DAO.ResultadoBusquedaDAOMongo;
-import Repos.RepoBusquedas;
+import Repos.RepositorioBusquedas;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,7 +38,7 @@ public class ResultadoBusqueda{
 	}
 
 	public void persistite(){
-		RepoBusquedas.getInstance().guardarBusqueda(this);
+		RepositorioBusquedas.getInstance().guardarBusqueda(this);
 	}
 
 

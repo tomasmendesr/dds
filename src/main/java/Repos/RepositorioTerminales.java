@@ -9,7 +9,6 @@ import javax.persistence.Persistence;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 
@@ -17,14 +16,12 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 
 	//Atributos
 	private static RepositorioTerminales repositorioTerminales;
-	private List<ResultadoBusqueda> resultadosBusquedas; //Guarda la de todas las terminales
 	
 	private List<Terminal> terminales;
 	
 	//Constructor
 		private RepositorioTerminales() {
 			setTerminales(new ArrayList<Terminal>());
-			setResultadosBusquedas(new ArrayList<ResultadoBusqueda>());
 		}
 			
 	//Singleton 
@@ -43,9 +40,7 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 		terminales.add(terminal);
 	}
 	
-	public void addResultadoBusqueda(ResultadoBusqueda resultadoBusqueda){
-		resultadosBusquedas.add(resultadoBusqueda);
-	}
+	
 	
 	public void persistTerminal(Terminal terminal){
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
@@ -72,13 +67,6 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 			this.terminales = terminales;
 		}
 
-		public List<ResultadoBusqueda> getResultadosBusquedas() {
-			return resultadosBusquedas;
-		}
-
-		public void setResultadosBusquedas(List<ResultadoBusqueda> resultadosBusquedas) {
-			this.resultadosBusquedas = resultadosBusquedas;
-		}
 	
 	
 	

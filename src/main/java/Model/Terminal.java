@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import ObserversTerminal.AccionesTerminal;
 import POIsExt.Comuna;
+import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 
 import javax.persistence.*;
@@ -28,22 +29,20 @@ public class Terminal {
     
     @Column(name="Snombre")
 	private String nombre;
-    
+        
     @Transient
-	private List<ResultadoBusqueda>	busquedas;
+    private RepositorioBusquedas repoBusquedas;
     
     @ManyToOne	@JoinColumn(name="comuna_numero")
 	private Comuna comuna;
     
 	//CONSTRUCTOR
-
     public Terminal() { }
 
 	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
 		this.setRepositorioPOIs(unRepositorioDePOIs);
 		this.setNombre(nombre);
 		observers = new ArrayList<AccionesTerminal>();
-		busquedas = new ArrayList<ResultadoBusqueda>();
 	}
 	
 	
@@ -59,27 +58,24 @@ public class Terminal {
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion,this);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
 		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
-		this.guardarBusqueda(resultadoBusqueda); // Para hacer el reporte por usuarios
 		return poisEncontrados;
 	}
+
 	
-	public void guardarBusqueda(ResultadoBusqueda unResultado){
-		busquedas.add(unResultado);  //modificar la entrega de los observersd para que haga los reportes en base a mongo
-		//RepoBusquedas.getInstance().guardarBusqueda(unResultado); hacer bien esto porque sino te rompe tests
-	}
-	
-	public Integer obtenerResultadosTotales(){ // Obtengo la suma de la lista creada en resultadosTotales()
-		return this.resultadosTotales().stream().reduce(0, (a,b) -> a + b);
+	public Integer obtenerResultadosTotales(){ // Obtengo la suma de todos los resultados de las busquedas
+		return (this.resultadosTotales().stream().reduce(0, (a,b) -> a + b));
 	}
 	
 	public List<Integer> resultadosTotales(){ // Obtengo una lista con todas las cantidades de resultados de las busquedas
-		return this.getResultadosBusqueda().stream()
-		.map(resultado -> resultado.getCantidadDeResultados())
-		.collect(Collectors.toList());
+		return (this.busquedasRealizadas().stream()
+				.map(resultado -> resultado.getCantidadDeResultados())
+				.collect(Collectors.toList()));
 	}
 	
-	public Boolean recibirMail(){ // Creo este metodo para poder testearlo mientras tanto
-		return true;
+	public List<ResultadoBusqueda> busquedasRealizadas(){ // Busquedas realizadas en esta Terminal
+		return (RepositorioBusquedas.getInstance().getResultadosBusquedas().stream()
+				.filter(busq -> busq.getTerminalId() == this.getId()) 
+				.collect(Collectors.toList()));
 	}
 	
 	
@@ -119,10 +115,6 @@ public class Terminal {
 
 	public void setObservers(List<AccionesTerminal> observers) {
 		this.observers = observers;
-	}
-
-	public List<ResultadoBusqueda> getResultadosBusqueda(){
-		return busquedas;
 	}
 
 	public void setComuna(Comuna comuna){

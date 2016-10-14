@@ -12,12 +12,12 @@ import java.util.List;
 
 public class RepositorioBusquedas {
 	
-	private List<ResultadoBusqueda> resultadosBusquedas;
 
     private static RepositorioBusquedas repositorioBusquedas;
+    private List<ResultadoBusqueda> resultadosBusquedas;
 
     private RepositorioBusquedas() {
-    	setResultadosBusquedas(new ArrayList<>());
+    	resultadosBusquedas = new ArrayList<>();
     }
 
     public static RepositorioBusquedas getInstance() {

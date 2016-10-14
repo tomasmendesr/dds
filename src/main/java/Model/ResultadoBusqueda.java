@@ -1,6 +1,5 @@
 package Model;
 
-import DAO.ResultadoBusquedaDAOMongo;
 import Repos.RepositorioBusquedas;
 
 import java.time.LocalDateTime;
@@ -9,7 +8,7 @@ import java.util.List;
 public class ResultadoBusqueda{
 	
 	// ATRIBUTOS
-	private int 			id;
+	private Long 			id;
 	private String 			fraseBuscada;
 	private double 			duracionBusqueda;
 	private List<POI>		poisEncontrados;
@@ -27,7 +26,7 @@ public class ResultadoBusqueda{
 		setDuracionBusqueda(duracionConsulta);
 		setTerminalId(terminal.getId());
 	}
-	
+
 	//METODOS
 	public int cantidadDeResultados(){
 		return this.getResultadoBusqueda().size();
@@ -41,13 +40,10 @@ public class ResultadoBusqueda{
 		RepositorioBusquedas.getInstance().guardarBusqueda(this);
 	}
 
-
-
-
 	// GETTERS Y SETTERS
-	public int getId() { return id;  }
+	public Long getId() { return id;  }
 
-	public void setId(int id) {  this.id = id;  }
+	public void setId(Long id) {  this.id = id;  }
 
 	public int getCantidadDeResultados(){
 		return poisEncontrados.size();
@@ -100,6 +96,5 @@ public class ResultadoBusqueda{
 	public void setTerminalId(Long terminalId) {
 		this.terminalId = terminalId;
 	}
-
 
 }

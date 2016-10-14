@@ -35,7 +35,7 @@ public class ReporteTotalesPorUsuario extends AccionesTerminal {
 		resultadosPorTerminal.put(unaTerminal, unaTerminal.obtenerResultadosTotales());
 	}
 	
-	public Integer generarReporteTotalPorTerminal(Terminal terminal){ // Sirve para el test por ahora
+	public Integer generarReporteTotalPorTerminal(Terminal terminal){ // Devuelve cant resultados de la terminal
 		return resultadosPorTerminal.get(terminal);
 	}
 }

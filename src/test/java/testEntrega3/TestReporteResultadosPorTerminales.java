@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
 import Model.*;
+import ObserversTerminal.AlmacenarBusqueda;
 import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIs.Banco;
 import POIs.CGP;
@@ -16,7 +17,9 @@ import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
+import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
+import Repos.RepositorioTerminales;
 
 import org.junit.After;
 
@@ -32,6 +35,7 @@ public class TestReporteResultadosPorTerminales {
 	private LocalComercial kioskoDeDiarios;
 	private PolygonAdapter	zonaComuna8;
 	private ReporteTotalesPorUsuario observerReportesTotales;
+	private AlmacenarBusqueda observerAlmacenarBusqueda;
 	
 	@Before
 	public void init(){
@@ -85,12 +89,16 @@ public class TestReporteResultadosPorTerminales {
 	
 	//Observer
 	observerReportesTotales = new ReporteTotalesPorUsuario();
+	observerAlmacenarBusqueda = new AlmacenarBusqueda();
 	
 	//Terminales
 	terminalAbasto = new Terminal("Terminal Abasto", RepositorioPOIs.getInstance());
+	terminalAbasto.addObserver(observerAlmacenarBusqueda);
 	terminalAbasto.addObserver(observerReportesTotales);
 	terminalFlorida = new Terminal("Terminal Florida", RepositorioPOIs.getInstance());
 	terminalFlorida.addObserver(observerReportesTotales);
+	terminalFlorida.addObserver(observerAlmacenarBusqueda);
+	
 	
 	}
 	
@@ -106,6 +114,8 @@ public class TestReporteResultadosPorTerminales {
 	@After
 	public void tearDown(){
 		RepositorioPOIs.resetPOIs();
+		RepositorioTerminales.resetTerminales();
+		RepositorioBusquedas.resetBusquedas();
 	}
 	
 }

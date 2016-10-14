@@ -86,7 +86,7 @@ public class TestNotificarAdministradorBusqueda {
 		observerNotificar = new NotificarAdministrador();
 		
 		// Terminal
-		terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
+		terminal = new Terminal("Terminal Lugano");
 		terminal.addObserver(observerNotificar);
 		
 	}

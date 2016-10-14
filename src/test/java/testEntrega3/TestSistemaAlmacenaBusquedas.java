@@ -87,7 +87,7 @@ public class TestSistemaAlmacenaBusquedas {
 	observerAlmacenarBusqueda = new AlmacenarBusqueda();
 	
 	// Terminal
-	terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
+	terminal = new Terminal("Terminal Lugano");
 	terminal.addObserver(observerAlmacenarBusqueda);
 	
 }

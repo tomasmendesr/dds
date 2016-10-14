@@ -11,7 +11,6 @@ import ObserversTerminal.ReporteTotalesPorUsuario;
 import POIsExt.Comuna;
 import Procesos.AccionesUsuarios;
 import Procesos.ResultadoProceso;
-import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
 import Procesos.CriterioSegunComuna;
 import Procesos.CriterioAfectarSeleccionadas;
@@ -54,14 +53,14 @@ public class TestProcesoAccionesUsuarios {
 	observerReportePorFecha = new ReportePorFecha();
 	
 	//Terminales
-	terminalAbasto = new Terminal("Terminal Abasto", RepositorioPOIs.getInstance());
+	terminalAbasto = new Terminal("Terminal Abasto");
 	terminalAbasto.setComuna(comuna8);
 	terminalAbasto.addObserver(observerReportePorFecha);
 	
-	terminalFlorida = new Terminal("Terminal Florida", RepositorioPOIs.getInstance());
+	terminalFlorida = new Terminal("Terminal Florida");
 	terminalFlorida.addObserver(observerReportePorFecha);
 	
-	terminalLugano = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
+	terminalLugano = new Terminal("Terminal Lugano");
 	terminalLugano.setComuna(comuna8);
 	terminalLugano.addObserver(observerReportePorFecha);
 	

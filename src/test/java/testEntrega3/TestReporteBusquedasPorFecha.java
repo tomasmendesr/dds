@@ -89,7 +89,7 @@ public class TestReporteBusquedasPorFecha {
 	observerReportePorFecha = new ReportePorFecha();
 	
 	//Terminal
-	terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
+	terminal = new Terminal("Terminal Lugano");
 	terminal.addObserver(observerReportePorFecha);
 	
 	fechaActual = LocalDateTime.now();

@@ -37,7 +37,6 @@ public abstract class POI {
 	@Column(name="tag")
 	protected List<String> tags; // palabras claves
 	
-	//@Column(name="comuna_numero")
 	@ManyToOne	@JoinColumn(name = "comuna_numero")
 	private Comuna comuna;
 

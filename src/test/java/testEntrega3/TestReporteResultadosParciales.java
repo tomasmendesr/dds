@@ -87,7 +87,7 @@ public class TestReporteResultadosParciales {
 	observerReportesParciales = new ReporteParcial();
 	
 	// Terminal
-	terminal = new Terminal("Terminal Lugano", RepositorioPOIs.getInstance());
+	terminal = new Terminal("Terminal Lugano");
 	terminal.addObserver(observerReportesParciales);
 	
 }

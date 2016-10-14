@@ -17,10 +17,7 @@ public class Terminal {
 	//ATRIBUTOS
 	@Id	@GeneratedValue	@Column(name="terminal_id")
 	private Long id;
-	
-	@Transient
-	private RepositorioPOIs	repositorioPOIs;
-    
+	    
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="observers_x_terminal", 
 		joinColumns = {@JoinColumn(name="terminal_id", referencedColumnName="terminal_id") },
@@ -29,18 +26,21 @@ public class Terminal {
     
     @Column(name="Snombre")
 	private String nombre;
-        
-    @Transient
-    private RepositorioBusquedas repoBusquedas;
-    
-    @ManyToOne	@JoinColumn(name="comuna_numero")
+            
+    @ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="comuna_numero")
 	private Comuna comuna;
+    
+    @Transient
+	private RepositorioPOIs	repositorioPOIs;
+	
+	@Transient
+    private RepositorioBusquedas repoBusquedas;
     
 	//CONSTRUCTOR
     public Terminal() { }
 
-	public Terminal(String nombre, RepositorioPOIs unRepositorioDePOIs){
-		this.setRepositorioPOIs(unRepositorioDePOIs);
+	public Terminal(String nombre){
+		this.setRepositorioPOIs(RepositorioPOIs.getInstance());
 		this.setNombre(nombre);
 		observers = new ArrayList<AccionesTerminal>();
 	}

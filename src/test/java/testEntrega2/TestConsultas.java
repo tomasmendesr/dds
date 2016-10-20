@@ -14,6 +14,7 @@ import Adapters.PolygonAdapter;
 import ComponentesExternos.ComponenteExternoConsulta;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import ComponentesExternos.ComponenteExternoConsultaCGPStub;
+import Model.GestorConsultas;
 import Model.POI;
 import POIs.Banco;
 import POIs.CGP;
@@ -36,6 +37,7 @@ public class TestConsultas {
 	private AdapterConsultaCGP adapterConsultaCGP;
 	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
 	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
+	private GestorConsultas gestorConsultas;
 	
 	
 	@Before
@@ -91,14 +93,14 @@ public class TestConsultas {
 		adapterConsultaBanco = new AdapterConsultaBanco(componenteExternoConsultaBancoStub);
 		adapterConsultaCGP = new AdapterConsultaCGP(componenteExternoConsultaCGPStub);
 		
-		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaBanco);
-		RepositorioPOIs.getInstance().agregarAdapter(adapterConsultaCGP);
-		
+		gestorConsultas = new GestorConsultas();
+		gestorConsultas.agregarAdapter(adapterConsultaBanco);
+		gestorConsultas.agregarAdapter(adapterConsultaCGP);		
 	}
 	
 	@Test
 	public void consultaEnTodosLosOrigenesDeDatos(){
-		List<POI> listaResultante = RepositorioPOIs.getInstance().consultarPOIs("banco");
+		List<POI> listaResultante = gestorConsultas.buscarPOIs("banco");
 		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
 	}
 	

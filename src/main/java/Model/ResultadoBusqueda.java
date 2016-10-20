@@ -41,7 +41,7 @@ public class ResultadoBusqueda{
 	}
 	
 	public Boolean seRealizoEn(Terminal unaTerminal){
-		return this.terminalId == unaTerminal.getId();
+		return terminalId == unaTerminal.getId();
 	}
 
 	// GETTERS Y SETTERS

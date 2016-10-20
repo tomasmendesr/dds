@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
+import Model.GestorConsultas;
 import Model.Terminal;
 import ObserversTerminal.ReporteParcial;
 import POIs.Banco;
@@ -30,6 +31,7 @@ public class TestReporteResultadosParciales {
 	private LocalComercial kioskoDeDiarios;
 	private PolygonAdapter	zonaComuna8;
 	private ReporteParcial observerReportesParciales;
+	private GestorConsultas gestorConsultas;
 	
 	@Before
 	public void init(){
@@ -90,11 +92,12 @@ public class TestReporteResultadosParciales {
 	terminal = new Terminal("Terminal Lugano");
 	terminal.addObserver(observerReportesParciales);
 	
+	gestorConsultas = new GestorConsultas();
 }
 	
 	@Test
 	public void seRealizaBusquedaEnTerminalYSeObtiene1Resultado(){
-		terminal.consultarPOIsXTiempoEstimado("asesoramiento", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("asesoramiento", 0,terminal);
 		int resultados = observerReportesParciales.generarReporteParcialPorTerminal(terminal); // Las busquedas pertenecen a esta terminal
 		Assert.assertEquals(1, resultados);
 	} 
@@ -102,7 +105,7 @@ public class TestReporteResultadosParciales {
 	
 	@Test 
 	public void seRealizaBusquedaEnTerminalYSeObtienen2Resultados(){
-		terminal.consultarPOIsXTiempoEstimado("47", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("47", 0,terminal);
 		int resultados = observerReportesParciales.generarReporteParcialPorTerminal(terminal); // las busquedas pertenecen a esta terminal
 		Assert.assertEquals(2, resultados);
 	}

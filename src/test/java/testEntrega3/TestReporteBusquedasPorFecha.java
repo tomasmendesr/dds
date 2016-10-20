@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
+import Model.GestorConsultas;
 import Model.Terminal;
 import ObserversTerminal.ReportePorFecha;
 import POIs.Banco;
@@ -33,20 +34,21 @@ public class TestReporteBusquedasPorFecha {
 	private PolygonAdapter	zonaComuna8;
 	private LocalDateTime fechaActual;
 	private ReportePorFecha observerReportePorFecha;
+	private GestorConsultas gestorConsultas;
 	
 	@Before
 	public void init(){
 	
 
 	// Comuna 8
-		comuna8 = new Comuna(8);
-		zonaComuna8 = new PolygonAdapter();
-		zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
-		zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
-		zonaComuna8.agregarPoint(new Point(-34.6648,-58.4697));
-		zonaComuna8.agregarPoint(new Point(-34.6621,-58.4240));
-		zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
-		comuna8.setZona(zonaComuna8);
+	comuna8 = new Comuna(8);
+	zonaComuna8 = new PolygonAdapter();
+	zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
+	zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
+	zonaComuna8.agregarPoint(new Point(-34.6648,-58.4697));
+	zonaComuna8.agregarPoint(new Point(-34.6621,-58.4240));
+	zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
+	comuna8.setZona(zonaComuna8);
 			
 	// Parada del 47 -- Corvalan 3691
 	paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
@@ -92,20 +94,22 @@ public class TestReporteBusquedasPorFecha {
 	terminal = new Terminal("Terminal Lugano");
 	terminal.addObserver(observerReportePorFecha);
 	
+	gestorConsultas = new GestorConsultas();
 	fechaActual = LocalDateTime.now();
+	
 	}
 	
 	@Test
 	public void seRealizaronDosBusquedasElDiaDeHoy(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0, terminal);
+		gestorConsultas.consultarPOIsXTiempoEstimado("libreria", 0, terminal);
 		int busquedasDeHoy = observerReportePorFecha.generarReportePorFecha(fechaActual.toLocalDate());
 		Assert.assertEquals(2, busquedasDeHoy);
 	}
 	
 	@Test 
 	public void seRealizaUnaSolabusqueda(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
 		int busquedasDeHoy = observerReportePorFecha.generarReportePorFecha(fechaActual.toLocalDate());
 		Assert.assertEquals(1, busquedasDeHoy);
 	}

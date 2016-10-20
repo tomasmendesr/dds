@@ -36,6 +36,7 @@ public class TestReporteResultadosPorTerminales {
 	private PolygonAdapter	zonaComuna8;
 	private ReporteTotalesPorUsuario observerReportesTotales;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
+	private GestorConsultas gestorConsultas;
 	
 	@Before
 	public void init(){
@@ -99,13 +100,14 @@ public class TestReporteResultadosPorTerminales {
 	terminalFlorida.addObserver(observerReportesTotales);
 	terminalFlorida.addObserver(observerAlmacenarBusqueda);
 	
+	gestorConsultas = new GestorConsultas();
 	
 	}
 	
 	@Test
 	public void laTerminalAbastoContieneDosResultados(){
-		terminalAbasto.consultarPOIsXTiempoEstimado("deposito", 0);
-		terminalAbasto.consultarPOIsXTiempoEstimado("caramelos", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminalAbasto);
+		gestorConsultas.consultarPOIsXTiempoEstimado("caramelos", 0,terminalAbasto);
 		observerReportesTotales.generarTotalesPorUsuario(terminalAbasto);
 		int resultados = observerReportesTotales.generarReporteTotalPorTerminal(terminalAbasto);
 		Assert.assertEquals(2, resultados); 

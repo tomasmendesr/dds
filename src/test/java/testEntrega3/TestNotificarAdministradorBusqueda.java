@@ -30,6 +30,7 @@ public class TestNotificarAdministradorBusqueda {
 	private LocalComercial kioskoDeDiarios;
 	private PolygonAdapter	zonaComuna8;
 	private Terminal terminal;
+	private GestorConsultas gestorConsultas;
 	
 	@Before
 	public void init(){
@@ -89,11 +90,13 @@ public class TestNotificarAdministradorBusqueda {
 		terminal = new Terminal("Terminal Lugano");
 		terminal.addObserver(observerNotificar);
 		
+		gestorConsultas = new GestorConsultas();
+		
 	}
 	
 	@Test
 	public void realizarUnaConsultaConTiempoEstimado0LlamaAlAdministrador(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", -1);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", -1, terminal);
 		Assert.assertTrue(observerNotificar.notificarAdministrador());
 	}
 	

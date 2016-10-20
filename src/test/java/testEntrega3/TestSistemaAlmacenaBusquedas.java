@@ -32,6 +32,7 @@ public class TestSistemaAlmacenaBusquedas {
 	private LocalComercial kioskoDeDiarios;
 	private PolygonAdapter	zonaComuna8;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
+	private GestorConsultas gestorConsultas;
 	
 	@Before
 	public void init(){
@@ -89,26 +90,28 @@ public class TestSistemaAlmacenaBusquedas {
 	// Terminal
 	terminal = new Terminal("Terminal Lugano");
 	terminal.addObserver(observerAlmacenarBusqueda);
+
+	gestorConsultas = new GestorConsultas();
 	
 }
 	
 	@Test 
 	public void seAlmacenanCorrectamenteLasBusquedas(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
-		terminal.consultarPOIsXTiempoEstimado("libreria", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
+		gestorConsultas.consultarPOIsXTiempoEstimado("libreria", 0,terminal);
 		Assert.assertEquals(2,RepositorioBusquedas.getInstance().getResultadosBusquedas().size());
 	}
 	
 	@Test
 	public void seAlmacenaLaFraseBuscada(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
 		unResultado = RepositorioBusquedas.getInstance().getResultadosBusquedas().get(0);
 		Assert.assertEquals("deposito", unResultado.getFraseBuscada());
 	}
 	
 	@Test
 	public void seAlmacenaLaCantidadDePOIsEncontrados(){
-		terminal.consultarPOIsXTiempoEstimado("deposito", 0);
+		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
 		unResultado = RepositorioBusquedas.getInstance().getResultadosBusquedas().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
 	}

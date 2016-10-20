@@ -6,7 +6,6 @@ import java.util.List;
 import ObserversTerminal.AccionesTerminal;
 import POIsExt.Comuna;
 import Repos.RepositorioBusquedas;
-import Repos.RepositorioPOIs;
 
 import javax.persistence.*;
 
@@ -29,8 +28,7 @@ public class Terminal {
     @ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="comuna_numero")
 	private Comuna comuna;
     
-    @Transient
-	private RepositorioPOIs	repositorioPOIs;
+
 	
 	@Transient
     private RepositorioBusquedas repoBusquedas;
@@ -39,28 +37,12 @@ public class Terminal {
     public Terminal() { }
 
 	public Terminal(String nombre){
-		this.setRepositorioPOIs(RepositorioPOIs.getInstance());
 		this.setNombre(nombre);
 		observers = new ArrayList<AccionesTerminal>();
 	}
 	
 	
 	//METODOS
-		
-	//Consultar Busqueda POIs con TiempoMax
-	public List<POI> consultarPOIsXTiempoEstimado(String unaConsulta, double tiempoMax){
-		double tInicio = System.currentTimeMillis(), tFin, duracion;
-		List<POI> poisEncontrados = new ArrayList<POI>();
-		poisEncontrados = repositorioPOIs.consultarPOIs(unaConsulta);
-		tFin = System.currentTimeMillis();
-		duracion = (tFin - tInicio);
-		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion,this);
-		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
-		observers.forEach(observer -> observer.realizarAccion(this, resultadoBusqueda));
-		return poisEncontrados;
-	}
-
-	
 	public Integer obtenerResultadosTotales(){ // Obtengo la suma de todos los resultados de las busquedas
 		return RepositorioBusquedas.getInstance().resultadosTotalesEn(this);
 	}	
@@ -85,14 +67,6 @@ public class Terminal {
 
 	public void setNombre(String nombre){
 		this.nombre = nombre;
-	}
-
-	public RepositorioPOIs getRepositorioPOIs() {
-		return repositorioPOIs;
-	}
-
-	public void setRepositorioPOIs(RepositorioPOIs repositorioPOIs) {
-		this.repositorioPOIs = repositorioPOIs;
 	}
 
 	public List<AccionesTerminal> getObservers() {

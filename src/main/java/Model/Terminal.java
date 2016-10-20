@@ -3,7 +3,6 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import ObserversTerminal.AccionesTerminal;
 import POIsExt.Comuna;
 import Repos.RepositorioBusquedas;
@@ -63,21 +62,8 @@ public class Terminal {
 
 	
 	public Integer obtenerResultadosTotales(){ // Obtengo la suma de todos los resultados de las busquedas
-		return (this.resultadosTotales().stream().reduce(0, (a,b) -> a + b));
-	}
-	
-	public List<Integer> resultadosTotales(){ // Obtengo una lista con todas las cantidades de resultados de las busquedas
-		return (this.busquedasRealizadas().stream()
-				.map(resultado -> resultado.getCantidadDeResultados())
-				.collect(Collectors.toList()));
-	}
-	
-	public List<ResultadoBusqueda> busquedasRealizadas(){ // Busquedas realizadas en esta Terminal
-		return (RepositorioBusquedas.getInstance().getResultadosBusquedas().stream()
-				.filter(busq -> busq.getTerminalId() == this.getId()) 
-				.collect(Collectors.toList()));
-	}
-	
+		return RepositorioBusquedas.getInstance().resultadosTotalesEn(this);
+	}	
 	
 	// Proceso 3: Agregar o quitar acciones
 	public void quitarAccion(AccionesTerminal observer){ // El observer es el encargado de realizar la accion

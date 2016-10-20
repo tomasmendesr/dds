@@ -39,6 +39,10 @@ public class ResultadoBusqueda{
 	public void persistite(){
 		RepositorioBusquedas.getInstance().guardarBusqueda(this);
 	}
+	
+	public Boolean seRealizoEn(Terminal unaTerminal){
+		return this.terminalId == unaTerminal.getId();
+	}
 
 	// GETTERS Y SETTERS
 	public Long getId() { return id;  }

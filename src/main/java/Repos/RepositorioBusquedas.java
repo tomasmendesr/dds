@@ -1,6 +1,8 @@
 package Repos;
 
 import Model.ResultadoBusqueda;
+import Model.Terminal;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
@@ -9,6 +11,7 @@ import com.mongodb.client.MongoDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RepositorioBusquedas {
 	
@@ -61,6 +64,18 @@ public class RepositorioBusquedas {
         return adaptarResultado(result);
     }
 
+    public List<ResultadoBusqueda> getResultadosBusquedasEnUnaTerminal(Terminal unaTerminal){
+    	return resultadosBusquedas.stream()
+			.filter(busq -> busq.seRealizoEn(unaTerminal)) 
+			.collect(Collectors.toList());
+    }
+    
+    public Integer resultadosTotalesEn(Terminal unaTerminal){ // Obtengo una lista con todas las cantidades de resultados de las busquedas
+    	return	this.getResultadosBusquedasEnUnaTerminal(unaTerminal).stream()
+    				.map(resultado -> resultado.getCantidadDeResultados())
+    				.reduce(0, (a,b) -> a + b); // Suma 
+    }
+    
     private List<ResultadoBusqueda> adaptarResultado(FindIterable unResultado){
         return null;
     }

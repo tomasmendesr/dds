@@ -17,8 +17,14 @@
             </plugin>
         </plugins>
     </build>
+    
+    <properties>  
+	    <mongodb.driver.version>2.7.2</mongodb.driver.version>  
+	    <morphia.version>0.98</morphia.version>
+	</properties>
 
     <dependencies>
+ 
         <!-- JPA Persistence Dependencies -->
         <dependency>
             <groupId>org.uqbar-project</groupId>
@@ -102,7 +108,12 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.3.0</version>
         </dependency>
-
+              
+          <dependency>
+              <groupId>org.mongodb.morphia</groupId>
+              <artifactId>morphia</artifactId>
+              <version>1.2.1</version>
+          </dependency>
 
     </dependencies>
 </project>

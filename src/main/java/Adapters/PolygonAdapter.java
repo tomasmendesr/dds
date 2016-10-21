@@ -8,14 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import Converter.PointConverter;
 
-@Entity
+@Entity 
 public class PolygonAdapter {
 
 	//Atributos
@@ -23,7 +22,7 @@ public class PolygonAdapter {
 	@GeneratedValue
 	private int id;
 	@OneToMany
-	@ElementCollection(targetClass=PointConverter.class)
+	@ElementCollection(targetClass = PointConverter.class)
 	private List<PointAdapter> listaDePoints;
 	
 	public PolygonAdapter() {

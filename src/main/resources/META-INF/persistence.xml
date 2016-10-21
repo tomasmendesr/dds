@@ -11,7 +11,7 @@
       <class>Model.POI</class>
     	<class>Model.Terminal</class>
     	<class>ObserversTerminal.AlmacenarBusqueda</class>
-    	<class>ObserversTerminal.FuncionalidadExtraTerminal</class>
+    	<class>ObserversTerminal.AccionesTerminal</class>
     	<class>ObserversTerminal.NotificarAdministrador</class>
     	<class>ObserversTerminal.ReporteParcial</class>
     	<class>ObserversTerminal.ReportePorFecha</class>

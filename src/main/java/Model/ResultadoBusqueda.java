@@ -2,17 +2,31 @@ package Model;
 
 import Repos.RepositorioBusquedas;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Field;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Indexes;
+
+@Entity
+@Indexes({
+	    @Index(fields = @Field("terminalId"))
+})
 
 public class ResultadoBusqueda{
 	
 	// ATRIBUTOS
+	@Id
 	private Long 			id;
 	private String 			fraseBuscada;
 	private double 			duracionBusqueda;
+	@Embedded
 	private List<POI>		poisEncontrados;
-	private LocalDateTime	momentoDeBusqueda;
+	private Date	momentoDeBusqueda;
 	private Double			tiempoEstimadoBusqueda;
 	private Long			terminalId;
 
@@ -20,7 +34,7 @@ public class ResultadoBusqueda{
 	public ResultadoBusqueda() { }
 
 	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, Terminal terminal){
-		setMomentoDeBusqueda(LocalDateTime.now());
+		setMomentoDeBusqueda(new Date());
 		setFraseBuscada(fraseBuscada);
 		setResultadoBusqueda(resultadoBusqueda);
 		setDuracionBusqueda(duracionConsulta);
@@ -77,11 +91,11 @@ public class ResultadoBusqueda{
 		duracionBusqueda = unaDuracionBusqueda;
 	}
 	
-	public LocalDateTime getMomentoDeBusqueda() {
+	public Date getMomentoDeBusqueda() {
 		return momentoDeBusqueda;
 	}
 
-	public void setMomentoDeBusqueda(LocalDateTime momentoDeBusqueda) {
+	public void setMomentoDeBusqueda(Date momentoDeBusqueda) {
 		this.momentoDeBusqueda = momentoDeBusqueda;
 	}
 	

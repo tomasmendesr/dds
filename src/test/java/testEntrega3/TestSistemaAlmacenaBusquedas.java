@@ -15,6 +15,12 @@ import POIsExt.Rubro;
 import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
+import de.flapdoodle.embedmongo.MongoDBRuntime;
+import de.flapdoodle.embedmongo.MongodExecutable;
+import de.flapdoodle.embedmongo.MongodProcess;
+import de.flapdoodle.embedmongo.config.MongodConfig;
+import de.flapdoodle.embedmongo.distribution.Version;
+import de.flapdoodle.embedmongo.runtime.Network;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -33,9 +39,18 @@ public class TestSistemaAlmacenaBusquedas {
 	private PolygonAdapter	zonaComuna8;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
 	private GestorConsultas gestorConsultas;
+	private RepositorioBusquedas repositorioBusquedas;
+	static int PORT;
+	static MongodProcess mongod;
 	
 	@Before
-	public void init(){
+	public void init()throws Exception{
+		
+	//Abro conexion con Mongodb
+	PORT = 27017;
+	MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+	MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
+	mongod = prepared.start();
 
 
 	// Comuna 8
@@ -93,26 +108,29 @@ public class TestSistemaAlmacenaBusquedas {
 
 	gestorConsultas = new GestorConsultas();
 	
+	repositorioBusquedas = RepositorioBusquedas.getInstance();
+	repositorioBusquedas.setContador(new Long(1));
+	
 }
 	
 	@Test 
 	public void seAlmacenanCorrectamenteLasBusquedas(){
 		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
 		gestorConsultas.consultarPOIsXTiempoEstimado("libreria", 0,terminal);
-		Assert.assertEquals(2,RepositorioBusquedas.getInstance().getResultadosBusquedas().size());
+		Assert.assertEquals(2,RepositorioBusquedas.getInstance().getAllBusquedas().size());
 	}
 	
 	@Test
 	public void seAlmacenaLaFraseBuscada(){
 		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
-		unResultado = RepositorioBusquedas.getInstance().getResultadosBusquedas().get(0);
+		unResultado = RepositorioBusquedas.getInstance().getAllBusquedas().get(0);
 		Assert.assertEquals("deposito", unResultado.getFraseBuscada());
 	}
 	
 	@Test
 	public void seAlmacenaLaCantidadDePOIsEncontrados(){
 		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 0,terminal);
-		unResultado = RepositorioBusquedas.getInstance().getResultadosBusquedas().get(0);
+		unResultado = RepositorioBusquedas.getInstance().getAllBusquedas().get(0);
 		Assert.assertEquals(1, unResultado.getCantidadDeResultados());
 	}
 		
@@ -121,5 +139,7 @@ public class TestSistemaAlmacenaBusquedas {
 		RepositorioPOIs.resetPOIs();
 		RepositorioTerminales.resetTerminales();
 		RepositorioBusquedas.resetBusquedas();
+		repositorioBusquedas.borrarTodasLasBusquedas();
+		if (mongod != null) mongod.stop();
 	}
 }

@@ -20,6 +20,12 @@ import POIsExt.Rubro;
 import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
+import de.flapdoodle.embedmongo.MongoDBRuntime;
+import de.flapdoodle.embedmongo.MongodExecutable;
+import de.flapdoodle.embedmongo.MongodProcess;
+import de.flapdoodle.embedmongo.config.MongodConfig;
+import de.flapdoodle.embedmongo.distribution.Version;
+import de.flapdoodle.embedmongo.runtime.Network;
 
 import org.junit.After;
 
@@ -37,9 +43,18 @@ public class TestReporteResultadosPorTerminales {
 	private ReporteTotalesPorUsuario observerReportesTotales;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
 	private GestorConsultas gestorConsultas;
+	private RepositorioBusquedas repositorioBusquedas;
+	static int PORT;
+	static MongodProcess mongod;
 	
 	@Before
-	public void init(){
+	public void init() throws Exception{
+		
+	//Abro conexion con Mongodb
+	PORT = 27017;
+	MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+	MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
+	mongod = prepared.start();
 	
 	// Comuna 8
 	comuna8 = new Comuna(8);
@@ -102,6 +117,9 @@ public class TestReporteResultadosPorTerminales {
 	
 	gestorConsultas = new GestorConsultas();
 	
+	repositorioBusquedas = RepositorioBusquedas.getInstance();
+	repositorioBusquedas.setContador(new Long(1));
+	
 	}
 	
 	@Test
@@ -110,7 +128,7 @@ public class TestReporteResultadosPorTerminales {
 		gestorConsultas.consultarPOIsXTiempoEstimado("caramelos", 0,terminalAbasto);
 		observerReportesTotales.generarTotalesPorUsuario(terminalAbasto);
 		int resultados = observerReportesTotales.generarReporteTotalPorTerminal(terminalAbasto);
-		Assert.assertEquals(2, resultados); 
+		Assert.assertEquals(2, resultados);
 	}
 
 	@After
@@ -118,6 +136,8 @@ public class TestReporteResultadosPorTerminales {
 		RepositorioPOIs.resetPOIs();
 		RepositorioTerminales.resetTerminales();
 		RepositorioBusquedas.resetBusquedas();
+		repositorioBusquedas.borrarTodasLasBusquedas();
+		if (mongod != null) mongod.stop();
 	}
 	
 }

@@ -1,6 +1,7 @@
 package ObserversTerminal;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class ReportePorFecha extends AccionesTerminal{
 
 	// Reporte de busquedas por Fecha
 	public void contabilizarBusquedaXFecha(ResultadoBusqueda unResultadoBusqueda){
-		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toLocalDate();
+		LocalDate fechaBusqueda = unResultadoBusqueda.getMomentoDeBusqueda().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		if(cantidadBusquedasXFecha.get(fechaBusqueda) == null){ // Verifica si ya se hicieron busquedas en esa fecha
 			cantidadBusquedasXFecha.put(fechaBusqueda, 0);
 		}

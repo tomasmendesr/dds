@@ -17,14 +17,14 @@
             </plugin>
         </plugins>
     </build>
-    
-    <properties>  
-	    <mongodb.driver.version>2.7.2</mongodb.driver.version>  
+
+    <properties>
+	    <mongodb.driver.version>2.7.2</mongodb.driver.version>
 	    <morphia.version>0.98</morphia.version>
 	</properties>
 
     <dependencies>
- 
+
         <!-- JPA Persistence Dependencies -->
         <dependency>
             <groupId>org.uqbar-project</groupId>
@@ -69,7 +69,7 @@
             <artifactId>hibernate-validator</artifactId>
             <version>4.3.0.Final</version>
         </dependency>
-        
+
         <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>antlr</artifactId>
@@ -87,7 +87,7 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
-        
+
         <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
 		<dependency>
     		<groupId>org.hsqldb</groupId>
@@ -108,11 +108,19 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.3.0</version>
         </dependency>
-              
+
           <dependency>
               <groupId>org.mongodb.morphia</groupId>
               <artifactId>morphia</artifactId>
               <version>1.2.1</version>
+          </dependency>
+
+          <!--EmbedMongo. Testeo Con Mongo-->
+
+          <dependency>
+            <groupId>de.flapdoodle.embedmongo</groupId>
+            <artifactId>de.flapdoodle.embedmongo</artifactId>
+            <version>1.11</version>
           </dependency>
 
     </dependencies>

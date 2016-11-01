@@ -14,7 +14,7 @@ public class AlmacenarBusqueda extends AccionesTerminal  {
 
 	 // Guardo resultado en el Repositorio de Terminales
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda){
-		RepositorioBusquedas.getInstance().addResultadoBusqueda(unResultadoBusqueda);
+		RepositorioBusquedas.getInstance().guardarBusqueda(unResultadoBusqueda);
 	}
 
 }

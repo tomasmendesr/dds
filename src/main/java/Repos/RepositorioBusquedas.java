@@ -3,24 +3,31 @@ package Repos;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
+
+import com.mongodb.MongoClient;
+import Converter.BigDecimalConverter;
 
 public class RepositorioBusquedas {
 	
 
     private static RepositorioBusquedas repositorioBusquedas;
     private List<ResultadoBusqueda> resultadosBusquedas;
+    final Morphia morphia;
+    final Datastore datastore;
+    private Long contador;
 
     private RepositorioBusquedas() {
     	resultadosBusquedas = new ArrayList<>();
+    	morphia = new Morphia();
+    	morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+    	morphia.mapPackage("Model.ResultadoBusqueda");
+    	datastore = morphia.createDatastore(new MongoClient(), "resultados_busqueda");
+    	datastore.ensureIndexes();
     }
 
     public static RepositorioBusquedas getInstance() {
@@ -32,52 +39,36 @@ public class RepositorioBusquedas {
 		repositorioBusquedas = null;
 	}
 	
-    private MongoDatabase conectarAMongo(){
-        MongoClient mongoClient = new MongoClient("localhost",27017);
-        System.out.println("Conectado a MongoDB.");
-        return mongoClient.getDatabase("tp");
-    }
-
     public void guardarBusqueda(ResultadoBusqueda unaBusqueda){
-        MongoDatabase db = conectarAMongo();
-        MongoCollection collection = db.getCollection("busquedas");
-
-        BasicDBObject dbObject = new BasicDBObject();
-        dbObject.append("terminal",unaBusqueda.getTerminalId()).
-        append("frase buscada",unaBusqueda.getFraseBuscada()).
-        append("fecha",unaBusqueda.getMomentoDeBusqueda().toString()).
-        append("cantidad de pois encontrados",unaBusqueda.getCantidadDeResultados()).
-        append("pois encontrados", unaBusqueda.getResultadoBusqueda().stream().
-                        map(poi -> poi.getNombre().toString())).
-        append("duracion",unaBusqueda.getDuracionBusqueda());
-
-        collection.insertOne(dbObject);
-
-        //usar morphia
-
+    	if(unaBusqueda.getId() == null){
+    		unaBusqueda.setId(this.getContador());
+    		this.incrementarContador();
+    	}
+    	final ResultadoBusqueda resultadoAGuardar = unaBusqueda;
+    	datastore.save(resultadoAGuardar);
     }
 
     public List<ResultadoBusqueda> getAllBusquedas(){
-        MongoDatabase db = conectarAMongo();
-        MongoCollection collection = db.getCollection("busquedas");
-        FindIterable result = collection.find();
-        return adaptarResultado(result);
+    	final Query<ResultadoBusqueda> query = datastore.createQuery(ResultadoBusqueda.class);
+    	return query.asList();
+    }
+    
+    public void borrarTodasLasBusquedas(){
+    	final Query<ResultadoBusqueda> query = datastore.createQuery(ResultadoBusqueda.class);
+    	datastore.delete(query);
     }
 
     public List<ResultadoBusqueda> getResultadosBusquedasEnUnaTerminal(Terminal unaTerminal){
-    	return resultadosBusquedas.stream()
-			.filter(busq -> busq.seRealizoEn(unaTerminal)) 
-			.collect(Collectors.toList());
+    	return datastore.createQuery(ResultadoBusqueda.class)
+    			.field("terminalId")
+    			.equal(unaTerminal.getId())
+    			.asList();
     }
     
     public Integer resultadosTotalesEn(Terminal unaTerminal){ // Obtengo una lista con todas las cantidades de resultados de las busquedas
     	return	this.getResultadosBusquedasEnUnaTerminal(unaTerminal).stream()
     				.map(resultado -> resultado.getCantidadDeResultados())
     				.reduce(0, (a,b) -> a + b); // Suma 
-    }
-    
-    private List<ResultadoBusqueda> adaptarResultado(FindIterable unResultado){
-        return null;
     }
     
 	public List<ResultadoBusqueda> getResultadosBusquedas() {
@@ -90,6 +81,18 @@ public class RepositorioBusquedas {
 
 	public void addResultadoBusqueda(ResultadoBusqueda resultadoBusqueda){
 		resultadosBusquedas.add(resultadoBusqueda);
+	}
+	
+	public Long getContador(){
+		return this.contador;
+	}
+	
+	public void setContador(Long contador){
+		this.contador= contador;
+	}
+	
+	public void incrementarContador(){
+		this.contador++;
 	}
 	
 

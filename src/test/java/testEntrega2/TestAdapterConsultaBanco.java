@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.json.simple.JSONObject;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,14 @@ import Adapters.PolygonAdapter;
 import ComponentesExternos.ComponenteExternoConsultaBancoStub;
 import Model.POI;
 import POIsExt.Comuna;
+import Repos.RepositorioPOIs;
+import Repos.RepositorioPOIsExternos;
+import de.flapdoodle.embedmongo.MongoDBRuntime;
+import de.flapdoodle.embedmongo.MongodExecutable;
+import de.flapdoodle.embedmongo.MongodProcess;
+import de.flapdoodle.embedmongo.config.MongodConfig;
+import de.flapdoodle.embedmongo.distribution.Version;
+import de.flapdoodle.embedmongo.runtime.Network;
 
 
 
@@ -24,10 +33,19 @@ public class TestAdapterConsultaBanco {
 	private PolygonAdapter	zonaComuna8;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private ComponenteExternoConsultaBancoStub componenteExternoConsultaBancoStub;
+	private RepositorioPOIsExternos repositorioPOIsExternos;
+	static int PORT;
+	static MongodProcess mongod;
 	
 	
 	@Before
-	public void init(){
+	public void init() throws Exception{
+		
+		//Abro conexion con Mongodb
+		PORT = 27017;
+		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
+		mongod = prepared.start();
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
@@ -38,6 +56,8 @@ public class TestAdapterConsultaBanco {
 		zonaComuna8.agregarPoint(new Point(-34.6621,-58.4240));
 		zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
+		
+		repositorioPOIsExternos = RepositorioPOIsExternos.getInstance();
 		
 		// Componente externo stub
 		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
@@ -86,4 +106,11 @@ public class TestAdapterConsultaBanco {
 		List<POI> consultaBancoPOI = adapterConsultaBanco.realizarConsulta("banco");
 		Assert.assertTrue(consultaBancoPOI.get(0).esPOIValido());
 	}
+	
+    @After
+    public void tearDown(){
+        repositorioPOIsExternos.borrarTodosLosPois();
+        RepositorioPOIs.resetPOIs();
+        if (mongod != null) mongod.stop();
+    }
 }

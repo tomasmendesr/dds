@@ -23,6 +23,13 @@ import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
 import POIsExt.Rubro;
 import Repos.RepositorioPOIs;
+import Repos.RepositorioPOIsExternos;
+import de.flapdoodle.embedmongo.MongoDBRuntime;
+import de.flapdoodle.embedmongo.MongodExecutable;
+import de.flapdoodle.embedmongo.MongodProcess;
+import de.flapdoodle.embedmongo.config.MongodConfig;
+import de.flapdoodle.embedmongo.distribution.Version;
+import de.flapdoodle.embedmongo.runtime.Network;
 
 public class TestConsultas {
 	
@@ -38,10 +45,19 @@ public class TestConsultas {
 	private ComponenteExternoConsulta componenteExternoConsultaBancoStub;
 	private ComponenteExternoConsultaCGPStub componenteExternoConsultaCGPStub;
 	private GestorConsultas gestorConsultas;
+	private RepositorioPOIsExternos repositorioPOIsExternos;
+	static int PORT;
+	static MongodProcess mongod;
 	
 	
 	@Before
-	public void init(){
+	public void init() throws Exception{
+		
+		//Abro conexion con Mongodb
+		PORT = 27017;
+		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
+		mongod = prepared.start();
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
@@ -83,6 +99,8 @@ public class TestConsultas {
 		kioskoDeDiarios.addTag("caramelos");
 		kioskoDeDiarios.setNombre("Kiosko de Carlitos");
 		
+		repositorioPOIsExternos = RepositorioPOIsExternos.getInstance();
+		
 		//Inicializo los componentes externos
 		
 		componenteExternoConsultaBancoStub = new ComponenteExternoConsultaBancoStub();
@@ -106,7 +124,9 @@ public class TestConsultas {
 	
 	@After
 	public void tearDown(){
+		repositorioPOIsExternos.borrarTodosLosPois();
 		RepositorioPOIs.resetPOIs();
+		if (mongod != null) mongod.stop();
 	}
 	
 }

@@ -2,7 +2,7 @@ package Model;
 
 import java.util.List;
 
-import com.mongodb.client.model.geojson.Point;
+import org.uqbar.geodds.Point;
 
 import POIsExt.Comuna;
 

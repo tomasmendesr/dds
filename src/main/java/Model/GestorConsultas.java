@@ -5,6 +5,7 @@ import java.util.List;
 
 import Adapters.AdapterConsulta;
 import Repos.RepositorioPOIs;
+import Repos.RepositorioPOIsExternos;
 
 public class GestorConsultas {
 	private RepositorioPOIs repositorioPOIs;
@@ -29,16 +30,22 @@ public class GestorConsultas {
 	
 	public List<POI> buscarPOIs(String unaConsulta){
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		List<POI> poisEncontradosEnServicioExterno = this.buscarEnServiciosExternos(unaConsulta);
+		if(!adapters.isEmpty()){
+			List<POI> poisEncontradosEnServicioExterno = this.buscarEnServiciosExternos(unaConsulta);
+			poisEncontrados.addAll(poisEncontradosEnServicioExterno);
+		}
 		List<POI> poisEncontradosEnServidorLocal = this.buscarPorTextoLibre(unaConsulta);
 		poisEncontrados.addAll(poisEncontradosEnServidorLocal);
-		poisEncontrados.addAll(poisEncontradosEnServicioExterno);
 		return poisEncontrados;
 	}
 	
 	public List<POI> buscarEnServiciosExternos(String unaConsulta){
 		List<POI> poisEncontrados = new ArrayList<POI>();
-		adapters.forEach(adapter -> poisEncontrados.addAll(adapter.realizarConsulta(unaConsulta)));
+		RepositorioPOIsExternos repositorioPOIsExternos = RepositorioPOIsExternos.getInstance();
+		poisEncontrados.addAll(repositorioPOIsExternos.buscarPoisPorConsulta(unaConsulta));
+		if(poisEncontrados.isEmpty()){
+			adapters.forEach(adapter -> poisEncontrados.addAll(adapter.realizarConsulta(unaConsulta)));
+		}
 		return poisEncontrados;
 	}
 	

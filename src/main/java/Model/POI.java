@@ -3,16 +3,31 @@ package Model;
 import org.uqbar.geodds.Point;
 
 import POIsExt.Comuna;
-import javax.persistence.*;
 import java.util.ArrayList;
 import Converter.*;
 
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import java.lang.String;
 
 
-@Entity
+@Entity // Para morphia y Hibernate
 @Table(name="pois")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.INTEGER)
@@ -20,7 +35,8 @@ import java.lang.String;
 public abstract class POI {
 
 	//ATRIBUTOS
-	@Id @GeneratedValue @Column(name="poi_id")
+	@Id //Morphia y Hibernate
+	@GeneratedValue @Column(name="poi_id")
 	private long id;
 	
 	@Column(name="ubicacion") @Convert(converter = PointConverter.class)
@@ -35,6 +51,7 @@ public abstract class POI {
 	@ElementCollection
 	@CollectionTable(name="tags", joinColumns=@JoinColumn(name="poi_id"))
 	@Column(name="tag")
+	@Embedded //De morphia
 	protected List<String> tags; // palabras claves
 	
 	@ManyToOne	@JoinColumn(name = "comuna_numero")

@@ -12,6 +12,7 @@ import Model.POI;
 import POIs.Banco;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;
+import Repos.RepositorioPOIsExternos;
 
 public class AdapterConsultaBanco implements AdapterConsulta {
 
@@ -41,6 +42,7 @@ public class AdapterConsultaBanco implements AdapterConsulta {
 		List<POI> consultaAdaptada;
 		consultaSinAdaptar = this.getComponenteExterno().realizarConsultaBanco(unaConsulta);
 		consultaAdaptada = this.adaptarConsulta(consultaSinAdaptar);
+		RepositorioPOIsExternos.getInstance().almacenaListaPois(consultaAdaptada);
 		return consultaAdaptada;
 	}
 	

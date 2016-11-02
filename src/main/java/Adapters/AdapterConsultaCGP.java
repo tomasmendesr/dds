@@ -12,6 +12,7 @@ import Model.POI;
 import POIs.CGP;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Servicio;
+import Repos.RepositorioPOIsExternos;
 
 public class AdapterConsultaCGP implements AdapterConsulta {
 
@@ -42,6 +43,7 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 		List<POI> consultaAdaptada;
 		consultaSinAdaptar = this.getComponenteExterno().realizarConsultaCGP(unaConsulta);
 		consultaAdaptada = this.adaptarConsulta(consultaSinAdaptar);
+		RepositorioPOIsExternos.getInstance().almacenaListaPois(consultaAdaptada);
 		return consultaAdaptada;
 	}
 	

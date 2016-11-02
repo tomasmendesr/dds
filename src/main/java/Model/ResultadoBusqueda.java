@@ -2,6 +2,7 @@ package Model;
 
 import Repos.RepositorioBusquedas;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ResultadoBusqueda{
 	private String 			fraseBuscada;
 	private double 			duracionBusqueda;
 	@Embedded
-	private List<POI>		poisEncontrados;
+	private List<PoisDeBusqueda>		poisEncontrados;
 	private Date	momentoDeBusqueda;
 	private Double			tiempoEstimadoBusqueda;
 	private Long			terminalId;
@@ -36,12 +37,29 @@ public class ResultadoBusqueda{
 	public ResultadoBusqueda(String fraseBuscada, List<POI> resultadoBusqueda, double duracionConsulta, Terminal terminal){
 		setMomentoDeBusqueda(new Date());
 		setFraseBuscada(fraseBuscada);
-		setResultadoBusqueda(resultadoBusqueda);
+		setResultadoBusqueda(this.obtenerPoisDeBusqueda(resultadoBusqueda));
 		setDuracionBusqueda(duracionConsulta);
 		setTerminalId(terminal.getId());
 	}
 
 	//METODOS
+	public List<PoisDeBusqueda> obtenerPoisDeBusqueda(List<POI> pois){
+		List<PoisDeBusqueda> poisDeBusqueda = new ArrayList<PoisDeBusqueda>();
+		pois.forEach(poi -> poisDeBusqueda.add(this.obtenerPoiDeBusqueda(poi)));
+		return poisDeBusqueda;
+	}
+	
+	public PoisDeBusqueda obtenerPoiDeBusqueda(POI poi){
+		PoisDeBusqueda poiDeBusqueda = new PoisDeBusqueda();
+		poiDeBusqueda.setId(poi.getID());
+		poiDeBusqueda.setUbicacion(poi.getUbicacion());
+		poiDeBusqueda.setNombre(poi.getNombre());
+		poiDeBusqueda.setDireccion(poi.getDireccion());
+		poiDeBusqueda.setTags(poi.getTags());
+		poiDeBusqueda.setComuna(poi.getComuna());
+		return poiDeBusqueda;
+	}
+	
 	public int cantidadDeResultados(){
 		return this.getResultadoBusqueda().size();
 	}
@@ -75,11 +93,11 @@ public class ResultadoBusqueda{
 		this.fraseBuscada = fraseBuscada;
 	}
 
-	public List<POI> getResultadoBusqueda() {
+	public List<PoisDeBusqueda> getResultadoBusqueda() {
 		return poisEncontrados;
 	}
 
-	public void setResultadoBusqueda(List<POI> resultadoBusqueda) {
+	public void setResultadoBusqueda(List<PoisDeBusqueda> resultadoBusqueda) {
 		this.poisEncontrados = resultadoBusqueda;
 	}
 

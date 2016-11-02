@@ -38,7 +38,7 @@ public class TestAdapterConsultaBanco {
 	static MongodProcess mongod;
 	
 	
-	@Before
+	/*@Before
 	public void init() throws Exception{
 		
 		//Abro conexion con Mongodb
@@ -69,7 +69,7 @@ public class TestAdapterConsultaBanco {
 	
 	//TESTS DE COMPONENTE EXTERNO STUB
 	
-	/*@Test @SuppressWarnings("unchecked")
+	@Test @SuppressWarnings("unchecked")
 	public void componenteExternoHaceLaConsultaDeberiaTenerUnaListaCon1POI(){
 		List<JSONObject> consultaBancoJson = componenteExternoConsultaBancoStub.realizarConsultaBanco("banco");
 		Assert.assertEquals(1,consultaBancoJson.size());
@@ -79,7 +79,7 @@ public class TestAdapterConsultaBanco {
 	public void componenteExternoTiene1BancoLlamadoBancoDeLaPlaza(){
 		List<JSONObject> consultaBancoJson = componenteExternoConsultaBancoStub.realizarConsultaBanco("banco");
 		Assert.assertEquals("Banco de la Plaza", consultaBancoJson.get(0).get("banco"));
-	}*/
+	}
 	
 	//TESTS DE ADAPTER
 	
@@ -112,5 +112,5 @@ public class TestAdapterConsultaBanco {
         repositorioPOIsExternos.borrarTodosLosPois();
         RepositorioPOIs.resetPOIs();
         if (mongod != null) mongod.stop();
-    }
+    }*/
 }

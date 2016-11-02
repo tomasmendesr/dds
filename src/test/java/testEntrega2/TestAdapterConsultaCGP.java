@@ -39,7 +39,7 @@ public class TestAdapterConsultaCGP {
 	static MongodProcess mongod;
 	
 	
-	@Before
+	/*@Before
 	public void init() throws Exception{
 		
 		//Abro conexion con Mongodb
@@ -70,7 +70,7 @@ public class TestAdapterConsultaCGP {
 	
 	//TEST COMPONENTE STUB
 	
-	/*@Test
+	@Test
 	public void componenteExternoHaceLaConsultaDeberiaTener1ListaCon1POI(){
 		List<CentroDTO> consultaComponente = componenteExternoConsultaCGP.realizarConsultaCGP("cgp");
 		Assert.assertEquals(1, consultaComponente.size());
@@ -80,7 +80,7 @@ public class TestAdapterConsultaCGP {
 	public void componenteExternoHaceLaConsultaYSuUnicoElementoEsUnCGPDeDireccionAvEscalada3100(){
 		List<CentroDTO> consultaComponente = componenteExternoConsultaCGP.realizarConsultaCGP("cgp");
 		Assert.assertEquals("Av Escalada 3100", consultaComponente.get(0).getDireccionCGP());
-	}*/
+	}
 	
 	// TEST ADAPTER
 	
@@ -101,5 +101,5 @@ public class TestAdapterConsultaCGP {
         repositorioPOIsExternos.borrarTodosLosPois();
         RepositorioPOIs.resetPOIs();
         if (mongod != null) mongod.stop();
-    }	
+    }*/
 }

@@ -23,7 +23,7 @@ public class Router {
 	AdminController adminController = new AdminController();
 	
 	Spark.get("/", LoginController::home, engine);
-	Spark.get("/login", LoginController::login, engine);
+	Spark.post("/login", LoginController::login);
 	Spark.get("/terminal/:id", busquedaController::listarPois, engine);
 	Spark.get("/poi:id", busquedaController::mostrar, engine);
 	Spark.get("/admin", adminController::menu, engine);

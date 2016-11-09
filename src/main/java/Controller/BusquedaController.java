@@ -17,9 +17,9 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 
 	public ModelAndView listar(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();
-		List<POI> terminal = RepositorioPOIs.getInstance().listar();
+		List<POI> pois = RepositorioPOIs.getInstance().listar();
 		
-		model.put("terminal", terminal);
+		model.put("terminal", pois);
 		return new ModelAndView(model, "terminal/index.hbs");
 	}
 }

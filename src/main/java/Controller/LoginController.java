@@ -8,5 +8,7 @@ public class LoginController {
 	public static ModelAndView login(Request req, Response res){
 		return new ModelAndView(null, "login/login.hbs");
 	}
+	
+	
 
 }

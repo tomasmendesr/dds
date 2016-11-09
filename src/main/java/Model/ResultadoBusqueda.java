@@ -132,5 +132,9 @@ public class ResultadoBusqueda{
 	public void setTerminalId(Long terminalId) {
 		this.terminalId = terminalId;
 	}
+	
+	public String getUrl(){
+		return "admin/busquedas/" + this.getId();
+	}
 
 }

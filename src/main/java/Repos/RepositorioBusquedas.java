@@ -65,6 +65,13 @@ public class RepositorioBusquedas {
     			.asList();
     }
     
+    public ResultadoBusqueda buscar(Long id){ 
+    	return datastore.createQuery(ResultadoBusqueda.class)
+    			.field("id")
+    			.equal(id)
+    			.get();
+    }
+    
     public Integer resultadosTotalesEn(Terminal unaTerminal){ // Obtengo una lista con todas las cantidades de resultados de las busquedas
     	return	this.getResultadosBusquedasEnUnaTerminal(unaTerminal).stream()
     				.map(resultado -> resultado.getCantidadDeResultados())

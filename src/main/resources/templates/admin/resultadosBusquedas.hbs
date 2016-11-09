@@ -1,0 +1,21 @@
+{{#partial "contenido"}}
+<h1>Admin</h1>
+
+
+	<tr>
+		<th>Nombre</th>
+		<th>Direccion</th>
+		<th>Comuna</th>
+	</tr>
+	
+	{{#each resultados}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{direccion}}</td>
+			<td>{{comuna}}</td>
+			
+		</tr>
+	{{/each}}
+</table>
+{{/partial}}
+{{>layout.hbs}}

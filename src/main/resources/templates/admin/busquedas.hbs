@@ -7,19 +7,23 @@
 <table class="table table-stripped">
 	<tr>
 		<th>Frase Buscada</th>
+		<th>Resultados</th>
 		<th>Duracion</th>
 		<th>Fecha</th>
 		<th>Tiempo estimado</th>
 		<th>Terminal</th>
+		<th></th>
 	</tr>
 	
 	{{#each terminales}}
 		<tr>
 			<td>{{fraseBuscada}}</td>
+			<td>{{cantidadDeResultados}}</td>
 			<td>{{duracionBusqueda}}</td>
 			<td>{{momentoDeBusqueda}}</td>
 			<td>{{tiempoEstimadoBusqueda}}</td>
 			<td>{{terminalId}}</td>
+			<td><a href=admin/busquedas/poisBusquedas>Ver POIs</a></td>
 			
 		</tr>
 	{{/each}}

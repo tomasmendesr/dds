@@ -50,4 +50,8 @@ public class AdminController {
 	public ModelAndView elimPoi(Request req, Response res){
 		return null;
 	}
+	
+	public ModelAndView listarPoisBusquedas(Request req, Response res){
+		return null;
+	}
 }

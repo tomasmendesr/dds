@@ -30,6 +30,7 @@ public class Router {
 	Spark.get("/admin/modif/poi:id", adminController::modifPoi, engine);
 	Spark.get("/admin/elim/poi:id", adminController::elimPoi, engine);
 	Spark.get("/admin/terminales", adminController::listarTerminales, engine);
-	Spark.get("/admin/terminales", adminController::listarBusquedas, engine);
+	Spark.get("/admin/busquedas", adminController::listarBusquedas, engine);
+	Spark.get("/admin/busquedas/poisBusquedas", adminController::listarPoisBusquedas, engine);
 	}
 }

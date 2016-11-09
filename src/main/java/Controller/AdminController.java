@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import Model.POI;
+import Model.Terminal;
 import Repos.RepositorioPOIs;
+import Repos.RepositorioTerminales;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -25,7 +27,11 @@ public class AdminController {
 	}
 	
 	public ModelAndView listarTerminales(Request req, Response res){
-		return null;
+		Map<String, List<Terminal>> model = new HashMap<>();
+		List<Terminal> terminales = RepositorioTerminales.getInstance().listar();
+		
+		model.put("admin", terminales);
+		return new ModelAndView(model, "admin/terminales.hbs");
 	}
 	
 	public ModelAndView listarBusquedas(Request req, Response res){

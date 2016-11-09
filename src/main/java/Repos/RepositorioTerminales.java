@@ -34,6 +34,12 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 		repositorioTerminales = null;
 	}
 	
+	public List<Terminal> listar() {
+		return entityManager()
+				.createQuery("from terminales", Terminal.class) 
+				.getResultList();
+	}
+	
 	
 	// Metodos
 	public void addTerminal(Terminal terminal){

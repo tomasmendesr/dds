@@ -84,6 +84,10 @@ public class Terminal {
 	public Comuna getComuna(){
 		return comuna;
 	}
+	
+	public String getUrl(){
+		return "terminal/" + getId();
+	}
 
 
 }

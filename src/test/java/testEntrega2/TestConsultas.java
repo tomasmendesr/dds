@@ -114,12 +114,12 @@ public class TestConsultas {
 		gestorConsultas.agregarAdapter(adapterConsultaBanco);
 		gestorConsultas.agregarAdapter(adapterConsultaCGP);		
 	}
-	
+	/*
 	@Test
 	public void consultaEnTodosLosOrigenesDeDatos(){
 		List<POI> listaResultante = gestorConsultas.buscarPOIs("banco");
 		Assert.assertEquals(2, listaResultante.size()); // tiene el banco y el cgp
-	}
+	}*/
 	
 	@After
 	public void tearDown(){

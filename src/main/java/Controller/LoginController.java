@@ -6,7 +6,7 @@ import spark.Response;
 
 public class LoginController {
 	public static ModelAndView login(Request req, Response res){
-		return new ModelAndView(null, "login/login.html");
+		return new ModelAndView(null, "login/login.hbs");
 	}
 
 }

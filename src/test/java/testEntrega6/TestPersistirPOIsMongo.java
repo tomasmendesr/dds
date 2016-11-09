@@ -33,7 +33,6 @@ public class TestPersistirPOIsMongo {
 	private AdapterConsultaCGP adapterConsultaCGP;
 	private AdapterConsultaBanco adapterConsultaBanco;
 	private GestorConsultas gestorConsultas;
-	private RepositorioPOIsExternos repositorioPOIsExternos;
 	static int PORT;
 	static MongodProcess mongod;
 	

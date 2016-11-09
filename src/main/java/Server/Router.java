@@ -20,6 +20,9 @@ public class Router {
 	BusquedaController busquedaController = new BusquedaController();
 	
 	Spark.get("/", LoginController::login, engine);
-	Spark.get("/busquedaPois", busquedaController::listar, engine);
+	Spark.get("/terminal/:id", busquedaController::listarPois, engine);
+//	Spark.get("/proyectos/new", proyectosController::nuevo, engine);
+//	Spark.get("/proyectos/:id", terminalController::mostrar, engine);
+//	Spark.post("/proyectos", proyectosController::crear);
 	}
 }

@@ -49,12 +49,11 @@ public class TestReporteResultadosPorTerminales {
 	
 	@Before
 	public void init() throws Exception{
-		/*
 	//Abro conexion con Mongodb
 	PORT = 27017;
 	MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 	MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
-	mongod = prepared.start();*/
+	mongod = prepared.start();
 	
 	// Comuna 8
 	comuna8 = new Comuna(8);

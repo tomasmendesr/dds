@@ -86,9 +86,8 @@ public class TestAgregarQuitarModificar {
 		
 	@Test
 	public void TestRepositorioPOIsAgregaParadaDel114(){
-
 		RepositorioPOIs.getInstance().agregarPOI(paradaDel114); // Ahora en la coleccion hay 6 POIs
-			Assert.assertTrue(RepositorioPOIs.getInstance().getColeccionDePOIS().contains(paradaDel114)); 
+		Assert.assertTrue(RepositorioPOIs.getInstance().getColeccionDePOIS().contains(paradaDel114)); 
 	}
 	
 	@Test
@@ -96,11 +95,11 @@ public class TestAgregarQuitarModificar {
 		Assert.assertEquals(5, RepositorioPOIs.getInstance().getColeccionDePOIS().size());
 	}
 	
-	/*@Test
+	@Test
 	public void TestRepositorioPOIsQuitaParadaDel47(){
 		RepositorioPOIs.getInstance().quitarPOI(paradaDel47);
 		Assert.assertEquals(4, RepositorioPOIs.getInstance().getColeccionDePOIS().size()); 
-	}*/ //REVISAR, ROMPE PORQUE SACAMOS LA CLASE IDENTITY
+	}
 	
 	@After
 	public void tearDown(){

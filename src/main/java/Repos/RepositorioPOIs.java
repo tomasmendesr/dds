@@ -44,7 +44,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	public void agregarPOI(POI unPOI) { coleccionDePOIS.add(unPOI); }
 
 	public void quitarPOI(POI unPOI) {
-		coleccionDePOIS.removeIf(poi -> poi.getID() == unPOI.getID());
+		if(coleccionDePOIS.contains(unPOI)) coleccionDePOIS.remove(unPOI);
 	}
 
 	//Agregar y quitar lista de POIs (para locales comerciales)

@@ -40,6 +40,9 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 				.getResultList();
 	}
 	
+	public Terminal buscar(long id) {
+		return entityManager().find(Terminal.class, id);
+	}
 	
 	// Metodos
 	public void addTerminal(Terminal terminal){

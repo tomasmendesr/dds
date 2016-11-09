@@ -16,10 +16,6 @@ import spark.Request;
 import spark.Response;
 
 public class AdminController {
-
-	public ModelAndView menu(Request req, Response res){
-		return new ModelAndView(null, "admin/index.hbs");
-	}
 	
 	public ModelAndView listarPois(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();

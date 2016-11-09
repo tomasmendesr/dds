@@ -189,6 +189,10 @@ public abstract class POI {
 		public String getUrl(){
 			return "/poi" + getID();
 		}
+		
+		public String getTipo(){
+			return this.getClass().toString();
+		}
 
 
 }

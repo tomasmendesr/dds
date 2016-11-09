@@ -1,7 +1,9 @@
 package Server;
 
+
 import Controller.BusquedaController;
 import Controller.LoginController;
+import Controller.AdminController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -18,10 +20,12 @@ public class Router {
 	Spark.staticFiles.location("/public");
 	
 	BusquedaController busquedaController = new BusquedaController();
+	AdminController adminController = new AdminController();
 	
 	Spark.get("/", LoginController::login, engine);
 	Spark.get("/terminal/:id", busquedaController::listarPois, engine);
 	Spark.get("/poi:id", busquedaController::mostrar, engine);
+	Spark.get("/admin", adminController::menu, engine);
 //	Spark.get("/proyectos/:id", terminalController::mostrar, engine);
 //	Spark.post("/proyectos", proyectosController::crear);
 	}

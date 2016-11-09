@@ -1,5 +1,6 @@
 package Server;
 
+import Controller.BusquedaController;
 import Controller.LoginController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -15,7 +16,10 @@ public class Router {
 				.build();
 		
 	Spark.staticFiles.location("/public");
-		
+	
+	BusquedaController busquedaController = new BusquedaController();
+	
 	Spark.get("/", LoginController::login, engine);
+	Spark.get("/busquedaPois", busquedaController::listar, engine);
 	}
 }

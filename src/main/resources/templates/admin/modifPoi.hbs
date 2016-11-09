@@ -2,8 +2,10 @@
 <h1>Modificar POI</h1>
 
 <form action="/pois" method="POST">
-	<p><input type="text" name="nombre" value="Nombre" ></p>
-		<p><select name="tipo" onChange="combo(this, 'theinput')">  // ver como listar los tipos
+	<p><label for="nombre">Nombre: {{nombre}} </label>
+		<input type="text" name="nombre" value="Nombre" ></p>
+	<p><label for="tipo"> Tipo: {{tipo}}</label>
+	<select name="tipo" onChange="combo(this, 'theinput')">  // ver como listar los tipos
   			<option>{{</option>
   			<option>two</option>
   			<option>three</option>

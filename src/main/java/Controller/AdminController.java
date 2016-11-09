@@ -45,12 +45,11 @@ public class AdminController {
 	}
 	
 	public ModelAndView modifPoi(Request req, Response res){
-		return null;
+		String id = req.queryParams("id");
+		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
+		return new ModelAndView(poi, "admin/modifPoi.hbs"); // no se si esta bien
 	}
 	
-	public ModelAndView elimPoi(Request req, Response res){
-		return null;
-	}
 	
 	public ModelAndView listarPoisBusquedas(Request req, Response res){
 		Map<String, List<PoisDeBusqueda>> model = new HashMap<>();

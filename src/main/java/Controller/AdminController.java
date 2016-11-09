@@ -23,4 +23,20 @@ public class AdminController {
 		model.put("admin", pois);
 		return new ModelAndView(model, "admin/pois.hbs");
 	}
+	
+	public ModelAndView listarTerminales(Request req, Response res){
+		return null;
+	}
+	
+	public ModelAndView listarBusquedas(Request req, Response res){
+		return null;
+	}
+	
+	public ModelAndView modifPoi(Request req, Response res){
+		return null;
+	}
+	
+	public ModelAndView elimPoi(Request req, Response res){
+		return null;
+	}
 }

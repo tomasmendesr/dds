@@ -1,13 +1,12 @@
 package Server;
-import static spark.Spark.*;
 
 import spark.Spark;
+import spark.debug.DebugScreen;
 
 public class Server {
 	    public static void main(String[] args) {
 	    	Spark.port(9000);
-	        get("/hello", (req, res) -> "Hello World");
+			DebugScreen.enableDebugScreen();
+			Router.configure();
 	    }
-	    
-	    // para probarlo en  navegador -> localhost:9000/hello 
 }

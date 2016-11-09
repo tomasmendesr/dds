@@ -38,8 +38,6 @@ public class TestBusquedasPorTerminalMongo {
 	private GestorConsultas gestorConsultas;
 	private Terminal terminal;
 	private AlmacenarBusqueda observerAlmacenarBusqueda;
-	private RepositorioBusquedas repositorioBusquedas;
-	private RepositorioPOIs repositorioPOIs;
 	static int PORT;
 	static MongodProcess mongod;
 	
@@ -48,10 +46,12 @@ public class TestBusquedasPorTerminalMongo {
 	public void init() throws Exception {
 		
 		//Abro conexion con Mongodb
+		/*
 		PORT = 27017;
 		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
 		mongod = prepared.start();
+		*/
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
@@ -99,14 +99,12 @@ public class TestBusquedasPorTerminalMongo {
 		terminal.setId(new Long(1));
 		observerAlmacenarBusqueda = new AlmacenarBusqueda();
 		terminal.addObserver(observerAlmacenarBusqueda);
-		repositorioBusquedas = RepositorioBusquedas.getInstance();
-		repositorioBusquedas.setContador(new Long(1));
-		repositorioPOIs = RepositorioPOIs.getInstance();
-		repositorioPOIs.agregarPOI(libreriaEscolar);
-		repositorioPOIs.agregarPOI(banco);
-		repositorioPOIs.agregarPOI(cgp);
-		repositorioPOIs.agregarPOI(kioskoDeDiarios);
-		repositorioPOIs.agregarPOI(paradaDel47);
+		RepositorioBusquedas.getInstance().setContador(new Long(1));
+		RepositorioPOIs.getInstance().agregarPOI(libreriaEscolar);
+		RepositorioPOIs.getInstance().agregarPOI(banco);
+		RepositorioPOIs.getInstance().agregarPOI(cgp);
+		RepositorioPOIs.getInstance().agregarPOI(kioskoDeDiarios);
+		RepositorioPOIs.getInstance().agregarPOI(paradaDel47);
 		gestorConsultas.consultarPOIsXTiempoEstimado("deposito", 2000, terminal);
 		gestorConsultas.consultarPOIsXTiempoEstimado("asesoramiento", 2000, terminal);
 		gestorConsultas.consultarPOIsXTiempoEstimado("caramelos", 2000, terminal);
@@ -114,14 +112,14 @@ public class TestBusquedasPorTerminalMongo {
 	
 	@Test
 	public void testSeEncuentranTodasLasBusquedasDeLaTerminalPrincipal(){
-		Assert.assertEquals(3, repositorioBusquedas.resultadosTotalesEn(terminal).intValue());
+		Assert.assertEquals(3, RepositorioBusquedas.getInstance().resultadosTotalesEn(terminal).intValue());
 	}
 	
 	@After
     public void tearDown(){
         RepositorioBusquedas.resetBusquedas();
         RepositorioPOIs.resetPOIs();
-        repositorioBusquedas.borrarTodasLasBusquedas();
+        RepositorioBusquedas.getInstance().borrarTodasLasBusquedas();
         if (mongod != null) mongod.stop();
     }
 

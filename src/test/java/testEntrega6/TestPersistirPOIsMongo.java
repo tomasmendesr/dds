@@ -41,10 +41,11 @@ public class TestPersistirPOIsMongo {
 	public void init()throws Exception{
 		
 		//Abro conexion con Mongodb
+		/*
 		PORT = 27017;
 		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
-		mongod = prepared.start();
+		mongod = prepared.start();*/
 		
 		comuna8 = new Comuna(8);
 		zonaComuna8 = new PolygonAdapter();
@@ -63,9 +64,7 @@ public class TestPersistirPOIsMongo {
 		cgp.setComuna(comuna8);
 		cgp.addTag("asesoramiento");
 		cgp.addTag("47"); //podria ser que el CGP estuviese cerca de la parada y lo taggean
-		
-		repositorioPOIsExternos = RepositorioPOIsExternos.getInstance();
-		
+				
 		// Instancio ComponenteExternoConsultaCGP
 		
 		componenteExternoConsultaCGP = new ComponenteExternoConsultaCGPStub();
@@ -84,12 +83,12 @@ public class TestPersistirPOIsMongo {
 	@Test
 	public void testSePersistePOI(){
 		gestorConsultas.buscarPOIs("banco");
-		Assert.assertEquals("Banco de la Plaza", repositorioPOIsExternos.buscarTodosLosBancos().get(0).getNombre());
+		Assert.assertEquals("Banco de la Plaza", RepositorioPOIsExternos.getInstance().buscarTodosLosBancos().get(0).getNombre());
 	}
 	
     @After
     public void tearDown(){
-        repositorioPOIsExternos.borrarTodosLosPois();
+        RepositorioPOIsExternos.getInstance().borrarTodosLosPois();
         RepositorioPOIs.resetPOIs();
         if (mongod != null) mongod.stop();
     }

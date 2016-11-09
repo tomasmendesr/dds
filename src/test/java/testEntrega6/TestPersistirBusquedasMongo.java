@@ -27,9 +27,6 @@ import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
 
-/**
- * Created by fede on 28/09/16.
- */
 public class TestPersistirBusquedasMongo {
 
 	private Comuna comuna8;
@@ -52,10 +49,11 @@ public class TestPersistirBusquedasMongo {
 	public void init()throws Exception{
 		
 		//Abro conexion con Mongodb
+		/*
 		PORT = 27017;
 		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
-		mongod = prepared.start();
+		mongod = prepared.start();*/
 		
 		// Comuna 8
 		comuna8 = new Comuna(8);
@@ -145,7 +143,7 @@ public class TestPersistirBusquedasMongo {
     public void tearDown(){
         RepositorioBusquedas.resetBusquedas();
         RepositorioPOIs.resetPOIs();
-        repositorioBusquedas.borrarTodasLasBusquedas();
+        RepositorioBusquedas.getInstance().borrarTodasLasBusquedas();
         if (mongod != null) mongod.stop();
     }
 

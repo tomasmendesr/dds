@@ -1,0 +1,14 @@
+{{#partial "contenido"}}
+<h1>Nueva Terminal</h1>
+
+<form action="/terminales" method="POST">
+	<p><input type="text" name="nombre" value="Nombre" ></p>
+	<p><input type="number" name="comuna" value="Comuna" placeholder="numero"></p>
+	// FALTA FUNCIONALIDADES (OBSERVERS)
+	// FALTA TAGS
+	
+	<p class="submit"><input type="submit" name="guardar" value="Guardar"></p>
+</form>
+{{/partial}}
+
+{{>layout.hbs}}

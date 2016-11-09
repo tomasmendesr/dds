@@ -1,0 +1,16 @@
+{{#partial "contenido"}}
+<h1>Modificar POI</h1>
+
+<form action="/pois" method="POST">
+	<p><input type="text" name="nombre" value="Nombre" ></p>
+		<p><select name="tipo" onChange="combo(this, 'theinput')">  // ver como listar los tipos
+  			<option>{{</option>
+  			<option>two</option>
+  			<option>three</option>
+		</select><p>
+	<p><input type="number" name="comuna" value="Comuna" placeholder="numero"></p>
+	<p class="submit"><input type="submit" name="guardar" value="Guardar"></p>
+</form>
+{{/partial}}
+
+{{>layout.hbs}}

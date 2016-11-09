@@ -29,10 +29,7 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 		
 		POI	poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
 		model.put("terminal", poi);
-		return new ModelAndView(model, "terminal/showPOI.hbs");
+		return new ModelAndView(model, "terminal/showPoi.hbs");
 	}
-	
-	public ModelAndView nuevo(Request req, Response res){
-		return new ModelAndView(null, "poi/new.hbs");
-	}
+
 }

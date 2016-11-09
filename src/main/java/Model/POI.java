@@ -185,6 +185,10 @@ public abstract class POI {
 		public void setID(long id) {
 			this.id = id;
 		}
+		
+		public String getUrl(){
+			return "/poi" + getID();
+		}
 
 
 }

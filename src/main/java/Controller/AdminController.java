@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import Model.POI;
+import Model.ResultadoBusqueda;
 import Model.Terminal;
+import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
 import spark.ModelAndView;
@@ -35,7 +37,10 @@ public class AdminController {
 	}
 	
 	public ModelAndView listarBusquedas(Request req, Response res){
-		return null;
+		Map<String, List<ResultadoBusqueda>> model = new HashMap<>();
+		List<ResultadoBusqueda> resultados = RepositorioBusquedas.getInstance().getAllBusquedas();
+		model.put("admin", resultados);
+		return new ModelAndView(model, "admin/busquedas.hbs");
 	}
 	
 	public ModelAndView modifPoi(Request req, Response res){

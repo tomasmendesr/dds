@@ -27,7 +27,7 @@ public class ResultadoBusqueda{
 	private double 			duracionBusqueda;
 	@Embedded
 	private List<PoisDeBusqueda>		poisEncontrados;
-	private Date	momentoDeBusqueda;
+	private Date			momentoDeBusqueda;
 	private Double			tiempoEstimadoBusqueda;
 	private Long			terminalId;
 

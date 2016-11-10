@@ -28,7 +28,7 @@ import java.lang.String;
 
 
 @Entity // Para morphia y Hibernate
-@Table(name="pois")
+//@Table(name="pois")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.INTEGER)
 // 1: ParadaaDeColectivo - 2: CGP - 3: Banco - 4: LocalComercial

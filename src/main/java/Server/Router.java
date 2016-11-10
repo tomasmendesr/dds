@@ -1,7 +1,7 @@
 package Server;
 
 
-import Controller.BusquedaController;
+import Controller.TerminalController;
 import Controller.LoginController;
 import Controller.AdminController;
 import spark.Spark;
@@ -19,7 +19,7 @@ public class Router {
 		
 	Spark.staticFiles.location("/public");
 	
-	BusquedaController busquedaController = new BusquedaController();
+	TerminalController busquedaController = new TerminalController();
 	AdminController adminController = new AdminController();
 	
 	Spark.get("/", LoginController::home, engine);

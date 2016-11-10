@@ -13,7 +13,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class BusquedaController implements WithGlobalEntityManager, TransactionalOps{
+public class TerminalController implements WithGlobalEntityManager, TransactionalOps{
 
 	public ModelAndView listarPois(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();

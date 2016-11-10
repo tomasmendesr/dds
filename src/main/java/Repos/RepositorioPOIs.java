@@ -69,7 +69,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	public List<POI> listar() {
 		return entityManager()//
-				.createQuery("from pois", POI.class) //
+				.createQuery("from POI", POI.class) //
 				.getResultList();
 	}
 

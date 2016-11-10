@@ -9,7 +9,7 @@ import Repos.RepositorioBusquedas;
 
 import javax.persistence.*;
 
-@Entity @Table(name = "terminales")
+@Entity //@Table(name = "terminales")
 public class Terminal {
 
 	//ATRIBUTOS

@@ -14,13 +14,13 @@ label for="tipo">Tipo</label>
 		<th></th>
 	</tr>
 	
-	{{#each pois}}
+	{{#each admin}}
 		<tr>
 			<td>{{nombre}}</td>
 			<td>{{direccion}}</td>
-			<td>{{ubicacion}}</td>
+			<td>{{coordenadas}}</td>
 			<td><a href="admin/modif/poi{{url}}">Modificar</a><td>
-			<td>>Eliminar<td> <!-- DEBERIA ELIMINAR -->
+			<td>>Eliminar<td> 
 			
 		</tr>
 	{{/each}}

@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.uqbar.geodds.Point;
+
 import Model.POI;
 import Model.PoisDeBusqueda;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
+import POIs.ParadaDeColectivo;
 import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
@@ -23,8 +26,8 @@ public class AdminController {
 	
 	public ModelAndView listarPois(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();
-		List<POI> pois = RepositorioPOIs.getInstance().listar();
 		
+		List<POI> pois = RepositorioPOIs.getInstance().listar();
 		model.put("admin", pois);
 		return new ModelAndView(model, "admin/pois.hbs");
 	}

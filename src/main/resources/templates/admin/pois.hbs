@@ -1,10 +1,12 @@
 {{#partial "contenido"}}
 <h1>Admin</h1>
-
+<form action="admin/pois/buscar" method="POST">
 <label for="nombre">Nombre</label>
 <input type="text" placeholder="Nombre" name="nombre">
-label for="tipo">Tipo</label>
+<label for="tipo">Tipo</label>
 <input type="text" placeholder="Tipo" name="tipo">
+<input type="submit" name="buscar" value="Buscar">
+</form>
 <table class="table table-stripped">
 	<tr>
 		<th>Nombre</th>

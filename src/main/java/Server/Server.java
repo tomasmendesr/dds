@@ -2,15 +2,8 @@ package Server;
 
 import org.uqbar.geodds.Point;
 
-import Adapters.PolygonAdapter;
-import Model.POI;
-import Model.Terminal;
-import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
-import POIsExt.Comuna;
-import POIsExt.Rubro;
 import Repos.RepositorioPOIs;
-import Repos.RepositorioTerminales;
 import spark.Spark;
 import spark.debug.DebugScreen;
 

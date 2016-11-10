@@ -22,7 +22,6 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import java.lang.String;
 
@@ -56,6 +55,9 @@ public abstract class POI {
 	
 	@ManyToOne	@JoinColumn(name = "comuna_numero")
 	private Comuna comuna;
+	
+//	@Column
+//	private String tipo;
 
 	
 	//CONSTRUCTOR
@@ -65,6 +67,7 @@ public abstract class POI {
 	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
+//		this.setTipo(this.getClass().toString());
 	}
 		
 	
@@ -190,9 +193,13 @@ public abstract class POI {
 			return "/poi" + getID();
 		}
 		
-		public String getTipo(){
-			return this.getClass().toString();
+		/*public String getTipo(){
+			return tipo;
 		}
+		
+		public void setTipo(String tipo){
+			this.tipo = tipo;
+		}*/
 
 
 }

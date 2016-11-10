@@ -1,16 +1,14 @@
 package Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.uqbar.geodds.Point;
 
 import Model.POI;
 import Model.PoisDeBusqueda;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
-import POIs.ParadaDeColectivo;
 import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
@@ -67,8 +65,25 @@ public class AdminController {
 		//String "12" = req.params(":id");
 		Long poi = new Long("1");
 		POI poiEncontrado = RepositorioPOIs.getInstance().buscar(poi);
-		RepositorioPOIs.getInstance().quitarPOI(poiEncontrado);
+		RepositorioPOIs.getInstance().eliminarPOI(poiEncontrado.getID());
 		model.put("admin", RepositorioPOIs.getInstance().listar());
+		return new ModelAndView(model, "admin/pois.hbs");
+	}
+	
+	public static ModelAndView buscarPois(Request req, Response res){
+		 String nombre = null, tipo = null;
+		List<POI> poisEncontrados = new ArrayList<>();
+		if(req.queryParams("nombre") != null) {
+			nombre = req.queryParams("nombre");
+			poisEncontrados.addAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
+		}
+		/*if(req.queryParams("tipo") != null){
+		   tipo = req.queryParams("tipo");
+		   poisEncontrados.addAll(RepositorioPOIs.getInstance().buscarPorTipo(tipo));
+		}*/
+		Map<String, List<POI>> model = new HashMap<>();
+		model.put("admin", poisEncontrados);
+		System.out.println(poisEncontrados.get(0).getNombre());
 		return new ModelAndView(model, "admin/pois.hbs");
 	}
 }

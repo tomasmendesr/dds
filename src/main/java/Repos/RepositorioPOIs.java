@@ -76,6 +76,10 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	public POI buscar(long id) {
 		return entityManager().find(POI.class, id);
 	}
+	
+	public void eliminarPOI(long id) {
+		entityManager().remove(this.buscar(id));
+	}
 
 	public void agregar(POI poi) {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
@@ -89,7 +93,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	public List<POI> buscarPorNombre(String nombre) {
 		return entityManager() //
-				.createQuery("from POI p where p.nombre like :nombre",POI.class) //
+				.createQuery("from POI where nombre like :nombre",POI.class) //
 				.setParameter("nombre", "%" + nombre + "%") //
 				.getResultList();
 	}
@@ -101,6 +105,13 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	public List<POI> getColeccionDePOIS() {
 		return coleccionDePOIS;
+	}
+
+	public List<POI> buscarPorTipo(String tipo) {
+		return entityManager()
+			.createQuery("from POI p WHERE p.tipo = :tipo", POI.class)
+			.setParameter("tipo", tipo)
+			.getResultList();
 	}
 
 }

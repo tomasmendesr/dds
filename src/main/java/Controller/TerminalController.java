@@ -19,7 +19,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		Map<String, List<POI>> model = new HashMap<>();
 		List<POI> pois = RepositorioPOIs.getInstance().listar();
 		
-		model.put("terminal", pois);
+		model.put("poi", pois);
 		return new ModelAndView(model, "terminal/index.hbs");
 	}
 	

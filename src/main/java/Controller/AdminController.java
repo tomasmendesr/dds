@@ -25,8 +25,7 @@ public class AdminController {
 	}
 	
 	public ModelAndView listarPois(Request req, Response res){
-		Map<String, List<POI>> model = new HashMap<>();
-		
+		Map<String, List<POI>> model = new HashMap<>();		
 		List<POI> pois = RepositorioPOIs.getInstance().listar();
 		model.put("admin", pois);
 		return new ModelAndView(model, "admin/pois.hbs");
@@ -61,5 +60,15 @@ public class AdminController {
 		List<PoisDeBusqueda> resultados = resultBusqueda.getResultadoBusqueda();
 		model.put("busqueda", resultados);
 		return new ModelAndView(model, "admin/resultadosBusqueda.hbs");
+	}
+	
+	public ModelAndView eliminarPoi (Request req, Response res){
+		Map<String, List<POI>> model = new HashMap<>();
+		//String "12" = req.params(":id");
+		Long poi = new Long("1");
+		POI poiEncontrado = RepositorioPOIs.getInstance().buscar(poi);
+		RepositorioPOIs.getInstance().quitarPOI(poiEncontrado);
+		model.put("admin", RepositorioPOIs.getInstance().listar());
+		return new ModelAndView(model, "admin/pois.hbs");
 	}
 }

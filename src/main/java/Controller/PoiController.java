@@ -45,15 +45,14 @@ public class PoiController {
 	}
 	
 	public Void modificar(Request req, Response res){
-		// hacer update (no lo hago porque no se conseguir el poi a modificar)
 		String id = req.params("id");
 		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
 		if(req.queryParams("nombre") != null)
 				poi.setNombre(req.queryParams("nombre"));
 		if(req.queryParams("direccion") != null)
 				poi.setDireccion(req.queryParams("direccion"));
-	//	if(req.queryParams("ubicacion") != null)
-			//	poi.setUbicacion(req.queryParams("ubicacion"));   HAY QUE PARSEAR EL STRING A POINT
+		if(req.queryParams("coordenadaX") != null && req.queryParams("coordenadaY") != null)
+			poi.setCoordenadas(Double.parseDouble(req.queryParams("coordenadaX")), Double.parseDouble(req.queryParams("coordenadaY")));
 		res.redirect("/admin/pois");  
 		return null;
 	}

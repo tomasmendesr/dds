@@ -24,6 +24,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import java.lang.String;
+import java.text.DecimalFormat;
 
 
 @Entity // Para morphia y Hibernate
@@ -132,74 +133,88 @@ public abstract class POI {
 	
 	//GETTERS Y SETTERS
 
-		public void setUbicacion(Point unaUbicacion) {
-			ubicacion = unaUbicacion;
-			
-		}
+	public void setUbicacion(Point unaUbicacion) {
+		ubicacion = unaUbicacion;
+		
+	}
 
-		public Point getUbicacion(){
-			return ubicacion;
-		}
-		
-		public String getNombre(){
-			return nombre;
-		}
-		
-		public void setNombre(String unNombre){
-			nombre = unNombre;
-		}
-		
-		public String getDireccion() {
-			return direccion;
-		}
+	public Point getUbicacion(){
+		return ubicacion;
+	}
+	
+	public String coordenadaX(){
+		DecimalFormat decimales = new DecimalFormat("0.0000");
+		return decimales.format(ubicacion.latitude());
+	}
+	
+	public String coordenadaY(){
+		DecimalFormat decimales = new DecimalFormat("0.0000");
+		return decimales.format(ubicacion.longitude());
+	}
+	
+	public void setCoordenadas(Double x, Double y){
+		this.setUbicacion(new Point(x,y));
+	}
+	
+	public String getNombre(){
+		return nombre;
+	}
+	
+	public void setNombre(String unNombre){
+		nombre = unNombre;
+	}
+	
+	public String getDireccion() {
+		return direccion;
+	}
 
-		public void setDireccion(String unaDireccion) {
-			direccion = unaDireccion;
-		}
-		
-		public void instanciarNuevaColeccionDeTags(){
-			tags = new ArrayList<String>();
-		}
-		
-		public List<String> getTags(){
-			return tags;
-		}
-		
-		public void addTag(String tag){//Agrega un tag al ArrayList
-			tags.add(tag);
-		}
-		
-		public void removeTag(String tag){
-			tags.remove(tag);
-		}
-		
-		public void setComuna(Comuna unaComuna){
-			comuna = unaComuna;
-		}
-		
-		public Comuna getComuna(){
-			return this.comuna;
-		}
-		
-		public long getID() {
-			return id;
-		}
+	public void setDireccion(String unaDireccion) {
+		direccion = unaDireccion;
+	}
+	
+	public void instanciarNuevaColeccionDeTags(){
+		tags = new ArrayList<String>();
+	}
+	
+	public List<String> getTags(){
+		return tags;
+	}
+	
+	public void addTag(String tag){//Agrega un tag al ArrayList
+		tags.add(tag);
+	}
+	
+	public void removeTag(String tag){
+		tags.remove(tag);
+	}
+	
+	public void setComuna(Comuna unaComuna){
+		comuna = unaComuna;
+	}
+	
+	public Comuna getComuna(){
+		return this.comuna;
+	}
+	
+	public long getID() {
+		return id;
+	}
 
-		public void setID(long id) {
-			this.id = id;
-		}
-		
-		public String getUrl(){
-			return "poi/" + getID();
-		}
-		
-		/*public String getTipo(){
-			return tipo;
-		}
-		
-		public void setTipo(String tipo){
-			this.tipo = tipo;
-		}*/
+	public void setID(long id) {
+		this.id = id;
+	}
+	
+	public String getUrl(){
+		return "poi/" + getID();
+	}
+	
+	/*public String getTipo(){
+		return tipo;
+	}
+	
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}*/
 
 
 }

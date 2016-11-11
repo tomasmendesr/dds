@@ -36,6 +36,14 @@ public class PoiController {
 		return new ModelAndView(model, "/admin/poi/pois.hbs");
 	}
 	
+	public ModelAndView modificarView(Request req, Response res){
+		Map<String, POI> model = new HashMap<>();
+		String id = req.params("id");
+		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
+		model.put("poi", poi);
+		return new ModelAndView(model, "admin/poi/modifPoi.hbs");
+	}
+	
 	public Void modificar(Request req, Response res){
 		res.redirect("/admin/poi/pois");
 		return null;

@@ -2,8 +2,10 @@ package Server;
 
 import org.uqbar.geodds.Point;
 
+import Model.Terminal;
 import POIs.ParadaDeColectivo;
 import Repos.RepositorioPOIs;
+import Repos.RepositorioTerminales;
 import spark.Spark;
 import spark.debug.DebugScreen;
 
@@ -16,6 +18,11 @@ public class Server {
 	        paradaDel47.setUbicacion(new Point(-34.6715, -58.4676));
 	        paradaDel47.addTag("47");
 	    	RepositorioPOIs.getInstance().agregar(paradaDel47);
+	    	
+	    	Terminal terminal = new Terminal();
+	    	terminal.setNombre("Terminal Abasto");
+	    	RepositorioTerminales.getInstance().addTerminal(terminal);
+	    	
 			DebugScreen.enableDebugScreen();
 			Router.configure();
 	    }

@@ -3,6 +3,7 @@ package Server;
 
 import Controller.LoginController;
 import Controller.PoiController;
+import Controller.TerminalController;
 import Controller.AdminController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -17,11 +18,13 @@ public class Router {
 		
 	Spark.staticFiles.location("/public");
 	
+	TerminalController terminalController = new TerminalController();
 	PoiController poiController = new PoiController();
 	AdminController adminController = new AdminController();
 	
 	Spark.get("/", LoginController::home, engine);
 	Spark.post("/login", LoginController::login);
+	Spark.get("/terminal/:id", terminalController::home, engine);
 	Spark.get("/admin", adminController::menu, engine);
 	Spark.get("/admin/pois", poiController::listar, engine);
 	Spark.get("/admin/pois/modificar/poi/:id", poiController::modificarView, engine);

@@ -1,0 +1,10 @@
+{{#partial "contenido"}}
+{{#each terminal}}
+<h1>{{nombre}}</h1>
+<h2>Buscar puntos de interes</h2>
+<form action="/terminal/buscar">
+	<input type="text" name="fraseBuscada" placeholder="Ingrese busqueda">
+	<input type="submit" value="Buscar">
+</form>
+{{/partial}}
+{{>layout.hbs}}

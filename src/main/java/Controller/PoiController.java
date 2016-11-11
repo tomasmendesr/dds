@@ -45,7 +45,7 @@ public class PoiController {
 	}
 	
 	public Void modificar(Request req, Response res){
-		res.redirect("/admin/poi/pois");
+		res.redirect("admin/pois");
 		return null;
 	}
 	

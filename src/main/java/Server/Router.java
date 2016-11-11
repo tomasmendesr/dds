@@ -18,12 +18,13 @@ public class Router {
 		
 	Spark.staticFiles.location("/public");
 	
+	LoginController loginController = new LoginController();
 	TerminalController terminalController = new TerminalController();
 	PoiController poiController = new PoiController();
 	AdminController adminController = new AdminController();
 	
 	Spark.get("/", LoginController::home, engine);
-	Spark.post("/login", LoginController::login);
+	Spark.post("/login", loginController::login);
 	Spark.get("/terminal/:id", terminalController::home, engine);
 	Spark.get("/admin", adminController::menu, engine);
 	Spark.get("/admin/pois", poiController::listar, engine);

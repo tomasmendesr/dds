@@ -21,7 +21,11 @@ public class Server {
 	    	
 	    	Terminal terminal = new Terminal();
 	    	terminal.setNombre("Terminal Abasto");
-	    	RepositorioTerminales.getInstance().addTerminal(terminal);
+	    	Terminal terminal2 = new Terminal();
+	    	terminal2.setNombre("campus");
+	    	
+	    	RepositorioTerminales.getInstance().agregar(terminal);
+	    	RepositorioTerminales.getInstance().agregar(terminal2);
 	    	
 			DebugScreen.enableDebugScreen();
 			Router.configure();

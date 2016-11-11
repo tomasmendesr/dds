@@ -51,7 +51,7 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 	
 	
 	
-	public void persistTerminal(Terminal terminal){
+	public void agregar(Terminal terminal){
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();

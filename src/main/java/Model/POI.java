@@ -142,12 +142,12 @@ public abstract class POI {
 		return ubicacion;
 	}
 	
-	public String coordenadaX(){
+	public String getCoordenadaX(){
 		DecimalFormat decimales = new DecimalFormat("0.0000");
 		return decimales.format(ubicacion.latitude());
 	}
 	
-	public String coordenadaY(){
+	public String getCoordenadaY(){
 		DecimalFormat decimales = new DecimalFormat("0.0000");
 		return decimales.format(ubicacion.longitude());
 	}

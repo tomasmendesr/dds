@@ -3,13 +3,13 @@
 	
 <h1>Modificar POI</h1>
 
-<form action="/admin/pois" method="POST">
+<form action="/admin/pois/{{url}}" method="POST">
 	<p><label for="nombre">Nombre: {{nombre}} </label></p>
 	<p><input type="text" name="nombre" placeholder="Nuevo nombre" ></p>
 	<p><label for="direccion">Direccion: {{direccion}} </label></p>
 	<p><input type="text" name="direccion" placeholder="Nueva direccion" ></p>
-	<p><label for="comuna">Comuna: {{comuna}} </label></p>
-	<p><input type="number" name="comuna" placeholder="Nueva comuna"></p>
+	<p><label for="coordenadas">Coordenadas: {{ubicacion}} </label></p>
+	<p><input type="number" name="ubicacion" placeholder="Nuevas coordenadas"></p>
 	<p class="submit"><input type="submit" name="guardar" value="Guardar"></p>
 </form>
 {{/with}}

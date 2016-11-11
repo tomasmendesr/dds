@@ -44,7 +44,7 @@ public class PoiController {
 		return new ModelAndView(model, "admin/poi/modifPoi.hbs");
 	}
 	
-	public Void modificar(Request req, Response res){
+	public Exception modificar(Request req, Response res){
 		String id = req.params("id");
 		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
 		if(req.queryParams("nombre") != null)
@@ -52,18 +52,19 @@ public class PoiController {
 		if(req.queryParams("direccion") != null)
 				poi.setDireccion(req.queryParams("direccion"));
 		if(req.queryParams("coordenadaX") != null && req.queryParams("coordenadaY") != null)
-			poi.setCoordenadas(Double.parseDouble(req.queryParams("coordenadaX")), Double.parseDouble(req.queryParams("coordenadaY")));
+			try{ // mas le vale que me de numeritos
+				poi.setCoordenadas(Double.parseDouble(req.queryParams("coordenadaX")), Double.parseDouble(req.queryParams("coordenadaY")));
+			}catch(Exception e){
+				return e;
+			}
 		res.redirect("/admin/pois");  
 		return null;
 	}
 	
-	public ModelAndView eliminarPoi (Request req, Response res){
-		Map<String, List<POI>> model = new HashMap<>();
-		//String "12" = req.params(":id");
-		Long poi = new Long("1");
-		POI poiEncontrado = RepositorioPOIs.getInstance().buscar(poi);
-		RepositorioPOIs.getInstance().eliminarPOI(poiEncontrado.getID());
-		model.put("admin", RepositorioPOIs.getInstance().listar());
-		return new ModelAndView(model, "admin/poi/pois.hbs");
+	public Void eliminarPoi(Request req, Response res){
+		String id = req.params("id");
+		RepositorioPOIs.getInstance().eliminarPOI(Long.parseLong(id));
+		res.redirect("/admin/pois");
+		return null;
 	}
 }

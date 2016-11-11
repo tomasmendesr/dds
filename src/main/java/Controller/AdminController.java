@@ -23,8 +23,15 @@ public class AdminController {
 	}
 	
 	public ModelAndView listarPois(Request req, Response res){
+		String nombre = req.queryParams("nombreBuscado");
 		Map<String, List<POI>> model = new HashMap<>();		
-		List<POI> pois = RepositorioPOIs.getInstance().listar();
+		List<POI> pois = new ArrayList<>();
+		if(nombre != null){
+			pois = RepositorioPOIs.getInstance().buscarPorNombre(nombre);
+		}
+		else {
+			 pois = RepositorioPOIs.getInstance().listar();
+		}
 		model.put("admin", pois);
 		return new ModelAndView(model, "admin/pois.hbs");
 	}
@@ -45,9 +52,11 @@ public class AdminController {
 	}
 	
 	public ModelAndView modifPoi(Request req, Response res){
-		String id = req.queryParams("id");
+		Map<String, POI> model = new HashMap<>();
+		String id = req.params("id");
 		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
-		return new ModelAndView(poi, "admin/modifPoi.hbs"); // no se si esta bien
+		model.put("poi", poi);
+		return new ModelAndView(model, "admin/modifPoi.hbs");
 	}
 	
 	
@@ -71,19 +80,24 @@ public class AdminController {
 	}
 	
 	public static ModelAndView buscarPois(Request req, Response res){
-		 String nombre = null, tipo = null;
+		 /*String nombre = req.queryParams("nombreBuscado");
+		 String tipo = null;
+		Map<String, List<POI>> model = new HashMap<>();
 		List<POI> poisEncontrados = new ArrayList<>();
-		if(req.queryParams("nombre") != null) {
-			nombre = req.queryParams("nombre");
+		if(nombre != null) {
+			nombre = req.queryParams("nombreBuscado");
 			poisEncontrados.addAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
 		}
 		/*if(req.queryParams("tipo") != null){
 		   tipo = req.queryParams("tipo");
 		   poisEncontrados.addAll(RepositorioPOIs.getInstance().buscarPorTipo(tipo));
-		}*/
-		Map<String, List<POI>> model = new HashMap<>();
-		model.put("admin", poisEncontrados);
-		System.out.println(poisEncontrados.get(0).getNombre());
-		return new ModelAndView(model, "admin/pois.hbs");
+		}
+		model.put("admin", poisEncontrados);*/
+		return new ModelAndView(null, null);
+	}
+	
+	public Void modificar(Request req, Response res){
+		res.redirect("/admin/pois");
+		return null;
 	}
 }

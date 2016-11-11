@@ -190,7 +190,7 @@ public abstract class POI {
 		}
 		
 		public String getUrl(){
-			return "/poi" + getID();
+			return "poi/" + getID();
 		}
 		
 		/*public String getTipo(){

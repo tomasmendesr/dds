@@ -24,7 +24,7 @@ public class GestorConsultas {
 		duracion = (tFin - tInicio);
 		ResultadoBusqueda resultadoBusqueda = new ResultadoBusqueda(unaConsulta,poisEncontrados,duracion,unaTerminal);
 		resultadoBusqueda.setTiempoEstimadoBusqueda(tiempoMax);
-		unaTerminal.getObservers().forEach(observer -> observer.realizarAccion(unaTerminal, resultadoBusqueda));
+		unaTerminal.getObservers().forEach(observer -> observer.realizarAccion(unaTerminal, resultadoBusqueda));		
 		return poisEncontrados;
 	}
 	
@@ -50,7 +50,7 @@ public class GestorConsultas {
 	}
 	
 	public List<POI> buscarPorTextoLibre(String unaConsulta){
-		return repositorioPOIs.buscarPorTextoLibre(unaConsulta);
+		return RepositorioPOIs.getInstance().buscarPorTextoLibre(unaConsulta);
 	}
 	
 	

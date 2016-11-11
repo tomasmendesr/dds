@@ -6,7 +6,6 @@ import Controller.PoiController;
 import Controller.AdminController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 
 public class Router {
@@ -14,7 +13,6 @@ public class Router {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
 				.create()
 				.withDefaultHelpers()
-				.withHelper("isTrue", BooleanHelper.isTrue)
 				.build();
 		
 	Spark.staticFiles.location("/public");

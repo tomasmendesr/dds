@@ -45,7 +45,9 @@ public class PoiController {
 	}
 	
 	public Void modificar(Request req, Response res){
-		res.redirect("/admin/pois");
+		// hacer update (no lo hago porque no se conseguir el poi a modificar)
+		
+		res.redirect("/admin/pois");  //error 404 0-0 ??????
 		return null;
 	}
 	

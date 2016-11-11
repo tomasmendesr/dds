@@ -37,9 +37,6 @@ public class AdminController {
 		return new ModelAndView(model, "admin/busquedas.hbs");
 	}
 	
-	
-	
-	
 	public ModelAndView listarPoisBusquedas(Request req, Response res){
 		Map<String, List<PoisDeBusqueda>> model = new HashMap<>();
 		String id = req.params("id");

@@ -20,7 +20,7 @@ public class LoginController {
 		if(terminales.size() != 0){
 			Terminal terminal = terminales.get(0);
 			if(terminal.getNombre().equals(req.queryParams("password"))){
-				res.redirect("/terminal"+terminal.getId());
+				res.redirect("/terminal/"+terminal.getId());
 			}
 		}
 		else if(req.queryParams("nombre").equals("admin") && req.queryParams("password").equals("admin")){

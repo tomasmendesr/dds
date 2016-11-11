@@ -1,0 +1,23 @@
+{{#partial "contenido"}}
+
+<h3>POIs encontrados</h3>
+
+<table class="table table-stripped">
+	<tr>
+		<th>Nombre</th>
+		<th>Direccion</th>
+		<th>Coordenadas</th>
+		<th></th>
+	</tr>
+	
+	{{#each pois}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{direccion}}</td>
+			<td>X: {{coordenadaX}} - Y: {{coordenadaY}}</td>
+			<td><a href="{{url}}"">Ver Mas</a><td>
+		</tr>
+	{{/each}}
+</table>
+{{/partial}}
+{{>layout.hbs}}

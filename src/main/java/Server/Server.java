@@ -17,6 +17,7 @@ public class Server {
 	        paradaDel47.setNombre("Parada del 47");
 	        paradaDel47.setUbicacion(new Point(-34.6715, -58.4676));
 	        paradaDel47.addTag("47");
+	        paradaDel47.addTag("parada");
 	    	RepositorioPOIs.getInstance().agregar(paradaDel47);
 	    	
 	    	Terminal terminal = new Terminal();

@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Model.POI;
 import Model.PoisDeBusqueda;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 import Repos.RepositorioBusquedas;
-import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
 import spark.ModelAndView;
 import spark.Request;

@@ -29,7 +29,7 @@ public class Router {
 	
 	// Busqueda de pois por usuario
 	Spark.get("/terminal/:id", terminalController::home, engine);
-	Spark.post("/terminal/:id/buscar", terminalController::buscar, engine);
+	Spark.post("/terminal/:id/buscar", poiController::buscar, engine);
 	Spark.get("/poi/:id", poiController::mostrar, engine);
 	
 	// Administracion de pois
@@ -40,9 +40,10 @@ public class Router {
 	Spark.get("/admin/pois/eliminar/poi/:id", poiController::eliminar);
 	Spark.post("admin/pois/poi/:id", poiController::modificar);
 	
-	Spark.get("/terminal/:id", poiController::listar, engine); //Terminal controller deberia listarlos
-	Spark.get("/admin/terminales", adminController::listarTerminales, engine);
-	Spark.get("/admin/busquedas", adminController::listarBusquedas, engine);
-	Spark.get("/admin/busquedas/:id", adminController::listarPoisBusquedas, engine);
+	// Administracion de terminales
+	Spark.get("/admin/terminales", terminalController::listar, engine);
+	Spark.get("/admin/terminales/nueva", terminalController::crearView, engine);
+	Spark.get("/admin/terminales/modificar/terminal/:id", terminalController::modifView, engine);
+	Spark.post("/admin/terminales/eliminar/terminal/:id", terminalController::eliminar);
 	}
 }

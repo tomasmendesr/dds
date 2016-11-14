@@ -1,13 +1,13 @@
 {{#partial "contenido"}}
 <h1>Nueva Terminal</h1>
 
-<form action="/terminales" method="POST">
-	<p><input type="text" name="nombre" value="Nombre" ></p>
-	<p><input type="number" name="comuna" value="Comuna" placeholder="numero"></p>
-	// FALTA FUNCIONALIDADES (OBSERVERS)
-	// FALTA TAGS
+<form action="/admin/terminales" method="POST">
+	<p><label for="nombre">Nombre: </label>
+	<input type="text" name="nombre" value="Nombre" ></p>
+	<p><label for="comuna">Comuna: </label>
+	<input type="number" name="comuna" placeholder="numero"></p>	
 	
-	<p class="submit"><input type="submit" name="guardar" value="Guardar"></p>
+	<p class="submit"><input type="submit" name="guardar" value="Crear"></p>
 </form>
 {{/partial}}
 

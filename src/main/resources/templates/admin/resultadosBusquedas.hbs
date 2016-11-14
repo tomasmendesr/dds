@@ -5,15 +5,14 @@
 	<tr>
 		<th>Nombre</th>
 		<th>Direccion</th>
-		<th>Comuna</th>
+		<th></th>
 	</tr>
 	
 	{{#each resultados}}
 		<tr>
 			<td>{{nombre}}</td>
 			<td>{{direccion}}</td>
-			<td>{{comuna}}</td>
-			
+			<td><a href="{{url}}">Detalles</a></td>
 		</tr>
 	{{/each}}
 </table>

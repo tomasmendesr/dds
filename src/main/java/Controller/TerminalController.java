@@ -31,7 +31,10 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 	
 	public ModelAndView buscar(Request req, Response res){
 		String palabraBuscada = req.queryParams("fraseBuscada");
-		List<POI> pois = RepositorioPOIs.getInstance().buscarPorPalabraClave(palabraBuscada);
+		String comuna = req.queryParams("comunaBuscada");
+		String tipo = req.queryParams("tipoBuscado");
+		String nombre = req.queryParams("nombreBuscado");
+		List<POI> pois = RepositorioPOIs.getInstance().buscarPOI(palabraBuscada, comuna, tipo, nombre);
 		Map<String, List<POI>> model = new HashMap<>();		
 		model.put("terminal", pois);
 		return new ModelAndView(model, "terminal/resultadosBusqueda.hbs");

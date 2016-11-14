@@ -121,4 +121,11 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 		return coleccionDePOIS;
 	}
 
+	public List<POI> buscarPOI(String palabraBuscada, String comuna, String tipo, String nombre) {
+		// deberia hacer una query 
+		// agregando las restricciones
+		// en caso de que sean != null los parametros
+		return null;
+	}
+
 }

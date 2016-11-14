@@ -1,0 +1,12 @@
+{{#partial "contenido"}}
+{{#with poi}}
+	
+<h4>{{nombre}}</h4>
+	<p><label>Direccion: {{direccion}} </label></p>
+	<p><label>Tipo: {{tipoDePOI}} </label></p>
+	<p><label>Coordenadas: X: {{coordenadaX}} - Y: {{coordenadaY}} </label></p>
+	<p><label>Comuna: {{comuna}}</label></p>
+{{/with}}
+{{/partial}}
+
+{{>layout.hbs}}

@@ -4,8 +4,11 @@
 <h1>{{nombre}}</h1>
 <h4>Buscar puntos de interes</h2>
 <form action="/{{url}}/buscar" method="POST">
-	<input type="text" name="fraseBuscada" placeholder="Ingrese busqueda">
-	<input type="submit" value="Buscar">
+	<p><input type="text" name="fraseBuscada" placeholder="Ingrese busqueda"></p>
+	<p><input type="text" name="nombreBuscado" value="Nombre"></p>
+	<p><input type="text" name="comunaBuscada" placeholder="Numero de comuna" value="Comuna"></p>
+	<p><input type="text" name="tipoBuscado" value="Tipo de POI"</p>
+	<p><input type="submit" value="Buscar"></p>
 </form>
 
 {{/with}}

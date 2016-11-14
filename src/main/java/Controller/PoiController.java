@@ -60,4 +60,12 @@ public class PoiController {
 		res.redirect("/admin/pois");
 		return null;
 	}
+	
+	public ModelAndView mostrar(Request req, Response res){
+		Map<String, POI> model = new HashMap<>();
+		String id = req.params("id");
+		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
+		model.put("poi", poi);
+		return new ModelAndView(model, "/terminal/infoPoi.hbs");
+	}
 }

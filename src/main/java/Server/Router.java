@@ -29,7 +29,8 @@ public class Router {
 	
 	// Busqueda de pois por usuario
 	Spark.get("/terminal/:id", terminalController::home, engine);
-	Spark.get("/terminal/:id/buscar", terminalController::buscar, engine);
+	Spark.post("/terminal/:id/buscar", terminalController::buscar, engine);
+	Spark.get("/poi/:id", poiController::mostrar, engine);
 	
 	// Administracion de pois
 	Spark.get("/admin", adminController::menu, engine);

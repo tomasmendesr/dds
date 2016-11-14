@@ -8,6 +8,7 @@ import Converter.*;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -54,11 +55,11 @@ public abstract class POI {
 	@Embedded //De morphia
 	protected List<String> tags; // palabras claves
 	
-	@ManyToOne	@JoinColumn(name = "comuna_numero")
+	@ManyToOne(cascade = CascadeType.ALL)	@JoinColumn(name = "comuna_numero")
 	private Comuna comuna;
 	
-//	@Column
-//	private String tipo;
+	@Column
+	private String tipoDePOI;
 
 	
 	//CONSTRUCTOR
@@ -68,7 +69,6 @@ public abstract class POI {
 	public POI(Point unaUbicacion) {
 		this.setUbicacion(unaUbicacion);
 		this.instanciarNuevaColeccionDeTags(); //Para inicializar el ArrayList de Tags
-//		this.setTipo(this.getClass().toString());
 	}
 		
 	
@@ -208,13 +208,13 @@ public abstract class POI {
 		return "poi/" + getID();
 	}
 	
-	/*public String getTipo(){
-		return tipo;
+	public String getTipoDePOI(){
+		return tipoDePOI;
 	}
 	
-	public void setTipo(String tipo){
-		this.tipo = tipo;
-	}*/
+	public void setTipoDePOI(String tipo){
+		this.tipoDePOI = tipo;
+	}
 
 
 }

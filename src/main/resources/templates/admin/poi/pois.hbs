@@ -1,7 +1,7 @@
 {{#partial "contenido"}}
 <h1>Admin</h1>
 
-<form action="/admin/pois/buscar" method="POST">
+<form action="/admin/pois" method="POST">
 <label for="nombre">Nombre</label>
 <input type="text" placeholder="Nombre" name="nombreBuscado">
 <label for="tipo">Tipo</label>
@@ -11,6 +11,7 @@
 <table class="table table-stripped">
 	<tr>
 		<th>Nombre</th>
+		<th>Tipo</th>
 		<th>Direccion</th>
 		<th>Coordenadas</th>
 		<th></th>
@@ -20,6 +21,7 @@
 	{{#each pois}}
 		<tr>
 			<td>{{nombre}}</td>
+			<td>{{tipoDePOI}}</td>
 			<td>{{direccion}}</td>
 			<td>X: {{coordenadaX}} - Y: {{coordenadaY}}</td>
 			<td><a href="/admin/pois/modificar/{{url}}"">Modificar</a><td>

@@ -80,6 +80,13 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	public void eliminarPOI(long id) {
 		entityManager().remove(this.buscar(id));
 	}
+	
+	public List<POI> buscarPOIsPorTipo(String tipo){
+		return entityManager() 
+				.createQuery("from POI where tipoDePOI like :tipo",POI.class) 
+				.setParameter("tipoDePOI", "%" + tipo + "%")
+				.getResultList();
+	}
 
 	public void agregar(POI poi) {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");

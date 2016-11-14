@@ -3,11 +3,12 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import Adapters.AdapterConsulta;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioPOIsExternos;
 
-public class GestorConsultas {
+public class GestorConsultas  {
 	private RepositorioPOIs repositorioPOIs;
 	private List<AdapterConsulta> adapters;
 	

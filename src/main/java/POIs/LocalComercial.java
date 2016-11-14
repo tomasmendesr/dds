@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,8 +24,7 @@ import POIsExt.Rubro;
 public class LocalComercial extends POI {
 
 	//ATRIBUTOS
-	//@Column(name="rubro_id")
-	@ManyToOne @JoinColumn(name="rubro_id")
+	@ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="rubro_id")
 	private Rubro rubro;
 	@OneToMany
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;

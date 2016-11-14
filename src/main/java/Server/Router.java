@@ -31,7 +31,7 @@ public class Router {
 	Spark.get("/admin/pois", poiController::listar, engine);
 	Spark.post("/admin/pois", poiController::listar, engine);
 	Spark.get("/admin/pois/modificar/poi/:id", poiController::modificarView, engine);
-//	Spark.("/admin/pois/eliminar/poi/:id", poiController::eliminar);
+	Spark.get("/admin/pois/eliminar/poi/:id", poiController::eliminar);
 	Spark.post("admin/pois/poi/:id", poiController::modificar);
 	Spark.get("/terminal/:id", poiController::listar, engine); //Terminal controller deberia listarlos
 	Spark.get("/admin/terminales", adminController::listarTerminales, engine);

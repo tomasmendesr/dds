@@ -37,14 +37,16 @@ public class PoiController {
 	
 	public Exception modificar(Request req, Response res){
 		String id = req.params("id");
+		String X = req.queryParams("coordenadaXNueva");
+		String Y = req.queryParams("coordenadaYNueva");
 		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
-		if(req.queryParams("nombre") != null && !req.queryParams("nombre").equals(""))
-				poi.setNombre(req.queryParams("nombre"));
-		if(req.queryParams("direccion") != null && !req.queryParams("direccion").equals(""))
-				poi.setDireccion(req.queryParams("direccion"));
-		if(req.queryParams("coordenadaX") != null && req.queryParams("coordenadaY") != null && !req.queryParams("coordenadaX").equals("") && !req.queryParams("coordenadaY").equals(""))
+		if(req.queryParams("nombreNuevo") != null && !req.queryParams("nombreNuevo").equals(""))
+				poi.setNombre(req.queryParams("nombreNuevo"));
+		if(req.queryParams("direccionNueva") != null && !req.queryParams("direccionNueva").equals(""))
+				poi.setDireccion(req.queryParams("direccionNueva"));
+		if(X != null && !X.equals("") && Y != null && !Y.equals(""))
 			try{ // mas le vale que me de numeritos
-				poi.setCoordenadas(Double.parseDouble(req.queryParams("coordenadaX")), Double.parseDouble(req.queryParams("coordenadaY")));
+				poi.setCoordenadas(Double.parseDouble(X), Double.parseDouble(Y));
 			}catch(Exception e){
 				return e;
 			}
@@ -52,7 +54,7 @@ public class PoiController {
 		return null;
 	}
 	
-	public Void eliminarPoi(Request req, Response res){
+	public Void eliminar(Request req, Response res){
 		String id = req.params("id");
 		RepositorioPOIs.getInstance().eliminarPOI(Long.parseLong(id));
 		res.redirect("/admin/pois");

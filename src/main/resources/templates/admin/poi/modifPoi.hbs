@@ -5,12 +5,12 @@
 
 <form action="/admin/pois/{{url}}" method="POST">
 	<p><label for="nombre">Nombre: {{nombre}} </label></p>
-	<p><input type="text" name="nombre" placeholder="Nuevo nombre" ></p>
+	<p><input type="text" name="nombreNuevo" placeholder="Nuevo nombre" ></p>
 	<p><label for="direccion">Direccion: {{direccion}} </label></p>
-	<p><input type="text" name="direccion" placeholder="Nueva direccion" ></p>
+	<p><input type="text" name="direccionNueva" placeholder="Nueva direccion" ></p>
 	<p><label for="coordenadas">Coordenadas: X: {{coordenadaX}} - Y: {{coordenadaY}} </label></p>
-	<p><input type="text" name="coordenadaX" placeholder="Coordenada X"></p>
-	<p><input type="text" name="coordenadaY" placeholder="Coordenada Y"></p>
+	<p><input type="text" name="coordenadaXNueva" placeholder="Coordenada X"></p>
+	<p><input type="text" name="coordenadaYNueva" placeholder="Coordenada Y"></p>
 	<p class="submit"><input type="submit" name="guardar" value="Guardar"></p>
 </form>
 {{/with}}

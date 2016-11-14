@@ -19,7 +19,7 @@ public class PoiController {
 		String tipo = req.queryParams("tipoBuscado");
 		if(nombre != null && !nombre.equals(""))
 			pois.addAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
-		else if(tipo != null && tipo.equals(""))
+		else if(tipo != null && !tipo.equals(""))
 			pois.addAll(RepositorioPOIs.getInstance().buscarPOIsPorTipo(tipo));
 		if((nombre == null || nombre.equals("")) && (tipo == null || tipo.equals(""))) 
 			pois.addAll(RepositorioPOIs.getInstance().listar());

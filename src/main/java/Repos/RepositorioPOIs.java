@@ -84,7 +84,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	public List<POI> buscarPOIsPorTipo(String tipo){
 		return entityManager() 
 				.createQuery("from POI where tipoDePOI like :tipo",POI.class) 
-				.setParameter("tipoDePOI", "%" + tipo + "%")
+				.setParameter("tipo", "%" + tipo + "%")
 				.getResultList();
 	}
 

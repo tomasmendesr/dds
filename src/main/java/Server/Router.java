@@ -23,16 +23,22 @@ public class Router {
 	PoiController poiController = new PoiController();
 	AdminController adminController = new AdminController();
 	
+	//Login
 	Spark.get("/", LoginController::home, engine);
 	Spark.post("/login", loginController::login);
+	
+	// Busqueda de pois por usuario
 	Spark.get("/terminal/:id", terminalController::home, engine);
 	Spark.get("/terminal/:id/buscar", terminalController::buscar, engine);
+	
+	// Administracion de pois
 	Spark.get("/admin", adminController::menu, engine);
 	Spark.get("/admin/pois", poiController::listar, engine);
 	Spark.post("/admin/pois", poiController::listar, engine);
 	Spark.get("/admin/pois/modificar/poi/:id", poiController::modificarView, engine);
 	Spark.get("/admin/pois/eliminar/poi/:id", poiController::eliminar);
 	Spark.post("admin/pois/poi/:id", poiController::modificar);
+	
 	Spark.get("/terminal/:id", poiController::listar, engine); //Terminal controller deberia listarlos
 	Spark.get("/admin/terminales", adminController::listarTerminales, engine);
 	Spark.get("/admin/busquedas", adminController::listarBusquedas, engine);

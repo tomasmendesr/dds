@@ -5,6 +5,7 @@
 <table class="table table-stripped">
 	<tr>
 		<th>Nombre</th>
+		<th>Tipo</th>
 		<th>Direccion</th>
 		<th>Coordenadas</th>
 		<th></th>
@@ -13,6 +14,7 @@
 	{{#each pois}}
 		<tr>
 			<td>{{nombre}}</td>
+			<td>{{tipoDePOI}}</td>
 			<td>{{direccion}}</td>
 			<td>X: {{coordenadaX}} - Y: {{coordenadaY}}</td>
 			<td><a href="{{url}}"">Ver Mas</a><td>

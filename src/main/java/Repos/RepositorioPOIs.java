@@ -72,6 +72,13 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 				.createQuery("from POI", POI.class) //
 				.getResultList();
 	}
+	
+	public List<POI> buscarPorPalabraClave(String tag){
+		return entityManager() 
+				.createQuery("from POI where tag like :tag",POI.class) 
+				.setParameter("tag", "%" + tag + "%")
+				.getResultList();
+	}
 
 	public POI buscar(long id) {
 		return entityManager().find(POI.class, id);
@@ -112,13 +119,6 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	public List<POI> getColeccionDePOIS() {
 		return coleccionDePOIS;
-	}
-
-	public List<POI> buscarPorTipo(String tipo) {
-		return entityManager()
-			.createQuery("from POI p WHERE p.tipo = :tipo", POI.class)
-			.setParameter("tipo", tipo)
-			.getResultList();
 	}
 
 }

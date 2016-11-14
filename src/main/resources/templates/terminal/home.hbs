@@ -5,9 +5,12 @@
 <h4>Buscar puntos de interes</h2>
 <form action="/{{url}}/buscar" method="POST">
 	<p><input type="text" name="fraseBuscada" placeholder="Ingrese busqueda"></p>
-	<p><input type="text" name="nombreBuscado" value="Nombre"></p>
-	<p><input type="text" name="comunaBuscada" placeholder="Numero de comuna" value="Comuna"></p>
-	<p><input type="text" name="tipoBuscado" value="Tipo de POI"</p>
+	<p><label for="nombreBuscado">Nombre: </label>
+	<input type="text" name="nombreBuscado"></p>
+	<p><label for="comunaBuscada">Comuna: </label>
+	<input type="text" name="comunaBuscada" placeholder="Numero de comuna" ></p>
+	<p><label for="tipoBuscado">Tipo: </label>
+	<input type="text" name="tipoBuscado"></p>
 	<p><input type="submit" value="Buscar"></p>
 </form>
 

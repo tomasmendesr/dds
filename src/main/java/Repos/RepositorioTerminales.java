@@ -67,6 +67,10 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 				.getResultList();
 	}
 	
+	public void eliminarTerminal(Long id){
+		entityManager().remove(this.buscar(id));
+	}
+	
 	//Getters y setters
 		public List<Terminal> getTerminales() {
 			return terminales;

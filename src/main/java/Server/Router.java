@@ -37,13 +37,16 @@ public class Router {
 	Spark.get("/admin/pois", poiController::listar, engine);
 	Spark.post("/admin/pois", poiController::listar, engine);
 	Spark.get("/admin/pois/modificar/poi/:id", poiController::modificarView, engine);
-	Spark.get("/admin/pois/eliminar/poi/:id", poiController::eliminar);
 	Spark.post("admin/pois/poi/:id", poiController::modificar);
+	Spark.get("/admin/pois/eliminar/poi/:id", poiController::eliminar);
+	
 	
 	// Administracion de terminales
 	Spark.get("/admin/terminales", terminalController::listar, engine);
 	Spark.get("/admin/terminales/nueva", terminalController::crearView, engine);
+	Spark.post("/admin/terminales", terminalController::crear);
 	Spark.get("/admin/terminales/modificar/terminal/:id", terminalController::modifView, engine);
+	Spark.post("/admin/terminales/modificar/terminal/:id", terminalController::modificar);
 	Spark.post("/admin/terminales/eliminar/terminal/:id", terminalController::eliminar);
 	}
 }

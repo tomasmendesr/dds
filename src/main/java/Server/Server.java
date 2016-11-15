@@ -65,7 +65,6 @@ public class Server {
 			
 	    	RepositorioPOIs.getInstance().agregar(libreriaEscolar);
 	    	
-	    	
 	    	ReportePorFecha observerReportePorFecha = new ReportePorFecha();
 	    	NotificarAdministrador observerNotificarAdmin = new NotificarAdministrador();
 	    	AlmacenarBusqueda observerAlmacenarBusquedas = new AlmacenarBusqueda();

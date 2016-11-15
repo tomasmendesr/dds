@@ -1,7 +1,7 @@
 {{#partial "contenido"}}
 <h3>Administracion Terminales</h3>
 
-<button><a href="/admin/terminales/nueva">Agregar></a></button>
+<button><a href="/admin/terminales/nueva">Agregar</a></button><br>
 <label for="comuna">Comuna</label>
 <input type="text" placeholder="Numero comuna" name="comunaBuscada">
 <table class="table table-stripped">
@@ -16,8 +16,8 @@
 		<tr>
 			<td>{{nombre}}</td>
 			<td>{{comuna}}</td>
-			<td><a href="admin/terminales/modificar/{{url}}">Modificar</a><td>
-			<td><a href="admin/terminales/eliminar/{{url}}">Eliminar</a><td>
+			<td><a href="/admin/terminales/modificar/{{url}}">Modificar</a><td>
+			<td><a href="/admin/terminales/eliminar/{{url}}">Eliminar</a><td>
 			
 		</tr>
 	{{/each}}

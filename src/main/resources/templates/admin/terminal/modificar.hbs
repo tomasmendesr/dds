@@ -8,7 +8,12 @@
 	<p><input type="text" name="nombreNuevo" placeholder="Nuevo nombre" ></p>
 	<p><label for="comuna">Comuna: {{comuna}} </label></p>
 	<p><input type="text" name="comunaNueva" placeholder="Nueva comuna" ></p>
-	
+	<p><label> Acciones </label></p>
+	<input type="checkbox" name="almacenarBusquedas" value="Almacenar Busquedas">Almacenar Busquedase<br>
+	<input type="checkbox" name="notificarAdmin" value="Notificar Admin">Notificar Admin<br>
+	<input type="checkbox" name="reporteParcial" value="Reporte Parcial">Reporte Parcial<br>
+	<input type="checkbox" name="reportePorFecha" value="Reporte por fecha">Reporte por Fecha<br>
+	<input type="checkbox" name="reporteTotalesPorUsuario" value="Reporte totales por Usuario">ReporteTotalesPorUsuario<br>
 	<p class="submit"><input type="submit" name="guardar" value="Guardar"></p>
 </form>
 {{/with}}

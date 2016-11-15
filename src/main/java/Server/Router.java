@@ -40,7 +40,6 @@ public class Router {
 	Spark.post("admin/pois/poi/:id", poiController::modificar);
 	Spark.get("/admin/pois/eliminar/poi/:id", poiController::eliminar);
 	
-	
 	// Administracion de terminales
 	Spark.get("/admin/terminales", terminalController::listar, engine);
 	Spark.get("/admin/terminales/nueva", terminalController::crearView, engine);

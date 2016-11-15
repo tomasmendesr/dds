@@ -53,7 +53,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		String id = req.params("id");
 		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(id));
 		model.put("terminal", terminal);
-		return new ModelAndView(model, "admin/poi/modificar.hbs");
+		return new ModelAndView(model, "admin/terminal/modificar.hbs");
 	}
 	
 	public Exception modificar(Request req, Response res){

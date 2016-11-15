@@ -1,6 +1,7 @@
 package Server;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Model.GestorConsultas;
@@ -75,7 +76,9 @@ public class Server {
 			List<POI> consulta1 = gestorConsultas.buscarPOIs("parada");
 			List<POI> consulta2 = gestorConsultas.buscarPOIs("libreria");
 			ResultadoBusqueda resultado1 = new ResultadoBusqueda("parada",consulta1,1.01,terminal);
+			resultado1.setMomentoDeBusqueda(new Date());
 			ResultadoBusqueda resultado2 = new ResultadoBusqueda("libreria",consulta2,4.0,terminal2);
+			resultado2.setMomentoDeBusqueda(new Date());
 			RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado1);
 			RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado2);
 	    	

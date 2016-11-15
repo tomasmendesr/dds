@@ -55,17 +55,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		}catch(Exception e){
 			return e;
 		}
-		String almacenarBusquedas = req.queryParams("almacenarBusquedas");
-		String notificarAdmin = req.queryParams("notificarAdmin");
-		String reporteParcial = req.queryParams("reporteParcial");
-		String reportePorFecha = req.queryParams("reportePorFecha");
-		String reporteTotalesPorUsuario = req.queryParams("reporteTotalesPorUsuario");
-		List<AccionesTerminal> acciones = new ArrayList<>();
-		if(almacenarBusquedas != null) acciones.add(new AlmacenarBusqueda());
-		if(notificarAdmin != null) acciones.add(new NotificarAdministrador());
-		if(reporteParcial != null) acciones.add(new ReporteParcial());
-		if(reportePorFecha != null) acciones.add(new ReportePorFecha());
-		if(reporteTotalesPorUsuario != null) acciones.add(new ReporteTotalesPorUsuario());
+		List<AccionesTerminal> acciones = asignarAcciones(req);
 		nuevaTerminal.setObservers(acciones);
 		RepositorioTerminales.getInstance().agregar(nuevaTerminal);
 		res.redirect("/admin/terminales");
@@ -83,10 +73,36 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 	public Exception modificar(Request req, Response res){
 		String id = req.params("id");
 		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(id));
-		if(req.queryParams("nombreNuevo") != null && !req.queryParams("nombreNuevo").equals(""))
-				terminal.setNombre(req.queryParams("nombreNuevo"));
+		String nombre = req.queryParams("nombreNuevo");
+		String comunaNumero = req.queryParams("comunaNueva");
+		List<AccionesTerminal> acciones = asignarAcciones(req);
+		if(nombre != null) terminal.setNombre(nombre);
+		if(comunaNumero != null){
+			try{
+				Comuna comuna = new Comuna(Integer.parseInt(comunaNumero));
+				terminal.setComuna(comuna);
+			}catch(Exception e){
+				return e;
+			}
+		}
+		terminal.setObservers(acciones);
 		res.redirect("/admin/terminales");  
 		return null;
+	}
+	
+	public List<AccionesTerminal> asignarAcciones(Request req){
+		String almacenarBusquedas = req.queryParams("almacenarBusquedas");
+		String notificarAdmin = req.queryParams("notificarAdmin");
+		String reporteParcial = req.queryParams("reporteParcial");
+		String reportePorFecha = req.queryParams("reportePorFecha");
+		String reporteTotalesPorUsuario = req.queryParams("reporteTotalesPorUsuario");
+		List<AccionesTerminal> acciones = new ArrayList<>();
+		if(almacenarBusquedas != null) acciones.add(new AlmacenarBusqueda());
+		if(notificarAdmin != null) acciones.add(new NotificarAdministrador());
+		if(reporteParcial != null) acciones.add(new ReporteParcial());
+		if(reportePorFecha != null) acciones.add(new ReportePorFecha());
+		if(reporteTotalesPorUsuario != null) acciones.add(new ReporteTotalesPorUsuario());
+		return acciones;
 	}
 	
 	public Void eliminar(Request req, Response res){

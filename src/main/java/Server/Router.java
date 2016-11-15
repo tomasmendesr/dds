@@ -25,7 +25,9 @@ public class Router {
 	AdminController adminController = new AdminController();
 	BusquedaController busquedasController = new BusquedaController();
 	
-	//Login
+	// Login 
+	// Usuario: nombreTerminal Password: nombreTerminal
+	// Usuario: admin		   Password: admin
 	Spark.get("/", LoginController::home, engine);
 	Spark.post("/login", loginController::login);
 	

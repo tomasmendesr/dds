@@ -5,6 +5,7 @@ import Controller.LoginController;
 import Controller.PoiController;
 import Controller.TerminalController;
 import Controller.AdminController;
+import Controller.BusquedaController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.HandlebarsTemplateEngineBuilder;
@@ -22,6 +23,7 @@ public class Router {
 	TerminalController terminalController = new TerminalController();
 	PoiController poiController = new PoiController();
 	AdminController adminController = new AdminController();
+	BusquedaController busquedasController = new BusquedaController();
 	
 	//Login
 	Spark.get("/", LoginController::home, engine);
@@ -47,5 +49,8 @@ public class Router {
 	Spark.get("/admin/terminales/modificar/terminal/:id", terminalController::modifView, engine);
 	Spark.post("/admin/terminales/modificar/terminal/:id", terminalController::modificar);
 	Spark.post("/admin/terminales/eliminar/terminal/:id", terminalController::eliminar);
+	
+	//Administracion de consultas
+	Spark.get("/admin/busquedas", busquedasController::listar, engine);
 	}
 }

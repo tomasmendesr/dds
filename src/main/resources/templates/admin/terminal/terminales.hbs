@@ -1,7 +1,6 @@
 {{#partial "contenido"}}
 <h3>Administracion Terminales</h3>
 
-<button><a href="/admin/terminales/nueva">Agregar</a></button><br>
 <label for="comuna">Comuna</label>
 <input type="text" placeholder="Numero comuna" name="comunaBuscada">
 <table class="table table-stripped">
@@ -22,5 +21,6 @@
 		</tr>
 	{{/each}}
 </table>
+<a href="/admin/terminales/nueva"><button>Agregar</button></a>
 {{/partial}}
 {{>layout.hbs}}

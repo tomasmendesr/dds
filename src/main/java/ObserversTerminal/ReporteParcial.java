@@ -22,6 +22,7 @@ public class ReporteParcial extends AccionesTerminal {
 	//Constructor
 	public ReporteParcial(){
 		resultadosParcialesPorTerminal = new HashMap<Terminal,Integer>();
+		setDescripcion("Reporte Parcial");
 	}
 	
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {

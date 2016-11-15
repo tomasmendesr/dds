@@ -23,6 +23,7 @@ public class ReporteTotalesPorUsuario extends AccionesTerminal {
 	//Constructor
 	public ReporteTotalesPorUsuario(){
 		resultadosPorTerminal = new HashMap<Terminal,Integer>();
+		setDescripcion("Reporte totales por Usuario");
 	}
 	
 	//Metodos

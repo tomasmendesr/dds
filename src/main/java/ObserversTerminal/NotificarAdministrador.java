@@ -10,6 +10,10 @@ import Model.Terminal;
 @DiscriminatorValue("2")
 public class NotificarAdministrador extends AccionesTerminal{
 
+	public NotificarAdministrador(){
+		setDescripcion("Notificar Administrador");
+	}
+	
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda) {
 		if(!unResultadoBusqueda.sinTiempoEstimado())
 			if(unResultadoBusqueda.getDuracionBusqueda()>unResultadoBusqueda.getTiempoEstimadoBusqueda())

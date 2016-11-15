@@ -85,8 +85,8 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		String nombre = req.queryParams("nombreNuevo");
 		String comunaNumero = req.queryParams("comunaNueva");
 		List<AccionesTerminal> acciones = asignarAcciones(req);
-		if(nombre != null) terminal.setNombre(nombre);
-		if(comunaNumero != null){
+		if(nombre != null && !nombre.equals("")) terminal.setNombre(nombre);
+		if(comunaNumero != null && !comunaNumero.equals("")){
 			try{
 				Comuna comuna = new Comuna(Long.parseLong(comunaNumero));
 				terminal.setComuna(comuna);

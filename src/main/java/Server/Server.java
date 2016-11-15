@@ -13,6 +13,7 @@ import org.uqbar.geodds.Point;
 import Adapters.PolygonAdapter;
 import Model.Terminal;
 import ObserversTerminal.AccionesTerminal;
+import ObserversTerminal.AlmacenarBusqueda;
 import ObserversTerminal.NotificarAdministrador;
 import ObserversTerminal.ReportePorFecha;
 import POIs.LocalComercial;
@@ -64,11 +65,15 @@ public class Server {
 			
 	    	RepositorioPOIs.getInstance().agregar(libreriaEscolar);
 	    	
-	    	List<AccionesTerminal> accionesTerminal = new ArrayList<>();
-	    	List<AccionesTerminal> accionesTerminal2 = new ArrayList<>();
+	    	
 	    	ReportePorFecha observerReportePorFecha = new ReportePorFecha();
 	    	NotificarAdministrador observerNotificarAdmin = new NotificarAdministrador();
+	    	AlmacenarBusqueda observerAlmacenarBusquedas = new AlmacenarBusqueda();
+	    	
+	    	List<AccionesTerminal> accionesTerminal = new ArrayList<>();
+	    	List<AccionesTerminal> accionesTerminal2 = new ArrayList<>();
 	    	accionesTerminal.add(observerNotificarAdmin);
+	    	accionesTerminal.add(observerAlmacenarBusquedas);
 	    	accionesTerminal2.add(observerReportePorFecha);
 	    	
 	    	Terminal terminal = new Terminal("Terminal Abasto");

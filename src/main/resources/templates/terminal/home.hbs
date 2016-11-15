@@ -3,17 +3,13 @@
 {{#with terminal}}
 <h1>{{nombre}}</h1>
 <h4>Buscar puntos de interes</h2>
-<form action="/{{url}}/buscar" method="POST">
-	<p><input type="text" name="fraseBuscada" placeholder="Ingrese busqueda"></p>
-	<p><label for="nombreBuscado">Nombre: </label>
-	<input type="text" name="nombreBuscado"></p>
-	<p><label for="comunaBuscada">Comuna: </label>
-	<input type="text" name="comunaBuscada" placeholder="Numero de comuna" ></p>
-	<p><label for="tipoBuscado">Tipo: </label>
-	<input type="text" name="tipoBuscado"></p>
-	<p><input type="submit" value="Buscar"></p>
+<p><a href="{{url}}/buscarCercanos"><input type="button" name="cercanos" value="Buscar POIs Cercanos"> </input></a></p>
+<p><a href="{{url}}/buscarDisponibles"><input type="button" name="disponibles" value="Buscar POIs Disponibles"> </input></a></p>
+<form action="/{{url}}/buscarFrase" method="POST">
+	<input type="text" name="fraseBuscada" placeholder="Ingrese busqueda">
+	<input type="submit" value="Buscar">
 </form>
-<a href="/"><button>Cerrar Sesion</button></a>
+<a href="/"><label>Cerrar Sesion</label></a>
 {{/with}}
 {{/partial}}
 {{>layout.hbs}}

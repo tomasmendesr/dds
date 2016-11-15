@@ -9,7 +9,7 @@ public class Comuna {
 	
 	//ATRIBUTOS
 	@Id	@Column(name="comuna_numero")
-	private int			numeroDeComuna;
+	private Long			numeroDeComuna;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private PolygonAdapter 	zona;
@@ -17,7 +17,7 @@ public class Comuna {
 	//Constructor
 	public Comuna(){ }
 	
-	public Comuna(int numeroDeComuna){
+	public Comuna(Long numeroDeComuna){
 		this.setNumeroDeComuna(numeroDeComuna);
 	}
 
@@ -30,11 +30,11 @@ public class Comuna {
 		this.zona = zona;
 	}
 
-	public int getNumeroDeComuna() {
+	public Long getNumeroDeComuna() {
 		return numeroDeComuna;
 	}
 
-	public void setNumeroDeComuna(int numeroDeComuna) {
+	public void setNumeroDeComuna(Long numeroDeComuna) {
 		this.numeroDeComuna = numeroDeComuna;
 	}
 	

@@ -215,6 +215,10 @@ public abstract class POI {
 	public void setTipoDePOI(String tipo){
 		this.tipoDePOI = tipo;
 	}
+	
+	public Long getNumeroComuna(){
+		return this.getComuna().getNumeroDeComuna();
+	}
 
 
 }

@@ -22,7 +22,8 @@ import spark.debug.DebugScreen;
 public class Server {
 	    public static void main(String[] args) {
 	    	Spark.port(8700);
-	    	Comuna comuna8 = new Comuna(8);
+	    	
+	    	Comuna comuna8 = new Comuna(new Long(8));
 	    	PolygonAdapter zonaComuna8 = new PolygonAdapter();
 	    	zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
 	    	zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
@@ -34,6 +35,7 @@ public class Server {
 	    	ParadaDeColectivo paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 	        paradaDel47.setDireccion("Corvalan 3691");
 	        paradaDel47.setNombre("Parada del 47");
+	        paradaDel47.setComuna(comuna8);
 	        paradaDel47.addTag("47");
 	        paradaDel47.addTag("parada");
 	        paradaDel47.setTipoDePOI("Parada de Colectivo");
@@ -42,9 +44,11 @@ public class Server {
 	    	Rubro rubroLibreriaEscolar = new Rubro(500.0);
 			LocalComercial libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), rubroLibreriaEscolar);
 			libreriaEscolar.addTag("libreria");
+			libreriaEscolar.setComuna(comuna8);
 			libreriaEscolar.setDireccion("Peru 201");
 			libreriaEscolar.setNombre("Libreria");
 			libreriaEscolar.setTipoDePOI("Local Comercial");
+			
 	    	RepositorioPOIs.getInstance().agregar(libreriaEscolar);
 	    	
 	    	List<AccionesTerminal> accionesTerminal = new ArrayList<>();
@@ -54,18 +58,16 @@ public class Server {
 	    	accionesTerminal.add(observerNotificarAdmin);
 	    	accionesTerminal2.add(observerReportePorFecha);
 	    	
-	    	Terminal terminal = new Terminal();
-	    	terminal.setNombre("Terminal Abasto");
-	    	//terminal.setComuna(comuna8);
+	    	Terminal terminal = new Terminal("Terminal Abasto");
+	    	terminal.setComuna(comuna8);
 	    	terminal.setObservers(accionesTerminal);
 	    	
-	    	Terminal terminal2 = new Terminal();
-	    	terminal2.setNombre("campus");
-	    	//terminal2.setComuna(comuna8);
+	    	Terminal terminal2 = new Terminal("campus");
+	    	terminal2.setComuna(comuna8);
 	    	terminal2.setObservers(accionesTerminal2);
 	    	
-	    	RepositorioTerminales.getInstance().agregar(terminal);
-	    	RepositorioTerminales.getInstance().agregar(terminal2);
+//	    	RepositorioTerminales.getInstance().agregar(terminal);
+//	    	RepositorioTerminales.getInstance().agregar(terminal2);
 	    	
 			DebugScreen.enableDebugScreen();
 			Router.configure();

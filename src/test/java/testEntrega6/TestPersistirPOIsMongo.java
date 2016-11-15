@@ -45,7 +45,7 @@ public class TestPersistirPOIsMongo {
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
 		mongod = prepared.start();
 		
-		comuna8 = new Comuna(8);
+		comuna8 = new Comuna(new Long(8));
 		zonaComuna8 = new PolygonAdapter();
 		zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
 		zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
@@ -53,7 +53,6 @@ public class TestPersistirPOIsMongo {
 		zonaComuna8.agregarPoint(new Point(-34.6621,-58.4240));
 		zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
 		comuna8.setZona(zonaComuna8);
-		comuna8.setNumeroDeComuna(8);
 		
 		// CGP que provee Asesoramiento Legal -- Av Escalada 3100
 		cgp = new CGP(new Point(-34.6672, -58.4669));

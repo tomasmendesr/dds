@@ -85,7 +85,7 @@ public class Terminal {
 		return comuna;
 	}
 	
-	public Integer getNumeroComuna(){
+	public Long getNumeroComuna(){
 		return comuna.getNumeroDeComuna();
 	}
 	

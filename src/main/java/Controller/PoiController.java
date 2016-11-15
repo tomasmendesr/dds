@@ -7,6 +7,7 @@ import java.util.Map;
 
 import Model.POI;
 import Model.Terminal;
+import POIsExt.Comuna;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
 import spark.ModelAndView;
@@ -41,11 +42,19 @@ public class PoiController {
 		String id = req.params("id");
 		String X = req.queryParams("coordenadaXNueva");
 		String Y = req.queryParams("coordenadaYNueva");
+		String numeroComuna = req.queryParams("nuevaComuna");
 		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
 		if(req.queryParams("nombreNuevo") != null && !req.queryParams("nombreNuevo").equals(""))
 				poi.setNombre(req.queryParams("nombreNuevo"));
 		if(req.queryParams("direccionNueva") != null && !req.queryParams("direccionNueva").equals(""))
 				poi.setDireccion(req.queryParams("direccionNueva"));
+		if(numeroComuna != null)
+			try{
+				Comuna comuna = new Comuna(Long.parseLong(numeroComuna));
+				poi.setComuna(comuna);
+			}catch(Exception e){
+				return e;
+			}
 		if(X != null && !X.equals("") && Y != null && !Y.equals(""))
 			try{ // mas le vale que me de numeritos
 				poi.setCoordenadas(Double.parseDouble(X), Double.parseDouble(Y));

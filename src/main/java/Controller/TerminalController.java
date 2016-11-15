@@ -50,7 +50,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		String comunaNumero = req.queryParams("comuna");
 		nuevaTerminal.setNombre(nombre);
 		try{
-			Comuna comuna = new Comuna(Integer.parseInt(comunaNumero));
+			Comuna comuna = new Comuna(Long.parseLong(comunaNumero));
 			nuevaTerminal.setComuna(comuna);
 		}catch(Exception e){
 			return e;
@@ -79,7 +79,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		if(nombre != null) terminal.setNombre(nombre);
 		if(comunaNumero != null){
 			try{
-				Comuna comuna = new Comuna(Integer.parseInt(comunaNumero));
+				Comuna comuna = new Comuna(Long.parseLong(comunaNumero));
 				terminal.setComuna(comuna);
 			}catch(Exception e){
 				return e;

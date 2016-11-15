@@ -81,12 +81,12 @@ public class PoiController {
 	}
 	
 	public ModelAndView buscarCercanos(Request req, Response res){
-		Map<Terminal, List<POI>> model = new HashMap<>();		
+		Map<String, List<POI>> model = new HashMap<>();		
 		List<POI> pois = new ArrayList<>();
 		String idTerminal = req.params("id");
 		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(idTerminal));
 		pois.addAll(RepositorioPOIs.getInstance().buscarPOIsCercaDe(terminal));
-		model.put(terminal, pois);
+		model.put("pois", pois);
 		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
 	}
 	

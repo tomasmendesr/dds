@@ -1,27 +1,19 @@
 {{#partial "contenido"}}
-{{#with terminal}}
-<h3>POIs encontrados en {{nombre}}</h3>
-
+<h3>POIs Encontrados en la busqueda</h3>
 <table class="table table-stripped">
 	<tr>
 		<th>Nombre</th>
-		<th>Tipo</th>
 		<th>Direccion</th>
-		<th>Coordenadas</th>
 		<th></th>
 	</tr>
 	
 	{{#each pois}}
 		<tr>
 			<td>{{nombre}}</td>
-			<td>{{tipoDePOI}}</td>
 			<td>{{direccion}}</td>
-			<td>X: {{coordenadaX}} - Y: {{coordenadaY}}</td>
 			<td><a href="{{url}}"">Ver Mas</a><td>
 		</tr>
 	{{/each}}
 </table>
-<label><a href="{{url}}">Volver</a></label>
-{{/with}}
 {{/partial}}
 {{>layout.hbs}}

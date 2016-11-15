@@ -9,6 +9,13 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import Model.Terminal;
+import ObserversTerminal.AccionesTerminal;
+import ObserversTerminal.AlmacenarBusqueda;
+import ObserversTerminal.NotificarAdministrador;
+import ObserversTerminal.ReporteParcial;
+import ObserversTerminal.ReportePorFecha;
+import ObserversTerminal.ReporteTotalesPorUsuario;
+import POIsExt.Comuna;
 import Repos.RepositorioTerminales;
 import spark.ModelAndView;
 import spark.Request;
@@ -37,13 +44,30 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		return new ModelAndView(null,"admin/terminal/crear.hbs");
 	}
 	
-	public Void crear(Request req, Response res){
-		String nombre = req.queryParams("nombre");
-		String comuna = req.queryParams("comuna");
+	public Exception crear(Request req, Response res){
 		Terminal nuevaTerminal = new Terminal();
+		String nombre = req.queryParams("nombre");
+		String comunaNumero = req.queryParams("comuna");
 		nuevaTerminal.setNombre(nombre);
-		
-		// faltan acciones y comuna
+		try{
+			Comuna comuna = new Comuna(Integer.parseInt(comunaNumero));
+			nuevaTerminal.setComuna(comuna);
+		}catch(Exception e){
+			return e;
+		}
+		String almacenarBusquedas = req.queryParams("almacenarBusquedas");
+		String notificarAdmin = req.queryParams("notificarAdmin");
+		String reporteParcial = req.queryParams("reporteParcial");
+		String reportePorFecha = req.queryParams("reportePorFecha");
+		String reporteTotalesPorUsuario = req.queryParams("reporteTotalesPorUsuario");
+		List<AccionesTerminal> acciones = new ArrayList<>();
+		if(almacenarBusquedas != null) acciones.add(new AlmacenarBusqueda());
+		if(notificarAdmin != null) acciones.add(new NotificarAdministrador());
+		if(reporteParcial != null) acciones.add(new ReporteParcial());
+		if(reportePorFecha != null) acciones.add(new ReportePorFecha());
+		if(reporteTotalesPorUsuario != null) acciones.add(new ReporteTotalesPorUsuario());
+		nuevaTerminal.setObservers(acciones);
+		RepositorioTerminales.getInstance().agregar(nuevaTerminal);
 		res.redirect("/admin/terminales");
 		return null;
 	}

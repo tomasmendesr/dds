@@ -30,6 +30,8 @@ public class PointAdapter {
 		return new Point(latitud, longitud);
 	}
 	
+
+	
 	
 
 }

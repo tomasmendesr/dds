@@ -1,9 +1,15 @@
 package Server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
 import Model.Terminal;
+import ObserversTerminal.AccionesTerminal;
+import ObserversTerminal.NotificarAdministrador;
+import ObserversTerminal.ReportePorFecha;
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
@@ -41,12 +47,22 @@ public class Server {
 			libreriaEscolar.setTipoDePOI("Local Comercial");
 	    	RepositorioPOIs.getInstance().agregar(libreriaEscolar);
 	    	
+	    	List<AccionesTerminal> accionesTerminal = new ArrayList<>();
+	    	List<AccionesTerminal> accionesTerminal2 = new ArrayList<>();
+	    	ReportePorFecha observerReportePorFecha = new ReportePorFecha();
+	    	NotificarAdministrador observerNotificarAdmin = new NotificarAdministrador();
+	    	accionesTerminal.add(observerNotificarAdmin);
+	    	accionesTerminal2.add(observerReportePorFecha);
+	    	
 	    	Terminal terminal = new Terminal();
 	    	terminal.setNombre("Terminal Abasto");
-	    	terminal.setComuna(comuna8);
+	    	//terminal.setComuna(comuna8);
+	    	terminal.setObservers(accionesTerminal);
+	    	
 	    	Terminal terminal2 = new Terminal();
 	    	terminal2.setNombre("campus");
-	    	terminal2.setComuna(comuna8);
+	    	//terminal2.setComuna(comuna8);
+	    	terminal2.setObservers(accionesTerminal2);
 	    	
 	    	RepositorioTerminales.getInstance().agregar(terminal);
 	    	RepositorioTerminales.getInstance().agregar(terminal2);

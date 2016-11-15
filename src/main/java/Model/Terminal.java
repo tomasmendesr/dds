@@ -38,7 +38,7 @@ public class Terminal {
 
 	public Terminal(String nombre){
 		this.setNombre(nombre);
-		observers = new ArrayList<AccionesTerminal>();
+		observers = new ArrayList<>();
 	}
 	
 	

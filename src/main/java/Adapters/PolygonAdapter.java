@@ -22,6 +22,7 @@ public class PolygonAdapter {
 	@Id
 	@GeneratedValue
 	private int id;
+	
 	@OneToMany (cascade = CascadeType.ALL)
 	@ElementCollection(targetClass = PointConverter.class)
 	private List<PointAdapter> listaDePoints;
@@ -46,7 +47,19 @@ public class PolygonAdapter {
 		return poligono;
 	}
 	
+	
 	public Integer getId() {  return id;  }
-	public void setId(Integer id) {  this.id = id;  }
+
+	public List<PointAdapter> getListaDePoints() {
+		return listaDePoints;
+	}
+
+	public void setListaDePoints(List<PointAdapter> listaDePoints) {
+		this.listaDePoints = listaDePoints;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 }

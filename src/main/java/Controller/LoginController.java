@@ -16,12 +16,13 @@ public class LoginController {
 	
 	public Void login(Request req, Response res){
 		String user = req.queryParams("nombre");
-		List<Terminal> terminales = RepositorioTerminales.getInstance().buscarPorNombre(user); // no encunetra nada
+		List<Terminal> terminales = RepositorioTerminales.getInstance().buscarPorNombre(user); 
 		if(terminales.size() != 0){
 			Terminal terminal = terminales.get(0);
 			if(terminal.getNombre().equals(req.queryParams("password"))){
 				res.redirect(terminal.getUrl());
 			}
+			else res.redirect("/"); // mal usuario o pw
 		}
 		else if(req.queryParams("nombre").equals("admin") && req.queryParams("password").equals("admin")){
 			res.redirect("/admin");

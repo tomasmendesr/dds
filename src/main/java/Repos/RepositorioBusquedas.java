@@ -4,6 +4,7 @@ import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -77,6 +78,15 @@ public class RepositorioBusquedas {
     				.map(resultado -> resultado.getCantidadDeResultados())
     				.reduce(0, (a,b) -> a + b); // Suma 
     }
+
+    public List<ResultadoBusqueda> getResultadosSegunCriterios(Date fechaInicial, Date fechaFinal, Integer cantidadDePois, String terminal){
+		Query query = datastore.createQuery(ResultadoBusqueda.class);
+		if(fechaInicial != null) query.field("momentoDeBusqueda").greaterThanOrEq(fechaInicial);
+		if(fechaFinal != null) query.field("momentoDeBusqueda").lessThanOrEq(fechaFinal);
+		if(cantidadDePois != null) query.field("terminalId").equals(terminal);
+		return query.asList();
+		// ver como filtrar por cantidad de pois y el tema de terminal id
+	}
     
 	public List<ResultadoBusqueda> getResultadosBusquedas() {
 		return resultadosBusquedas;
@@ -101,6 +111,7 @@ public class RepositorioBusquedas {
 	public void incrementarContador(){
 		this.contador++;
 	}
-	
+
+
 
 }

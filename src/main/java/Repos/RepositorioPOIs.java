@@ -1,6 +1,7 @@
 package Repos;
 
 import Model.POI;
+import Model.Terminal;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -112,6 +113,12 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 				.getResultList();
 	}
 	
+	public List<POI> buscarPOIsCercaDe(Terminal terminal) {
+		return this.listar().stream()
+				.filter(poi -> poi.estaCercaDe(terminal.getUbicacion()))
+				.collect(Collectors.toList());
+	}
+	
 	//GETTERS Y SETTERS
 	public void setColeccionDePOIS(List<POI> unaColeccion) {
 		coleccionDePOIS = unaColeccion;
@@ -121,11 +128,5 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 		return coleccionDePOIS;
 	}
 
-	public List<POI> buscarPOI(String palabraBuscada, String comuna, String tipo, String nombre) {
-		// deberia hacer una query 
-		// agregando las restricciones
-		// en caso de que sean != null los parametros
-		return null;
-	}
 
 }

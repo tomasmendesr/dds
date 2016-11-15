@@ -78,11 +78,13 @@ public class Server {
 	    	
 	    	Terminal terminal = new Terminal("Terminal Abasto");
 	    	terminal.setComuna(comuna8);
+	    	terminal.setUbicacion(new Point(-34.6715, -58.4676)); // misma ubicacion que la parada
 	    	terminal.setObservers(accionesTerminal);
 	    	RepositorioTerminales.getInstance().agregar(terminal);
 	    	
 	    	Terminal terminal2 = new Terminal("campus");
 	    	terminal2.setComuna(comuna5);
+	    	terminal2.setUbicacion(new Point(-34.6715, -58.4676)); // = que la parada
 	    	terminal2.setObservers(accionesTerminal2);
 	    	RepositorioTerminales.getInstance().agregar(terminal2);
 

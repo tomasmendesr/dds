@@ -9,6 +9,10 @@ import Repos.RepositorioBusquedas;
 
 import javax.persistence.*;
 
+import org.uqbar.geodds.Point;
+
+import Converter.PointConverter;
+
 @Entity //@Table(name = "terminales")
 public class Terminal {
 
@@ -28,8 +32,9 @@ public class Terminal {
     @ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="comuna_numero")
 	private Comuna comuna;
     
+    @Column(name="ubicacion") @Convert(converter = PointConverter.class)
+	private Point ubicacion;
 
-	
 	@Transient
     private RepositorioBusquedas repoBusquedas;
     
@@ -91,6 +96,14 @@ public class Terminal {
 	
 	public String getUrl(){
 		return "terminal/" + getId();
+	}
+	
+	public Point getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Point ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 

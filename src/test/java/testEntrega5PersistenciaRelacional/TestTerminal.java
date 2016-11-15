@@ -44,6 +44,7 @@ public class TestTerminal {
 	List<AccionesTerminal> acciones = new ArrayList<>();
 	acciones.add(observerReportePorFecha);
 	terminalAbasto.setObservers(acciones);
+	terminalAbasto.setUbicacion(new Point(-34.6715, -58.4676));
 	RepositorioTerminales.getInstance().agregar(terminalAbasto);
 	}
 	

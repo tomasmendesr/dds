@@ -1,17 +1,42 @@
 {{#partial "contenido"}}
 <h3>Historico de Consultas</h3>
 
-<table class="table table-stripped">
-	<tr>
-		
-	</tr>
-	
-	{{#each busquedas}}
-		<tr>
-			
-		</tr>
-	{{/each}}
-</table>
+    <form action="/admin/consultas" method="POST">
+        <label for="fechaDesde">Fecha desde </label>
+        &nbsp;
+        <input type="date" name="fechaDesde">
+        &nbsp;
+        <label for="fechaHasta">Fecha hasta </label>
+        &nbsp;
+        <input type="date" name="fechaHasta">
+        &nbsp;
+        <label for="cantidadDePOIs">Cantidad de POIs </label>
+        &nbsp;
+        <input type="text" name="cantidadDePOIs" placeholder="Cantidad">
+        &nbsp;
+        <label for="terminal">Terminal </label>
+        &nbsp;
+        <input type="text" name="terminal" placeholder="Terminal">
+        &nbsp;
+        <input type="submit" name="buscar" value="Buscar">
+    </form>
+    &nbsp;
+    &nbsp;
+    <table class="table table-stripped">
+        <tr>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th>Terminal</th>
+        </tr>
+
+        {{#each resultadoBusqueda}}
+            <tr>{{fecha}}</tr>
+            <tr>{{cantidad}}</tr>
+            <tr>{{terminal}}</tr>
+        {{/each}}
+
+    </table>
+
 
 {{/partial}}
 {{>layout.hbs}}

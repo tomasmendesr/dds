@@ -3,6 +3,7 @@ package Adapters;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class PolygonAdapter {
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToMany
+	@OneToMany (cascade = CascadeType.ALL)
 	@ElementCollection(targetClass = PointConverter.class)
 	private List<PointAdapter> listaDePoints;
 	

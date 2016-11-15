@@ -85,6 +85,10 @@ public class Terminal {
 		return comuna;
 	}
 	
+	public Integer getNumeroComuna(){
+		return comuna.getNumeroDeComuna();
+	}
+	
 	public String getUrl(){
 		return "terminal/" + getId();
 	}

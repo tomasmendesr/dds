@@ -22,14 +22,14 @@ public class ResultadoBusqueda{
 	
 	// ATRIBUTOS
 	@Id
-	private Long 			id;
-	private String 			fraseBuscada;
-	private double 			duracionBusqueda;
+	private Long 						id;
+	private String 						fraseBuscada;
+	private double 						duracionBusqueda;
 	@Embedded
 	private List<PoisDeBusqueda>		poisEncontrados;
-	private Date			momentoDeBusqueda;
-	private Double			tiempoEstimadoBusqueda;
-	private Long			terminalId;
+	private Date						momentoDeBusqueda;
+	private Double						tiempoEstimadoBusqueda;
+	private Long						terminalId;
 
 	//CONSTRUCTOR
 	public ResultadoBusqueda() { }
@@ -136,5 +136,7 @@ public class ResultadoBusqueda{
 	public String getUrl(){
 		return "admin/busquedas/" + this.getId();
 	}
+
+
 
 }

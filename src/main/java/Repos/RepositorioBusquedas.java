@@ -79,7 +79,7 @@ public class RepositorioBusquedas {
     				.reduce(0, (a,b) -> a + b); // Suma 
     }
 
-    public List<ResultadoBusqueda> getResultadosSegunCriterios(Date fechaInicial, Date fechaFinal, Integer cantidadDePois, String terminal){
+    public List<ResultadoBusqueda> getResultadosSegunCriterios(String fechaInicial, String fechaFinal, String cantidadDePois, String terminal){
 		Query query = datastore.createQuery(ResultadoBusqueda.class);
 		if(fechaInicial != null) query.field("momentoDeBusqueda").greaterThanOrEq(fechaInicial);
 		if(fechaFinal != null) query.field("momentoDeBusqueda").lessThanOrEq(fechaFinal);

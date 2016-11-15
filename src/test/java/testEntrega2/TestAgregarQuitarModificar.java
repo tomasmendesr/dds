@@ -36,7 +36,7 @@ public class TestAgregarQuitarModificar {
 
 		// Comuna 8
 		comuna8 = new Comuna(new Long(8));
-		zonaComuna8 = new PolygonAdapter();
+		zonaComuna8 = new PolygonAdapter(new Long(1));
 		zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
 		zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
 		zonaComuna8.agregarPoint(new Point(-34.6648,-58.4697));

@@ -55,7 +55,7 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(terminal);
+		entityManager.merge(terminal);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}

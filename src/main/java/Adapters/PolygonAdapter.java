@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -20,15 +20,17 @@ public class PolygonAdapter {
 
 	//Atributos
 	@Id
-	@GeneratedValue
 	private Long id;
 	
-	@OneToMany (cascade = CascadeType.ALL)
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@ElementCollection(targetClass = PointConverter.class)
 	private List<PointAdapter> listaDePoints;
+
+	public PolygonAdapter() { }
 	
-	public PolygonAdapter() {
+	public PolygonAdapter(Long id) {
 		super();
+		setId(id);
 		listaDePoints = new ArrayList<PointAdapter>();
 	}
 	
@@ -49,6 +51,10 @@ public class PolygonAdapter {
 	
 	
 	public Long getId() {  return id;  }
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public List<PointAdapter> getListaDePoints() {
 		return listaDePoints;
@@ -58,8 +64,6 @@ public class PolygonAdapter {
 		this.listaDePoints = listaDePoints;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 
 }

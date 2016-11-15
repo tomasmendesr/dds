@@ -24,7 +24,7 @@ public class Server {
 	    	Spark.port(8700);
 	    	
 	    	Comuna comuna8 = new Comuna(new Long(8));
-	    	PolygonAdapter zonaComuna8 = new PolygonAdapter();
+	    	PolygonAdapter zonaComuna8 = new PolygonAdapter(new Long(1));
 	    	zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
 	    	zonaComuna8.agregarPoint(new Point(-34.6578,-58.4787));
 	    	zonaComuna8.agregarPoint(new Point(-34.6648,-58.4697));
@@ -58,12 +58,12 @@ public class Server {
 	    	accionesTerminal2.add(observerReportePorFecha);
 	    	
 	    	Terminal terminal = new Terminal("Terminal Abasto");
-	    //	terminal.setComuna(comuna8);
+	    	terminal.setComuna(comuna8);
 	    	terminal.setObservers(accionesTerminal);
 	    	RepositorioTerminales.getInstance().agregar(terminal);
 	    	
 	    	Terminal terminal2 = new Terminal("campus");
-	    //	terminal2.setComuna(comuna8);
+	    	terminal2.setComuna(comuna8);
 	    	terminal2.setObservers(accionesTerminal2);
 	    	RepositorioTerminales.getInstance().agregar(terminal2);
 	    	

@@ -79,8 +79,8 @@ public class Server {
 			resultado1.setMomentoDeBusqueda(new Date());
 			ResultadoBusqueda resultado2 = new ResultadoBusqueda("libreria",consulta2,4.0,terminal2);
 			resultado2.setMomentoDeBusqueda(new Date());
-			RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado1);
-			RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado2);
+			//RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado1);
+			//RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado2);
 	    	
 			DebugScreen.enableDebugScreen();
 			Router.configure();

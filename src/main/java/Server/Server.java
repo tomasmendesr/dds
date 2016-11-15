@@ -14,8 +14,7 @@ import spark.debug.DebugScreen;
 public class Server {
 	    public static void main(String[] args) {
 	    	Spark.port(8700);
-	    	
-			
+	 
 	    	ParadaDeColectivo paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 	        paradaDel47.setDireccion("Corvalan 3691");
 	        paradaDel47.setNombre("Parada del 47");

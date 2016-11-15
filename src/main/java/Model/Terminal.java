@@ -16,7 +16,7 @@ public class Terminal {
 	@Id	@GeneratedValue	@Column(name="terminal_id")
 	private Long id;
 	    
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name="observers_x_terminal", 
 		joinColumns = {@JoinColumn(name="terminal_id", referencedColumnName="terminal_id") },
 		inverseJoinColumns= { @JoinColumn(name="accion_id", referencedColumnName="accion_id") } )

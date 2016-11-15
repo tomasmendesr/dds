@@ -11,7 +11,7 @@ public class Comuna {
 	@Id	@Column(name="comuna_numero")
 	private int			numeroDeComuna;
 
-	@OneToOne
+	@Transient
 	private PolygonAdapter 	zona;
 
 	//Constructor

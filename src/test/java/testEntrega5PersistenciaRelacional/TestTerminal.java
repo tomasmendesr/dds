@@ -1,5 +1,8 @@
 package testEntrega5PersistenciaRelacional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,6 +11,7 @@ import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
 import Model.Terminal;
+import ObserversTerminal.AccionesTerminal;
 import ObserversTerminal.ReportePorFecha;import POIsExt.Comuna;
 import Repos.RepositorioBusquedas;
 import Repos.RepositorioTerminales;
@@ -37,17 +41,18 @@ public class TestTerminal {
 	//Terminales
 	terminalAbasto = new Terminal("Terminal Abasto");
 	terminalAbasto.setComuna(comuna8);
-	terminalAbasto.addObserver(observerReportePorFecha);
+	List<AccionesTerminal> acciones = new ArrayList<>();
+	acciones.add(observerReportePorFecha);
+	terminalAbasto.setObservers(acciones);
+	RepositorioTerminales.getInstance().agregar(terminalAbasto);
 	}
 	
-	/*
 	@Test
 	public void testVerificarTerminalGuardada(){
-		RepositorioTerminales.getInstance().persistTerminal(terminalAbasto);
 		Terminal terminalAbastoDevuelta = RepositorioTerminales.getInstance().buscarPorNombre("Terminal Abasto").get(0);
 		Assert.assertEquals(new Long(1), new Long(terminalAbastoDevuelta.getId()));
 		Assert.assertEquals("Terminal Abasto", terminalAbastoDevuelta.getNombre());
-	}*/
+	}
     
 	@After
 	public void tearDown(){

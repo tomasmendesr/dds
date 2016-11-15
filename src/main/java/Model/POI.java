@@ -189,7 +189,7 @@ public abstract class POI {
 	}
 	
 	public void setComuna(Comuna unaComuna){
-		comuna = unaComuna;
+		this.comuna = unaComuna;
 	}
 	
 	public Comuna getComuna(){

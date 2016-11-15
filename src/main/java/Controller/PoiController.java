@@ -35,7 +35,7 @@ public class PoiController {
 		String id = req.params("id");
 		POI poi = RepositorioPOIs.getInstance().buscar(Long.parseLong(id));
 		model.put("poi", poi);
-		return new ModelAndView(model, "admin/poi/modifPoi.hbs");
+		return new ModelAndView(model, "admin/poi/modificar.hbs");
 	}
 	
 	public Exception modificar(Request req, Response res){

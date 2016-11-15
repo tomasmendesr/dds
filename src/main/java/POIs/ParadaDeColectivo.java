@@ -33,5 +33,8 @@ public class ParadaDeColectivo extends POI {
 
 	public void setComuna(Comuna comuna) { }
 	
+	public Long getNumeroComuna(){
+		return new Long(0);
+	}
 		
 }

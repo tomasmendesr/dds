@@ -35,7 +35,6 @@ public class Server {
 	    	ParadaDeColectivo paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 	        paradaDel47.setDireccion("Corvalan 3691");
 	        paradaDel47.setNombre("Parada del 47");
-	        paradaDel47.setComuna(comuna8);
 	        paradaDel47.addTag("47");
 	        paradaDel47.addTag("parada");
 	        paradaDel47.setTipoDePOI("Parada de Colectivo");
@@ -59,15 +58,14 @@ public class Server {
 	    	accionesTerminal2.add(observerReportePorFecha);
 	    	
 	    	Terminal terminal = new Terminal("Terminal Abasto");
-	    	terminal.setComuna(comuna8);
+	    //	terminal.setComuna(comuna8);
 	    	terminal.setObservers(accionesTerminal);
+	    	RepositorioTerminales.getInstance().agregar(terminal);
 	    	
 	    	Terminal terminal2 = new Terminal("campus");
-	    	terminal2.setComuna(comuna8);
+	    //	terminal2.setComuna(comuna8);
 	    	terminal2.setObservers(accionesTerminal2);
-	    	
-//	    	RepositorioTerminales.getInstance().agregar(terminal);
-//	    	RepositorioTerminales.getInstance().agregar(terminal2);
+	    	RepositorioTerminales.getInstance().agregar(terminal2);
 	    	
 			DebugScreen.enableDebugScreen();
 			Router.configure();

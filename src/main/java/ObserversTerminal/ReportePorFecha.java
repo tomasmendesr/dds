@@ -24,6 +24,7 @@ public class ReportePorFecha extends AccionesTerminal{
 	//Constructor
 	public ReportePorFecha(){
 		cantidadBusquedasXFecha = new HashMap<LocalDate,Integer>();
+		setDescripcion("Reporte por fecha");
 	}
 	
 	//Getters y Setters	

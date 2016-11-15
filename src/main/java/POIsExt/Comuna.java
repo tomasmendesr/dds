@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 import Adapters.PolygonAdapter;
 
-@Entity @Table(name = "comunas")
+@Entity
 public class Comuna {
 	
 	//ATRIBUTOS

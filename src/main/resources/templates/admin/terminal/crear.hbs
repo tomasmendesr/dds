@@ -1,7 +1,7 @@
 {{#partial "contenido"}}
 <h1>Nueva Terminal</h1>
 
-<form action="/admin/terminales" method="POST">
+<form action="/admin/terminales/crear" method="POST">
 	<p><label for="nombre">Nombre: </label>
 	<input type="text" name="nombre" required></p>
 	<p><label for="comuna">Comuna: </label>
@@ -14,6 +14,7 @@
 	<input type="checkbox" name="reporteTotalesPorUsuario" value="Reporte totales por Usuario">Reporte Totales Por Usuario<br>
 	<p class="submit"><input type="submit" name="guardar" value="Crear"></p>
 </form>
+<a href="/admin/terminales"><button>Cancelar</button></a>
 {{/partial}}
 
 {{>layout.hbs}}

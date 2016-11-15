@@ -80,16 +80,14 @@ public class PoiController {
 		return new ModelAndView(model, "/terminal/infoPoi.hbs");
 	}
 	
-	public ModelAndView buscar(Request req, Response res){
-		String id = req.params("id");
-		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(id));
-		String palabraBuscada = req.queryParams("fraseBuscada");
-		String comuna = req.queryParams("comunaBuscada");
-		String tipo = req.queryParams("tipoBuscado");
-		String nombre = req.queryParams("nombreBuscado");
-		List<POI> pois = RepositorioPOIs.getInstance().buscarPOI(palabraBuscada, comuna, tipo, nombre);
-		Map<Terminal, List<POI>> model = new HashMap<>();		
-		model.put(terminal, pois);
-		return new ModelAndView(model, "terminal/resultadosBusqueda.hbs");
+	public ModelAndView buscarCercanos(Request req, Response res){
+		Map<String, List<POI>> model = new HashMap<>();		
+		List<POI> pois = new ArrayList<>();
+		String idTerminal = req.params("id");
+		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(idTerminal));
+		pois.addAll(RepositorioPOIs.getInstance().buscarPOIsCercaDe(terminal));
+		model.put("pois", pois);
+		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
 	}
+	
 }

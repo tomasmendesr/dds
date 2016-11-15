@@ -25,6 +25,9 @@ public abstract class AccionesTerminal {
 	@GeneratedValue
 	@Column(name ="accion_id")
 	private Long id;
+	
+	@Column(name = "descripcion")
+	private String descripcion;
 
 	//Metodos
 	public abstract void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda);
@@ -36,6 +39,14 @@ public abstract class AccionesTerminal {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 

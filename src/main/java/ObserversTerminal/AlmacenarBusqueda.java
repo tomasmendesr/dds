@@ -11,6 +11,10 @@ import Model.Terminal;
 @Entity
 @DiscriminatorValue("1")
 public class AlmacenarBusqueda extends AccionesTerminal  {
+	
+	public AlmacenarBusqueda(){
+		setDescripcion("Almacenar Busqueda");
+	}
 
 	 // Guardo resultado en el Repositorio de Terminales
 	public void realizarAccion(Terminal unaTerminal, ResultadoBusqueda unResultadoBusqueda){

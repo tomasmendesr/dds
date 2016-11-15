@@ -2,6 +2,7 @@ package Repos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -55,7 +56,7 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(terminal);
+		entityManager.merge(terminal);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
@@ -65,6 +66,12 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 				.createQuery("from Terminal t where t.nombre like :nombre",Terminal.class) 
 				.setParameter("nombre", "%" + nombre + "%") //
 				.getResultList();
+	}
+	
+	public List<Terminal> buscarPorComuna(Long id) {
+		return this.listar().stream()
+				.filter(terminal -> terminal.getComuna().getNumeroDeComuna().equals(id))
+				.collect(Collectors.toList());		
 	}
 	
 	public void eliminarTerminal(Long id){
@@ -79,6 +86,8 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 		public void setTerminales(List<Terminal> terminales) {
 			this.terminales = terminales;
 		}
+
+		
 
 	
 	

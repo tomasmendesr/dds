@@ -9,6 +9,7 @@ import Repos.RepositorioPOIs;
 import Repos.RepositorioPOIsExternos;
 
 public class GestorConsultas  {
+
 	private RepositorioPOIs repositorioPOIs;
 	private List<AdapterConsulta> adapters;
 	

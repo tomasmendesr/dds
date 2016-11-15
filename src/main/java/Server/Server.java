@@ -3,6 +3,10 @@ package Server;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.GestorConsultas;
+import Model.POI;
+import Model.ResultadoBusqueda;
+import Repos.RepositorioBusquedas;
 import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
@@ -66,6 +70,14 @@ public class Server {
 	    //	terminal2.setComuna(comuna8);
 	    	terminal2.setObservers(accionesTerminal2);
 	    	RepositorioTerminales.getInstance().agregar(terminal2);
+
+			GestorConsultas gestorConsultas = new GestorConsultas();
+			List<POI> consulta1 = gestorConsultas.buscarPOIs("parada");
+			List<POI> consulta2 = gestorConsultas.buscarPOIs("libreria");
+			ResultadoBusqueda resultado1 = new ResultadoBusqueda("parada",consulta1,1.01,terminal);
+			ResultadoBusqueda resultado2 = new ResultadoBusqueda("libreria",consulta2,4.0,terminal2);
+			RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado1);
+			RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado2);
 	    	
 			DebugScreen.enableDebugScreen();
 			Router.configure();

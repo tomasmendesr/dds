@@ -33,7 +33,7 @@ public class Router {
 	
 	// Busqueda de pois por usuario
 	Spark.get("/terminal/:id", terminalController::home, engine);
-	Spark.get("/terminal/:id/buscarCercanos", poiController::buscarCeranos, engine);
+	Spark.get("/terminal/:id/buscarCercanos", poiController::buscarCercanos, engine);
 	Spark.get("/poi/:id", poiController::mostrar, engine);
 	
 	// Admin

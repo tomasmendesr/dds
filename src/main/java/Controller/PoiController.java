@@ -80,7 +80,7 @@ public class PoiController {
 		return new ModelAndView(model, "/terminal/infoPoi.hbs");
 	}
 	
-	public ModelAndView buscarCeranos(Request req, Response res){
+	public ModelAndView buscarCercanos(Request req, Response res){
 		Map<Terminal, List<POI>> model = new HashMap<>();		
 		List<POI> pois = new ArrayList<>();
 		String idTerminal = req.params("id");

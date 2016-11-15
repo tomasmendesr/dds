@@ -37,6 +37,15 @@ public class Server {
 	    	zonaComuna8.agregarPoint(new Point(-34.7048,-58.4612));
 	    	comuna8.setZona(zonaComuna8);
 	    	
+	    	Comuna comuna5 = new Comuna(new Long(5));
+	    	PolygonAdapter zonaComuna5 = new PolygonAdapter(new Long(2));
+	    	zonaComuna5.agregarPoint(new Point(-35.6744,-57.5025));
+	    	zonaComuna5.agregarPoint(new Point(-35.6578,-57.4787));
+	    	zonaComuna5.agregarPoint(new Point(-35.6648,-57.4697));
+	    	zonaComuna5.agregarPoint(new Point(-35.6621,-57.4240));
+	    	zonaComuna5.agregarPoint(new Point(-35.7048,-57.4612));
+	    	comuna5.setZona(zonaComuna5);
+	    	
 	    	ParadaDeColectivo paradaDel47 = new ParadaDeColectivo(new Point(-34.6715, -58.4676));
 	        paradaDel47.setDireccion("Corvalan 3691");
 	        paradaDel47.setNombre("Parada del 47");
@@ -68,7 +77,7 @@ public class Server {
 	    	RepositorioTerminales.getInstance().agregar(terminal);
 	    	
 	    	Terminal terminal2 = new Terminal("campus");
-	    	terminal2.setComuna(comuna8);
+	    	terminal2.setComuna(comuna5);
 	    	terminal2.setObservers(accionesTerminal2);
 	    	RepositorioTerminales.getInstance().agregar(terminal2);
 

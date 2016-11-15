@@ -35,7 +35,16 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 	public ModelAndView listar(Request req, Response res){
 		Map<String, List<Terminal>> model = new HashMap<>();		
 		List<Terminal> terminales = new ArrayList<>();
-		terminales.addAll(RepositorioTerminales.getInstance().listar());
+		String numeroComuna = req.queryParams("comunaBuscada");
+		String deshacer = req.queryParams("deshacer");
+		if(deshacer != null)
+			terminales.addAll(RepositorioTerminales.getInstance().listar());
+		else{
+			if(numeroComuna != null && !numeroComuna.equals(""))
+				terminales = RepositorioTerminales.getInstance().buscarPorComuna(Long.parseLong(numeroComuna));
+			else if(numeroComuna == null || numeroComuna.equals(""))
+				terminales.addAll(RepositorioTerminales.getInstance().listar());
+		}
 		model.put("terminales", terminales);
 		return new ModelAndView(model, "admin/terminal/terminales.hbs");
 	}

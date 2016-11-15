@@ -1,8 +1,13 @@
 {{#partial "contenido"}}
 <h3>Administracion Terminales</h3>
 
+
+<form action="/admin/terminales" method="POST">
 <label for="comuna">Comuna</label>
 <input type="text" placeholder="Numero comuna" name="comunaBuscada">
+<input type="submit" name="buscar" value="Buscar">
+<input type="submit" name="deshacer" value="Deshacer Filtro">
+</form>
 <table class="table table-stripped">
 	<tr>
 		<th>Nombre</th>
@@ -22,5 +27,6 @@
 	{{/each}}
 </table>
 <a href="/admin/terminales/nueva"><button>Agregar</button></a>
+<a href="/admin/terminales/volver"><button>Volver</button></a>
 {{/partial}}
 {{>layout.hbs}}

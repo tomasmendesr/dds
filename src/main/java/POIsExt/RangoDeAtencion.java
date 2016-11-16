@@ -11,17 +11,11 @@ public class RangoDeAtencion {
 	//Atributos
 	@Id
 	@GeneratedValue
-	@Column(name="RANGO_DE_ATENCION_ID")
-	private int id;
-	@Column(name="NUMERO_DE_DIA_DE_LA_SEMANA")
+	private Integer id;
 	private int numeroDeDiaDeLaSemana; //EJ "1=Lunes, 2=Martes..."
-	@Column(name="HORARIO_DESDE")
 	private int horarioDesde; //EJ 9
-	@Column(name="MINUTOS_DESDE")
 	private int minutosDesde; //EJ 0
-	@Column(name="HORARIO_HASTA")
 	private int horarioHasta; //EJ 18
-	@Column(name="MINUTOS_HASTA")
 	private int minutosHasta; //EJ 0
 
 	//Constructor

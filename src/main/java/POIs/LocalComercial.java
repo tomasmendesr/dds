@@ -26,7 +26,7 @@ public class LocalComercial extends POI {
 	//ATRIBUTOS
 	@ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="rubro_id")
 	private Rubro rubro;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL) @JoinColumn(name="RANGO_DE_ATENCION_ID")
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR

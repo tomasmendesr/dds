@@ -102,7 +102,7 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(poi);
+		entityManager.merge(poi);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		

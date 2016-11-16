@@ -19,7 +19,8 @@ public class Servicio {
 	Long						id;
 	@Column(name="nombre")
 	String 						nombre;
-	@OneToMany( cascade = {CascadeType.PERSIST, CascadeType.REMOVE} )
+	
+	@OneToMany( cascade = CascadeType.ALL )
 	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR 

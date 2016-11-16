@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -21,7 +22,7 @@ public class Banco extends POIConServicio {
 		super(ubicacion);
 		this.setearRangoDeAtencionBancario();
 	}
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL) 
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	public Banco(){ }

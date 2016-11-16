@@ -119,6 +119,20 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 				.collect(Collectors.toList());
 	}
 	
+	public List<POI> buscarPorTexto(String frase){
+		String[] palabrasBuscadas = frase.split(" ");
+		List<POI> poisEncontrados = new ArrayList<>();
+		List<POI> pois = this.listar();
+		pois.forEach(poi -> {
+			for(int i = 0; i < palabrasBuscadas.length ; i++){
+				if(poi.getTags().contains(palabrasBuscadas[i])) 
+					if(!poisEncontrados.contains(poi)) // para que no se repitan
+						poisEncontrados.add(poi);
+			}
+		});
+		return poisEncontrados;
+	}
+	
 	//GETTERS Y SETTERS
 	public void setColeccionDePOIS(List<POI> unaColeccion) {
 		coleccionDePOIS = unaColeccion;

@@ -90,11 +90,11 @@ public class PoiController {
 		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
 	}
 	
-	public ModelAndView buscarPorNombre(Request req, Response res){
+	public ModelAndView buscarPorTexto(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();
 		List<POI> pois = new ArrayList<>();
-		String nombreBuscado = req.queryParams("fraseBuscada");
-		pois.addAll(RepositorioPOIs.getInstance().buscarPorNombre(nombreBuscado));
+		String fraseBuscada = req.queryParams("fraseBuscada");
+		pois.addAll(RepositorioPOIs.getInstance().buscarPorTexto(fraseBuscada));
 		model.put("pois", pois);		
 		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
 	}

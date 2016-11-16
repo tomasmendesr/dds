@@ -7,7 +7,6 @@ import java.util.List;
 import Model.GestorConsultas;
 import Model.POI;
 import Model.ResultadoBusqueda;
-import Repos.RepositorioBusquedas;
 import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
@@ -58,6 +57,7 @@ public class Server {
 	    	Rubro rubroLibreriaEscolar = new Rubro(500.0);
 			LocalComercial libreriaEscolar = new LocalComercial(new Point(-34.6720, -58.4678), rubroLibreriaEscolar);
 			libreriaEscolar.addTag("libreria");
+			libreriaEscolar.addTag("escolar");
 			libreriaEscolar.setComuna(comuna8);
 			libreriaEscolar.setDireccion("Peru 201");
 			libreriaEscolar.setNombre("Libreria");

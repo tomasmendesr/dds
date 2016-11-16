@@ -3,6 +3,8 @@ package Model;
 import org.uqbar.geodds.Point;
 
 import POIsExt.Comuna;
+import POIsExt.Servicio;
+
 import java.util.ArrayList;
 import Converter.*;
 
@@ -219,6 +221,8 @@ public abstract class POI {
 	public Long getNumeroComuna(){
 		return this.getComuna().getNumeroDeComuna();
 	}
+	
+	public abstract List<Servicio> getServicios();
 
 
 }

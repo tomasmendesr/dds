@@ -2,10 +2,16 @@
 {{#with poi}}
 	
 <h4>{{nombre}}</h4>
-	<p><label>Direccion: {{direccion}} </label></p>
-	<p><label>Tipo: {{tipoDePOI}} </label></p>
-	<p><label>Coordenadas: X: {{coordenadaX}} - Y: {{coordenadaY}} </label></p>
-	<p><label>Comuna: {{numeroComuna}}</label></p>
+	<p><label>Direccion: </label>{{direccion}}</p>
+	<p><label>Tipo: </label>{{tipoDePOI}}</p>
+	<p><label>Coordenadas: X: </label>{{coordenadaX}}<label>- Y: </label>{{coordenadaY}} </p>
+	<p><label>Comuna: </label>{{numeroComuna}}</p>
+	<p><label> Servicios </label></p>
+	<ul>
+		{{#each servicios}}
+  			<li>{{nombre}}</li>
+  		{{/each}}
+	</ul>
 {{/with}}
 {{/partial}}
 {{>layout.hbs}}

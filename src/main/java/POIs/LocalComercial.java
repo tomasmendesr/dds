@@ -19,6 +19,7 @@ import org.uqbar.geodds.Point;
 import Model.POI;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
+import POIsExt.Servicio;
 
 @Entity @DiscriminatorValue("4")
 public class LocalComercial extends POI {
@@ -105,6 +106,11 @@ public class LocalComercial extends POI {
 		
 	public void setRubro(Rubro unRubro){
 			rubro = unRubro;
+	}
+
+	@Override
+	public List<Servicio> getServicios() {
+		return null;
 	}
 
 

@@ -57,7 +57,7 @@ public class AdapterConsultaCGP implements AdapterConsulta {
 		CGP nuevoCGP = new CGP(new Point(unCentroDTO.getPosX(),unCentroDTO.getPosY()));
  		nuevoCGP.setNombre("CGP de ".concat(unCentroDTO.getDireccionCGP()));
  		List<Servicio> serviciosAdaptados = this.adaptarServiciosDTO(unCentroDTO.getListaDeServiciosDTO());
- 		nuevoCGP.setListaDeServicios(serviciosAdaptados);
+ 		nuevoCGP.setServicios(serviciosAdaptados);
 		return nuevoCGP;
 	}
 	

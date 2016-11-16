@@ -96,6 +96,7 @@ public class Stub {
 		cgp.setTipoDePOI("CGP");
 		cgp.addTag("cgp");
         cgp.addTag("servicios");
+        cgp.setDireccion("Mozar 1");
 
 		Banco banco = new Banco(new Point(-34.6719, -58.4695));
 		banco.setComuna(comuna8);
@@ -135,7 +136,7 @@ public class Stub {
 		ArrayList<Servicio> coleccionDeServiciosDeCGP = new ArrayList<Servicio>();
 		coleccionDeServiciosDeCGP.add(licenciaConducir);
 		coleccionDeServiciosDeCGP.add(tramiteDeDNI);
-		cgp.setListaDeServicios(coleccionDeServiciosDeCGP);
+		cgp.setServicios(coleccionDeServiciosDeCGP);
 
 
 		//Instancio y seteo servicios de banco
@@ -156,11 +157,11 @@ public class Stub {
 		ArrayList<Servicio> coleccionDeServiciosDeBanco = new ArrayList<Servicio>();
 		coleccionDeServiciosDeBanco.add(atencionTarjetasDeCredito);
 		coleccionDeServiciosDeBanco.add(atencionAlCliente);
-		banco.setListaDeServicios(coleccionDeServiciosDeBanco);
+		banco.setServicios(coleccionDeServiciosDeBanco);
 
 		RepositorioPOIs.getInstance().agregar(paradaDel47);
 		RepositorioPOIs.getInstance().agregar(libreriaEscolar);
-		//RepositorioPOIs.getInstance().agregar(banco); me rompe la persistencia
+	//	RepositorioPOIs.getInstance().agregar(banco);
 		RepositorioPOIs.getInstance().agregar(cgp);
 		
 		ReportePorFecha observerReportePorFecha = new ReportePorFecha();

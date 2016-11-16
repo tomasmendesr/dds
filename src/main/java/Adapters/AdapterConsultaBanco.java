@@ -61,7 +61,7 @@ public class AdapterConsultaBanco implements AdapterConsulta {
 		Point posicionDelBanco = new Point(posX,posY);
 		List<Servicio> listaDeServiciosBanco = this.getListaDeServiciosDeJSON(jsonBanco);
 		Banco banco = new Banco(posicionDelBanco);
-		banco.setListaDeServicios(listaDeServiciosBanco);
+		banco.setServicios(listaDeServiciosBanco);
 		banco.setNombre(nombreBanco);
 		return banco;
 	}

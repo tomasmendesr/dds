@@ -117,7 +117,7 @@ public class TestDeCalculoDeDisponibilidad {
 		ArrayList<Servicio> coleccionDeServiciosDeCGP = new ArrayList<Servicio>();
 		coleccionDeServiciosDeCGP.add(licenciaConducir);
 		coleccionDeServiciosDeCGP.add(tramiteDeDNI);
-		cgp.setListaDeServicios(coleccionDeServiciosDeCGP);
+		cgp.setServicios(coleccionDeServiciosDeCGP);
 
 
 		//Instancio y seteo servicios de banco
@@ -138,7 +138,7 @@ public class TestDeCalculoDeDisponibilidad {
 		ArrayList<Servicio> coleccionDeServiciosDeBanco = new ArrayList<Servicio>();
 		coleccionDeServiciosDeBanco.add(atencionTarjetasDeCredito);
 		coleccionDeServiciosDeBanco.add(atencionAlCliente);
-		banco.setListaDeServicios(coleccionDeServiciosDeBanco);
+		banco.setServicios(coleccionDeServiciosDeBanco);
 		
 	}
 	

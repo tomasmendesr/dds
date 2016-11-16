@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 public abstract class POIConServicio extends POI {
 
 	//ATRIBUTOS
-	@OneToMany(cascade = CascadeType.MERGE)  
+	@OneToMany(cascade = CascadeType.ALL)  
 	private List<Servicio> 	servicios;
 	
 	//Constructor
@@ -39,7 +39,7 @@ public abstract class POIConServicio extends POI {
 	
 	public boolean algunServicioDisponible(){
 		LocalDateTime 	horaDelMomento = LocalDateTime.now();	//Instancio la hora del momento
-		return	this.getColeccionServicios().stream().
+		return	this.getServicios().stream().
 				anyMatch(servicio -> servicio.estaDisponible(horaDelMomento));
 	}
 	
@@ -48,7 +48,7 @@ public abstract class POIConServicio extends POI {
 	}
 	
 	public Servicio buscarServicio(String unNombreDeServicio){
-		return this.getColeccionServicios().stream().
+		return this.getServicios().stream().
 				filter(servicio -> servicio.getNombre() == unNombreDeServicio).
 				collect(Collectors.toList()).get(0); //SE SUPONE QUE EL SERVICIO INGRESADO SIEMPRE ES VALIDO
 	}
@@ -56,11 +56,11 @@ public abstract class POIConServicio extends POI {
 	//GETERS Y SETERS
 
 	
-	public List<Servicio> getColeccionServicios(){
+	public List<Servicio> getServicios(){
 		return servicios;
 	}
 
-	public void setListaDeServicios(List<Servicio> nuevaListaDeServicios){
+	public void setServicios(List<Servicio> nuevaListaDeServicios){
 		servicios = nuevaListaDeServicios;
 	}
 

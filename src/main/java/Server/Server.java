@@ -18,6 +18,7 @@ import ObserversTerminal.ReportePorFecha;
 import POIs.LocalComercial;
 import POIs.ParadaDeColectivo;
 import POIsExt.Comuna;
+import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
@@ -62,6 +63,30 @@ public class Server {
 			libreriaEscolar.setDireccion("Peru 201");
 			libreriaEscolar.setNombre("Libreria");
 			libreriaEscolar.setTipoDePOI("Local Comercial");
+			RangoDeAtencion rangoLunesManana = new RangoDeAtencion(1,8,0,13,30);
+			RangoDeAtencion rangoMartesManana = new RangoDeAtencion(2,8,0,13,30);
+			RangoDeAtencion rangoMiercolesManana = new RangoDeAtencion(3,8,0,13,30);
+			RangoDeAtencion rangoJuevesManana = new RangoDeAtencion(4,8,0,13,30);
+			RangoDeAtencion rangoViernesManana = new RangoDeAtencion(5,8,0,13,30);
+			RangoDeAtencion rangoSabadoManana = new RangoDeAtencion(6,8,0,13,30);
+			RangoDeAtencion rangoLunesTarde = new RangoDeAtencion(1,14,30,20,0);
+			RangoDeAtencion rangoMartesTarde = new RangoDeAtencion(2,14,30,20,0);
+			RangoDeAtencion rangoMiercolesTarde = new RangoDeAtencion(3,14,30,20,0);
+			RangoDeAtencion rangoJuevesTarde = new RangoDeAtencion(4,14,30,20,0);
+			RangoDeAtencion rangoViernesTarde = new RangoDeAtencion(5,14,30,20,0);
+			List<RangoDeAtencion> listaDeRangosDeAtencionLibreria = new ArrayList<RangoDeAtencion>();
+			listaDeRangosDeAtencionLibreria.add(rangoLunesManana);
+			listaDeRangosDeAtencionLibreria.add(rangoLunesTarde);
+			listaDeRangosDeAtencionLibreria.add(rangoMartesManana);
+			listaDeRangosDeAtencionLibreria.add(rangoMartesTarde);
+			listaDeRangosDeAtencionLibreria.add(rangoMiercolesManana);
+			listaDeRangosDeAtencionLibreria.add(rangoMiercolesTarde);
+			listaDeRangosDeAtencionLibreria.add(rangoJuevesManana);
+			listaDeRangosDeAtencionLibreria.add(rangoJuevesTarde);
+			listaDeRangosDeAtencionLibreria.add(rangoViernesManana);
+			listaDeRangosDeAtencionLibreria.add(rangoViernesTarde);
+			listaDeRangosDeAtencionLibreria.add(rangoSabadoManana);
+			libreriaEscolar.setListaDeRangosDeAtencion(listaDeRangosDeAtencionLibreria);
 			
 	    	RepositorioPOIs.getInstance().agregar(libreriaEscolar);
 	    	

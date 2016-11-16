@@ -121,4 +121,5 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		res.redirect("/admin/terminales");
 		return null;
 	}
+
 }

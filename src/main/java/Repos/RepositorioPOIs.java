@@ -2,9 +2,11 @@ package Repos;
 
 import Model.POI;
 import Model.Terminal;
+import POIs.*;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -113,10 +115,31 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 				.getResultList();
 	}
 	
+	
+	// BUSQUEDA DE POIS POR CRITERIO EN TERMINAL
 	public List<POI> buscarPOIsCercaDe(Terminal terminal) {
 		return this.listar().stream()
 				.filter(poi -> poi.estaCercaDe(terminal.getUbicacion()))
 				.collect(Collectors.toList());
+	}
+	
+	public List<POI> buscarDisponibles(LocalDateTime fechaActual){
+		List<POI> pois = this.listar();
+		return pois.stream()
+			.filter(poi -> {
+				switch(poi.getTipoDePOI()){
+					case "Parada de Colectivo":
+						return ((ParadaDeColectivo) poi).estaDisponible(fechaActual);
+					case "CGP":
+						return ((CGP) poi).estaDisponible(null, fechaActual);
+					case "Banco":
+						return ((Banco) poi).estaDisponible(null, fechaActual);
+					case "Local Comercial":
+						return ((LocalComercial) poi).estaDisponible(fechaActual);
+					default: return false;
+				}
+			})
+			.collect(Collectors.toList());
 	}
 	
 	public List<POI> buscarPorTexto(String frase){

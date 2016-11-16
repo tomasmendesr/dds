@@ -1,5 +1,6 @@
 package Controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +91,15 @@ public class PoiController {
 		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
 	}
 	
+	public ModelAndView buscarDisponibles(Request req, Response res){
+		Map<String, List<POI>> model = new HashMap<>();		
+		List<POI> pois = new ArrayList<>();
+		LocalDateTime date = LocalDateTime.now();
+		pois.addAll(RepositorioPOIs.getInstance().buscarDisponibles(date)); // le mando la fecha actual 
+		model.put("pois", pois);
+		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
+	}
+	
 	public ModelAndView buscarPorTexto(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();
 		List<POI> pois = new ArrayList<>();
@@ -98,4 +108,5 @@ public class PoiController {
 		model.put("pois", pois);		
 		return new ModelAndView(model, "terminal/poisBusqueda.hbs");
 	}
+
 }

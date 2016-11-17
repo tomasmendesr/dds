@@ -1,15 +1,13 @@
 package spark.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
 import Adapters.PolygonAdapter;
 import Model.GestorConsultas;
-import Model.POI;
-import Model.ResultadoBusqueda;
 import Model.Terminal;
 import ObserversTerminal.AccionesTerminal;
 import ObserversTerminal.AlmacenarBusqueda;
@@ -23,12 +21,26 @@ import POIsExt.Comuna;
 import POIsExt.RangoDeAtencion;
 import POIsExt.Rubro;
 import POIsExt.Servicio;
+import Repos.RepositorioBusquedas;
 import Repos.RepositorioPOIs;
 import Repos.RepositorioTerminales;
+import de.flapdoodle.embedmongo.MongoDBRuntime;
+import de.flapdoodle.embedmongo.MongodExecutable;
+import de.flapdoodle.embedmongo.MongodProcess;
+import de.flapdoodle.embedmongo.config.MongodConfig;
+import de.flapdoodle.embedmongo.distribution.Version;
+import de.flapdoodle.embedmongo.runtime.Network;
 
 public class Stub {
 
-	public static void persistirModelo(){
+	public static void persistirModelo() throws IOException{
+		int PORT = 27017;
+	/*	MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
+		MongodProcess mongod = prepared.start();*/
+		
+		GestorConsultas gestorConsultas = new GestorConsultas();
+		
 		Comuna comuna8 = new Comuna(new Long(8));
     	PolygonAdapter zonaComuna8 = new PolygonAdapter(new Long(1));
     	zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));
@@ -173,6 +185,7 @@ public class Stub {
     	accionesTerminal.add(observerNotificarAdmin);
     	accionesTerminal.add(observerAlmacenarBusquedas);
     	accionesTerminal2.add(observerReportePorFecha);
+    	accionesTerminal2.add(observerAlmacenarBusquedas);
     	
     	Terminal terminal = new Terminal("Terminal Abasto");
     	terminal.setComuna(comuna8);
@@ -186,15 +199,13 @@ public class Stub {
     	terminal2.setObservers(accionesTerminal2);
     	RepositorioTerminales.getInstance().agregar(terminal2);
 
-		GestorConsultas gestorConsultas = new GestorConsultas();
-		List<POI> consulta1 = gestorConsultas.buscarPOIs("parada");
-		List<POI> consulta2 = gestorConsultas.buscarPOIs("libreria");
-		ResultadoBusqueda resultado1 = new ResultadoBusqueda("parada",consulta1,1.01,terminal);
-		resultado1.setMomentoDeBusqueda(new Date());
-		ResultadoBusqueda resultado2 = new ResultadoBusqueda("libreria",consulta2,4.0,terminal2);
-		resultado2.setMomentoDeBusqueda(new Date());
-		//RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado1);
-		//RepositorioBusquedas.getInstance().addResultadoBusqueda(resultado2);
+    	RepositorioBusquedas.getInstance().setContador(new Long(1));
+    	gestorConsultas.consultarPOIsXTiempoEstimado("parada", 2000, terminal2);
+    	gestorConsultas.consultarPOIsXTiempoEstimado("cgp", 2000, terminal2);
+    	gestorConsultas.consultarPOIsXTiempoEstimado("libreria", 2000, terminal);   	
+
+		
+	//	mongod.stop();
 		
 	}
 }

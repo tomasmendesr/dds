@@ -30,7 +30,7 @@ public class AdminController {
 	
 	public ModelAndView listarBusquedas(Request req, Response res){
 		Map<String, List<ResultadoBusqueda>> model = new HashMap<>();
-		List<ResultadoBusqueda> resultados = RepositorioBusquedas.getInstance().getAllBusquedas();
+		List<ResultadoBusqueda> resultados = RepositorioBusquedas.getInstance().listar();
 		model.put("admin", resultados);
 		return new ModelAndView(model, "admin/busquedas.hbs");
 	}

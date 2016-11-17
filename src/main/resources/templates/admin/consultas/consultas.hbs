@@ -25,13 +25,11 @@
     <table class="table table-stripped">
         <tr>
             <th>Fecha</th>
-            <th>Cantidad</th>
             <th>Terminal</th>
         </tr>
 
-        {{#each resultadoBusqueda}}
+        {{#each resultadosBusquedas}}
             <tr>{{momentoDeBusqueda}}</tr>
-            <tr>{{cantidadDeResultados}}</tr>
             <tr>{{terminalId}}</tr>
         {{/each}}
 

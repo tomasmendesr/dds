@@ -49,7 +49,7 @@ public class RepositorioBusquedas {
     	datastore.save(resultadoAGuardar);
     }
 
-    public List<ResultadoBusqueda> getAllBusquedas(){
+    public List<ResultadoBusqueda> listar(){
     	final Query<ResultadoBusqueda> query = datastore.createQuery(ResultadoBusqueda.class);
     	return query.asList();
     }

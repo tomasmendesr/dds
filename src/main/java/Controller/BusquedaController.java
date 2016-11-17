@@ -1,11 +1,7 @@
 package Controller;
 
-import Model.GestorConsultas;
-import Model.POI;
 import Model.ResultadoBusqueda;
-import Model.Terminal;
 import Repos.RepositorioBusquedas;
-import Repos.RepositorioTerminales;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -32,7 +28,8 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 
 	public ModelAndView listar(Request req, Response res){
 		Map<String,List<ResultadoBusqueda>> model = new HashMap<>();
-		model.put("resultadoBusqueda",RepositorioBusquedas.getInstance().getAllBusquedas());
+		List<ResultadoBusqueda> resultadosBusquedas = RepositorioBusquedas.getInstance().listar();
+		model.put("resultadosBusquedas", resultadosBusquedas);
 		return new ModelAndView(model,"admin/consultas/consultas.hbs");
 	}
 

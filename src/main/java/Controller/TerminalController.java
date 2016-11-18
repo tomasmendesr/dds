@@ -23,28 +23,29 @@ import spark.Response;
 
 
 public class TerminalController implements WithGlobalEntityManager, TransactionalOps{
+	
+	private String id;
 
 	public ModelAndView home(Request req, Response res){
 		Map<String, Terminal> model = new HashMap<>();
-		String id = req.params("id");
+		id = req.params("id");
 		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(id));
 		model.put("terminal", terminal);
 		return new ModelAndView(model, "terminal/home.hbs");
 	}
 	
-	public ModelAndView listar(Request req, Response res){
+	public ModelAndView listar(Request req, Response res) throws Exception {
 		Map<String, List<Terminal>> model = new HashMap<>();		
 		List<Terminal> terminales = new ArrayList<>();
 		String numeroComuna = req.queryParams("comunaBuscada");
 		String deshacer = req.queryParams("deshacer");
-		if(deshacer != null)
-			terminales.addAll(RepositorioTerminales.getInstance().listar());
-		else{
-			if(numeroComuna != null && !numeroComuna.equals(""))
+		if(deshacer != null) numeroComuna = null;
+		if(numeroComuna != null && !numeroComuna.equals(""))
+			try{
 				terminales = RepositorioTerminales.getInstance().buscarPorComuna(Long.parseLong(numeroComuna));
-			else if(numeroComuna == null || numeroComuna.equals(""))
-				terminales.addAll(RepositorioTerminales.getInstance().listar());
-		}
+			}catch(Exception e){}
+		else if(numeroComuna == null || numeroComuna.equals(""))
+			terminales.addAll(RepositorioTerminales.getInstance().listar());
 		model.put("terminales", terminales);
 		return new ModelAndView(model, "admin/terminal/terminales.hbs");
 	}
@@ -121,5 +122,4 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		res.redirect("/admin/terminales");
 		return null;
 	}
-
 }

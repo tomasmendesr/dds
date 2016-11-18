@@ -7,6 +7,7 @@
 <label for="tipo">Tipo</label>
 <input type="text" placeholder="Tipo" name="tipoBuscado">
 <input type="submit" name="buscar" value="Buscar">
+<input type="submit" name="deshacer" value="Deshacer Filtro">
 </form>
 <table class="table table-stripped">
 	<tr>
@@ -23,7 +24,7 @@
 			<td>{{tipoDePOI}}</td>
 			<td>{{direccion}}</td>
 			<td><a href="/admin/pois/modificar/{{url}}"">Modificar</a><td>
-			<td><a href="/admin/pois/eliminar/{{url}}" method="POST">Eliminar<td>
+			<td><a href="/admin/pois/eliminar/{{url}}">Eliminar<td>
 		</tr>
 	{{/each}}
 </table>

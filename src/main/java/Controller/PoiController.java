@@ -21,6 +21,11 @@ public class PoiController {
 		List<POI> pois = new ArrayList<>();
 		String nombre = req.queryParams("nombreBuscado");
 		String tipo = req.queryParams("tipoBuscado");
+		String deshacer = req.queryParams("deshacer");
+		if(deshacer != null){
+			nombre = null;
+			tipo = null;
+		}
 		if(nombre != null && !nombre.equals(""))
 			pois.addAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
 		else if(tipo != null && !tipo.equals(""))

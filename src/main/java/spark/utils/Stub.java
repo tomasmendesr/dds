@@ -35,9 +35,9 @@ public class Stub {
 
 	public static void persistirModelo() throws IOException{
 		int PORT = 27017;
-	/*	MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
-		MongodProcess mongod = prepared.start();*/
+		MongodProcess mongod = prepared.start();
 		
 		GestorConsultas gestorConsultas = new GestorConsultas();
 		
@@ -205,7 +205,6 @@ public class Stub {
     	gestorConsultas.consultarPOIsXTiempoEstimado("libreria", 2000, terminal);   	
 
 		
-	//	mongod.stop();
-		
+		mongod.stop();
 	}
 }

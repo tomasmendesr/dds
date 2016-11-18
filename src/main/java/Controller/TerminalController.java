@@ -37,14 +37,11 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		List<Terminal> terminales = new ArrayList<>();
 		String numeroComuna = req.queryParams("comunaBuscada");
 		String deshacer = req.queryParams("deshacer");
-		if(deshacer != null)
+		if(deshacer != null) numeroComuna = null;
+		if(numeroComuna != null && !numeroComuna.equals(""))
+			terminales = RepositorioTerminales.getInstance().buscarPorComuna(Long.parseLong(numeroComuna));
+		else if(numeroComuna == null || numeroComuna.equals(""))
 			terminales.addAll(RepositorioTerminales.getInstance().listar());
-		else{
-			if(numeroComuna != null && !numeroComuna.equals(""))
-				terminales = RepositorioTerminales.getInstance().buscarPorComuna(Long.parseLong(numeroComuna));
-			else if(numeroComuna == null || numeroComuna.equals(""))
-				terminales.addAll(RepositorioTerminales.getInstance().listar());
-		}
 		model.put("terminales", terminales);
 		return new ModelAndView(model, "admin/terminal/terminales.hbs");
 	}

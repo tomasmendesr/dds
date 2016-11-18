@@ -34,14 +34,16 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		return new ModelAndView(model, "terminal/home.hbs");
 	}
 	
-	public ModelAndView listar(Request req, Response res){
+	public ModelAndView listar(Request req, Response res) throws Exception {
 		Map<String, List<Terminal>> model = new HashMap<>();		
 		List<Terminal> terminales = new ArrayList<>();
 		String numeroComuna = req.queryParams("comunaBuscada");
 		String deshacer = req.queryParams("deshacer");
 		if(deshacer != null) numeroComuna = null;
 		if(numeroComuna != null && !numeroComuna.equals(""))
-			terminales = RepositorioTerminales.getInstance().buscarPorComuna(Long.parseLong(numeroComuna));
+			try{
+				terminales = RepositorioTerminales.getInstance().buscarPorComuna(Long.parseLong(numeroComuna));
+			}catch(Exception e){}
 		else if(numeroComuna == null || numeroComuna.equals(""))
 			terminales.addAll(RepositorioTerminales.getInstance().listar());
 		model.put("terminales", terminales);

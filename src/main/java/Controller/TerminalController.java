@@ -23,10 +23,12 @@ import spark.Response;
 
 
 public class TerminalController implements WithGlobalEntityManager, TransactionalOps{
+	
+	private String id;
 
 	public ModelAndView home(Request req, Response res){
 		Map<String, Terminal> model = new HashMap<>();
-		String id = req.params("id");
+		id = req.params("id");
 		Terminal terminal = RepositorioTerminales.getInstance().buscar(Long.parseLong(id));
 		model.put("terminal", terminal);
 		return new ModelAndView(model, "terminal/home.hbs");
@@ -118,5 +120,4 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		res.redirect("/admin/terminales");
 		return null;
 	}
-
 }

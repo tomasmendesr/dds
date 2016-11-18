@@ -145,7 +145,7 @@ public class TestPersistirBusquedasMongo {
         RepositorioBusquedas.resetBusquedas();
         RepositorioPOIs.resetPOIs();
         RepositorioBusquedas.getInstance().borrarTodasLasBusquedas();
-        if (mongod != null) mongod.stop();
+        mongod.stop();
     }
 
 }

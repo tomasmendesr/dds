@@ -120,7 +120,7 @@ public class TestBusquedasPorTerminalMongo {
         RepositorioBusquedas.resetBusquedas();
         RepositorioPOIs.resetPOIs();
         RepositorioBusquedas.getInstance().borrarTodasLasBusquedas();
-        if (mongod != null) mongod.stop();
+        mongod.stop();
     }
 
 }

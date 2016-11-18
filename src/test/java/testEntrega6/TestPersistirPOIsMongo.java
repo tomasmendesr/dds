@@ -87,7 +87,7 @@ public class TestPersistirPOIsMongo {
     public void tearDown(){
         RepositorioPOIsExternos.getInstance().borrarTodosLosPois();
         RepositorioPOIs.resetPOIs();
-        if (mongod != null) mongod.stop();
+        mongod.stop();
     }
 
 }

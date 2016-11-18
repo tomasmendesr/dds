@@ -54,7 +54,7 @@ public class PoiController {
 				poi.setNombre(req.queryParams("nombreNuevo"));
 		if(req.queryParams("direccionNueva") != null && !req.queryParams("direccionNueva").equals(""))
 				poi.setDireccion(req.queryParams("direccionNueva"));
-		if(numeroComuna != null)
+		if(numeroComuna != null && !numeroComuna.equals(""))
 			try{
 				Comuna comuna = new Comuna(Long.parseLong(numeroComuna));
 				poi.setComuna(comuna);

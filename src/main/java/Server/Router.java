@@ -55,7 +55,7 @@ public class Router {
 	Spark.post("/admin/terminales/crear", terminalController::crear);
 	Spark.get("/admin/terminales/modificar/terminal/:id", terminalController::modifView, engine);
 	Spark.post("/admin/terminales/modificar/terminal/:id", terminalController::modificar);
-	Spark.post("/admin/terminales/eliminar/terminal/:id", terminalController::eliminar);
+	Spark.get("/admin/terminales/eliminar/terminal/:id", terminalController::eliminar);
 	
 	//Administracion de consultas
 	Spark.get("/admin/busquedas", busquedasController::listar, engine);

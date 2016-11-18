@@ -48,7 +48,7 @@ public class ResultadoBusqueda{
 		pois.forEach(poi -> poisDeBusqueda.add(this.obtenerPoiDeBusqueda(poi)));
 		return poisDeBusqueda;
 	}
-	
+
 	public PoisDeBusqueda obtenerPoiDeBusqueda(POI poi){
 		PoisDeBusqueda poiDeBusqueda = new PoisDeBusqueda();
 		poiDeBusqueda.setId(poi.getID());
@@ -132,11 +132,8 @@ public class ResultadoBusqueda{
 	public void setTerminalId(Long terminalId) {
 		this.terminalId = terminalId;
 	}
-	
+
 	public String getUrl(){
-		return "admin/busquedas/" + this.getId();
+		return "busqueda/:" + getId();
 	}
-
-
-
 }

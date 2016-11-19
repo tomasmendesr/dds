@@ -88,7 +88,9 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 	}
 	
 	public void eliminarPOI(long id) {
-		entityManager().remove(this.buscar(id));
+		entityManager().getTransaction().begin();
+		  entityManager().remove(this.buscar(id));
+		  entityManager().getTransaction().commit();
 	}
 	
 	public List<POI> buscarPOIsPorTipo(String tipo){
@@ -163,6 +165,12 @@ public class RepositorioPOIs implements WithGlobalEntityManager {
 
 	public List<POI> getColeccionDePOIS() {
 		return coleccionDePOIS;
+	}
+
+	public void update(POI poi) {
+		entityManager().getTransaction().begin();
+		entityManager().merge(poi);
+		entityManager().getTransaction().commit();
 	}
 
 

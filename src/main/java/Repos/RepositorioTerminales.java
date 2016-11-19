@@ -75,7 +75,15 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 	}
 	
 	public void eliminarTerminal(Long id){
+		entityManager().getTransaction().begin();
 		entityManager().remove(this.buscar(id));
+		entityManager().getTransaction().commit();
+	}
+	
+	public void update(Terminal terminal){
+		entityManager().getTransaction().begin();
+		entityManager().merge(terminal);
+		entityManager().getTransaction().commit();
 	}
 	
 	//Getters y setters

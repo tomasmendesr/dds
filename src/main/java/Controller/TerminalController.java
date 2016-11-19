@@ -97,6 +97,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 			}
 		}
 		terminal.setObservers(acciones);
+		RepositorioTerminales.getInstance().update(terminal);
 		res.redirect("/admin/terminales");  
 		return null;
 	}

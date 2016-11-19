@@ -58,6 +58,8 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		Terminal nuevaTerminal = new Terminal();
 		String nombre = req.queryParams("nombre");
 		String comunaNumero = req.queryParams("comuna");
+		String X = req.queryParams("coordenadaXNueva");
+		String Y = req.queryParams("coordenadaYNueva");
 		nuevaTerminal.setNombre(nombre);
 		try{
 			Comuna comuna = new Comuna(Long.parseLong(comunaNumero));
@@ -65,6 +67,12 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		}catch(Exception e){
 			return e;
 		}
+		if(X != null && !X.equals("") && Y != null && !Y.equals(""))
+			try{ // mas le vale que me de numeritos
+				nuevaTerminal.setCoordenadas(Double.parseDouble(X), Double.parseDouble(Y));
+			}catch(Exception e){
+				return e;
+			}
 		List<AccionesTerminal> acciones = asignarAcciones(req);
 		nuevaTerminal.setObservers(acciones);
 		RepositorioTerminales.getInstance().agregar(nuevaTerminal);
@@ -97,6 +105,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 			}
 		}
 		terminal.setObservers(acciones);
+		RepositorioTerminales.getInstance().update(terminal);
 		res.redirect("/admin/terminales");  
 		return null;
 	}

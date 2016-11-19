@@ -67,6 +67,7 @@ public class PoiController {
 			}catch(Exception e){
 				return e;
 			}
+		RepositorioPOIs.getInstance().update(poi);
 		res.redirect("/admin/pois");  
 		return null;
 	}

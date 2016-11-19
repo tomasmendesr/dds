@@ -106,5 +106,10 @@ public class Terminal {
 		this.ubicacion = ubicacion;
 	}
 
+	public void setCoordenadas(double x, double y) {
+			this.setUbicacion(new Point(x,y));
+		
+	}
+
 
 }

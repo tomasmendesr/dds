@@ -82,7 +82,11 @@ public class ResultadoBusqueda{
 	public void setId(Long id) {  this.id = id;  }
 
 	public int getCantidadDeResultados(){
-		return poisEncontrados.size();
+		if (poisEncontrados ==  null) {
+			return 0;
+		} else {
+			return poisEncontrados.size();
+		}
 	}
 	
 	public String getFraseBuscada() {
@@ -94,7 +98,11 @@ public class ResultadoBusqueda{
 	}
 
 	public List<PoisDeBusqueda> getResultadoBusqueda() {
-		return poisEncontrados;
+		if (poisEncontrados == null) {
+			return new ArrayList<PoisDeBusqueda>();
+		} else {
+			return poisEncontrados;
+		}
 	}
 
 	public void setResultadoBusqueda(List<PoisDeBusqueda> resultadoBusqueda) {

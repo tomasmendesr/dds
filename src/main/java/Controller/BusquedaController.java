@@ -34,7 +34,7 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 
 	public ModelAndView cargarDetalleBusqueda(Request req, Response res){
 		Map<String,List<PoisDeBusqueda>> model = new HashMap<>();
-		Long id = Long.parseLong(req.params("id"));
+		Long id = Long.parseLong(req.params(":id").substring(1));
 		ResultadoBusqueda resultadoBusqueda = RepositorioBusquedas.getInstance().buscar(id);
 		List<PoisDeBusqueda> list = resultadoBusqueda.getResultadoBusqueda();
 		model.put("poisEncontrados",list);

@@ -33,11 +33,13 @@ import de.flapdoodle.embedmongo.runtime.Network;
 
 public class Stub {
 
-	public static void persistirModelo() throws IOException{
+	private static MongodProcess mongod;
+	
+	public static void persistirModelo() throws Exception{
 		int PORT = 27017;
 		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
-		MongodProcess mongod = prepared.start();
+		mongod = prepared.start();
 		
 		GestorConsultas gestorConsultas = new GestorConsultas();
 		
@@ -205,7 +207,11 @@ public class Stub {
     	gestorConsultas.consultarPOIsXTiempoEstimado("libreria", 2000, terminal);   	
 
 		
-		mongod.stop();
+		//mongod.stop();
 
+	}
+	
+	public static void cerrarConeccion(){
+		mongod.stop();
 	}
 }

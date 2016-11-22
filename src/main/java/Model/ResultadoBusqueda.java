@@ -2,6 +2,7 @@ package Model;
 
 import Repos.RepositorioBusquedas;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -119,6 +120,10 @@ public class ResultadoBusqueda{
 	
 	public Date getMomentoDeBusqueda() {
 		return momentoDeBusqueda;
+	}
+	
+	public String getMomentoDeBusquedaString(){
+		return new SimpleDateFormat("dd-MM-yyyy").format(momentoDeBusqueda);
 	}
 
 	public void setMomentoDeBusqueda(Date momentoDeBusqueda) {

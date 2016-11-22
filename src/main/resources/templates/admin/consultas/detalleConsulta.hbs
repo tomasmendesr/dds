@@ -1,17 +1,20 @@
 {{#partial "contenido"}}
-    {{#with resultadoBusqueda}}
-        <h1>Detalle Consulta</h1>
+    {{#with busqueda}}
+        <h1>Detalle Busqueda</h1>
 
+		<h4>Puntos de interes encontrados</h4>
         <table class="table table-stripped">
             <tr>
                 <th>Nombre</th>
                 <th>Direccion</th>
                 <th>Comuna</th>
             </tr>
-            {{#each poisEncontrados}}
-                <tr>{{nombre}}</tr>
-                <tr>{{direccion}}</tr>
-                <tr>{{comuna}}</tr>
+            {{#each resultadosBusqueda}}
+            <tr>
+                <td>{{nombre}}</td>
+                <td>{{direccion}}</td>
+                <td>{{comuna}}</td>
+              </tr>
             {{/each}}
         </table>
 

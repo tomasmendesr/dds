@@ -20,7 +20,7 @@ public class Terminal {
 	@Id	@GeneratedValue	@Column(name="terminal_id")
 	private Long id;
 	    
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.REMOVE})
 	@JoinTable(name="observers_x_terminal", 
 		joinColumns = {@JoinColumn(name="terminal_id", referencedColumnName="terminal_id") },
 		inverseJoinColumns= { @JoinColumn(name="accion_id", referencedColumnName="accion_id") } )
@@ -29,7 +29,7 @@ public class Terminal {
     @Column(name="Snombre")
 	private String nombre;
             
-    @ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="comuna_numero")
+    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE}) @JoinColumn(name="comuna_numero")
 	private Comuna comuna;
     
     @Column(name="ubicacion") @Convert(converter = PointConverter.class)

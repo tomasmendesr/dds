@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 public abstract class POIConServicio extends POI {
 
 	//ATRIBUTOS
-	@OneToMany(cascade = CascadeType.ALL)  
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)  
 	private List<Servicio> 	servicios;
 	
 	//Constructor

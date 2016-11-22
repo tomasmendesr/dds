@@ -1,7 +1,10 @@
 package Controller;
 
 import Model.ResultadoBusqueda;
+import Model.Terminal;
 import Repos.RepositorioBusquedas;
+import Repos.RepositorioTerminales;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
@@ -24,11 +27,12 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 			String fechaInicial = req.params("fechaDesde");
 			String fechaFinal = req.params("fechaHasta");
 			String cantidadDeResultados = req.params("cantidadDeResultados");
-			String terminal = req.params("teminal");
+			String nombreTerminal = req.params("teminal");
+			Terminal terminal = RepositorioTerminales.getInstance().buscarPorNombre(nombreTerminal).get(0);
 			busquedas = RepositorioBusquedas.getInstance().
 					getResultadosSegunCriterios(fechaInicial,fechaFinal,cantidadDeResultados,terminal);
 		}
-		model.put("resultadoBusqueda",busquedas);
+		model.put("resultadosBusquedas",busquedas);
 		return new ModelAndView(model,"admin/consultas/consultas.hbs");
 	}
 

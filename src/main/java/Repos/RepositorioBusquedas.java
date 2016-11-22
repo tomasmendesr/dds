@@ -4,9 +4,7 @@ import Model.ResultadoBusqueda;
 import Model.Terminal;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -81,16 +79,14 @@ public class RepositorioBusquedas {
     				.reduce(0, (a,b) -> a + b); // Suma 
     }
 
-    public List<ResultadoBusqueda> getResultadosSegunCriterios(String fechaInicial, String fechaFinal, String cantidadDePois, String terminal){
-		Query query = datastore.createQuery(ResultadoBusqueda.class);
+    public List<ResultadoBusqueda> getResultadosSegunCriterios(String fechaInicial, String fechaFinal, String cantidadDePois, Terminal terminal){
+		Query<ResultadoBusqueda> query = datastore.createQuery(ResultadoBusqueda.class);
 		if(fechaInicial != null) query.field("momentoDeBusqueda").greaterThanOrEq(fechaInicial);
 		if(fechaFinal != null) query.field("momentoDeBusqueda").lessThanOrEq(fechaFinal);
-		if(terminal != null) query.field("terminalId").equals(terminal);
+		if(terminal != null) query.field("terminalId").equals(terminal.getId());
+		if(cantidadDePois != null) query.field("poisEncontrados").equal(cantidadDePois);
 		List<ResultadoBusqueda> list = query.asList();
-		if(cantidadDePois != null)
-			return list.stream().filter(rdo -> rdo.getCantidadDeResultados() == Integer.parseInt(cantidadDePois)).
-					collect(Collectors.toList());
-		else return list;
+		return list;
 	}
     
 	public List<ResultadoBusqueda> getResultadosBusquedas() {

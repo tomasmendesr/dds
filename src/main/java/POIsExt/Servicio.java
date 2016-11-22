@@ -20,7 +20,7 @@ public class Servicio {
 	@Column(name="nombre")
 	String 						nombre;
 	
-	@OneToMany( cascade = CascadeType.ALL )
+	@OneToMany( cascade = {CascadeType.ALL, CascadeType.REMOVE} )
 	List<RangoDeAtencion>		listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR 

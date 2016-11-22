@@ -25,9 +25,9 @@ import POIsExt.Servicio;
 public class LocalComercial extends POI {
 
 	//ATRIBUTOS
-	@ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name="rubro_id")
+	@ManyToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE}) @JoinColumn(name="rubro_id")
 	private Rubro rubro;
-	@OneToMany(cascade = CascadeType.ALL) 
+	@OneToMany(cascade = {CascadeType.ALL, CascadeType.REMOVE}) 
 	private List<RangoDeAtencion> listaDeRangosDeAtencion;
 	
 	//CONSTRUCTOR

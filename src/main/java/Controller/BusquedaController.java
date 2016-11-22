@@ -13,6 +13,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class BusquedaController implements WithGlobalEntityManager, TransactionalOps {
 
@@ -41,6 +42,7 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 	public ModelAndView listar(Request req, Response res){
 		Map<String,List<ResultadoBusqueda>> model = new HashMap<>();
 		List<ResultadoBusqueda> resultadosBusquedas = RepositorioBusquedas.getInstance().listar();
+		aplicarFiltros(req,resultadosBusquedas);
 		model.put("resultadosBusquedas", resultadosBusquedas);
 		return new ModelAndView(model,"admin/consultas/consultas.hbs");
 	}
@@ -50,6 +52,22 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 		String id = req.params(":id");
 		ResultadoBusqueda resultadoBusqueda = RepositorioBusquedas.getInstance().buscar(Long.parseLong(id));
 		model.put("busqueda",resultadoBusqueda);
-		return new ModelAndView(model,"admin/consultas/detalleConsulta.hbs");
-	}	
+		return new ModelAndView(model,"admin/consultas/detalleConsulta.hbs");4
+	}
+
+	private void aplicarFiltros(Request req, List<ResultadoBusqueda> list){
+		Map<String,String> filtros = new HashMap<>();
+		filtros.put("fechaInicial",req.queryParams("fechaDesde"));
+		filtros.put("fechaFinal", req.queryParams("fechaHasta"));
+		filtros.put("cantidadDeResultados",req.queryParams("cantidadDeResultados"));
+		filtros.put("nombreTerminal",req.queryParams("terminal"));
+		for (Map.Entry<String,String> filtro : filtros.entrySet()) {
+			if(!filtro.getValue().equals("")) filtrar(filtro,list);
+		}
+	}
+
+	private void filtrar(Map.Entry<String,String> filtro, List<ResultadoBusqueda> list){
+		Stream<ResultadoBusqueda> streamList = list.stream();
+		//if(filtro.getKey().equals("fechaInicial")) streamList.filter(elem -> elem.getMomentoDeBusqueda().after(Date.parse(filtro.getValue())));
+	}
 }

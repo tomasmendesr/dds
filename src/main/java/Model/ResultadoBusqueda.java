@@ -147,6 +147,6 @@ public class ResultadoBusqueda{
 	}
 
 	public String getUrl(){
-		return "busqueda/:" + getId();
+		return "busqueda/" + getId();
 	}
 }

@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.PoisDeBusqueda;
 import Model.ResultadoBusqueda;
 import Repos.RepositorioBusquedas;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;

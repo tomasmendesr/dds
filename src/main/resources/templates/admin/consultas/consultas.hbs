@@ -1,7 +1,7 @@
 {{#partial "contenido"}}
 <h3>Historico de Consultas</h3>
 
-    <form action="/admin/consultas" method="POST">
+    <form action="/admin/busquedas" method="POST">
         <label for="fechaDesde">Fecha desde </label>
         &nbsp;
         <input type="date" name="fechaDesde">
@@ -19,12 +19,14 @@
         <input type="text" name="terminal" placeholder="Terminal">
         &nbsp;
         <input type="submit" name="buscar" value="Buscar">
+        <input type="submit" name="deshacer" value = "Deshacer filtro">
     </form>
     &nbsp;
     &nbsp;
     <table class="table table-stripped">
         <tr>
             <th>Fecha</th>
+            <th>Frase buscada</th>
             <th>Terminal</th>
             <th>Cantidad de resultados</th>
             <th></th>
@@ -32,6 +34,7 @@
         {{#each resultadosBusquedas}}
         <tr>
             <td>{{momentoDeBusquedaString}}</td>
+            <td>{{fraseBuscada}}</td>
             <td>{{terminalId}}</td>
             <td>{{cantidadDeResultados}}</td>
             <td><a href="/admin/busquedas/{{url}}">Ver Consulta</a><td>

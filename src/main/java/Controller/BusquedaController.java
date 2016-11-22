@@ -15,12 +15,20 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 
 	public ModelAndView listarSegunCriterio(Request req, Response res){
 		Map<String,List<ResultadoBusqueda>> model = new HashMap<>();
-		String fechaInicial = req.params("fechaDesde");
-		String fechaFinal = req.params("fechaHasta");
-		String cantidadDeResultados = req.params("cantidadDeResultados");
-		String terminal = req.params("teminal");
-		model.put("resultadoBusqueda",RepositorioBusquedas.getInstance().
-				getResultadosSegunCriterios(fechaInicial,fechaFinal,cantidadDeResultados,terminal));
+		List<ResultadoBusqueda> busquedas = new ArrayList<>();
+		String deshacer = req.queryParams("deshacer");
+		if (deshacer != null){
+			busquedas = RepositorioBusquedas.getInstance().listar();
+		}
+		else{ 
+			String fechaInicial = req.params("fechaDesde");
+			String fechaFinal = req.params("fechaHasta");
+			String cantidadDeResultados = req.params("cantidadDeResultados");
+			String terminal = req.params("teminal");
+			busquedas = RepositorioBusquedas.getInstance().
+					getResultadosSegunCriterios(fechaInicial,fechaFinal,cantidadDeResultados,terminal);
+		}
+		model.put("resultadoBusqueda",busquedas);
 		return new ModelAndView(model,"admin/consultas/consultas.hbs");
 	}
 
@@ -37,17 +45,5 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 		ResultadoBusqueda resultadoBusqueda = RepositorioBusquedas.getInstance().buscar(Long.parseLong(id));
 		model.put("busqueda",resultadoBusqueda);
 		return new ModelAndView(model,"admin/consultas/detalleConsulta.hbs");
-	}
-
-	/*
-	public ModelAndView buscar(Request req, Response res){
-		Map<String, List<ResultadoBusqueda>> model = new HashMap<>();
-		List<ResultadoBusqueda> resultadoBusquedaList = new ArrayList<>();
-		resultadoBusquedaList = RepositorioBusquedas.getInstance().getAllBusquedas();
-		model.put()
-
-		return new ModelAndView()
-	}
-	*/
-	
+	}	
 }

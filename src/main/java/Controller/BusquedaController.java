@@ -52,7 +52,7 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 		String id = req.params(":id");
 		ResultadoBusqueda resultadoBusqueda = RepositorioBusquedas.getInstance().buscar(Long.parseLong(id));
 		model.put("busqueda",resultadoBusqueda);
-		return new ModelAndView(model,"admin/consultas/detalleConsulta.hbs");4
+		return new ModelAndView(model,"admin/consultas/detalleConsulta.hbs");
 	}
 
 	private void aplicarFiltros(Request req, List<ResultadoBusqueda> list){

@@ -40,12 +40,11 @@ public class TestPersistirPOIsMongo {
 	public void init()throws Exception{
 		
 		//Abro conexion con Mongodb
-		if(mongod != null){
 		PORT = 27017;
 		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
 		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
 		mongod = prepared.start();
-		}
+		
 		comuna8 = new Comuna(new Long(8));
 		zonaComuna8 = new PolygonAdapter(new Long(1));
 		zonaComuna8.agregarPoint(new Point(-34.6744,-58.5025));

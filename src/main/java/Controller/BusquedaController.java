@@ -24,10 +24,10 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 			busquedas = RepositorioBusquedas.getInstance().listar();
 		}
 		else{ 
-			String fechaInicial = req.params("fechaDesde");
-			String fechaFinal = req.params("fechaHasta");
-			String cantidadDeResultados = req.params("cantidadDeResultados");
-			String nombreTerminal = req.params("teminal");
+			String fechaInicial = req.queryParams("fechaDesde");
+			String fechaFinal = req.queryParams("fechaHasta");
+			String cantidadDeResultados = req.queryParams("cantidadDeResultados");
+			String nombreTerminal = req.queryParams("teminal");
 			Terminal terminal = RepositorioTerminales.getInstance().buscarPorNombre(nombreTerminal).get(0);
 			busquedas = RepositorioBusquedas.getInstance().
 					getResultadosSegunCriterios(fechaInicial,fechaFinal,cantidadDeResultados,terminal);

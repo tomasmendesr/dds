@@ -63,7 +63,7 @@ public class RepositorioTerminales implements WithGlobalEntityManager {
 	
 	public List<Terminal> buscarPorNombre(String nombre) {
 		return entityManager() //
-				.createQuery("from Terminal t where t.nombre like :nombre",Terminal.class) 
+				.createQuery("from Terminal where nombre like :nombre",Terminal.class) 
 				.setParameter("nombre", "%" + nombre + "%") //
 				.getResultList();
 	}

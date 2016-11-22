@@ -60,7 +60,7 @@ public class Router {
 	//Administracion de consultas
 	Spark.get("/admin/busquedas", busquedasController::listar, engine);
 	Spark.post("/admin/busquedas", busquedasController::listarSegunCriterio,engine);
-	Spark.get("/admin/busquedas/busqueda/:id",busquedasController::cargarDetalleBusqueda,engine);
+	Spark.get("/admin/busquedas/busqueda/:id", busquedasController::cargarDetalleBusqueda,engine);
 
 	}
 }

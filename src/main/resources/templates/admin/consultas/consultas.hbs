@@ -26,12 +26,14 @@
         <tr>
             <th>Fecha</th>
             <th>Terminal</th>
+            <th>Cantidad de resultados</th>
+            <th></th>
         </tr>
 
         {{#each resultadosBusquedas}}
-            <tr>{{momentoDeBusqueda}}</tr>
-            <tr>{{terminalId}}</tr>
-            <tr>{{cantidadDeResultados}}</tr>
+            <td>{{momentoDeBusqueda}}</td>
+            <td>{{terminalId}}</td>
+            <td>{{cantidadDeResultados}}</td>
             <td><a href="/admin/busquedas/{{url}}">Ver Consulta</a><td>
         {{/each}}
     </table>

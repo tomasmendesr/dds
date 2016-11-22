@@ -1,6 +1,7 @@
 package Model;
 
 import Repos.RepositorioBusquedas;
+import Repos.RepositorioTerminales;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -144,6 +145,11 @@ public class ResultadoBusqueda{
 
 	public void setTerminalId(Long terminalId) {
 		this.terminalId = terminalId;
+	}
+	
+	public String getNombreTerminal(){
+		Terminal terminal = RepositorioTerminales.getInstance().buscar(this.getTerminalId());
+		return terminal.getNombre();
 	}
 
 	public String getUrl(){

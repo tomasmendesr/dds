@@ -62,7 +62,7 @@ public class Terminal {
 
 
 	//GETTERS Y SETTERS
-	public Long getId() {  return id;  }
+	public Long getId() {  return this.id;  }
 
 	public void setId(Long id) {  this.id = id;  }
 

@@ -36,10 +36,10 @@ public class Stub {
 	private static MongodProcess mongod;
 	
 	public static void persistirModelo() throws Exception{
-		int PORT = 27017;
-		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
-		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
-		mongod = prepared.start();
+//		int PORT = 27017;
+//		MongodConfig config = new MongodConfig(Version.V2_0, PORT, Network.localhostIsIPv6());
+//		MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
+//		mongod = prepared.start();
 		
 		GestorConsultas gestorConsultas = new GestorConsultas();
 		
@@ -211,7 +211,7 @@ public class Stub {
 
 	}
 	
-	public static void cerrarConeccion(){
+	public static void cerrarConexion(){
 		mongod.stop();
 	}
 }

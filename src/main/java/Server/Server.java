@@ -16,7 +16,7 @@ public class Server {
 		}catch (Exception e){
 			System.out.println("Error al abrir socket de mongo\n");
 		}finally{
-			//Stub.cerrarConeccion();
+			//Stub.cerrarConexion();
 		}
 	}
 }

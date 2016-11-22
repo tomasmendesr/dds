@@ -125,9 +125,13 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		return acciones;
 	}
 	
-	public Void eliminar(Request req, Response res){
+	public Exception eliminar(Request req, Response res) {
 		String id = req.params("id");
+		try{
 		RepositorioTerminales.getInstance().eliminarTerminal(Long.parseLong(id));
+		}catch(Exception e){
+			return new Exception("No se puede eliminar esta terminal debido a que se borraran otras entidades que se encuentran en uso por otra terminal", e);
+		}
 		res.redirect("/admin/terminales");
 		return null;
 	}

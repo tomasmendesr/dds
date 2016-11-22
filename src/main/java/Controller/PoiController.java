@@ -72,9 +72,13 @@ public class PoiController {
 		return null;
 	}
 	
-	public Void eliminar(Request req, Response res){
+	public Exception eliminar(Request req, Response res){
 		String id = req.params("id");
+		try{
 		RepositorioPOIs.getInstance().eliminarPOI(Long.parseLong(id));
+		}catch(Exception e){
+			return new Exception("No se puede eliminar el POI debido a que se borraran otras entidades que se encuentran en uso por otro POI", e);
+		}
 		res.redirect("/admin/pois");
 		return null;
 	}

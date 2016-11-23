@@ -6,7 +6,6 @@ import Model.Terminal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -124,7 +123,7 @@ public class RepositorioBusquedas {
 	}
 	
 	public Date getDateWithFormat(String fecha) throws ParseException{
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		return formato.parse(fecha);
 	}
 

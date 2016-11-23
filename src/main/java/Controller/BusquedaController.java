@@ -35,7 +35,7 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 					busquedas.retainAll(RepositorioBusquedas.getInstance().buscarPorTerminal(terminal));
 				}
 			}
-			if(fechaInicial != null && fechaFinal != null)
+			if(fechaInicial != null && fechaFinal != null && !fechaInicial.equals("") && !fechaFinal.equals(""))
 				busquedas.retainAll(RepositorioBusquedas.getInstance().buscarPorFechas(fechaInicial, fechaFinal));
 			if(cantidadDeResultados != null && !cantidadDeResultados.equals(""))
 				busquedas.retainAll(RepositorioBusquedas.getInstance().buscarPorCantidadDeResultados(Integer.parseInt(cantidadDeResultados)));

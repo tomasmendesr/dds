@@ -12,32 +12,33 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.text.ParseException;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class BusquedaController implements WithGlobalEntityManager, TransactionalOps {
 
-	public ModelAndView listarSegunCriterio(Request req, Response res){
+	public ModelAndView listarSegunCriterio(Request req, Response res) throws ParseException{
 		Map<String,List<ResultadoBusqueda>> model = new HashMap<>();
-		List<ResultadoBusqueda> busquedas = new ArrayList<>();
+		List<ResultadoBusqueda> busquedas = RepositorioBusquedas.getInstance().listar();
 		String deshacer = req.queryParams("deshacer");
-		if (deshacer != null){
-			busquedas = RepositorioBusquedas.getInstance().listar();
-		}
-		else{ 
-			String fechaInicial = req.queryParams("fechaDesde");
-			String fechaFinal = req.queryParams("fechaHasta");
-			String cantidadDeResultados = req.queryParams("cantidadDeResultados");
-			String nombreTerminal = req.queryParams("terminal");
-			Terminal terminal = null;
+		String fechaInicial = req.queryParams("fechaDesde");
+		String fechaFinal = req.queryParams("fechaHasta");
+		String cantidadDeResultados = req.queryParams("cantidadDeResultados");
+		String nombreTerminal = req.queryParams("terminal");
+		Terminal terminal = null;
+		if (deshacer == null){
 			if(nombreTerminal != null && !nombreTerminal.equals("")){
 				List<Terminal> terminalesEncontradas = new ArrayList<>();
 				terminalesEncontradas = RepositorioTerminales.getInstance().buscarPorNombre(nombreTerminal);
-				if(terminalesEncontradas.size() != 0)
+				if(terminalesEncontradas.size() != 0){
 					terminal = terminalesEncontradas.get(0);
+					busquedas.retainAll(RepositorioBusquedas.getInstance().buscarPorTerminal(terminal));
+				}
 			}
-			busquedas = RepositorioBusquedas.getInstance().
-					getResultadosSegunCriterios(fechaInicial,fechaFinal,cantidadDeResultados,terminal);
+			if(fechaInicial != null && fechaFinal != null)
+				busquedas.retainAll(RepositorioBusquedas.getInstance().buscarPorFechas(fechaInicial, fechaFinal));
+			if(cantidadDeResultados != null && !cantidadDeResultados.equals(""))
+				busquedas.retainAll(RepositorioBusquedas.getInstance().buscarPorCantidadDeResultados(Integer.parseInt(cantidadDeResultados)));
 		}
 		model.put("resultadosBusquedas",busquedas);
 		return new ModelAndView(model,"admin/consultas/consultas.hbs");
@@ -56,21 +57,5 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 		ResultadoBusqueda resultadoBusqueda = RepositorioBusquedas.getInstance().buscar(Long.parseLong(id));
 		model.put("busqueda",resultadoBusqueda);
 		return new ModelAndView(model,"admin/consultas/detalleConsulta.hbs");
-	}
-
-	private void aplicarFiltros(Request req, List<ResultadoBusqueda> list){
-		Map<String,String> filtros = new HashMap<>();
-		filtros.put("fechaInicial",req.queryParams("fechaDesde"));
-		filtros.put("fechaFinal", req.queryParams("fechaHasta"));
-		filtros.put("cantidadDeResultados",req.queryParams("cantidadDeResultados"));
-		filtros.put("nombreTerminal",req.queryParams("terminal"));
-		for (Map.Entry<String,String> filtro : filtros.entrySet()) {
-			if(!filtro.getValue().equals("")) filtrar(filtro,list);
-		}
-	}
-
-	private void filtrar(Map.Entry<String,String> filtro, List<ResultadoBusqueda> list){
-		Stream<ResultadoBusqueda> streamList = list.stream();
-		//if(filtro.getKey().equals("fechaInicial")) streamList.filter(elem -> elem.getMomentoDeBusqueda().after(Date.parse(filtro.getValue())));
 	}
 }

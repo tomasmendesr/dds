@@ -22,14 +22,12 @@ public class PoiController {
 		String nombre = req.queryParams("nombreBuscado");
 		String tipo = req.queryParams("tipoBuscado");
 		String deshacer = req.queryParams("deshacer");
-		if(deshacer != null){
-			nombre = null;
-			tipo = null;
+		if(deshacer == null){
+			if(nombre != null && !nombre.equals(""))
+				pois.retainAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
+			if(tipo != null && !tipo.equals(""))
+				pois.retainAll(RepositorioPOIs.getInstance().buscarPOIsPorTipo(tipo)); 
 		}
-		if(nombre != null && !nombre.equals(""))
-			pois.retainAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
-		if(tipo != null && !tipo.equals(""))
-			pois.retainAll(RepositorioPOIs.getInstance().buscarPOIsPorTipo(tipo)); // interseccion
 		model.put("pois", pois);
 		return new ModelAndView(model, "admin/poi/pois.hbs");
 	}

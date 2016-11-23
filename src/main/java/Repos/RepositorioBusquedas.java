@@ -3,8 +3,13 @@ package Repos;
 import Model.ResultadoBusqueda;
 import Model.Terminal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -78,16 +83,6 @@ public class RepositorioBusquedas {
     				.map(resultado -> resultado.getCantidadDeResultados())
     				.reduce(0, (a,b) -> a + b); // Suma 
     }
-
-    public List<ResultadoBusqueda> getResultadosSegunCriterios(String fechaInicial, String fechaFinal, String cantidadDePois, Terminal terminal){
-		Query<ResultadoBusqueda> query = datastore.createQuery(ResultadoBusqueda.class);
-		if(fechaInicial != null) query.field("momentoDeBusqueda").greaterThanOrEq(fechaInicial);
-		if(fechaFinal != null) query.field("momentoDeBusqueda").lessThanOrEq(fechaFinal);
-		if(terminal != null) query.field("terminalId").equals(terminal.getId());
-		if(cantidadDePois != null) query.field("poisEncontrados").equal(cantidadDePois);
-		List<ResultadoBusqueda> list = query.asList();
-		return list;
-	}
     
 	public List<ResultadoBusqueda> getResultadosBusquedas() {
 		return resultadosBusquedas;
@@ -112,6 +107,34 @@ public class RepositorioBusquedas {
 	public void incrementarContador(){
 		this.contador++;
 	}
+
+	public List<ResultadoBusqueda> buscarPorTerminal(Terminal terminal) {
+		return this.listar().stream()
+			.filter(busq -> busq.getTerminalId() == terminal.getId())
+			.collect(Collectors.toList());
+	}
+
+	public List<ResultadoBusqueda> buscarPorFechas(String fechaInicial, String fechaFinal) throws ParseException {
+		Date fInicial = getDateWithFormat(fechaInicial);
+		Date fFinal = getDateWithFormat(fechaFinal);
+		return this.listar().stream()
+				.filter(result -> result.getMomentoDeBusqueda().after(fInicial))
+				.filter(result -> result.getMomentoDeBusqueda().before(fFinal))
+				.collect(Collectors.toList());
+	}
+	
+	public Date getDateWithFormat(String fecha) throws ParseException{
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		return formato.parse(fecha);
+	}
+
+	public List<ResultadoBusqueda> buscarPorCantidadDeResultados(Integer cantidadDeResultados) {
+		return this.listar().stream()	
+				.filter(busqueda -> busqueda.getCantidadDeResultados() == cantidadDeResultados)
+				.collect(Collectors.toList());
+	}
+	
+	
 
 
 

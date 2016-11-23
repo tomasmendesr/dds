@@ -18,7 +18,7 @@ import spark.Response;
 public class PoiController {
 	public ModelAndView listar(Request req, Response res){
 		Map<String, List<POI>> model = new HashMap<>();		
-		List<POI> pois = new ArrayList<>();
+		List<POI> pois = RepositorioPOIs.getInstance().listar();
 		String nombre = req.queryParams("nombreBuscado");
 		String tipo = req.queryParams("tipoBuscado");
 		String deshacer = req.queryParams("deshacer");
@@ -27,11 +27,9 @@ public class PoiController {
 			tipo = null;
 		}
 		if(nombre != null && !nombre.equals(""))
-			pois.addAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
-		else if(tipo != null && !tipo.equals(""))
-			pois.addAll(RepositorioPOIs.getInstance().buscarPOIsPorTipo(tipo));
-		if((nombre == null || nombre.equals("")) && (tipo == null || tipo.equals(""))) 
-			pois.addAll(RepositorioPOIs.getInstance().listar());
+			pois.retainAll(RepositorioPOIs.getInstance().buscarPorNombre(nombre));
+		if(tipo != null && !tipo.equals(""))
+			pois.retainAll(RepositorioPOIs.getInstance().buscarPOIsPorTipo(tipo)); // interseccion
 		model.put("pois", pois);
 		return new ModelAndView(model, "admin/poi/pois.hbs");
 	}

@@ -30,8 +30,12 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 			String cantidadDeResultados = req.queryParams("cantidadDeResultados");
 			String nombreTerminal = req.queryParams("terminal");
 			Terminal terminal = null;
-			if(nombreTerminal != null && !nombreTerminal.equals(""))
-				terminal = RepositorioTerminales.getInstance().buscarPorNombre(nombreTerminal).get(0);
+			if(nombreTerminal != null && !nombreTerminal.equals("")){
+				List<Terminal> terminalesEncontradas = new ArrayList<>();
+				terminalesEncontradas = RepositorioTerminales.getInstance().buscarPorNombre(nombreTerminal);
+				if(terminalesEncontradas.size() != 0)
+					terminal = terminalesEncontradas.get(0);
+			}
 			busquedas = RepositorioBusquedas.getInstance().
 					getResultadosSegunCriterios(fechaInicial,fechaFinal,cantidadDeResultados,terminal);
 		}
@@ -42,7 +46,6 @@ public class BusquedaController implements WithGlobalEntityManager, Transactiona
 	public ModelAndView listar(Request req, Response res){
 		Map<String,List<ResultadoBusqueda>> model = new HashMap<>();
 		List<ResultadoBusqueda> resultadosBusquedas = RepositorioBusquedas.getInstance().listar();
-		aplicarFiltros(req,resultadosBusquedas);
 		model.put("resultadosBusquedas", resultadosBusquedas);
 		return new ModelAndView(model,"admin/consultas/consultas.hbs");
 	}

@@ -41,7 +41,6 @@ public class Stub {
 			MongodExecutable prepared = MongoDBRuntime.getDefaultInstance().prepare(config);
 			mongod = prepared.start();
 		}
-		
 		GestorConsultas gestorConsultas = new GestorConsultas();
 		
 		Comuna comuna8 = new Comuna(new Long(8));
